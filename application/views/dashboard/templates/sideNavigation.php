@@ -14,20 +14,20 @@
 
 				<!--sidebar nav start-->
 					<ul class="nav nav-pills nav-stacked custom-nav">
-						<li class="active"><a href="<?php echo base_url().'transaction'; ?>"><i class="lnr lnr-power-switch"></i><span>Daily Transaction</span></a></li>
-						<li class="menu-list"><a href="#"><i class="lnr lnr-cog"></i><span>Ledger</span></a></li>
-						<li><a href="#"><i class="lnr lnr-spell-check"></i> <span>Income</span></a></li>
+						<li class="active"><a href="<?php echo base_url().'transaction'; ?>"><i class="lnr lnr-pie-chart"></i><span>Daily Transaction</span></a></li>
+						<li class="menu-list"><a href="#"><i class="lnr lnr-book"></i><span>Ledger</span></a></li>
+						<li><a href="#"><i class="lnr lnr-briefcase"></i> <span>Income</span></a></li>
 						<li><a href="#"><i class="lnr lnr-menu"></i> <span>Expendiature</span></a></li>              
-                                                <li><a href="#"><i class="lnr lnr-menu"></i> <span>Liabilities</span></a></li>   
-                                                <li class="menu-list"><a href="#"><i class="lnr lnr-menu"></i> <span>Programs</span></a>
+                                                <li><a href="#"><i class="lnr lnr-pushpin"></i> <span>Liabilities</span></a></li>   
+                                                <li class="menu-list"><a href="#"><i class="lnr lnr-spell-check"></i> <span>Programs</span></a>
                                                 <ul class="sub-menu-list">
 								<li><a href="<?php echo base_url().'programs/addProgram' ?>">Add Programs</a> </li>
 								<li><a href="<?php echo base_url().'programs/programListing' ?>">View Programs</a></li>
 								
 							</ul>
                                                 </li>              
-						<li class="menu-list"><a href="#"><i class="lnr lnr-envelope"></i> <span>Miscelleneous</span></a></li>      
-						<li class="menu-list"><a href="#"><i class="lnr lnr-indent-increase"></i> <span>Users</span></a>  
+						<li class="menu-list"><a href="#"><i class="lnr lnr-cog"></i> <span>Miscelleneous</span></a></li>      
+						<li class="menu-list"><a href="#"><i class="lnr lnr-users"></i> <span>Users</span></a>  
 							<ul class="sub-menu-list">
 								<li><a href="<?php echo base_url().'user/addUser' ?>">Add Users</a> </li>
 								<li><a href="<?php echo base_url().'user/userListing' ?>">View Users</a></li>
@@ -46,7 +46,7 @@
 								
 							</ul>
                                                     </li>
-						<li><a href="<?php echo base_url().'documentation/index' ?>"><i class="lnr lnr-select"></i> <span>Help</span></a></li>
+						<li><a href="<?php echo base_url().'documentation/index' ?>"><i class="lnr lnr-file-empty"></i> <span>Help</span></a></li>
 						
 					</ul>
 				<!--sidebar nav end-->
