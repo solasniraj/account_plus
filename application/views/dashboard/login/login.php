@@ -93,13 +93,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<input type="submit" value="Login to your account">
 						</form>	 
-                                                    <div class="signin-rit">
-								<span class="checkbox1">
-									 <label class="checkbox"><input type="checkbox" name="checkbox" checked="">Forgot Password ?</label>
-								</span>
-								<p><a href="#">Click Here</a> </p>
-								<div class="clearfix"> </div>
-							</div>
+                                                    
 						</div>
 						
 					</div>

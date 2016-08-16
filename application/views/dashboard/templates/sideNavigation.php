@@ -5,7 +5,7 @@
 			<div class="logo">
                             <h1><a href="<?php echo base_url(); ?>">Account <span>Plus</span></a></h1>
 			</div>
-			<div class="logo-icon text-center">
+			<div class=" active logo-icon text-center">
 				<a href="<?php echo base_url().'dashboard'; ?>"><i class="lnr lnr-home"></i> </a>
 			</div>
 
@@ -14,9 +14,20 @@
 
 				<!--sidebar nav start-->
 					<ul class="nav nav-pills nav-stacked custom-nav">
-						<li class="active"><a href="<?php echo base_url().'transaction'; ?>"><i class="lnr lnr-pie-chart"></i><span>Daily Transaction</span></a></li>
-						<li class="menu-list"><a href="#"><i class="lnr lnr-book"></i><span>Ledger</span></a></li>
-						<li><a href="#"><i class="lnr lnr-briefcase"></i> <span>Income</span></a></li>
+						<li class="menu-list"><a href="#"><i class="lnr lnr-pie-chart"></i><span>Daily Transaction</span></a>
+                                                <ul class="sub-menu-list">
+								<li><a href="<?php echo base_url().'transaction/cashReceipt'; ?>">Cash Receipt</a> </li>
+								<li><a href="<?php echo base_url().'transaction/journalEntry'; ?>">Journal Entry</a></li>
+								
+							</ul>
+                                                </li>
+						<li class="menu-list"><a href="#"><i class="lnr lnr-book"></i><span>Bank Account</span></a>
+                                                <ul class="sub-menu-list">
+								<li><a href="">Add Account</a> </li>
+								<li><a href="">View Accounts</a></li>
+							</ul>
+                                                </li>
+						
 						<li><a href="#"><i class="lnr lnr-menu"></i> <span>Expendiature</span></a></li>              
                                                 <li><a href="#"><i class="lnr lnr-pushpin"></i> <span>Liabilities</span></a></li>   
                                                 <li class="menu-list"><a href="#"><i class="lnr lnr-spell-check"></i> <span>Programs</span></a>
@@ -26,7 +37,13 @@
 								
 							</ul>
                                                 </li>              
-						<li class="menu-list"><a href="#"><i class="lnr lnr-cog"></i> <span>Miscelleneous</span></a></li>      
+						<li class="menu-list"><a href="#"><i class="lnr lnr-cog"></i> <span>Miscelleneous</span></a>
+                                                <ul class="sub-menu-list">
+								<li><a href="#">Bank Reconcillation</a> </li>
+								<li><a href="#">Data Backup</a></li>
+								<li><a href="#">Data Restore</a></li>
+							</ul>
+                                                </li>      
 						<li class="menu-list"><a href="#"><i class="lnr lnr-users"></i> <span>Users</span></a>  
 							<ul class="sub-menu-list">
 								<li><a href="<?php echo base_url().'user/addUser' ?>">Add Users</a> </li>
