@@ -35,7 +35,12 @@ class programs extends CI_Controller {
         }
     }
     
-    public function programListing()
+    public function addnewProgram()
+    {
+        
+    }
+
+        public function programListing()
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {

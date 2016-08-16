@@ -59,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="graphs">
 					<div class="sign-in-form">
 						<div class="sign-in-form-top">
-							<p><span>Sign In to</span> <a href="<?php echo base_url(); ?>">Account</a></p>
+                                                    <p><span>Sign In to</span> <a href="<?php echo base_url(); ?>">Account <span>Plus</span></a></p>
 						</div>
 						<div class="signin">
 						<div class="errors">
