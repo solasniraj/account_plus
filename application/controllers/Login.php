@@ -34,7 +34,7 @@ class login extends CI_Controller {
            
             $query = $this->dbuser->validate();
             if ($query) {
-                // if the user's credentials validated...
+           
               
                 $data = array(
                     'username' => $this->input->post('userName'),
