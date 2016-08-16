@@ -25,6 +25,14 @@
                             <input type="text" class="form-control1" id="programBudget" name="programBudget" placeholder="Enter estimated budget">
                         </div>
                     </div>
+                
+                <div class="form-group">
+                        <label for="category" class="col-sm-2 control-label">Category</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control1" id="category" name="category" placeholder="Enter estimated budget">
+                        </div>
+                    </div>
+                
                     <div class="col-sm-8 col-sm-offset-2">
                             <button class="btn-success btn">Submit</button>
                            
