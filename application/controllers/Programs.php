@@ -40,7 +40,7 @@
       $url = current_url();
       if ($this->session->userdata('logged_in') == true) 
       {
-
+        $user_id=$this->session->userdata('user_id');
        $this->load->library('form_validation');
        $this->form_validation->set_rules('code', 'code', 'trim|required|callback_xss_clean|max_length[200]');
        $this->form_validation->set_rules('programName', 'program Name', 'trim|required|callback_xss_clean|max_length[200]');
@@ -50,23 +50,20 @@
 
        if ($this->form_validation->run() == FALSE)
        {
-
         $this->addProgram();
-
       }
       else 
       {
-
         $code=$this->input->post('code');
         $programName=$this->input->post('programName');
         $programBudget=$this->input->post('programBudget');
         $category=$this->input->post('category');
-        $user_id=$this->session->userdata('user_id');
+        
         $this->load->model('program_model');
         $result=$this->program_model->insert_programm_listing($user_id,$code, $programName, $programBudget, $category);
         if($result)
         {
-         $this->session->set_flashdata('flashMessage', 'your programm is added successfully');
+         $this->session->set_flashdata('flashMessage', 'Programm added successfully');
          return redirect('programs/programListing');
        }
        else 
