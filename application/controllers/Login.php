@@ -28,6 +28,7 @@ class login extends CI_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('userName', 'Username', 'trim|required|callback_xss_clean');
         $this->form_validation->set_rules('userPass', 'Password', 'trim|required|callback_xss_clean');
+        $this->form_validation->set_error_delimiters('<div class="form_errors">', '</div>');
         if ($this->form_validation->run() == FALSE) {
             $this->index();
         } else {
