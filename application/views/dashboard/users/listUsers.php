@@ -19,10 +19,10 @@
 											<tr>
 												
 												<th>S.N</th>
-												<th>Code</th>
-												<th>Program Name</th>
-												<th>Program Budget</th>
-												<th>Category</th>
+												<th>User Name</th>
+												<th>Status</th>
+												<th>Role</th>
+												
                                                                                                 <th>Action</th>
 											</tr>
 										</thead>
@@ -30,16 +30,16 @@
 										<?php 
 										
 											$i=1;
-										foreach($program_list as $list) 
+										foreach($users as $userData) 
 										{ ?>		
 											<tr>
 												
 												<td><?php echo $i++;?></td>
-												<td><?php echo $list->code;?></td>
-												<td><?php echo $list->programName;?></td>
-												<td><?php echo $list->programBudget;?></td>
-												<td><?php echo $list->category;?></td>
-                                                                                                <td><a href="<?php echo base_url().'programs/edit/'.$list->id;?>">Edit</a> / <a href="<?php echo base_url().'programs/delete/'.$list->id;?>">Delete</a></td>
+												<td><?php echo $userData->user_name;?></td>
+												<td><?php echo $userData->status;?></td>
+												<td><?php echo $userData->user_type;?></td>
+												
+                                                                                                <td><a href="<?php echo base_url().'user/edit/'.$userData->id;?>">Edit</a> / <a href="<?php echo base_url().'user/delete/'.$userData->id;?>">Delete</a></td>
 											</tr>
 										<?php }  	?>
 											

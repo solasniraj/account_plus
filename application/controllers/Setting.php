@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-class dashboard extends CI_Controller {
+class setting extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('session');
@@ -24,7 +24,18 @@ class dashboard extends CI_Controller {
         }
     }
     
-    public function dataRestore()
+    public function createBackup()
+    {
+        $url = current_url();
+         if ($this->session->userdata('logged_in') == true) { 
+             
+             
+    } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+
+        public function dataRestore()
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
@@ -39,6 +50,16 @@ class dashboard extends CI_Controller {
     }
     
     
+    public function restore()
+    {    
+    $url = current_url();
+         if ($this->session->userdata('logged_in') == true) { 
+             
+             
+    } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
     
     
 }

@@ -22,7 +22,9 @@
 
     public function get_all_active_users()
     {
-
+ $this->db->order_by('id', 'DESC');
+    $query = $this->db->get("user_info");
+    return $query->result();
     }
 
 
