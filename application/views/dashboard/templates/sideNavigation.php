@@ -39,7 +39,7 @@
                                                 </li>              
 						<li class="menu-list"><a href="#"><i class="lnr lnr-cog"></i> <span>Miscelleneous</span></a>
                                                 <ul class="sub-menu-list">
-								<li><a href="#">Bank Reconcillation</a> </li>
+								<li><a href="<?php echo base_url().'miscelleneous/bankMiscelleneous' ?>">Bank Reconcillation</a> </li>
 								<li><a href="#">Data Backup</a></li>
 								<li><a href="#">Data Restore</a></li>
 							</ul>

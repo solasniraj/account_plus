@@ -17,7 +17,7 @@ class reports extends CI_Controller {
           $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/program/addProgram');
+          $this->load->view('dashboard/report/summery');
           $this->load->view('dashboard/templates/footer');
           
       } else {
@@ -33,7 +33,7 @@ public function bankCashBook()
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
-      $this->load->view('dashboard/program/addProgram');
+      $this->load->view('dashboard/report/bankCashBook');
       $this->load->view('dashboard/templates/footer');
       
   } else {
@@ -48,7 +48,7 @@ public function trialBalance()
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
-      $this->load->view('dashboard/program/addProgram');
+      $this->load->view('dashboard/report/trialBalance');
       $this->load->view('dashboard/templates/footer');
       
   } else {
@@ -78,7 +78,7 @@ public function balanceSheet()
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
-      $this->load->view('dashboard/program/addProgram');
+      $this->load->view('dashboard/report/balanceSheet');
       $this->load->view('dashboard/templates/footer');
       
   } else {
@@ -93,7 +93,7 @@ public function monthlyStatement()
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
-      $this->load->view('dashboard/program/addProgram');
+      $this->load->view('dashboard/report/monthlyStatement');
       $this->load->view('dashboard/templates/footer');
       
   } else {
