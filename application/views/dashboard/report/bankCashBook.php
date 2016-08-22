@@ -42,15 +42,13 @@
 												</div>
 
 												<div class="form-group">
+													
+													
 													<label class="control-label col-sm-3" for="pwd">year :</label>
 													<div class="col-sm-9">
-														<div class="form-group">
-															<label class="control-label col-sm-3" for="pwd">year :</label>
-															<div class="col-sm-9">
-															<input  class="form-control" type="date" id="datepicker">
+														<input  class="form-control" type="date" id="datepicker">
 
-															</div>
-														</div>
+														
 													</div>
 												</div>
 
