@@ -20,38 +20,6 @@ class user extends CI_Controller {
         }
     }
     
-    public function addUser()
-    {
-        $url = current_url();
-         if ($this->session->userdata('logged_in') == true) {
-        
-           } else {
-            redirect('login/index/?url=' . $url, 'refresh');
-        }
-    }
-    
-    public function userListing()
-    {
-        $url = current_url();
-         if ($this->session->userdata('logged_in') == true) {
-        
-   $user_id=$this->session->userdata('user_id');
-   $data['users']=$this->dbuser->get_all_active_users();
-   
-         $this->load->view('dashboard/templates/header');
-          $this->load->view('dashboard/templates/sideNavigation');
-          $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/users/listUsers', $data);
-           $this->load->view('dashboard/templates/footer');
-           } else {
-            redirect('login/index/?url=' . $url, 'refresh');
-        }
-    }
-    
-    public function editUser($id=NULL)
-    {
-        
-    }
     
     
 }
