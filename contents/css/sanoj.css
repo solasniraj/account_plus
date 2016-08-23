@@ -1,0 +1,10 @@
+.log-input input.address {
+  background: url(../images/address.png)no-repeat 8px 10px #fff;
+}
+.log-input input.phone {
+  background: url(../images/phone.png)no-repeat 8px 10px #fff;
+}
+
+.log-input input.user {
+  background: url(../images/user.png)no-repeat 8px 10px #fff;
+}
