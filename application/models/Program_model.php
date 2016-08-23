@@ -6,22 +6,20 @@ class Program_model extends CI_Model {
         $this->load->database();
     }
 
-    function insert_programm_listing($id,$code, $programName, $programBudget, $category)
+    function insert_programm_listing($id, $programName)
     {
         $data = Array(
-            'code' => $code,
-            'programName' => $programName,
-            'programBudget' => $programBudget,
-            'category' => $category,
+            'code' => 00531,
+            'program_name' => $programName,
             'user_id' =>$id
             );
-       return  $this->db->insert('user_programs_list', $data);
+       return  $this->db->insert('programs_list', $data);
     }
   function  view_programm_listing($id) 
   {
     $this->db->order_by('id', 'DESC');
     $this->db->where('user_id', $id);
-    $query = $this->db->get("user_programs_list");
+    $query = $this->db->get("programs_list");
     return $query->result();
 
   }

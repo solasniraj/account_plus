@@ -21,8 +21,6 @@
 												<th>S.N</th>
 												<th>Code</th>
 												<th>Program Name</th>
-												<th>Program Budget</th>
-												<th>Category</th>
                                                                                                 <th>Action</th>
 											</tr>
 										</thead>
@@ -36,10 +34,9 @@
 												
 												<td><?php echo $i++;?></td>
 												<td><?php echo $list->code;?></td>
-												<td><?php echo $list->programName;?></td>
-												<td><?php echo $list->programBudget;?></td>
-												<td><?php echo $list->category;?></td>
-                                                                                                <td><a href="<?php echo base_url().'programs/edit/'.$list->id;?>">Edit</a> / <a href="<?php echo base_url().'programs/delete/'.$list->id;?>">Delete</a></td>
+												<td><?php echo $list->program_name;?></td>
+												
+                                                                                                <td><a href="<?php echo base_url().'programs/edit/'.$list->id;?>">Edit</a> / <a href="<?php echo base_url().'programs/delete/'.$list->id;?>">Delete</a> / <a href="<?php echo base_url().'programs/createSubLedger/'.$list->id;?>">Create Sub Ledger</a></td>
 											</tr>
 										<?php } } 	?>
 											
