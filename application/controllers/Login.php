@@ -93,6 +93,22 @@ class login extends CI_Controller {
 			return TRUE;
 		}
 	}
+
+
+
+
+    public function registration()
+    {
+
+        if(isset($_GET['url'])){
+        $data['link'] = $_GET['url'];
+            }
+            else{
+               
+                $data['link'] = base_url().'dashboard';
+            }
+         $this->load->view('dashboard/login/registration', $data);
+    }
     
     
 }

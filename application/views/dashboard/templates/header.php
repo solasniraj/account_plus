@@ -11,10 +11,8 @@
 	<!-- Custom CSS -->
 	<link href="<?php echo base_url().'contents/css/style.css'; ?>" rel='stylesheet' type='text/css' />
 
-	<link href="<?php echo base_url().'contents/css/sanoj.css'; ?>" rel='stylesheet' type='text/css' />
-
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="/resources/demos/style.css">
+	<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">-->
 	<!-- Font Awesome CSS -->
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -38,16 +36,15 @@
 <!-- Meters graphs -->
 <script src="<?php echo base_url().'contents/js/jquery-1.10.2.min.js'; ?>"></script>
 <!-- Placed js at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<!--<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
 <script>
 	$( function() {
 		$( "#datepicker" ).datepicker();
 	} );
-</script>
+</script>-->
 
 </head> 
 
 <body class="sticky-header left-side-collapsed">
 	<section>
-		
