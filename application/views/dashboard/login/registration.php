@@ -92,6 +92,25 @@
 	margin-bottom:15px;
 }
 </style>
+
+
+
+<script type="text/javascript">
+$(document).ready(function()
+{	
+$("#createCredentials").click(function()
+{
+
+    $("#openCredentials").toggle();
+  
+});
+
+});
+
+
+
+
+</script>
 </head> 
 
 <body class="sign-in-up">
@@ -140,10 +159,20 @@
 							  <label><input type="radio" class="font16" name="optradio">Use default user and password</label>
 							</div>
 							<div class="radio">
-							  <label><input type="radio" class="font16" name="optradio">Create user with new Credentials</label>
+							  <label><input type="radio" class="font16" id="createCredentials" name="optradio">Create user with new Credentials</label>
 							</div>
 						</div>
 
+
+						<div class="log-input" id="openCredentials" style="display:none">
+							<div class="log-input-left">
+								<input type="text"  style="margin-bottom:12px;" name="credintals" value="" placeholder="enter new Credentials" />
+								<?php echo form_error('credintals'); ?>
+							</div>
+
+							<div class="clearfix"> </div>
+						</div>
+            
 						
 						<div class="log-input" style="margin-bottom:10px;">
 							<div class="log-input-left">

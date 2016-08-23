@@ -10,7 +10,20 @@
 	<link href="<?php echo base_url().'contents/css/bootstrap.min.css'; ?>" rel='stylesheet' type='text/css' />
 	<!-- Custom CSS -->
 	<link href="<?php echo base_url().'contents/css/style.css'; ?>" rel='stylesheet' type='text/css' />
+	
+	<!-- SANOJ CUSTOM CSS *******************************************88888 -->
 
+
+
+
+	<link href="<?php echo base_url().'contents/css/sanoj.css'; ?>" rel='stylesheet' type='text/css' />
+
+
+
+
+
+  
+  <!-- SANOJ CUSTOM CSS END S ******************************************-- >
 	<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/resources/demos/style.css">-->
 	<!-- Font Awesome CSS -->

@@ -1,6 +1,5 @@
 			<div id="page-wrapper">
 				<div class="graphs">
-					<h3 class="blank1">BankMiscellenous</h3>
 					<div class="xs tabls">
 						<?php  $flashMessage=$this->session->flashdata('flashMessage'); 
 						if(!empty($flashMessage))
@@ -11,28 +10,46 @@
 						<hr>
 						<?php }
 						?>
+
+						<!-- CSSS AND JS FOR JQUERY DATEPICKER IMPLEMENTATION  -->
+
+						<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+						<link rel="stylesheet" href="/resources/demos/style.css">
+						<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+						<script>
+							$( function() {
+								$( ".datepicker" ).datepicker();
+							} );
+						</script>
+
+
+
+
+						<!-- END OF LOADED CSSS AND JAVASCITP -->
+						<br>
+						<br>
+						 	<h3 class="blank1 text-center"> Bank Hisab Milaan Prabistibist</h3>
+
 						<div data-example-id="simple-responsive-table" class="bs-example4">
 
 							<div class="table-responsive">
-								<table class="table table-bordered">
+								<table class="table table-bordered table-condensed table-striped">
 									<thead>
 										<tr>
 											
 
-											<th>date(from)</th>
-											<th>date(to)</th>
+											<th>Date&nbsp;(From)</th>
+											<th>Date&nbsp;(To)</th>
 											<th>Bank  Account</th>
-											<th> bank balance based on statement</th>
-											<th>&nbsp;</th>
-											<th>&nbsp;</th>
-											<th>&nbsp;</th>
+											<th> Bank Balance based on Statement</th>
+
 
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td><input class="form-control"  type="text"></td>
-											<td><input class="form-control"  type="text"></td>
+											<td><input class="form-control datepicker" type="text"></td>
+											<td><input class="form-control datepicker" type="text"></td>
 
 											<td>
 												<select class="form-control" id="sel1">
@@ -43,9 +60,10 @@
 												</select>
 											</td>
 											<td><input class="form-control" style="width:150px;display:inline;"  type="text"><button style=" margin-left: 3px;
-												margin-top: -4px;" class="btn btn-default">submit</button></td>
-													<td>&nbsp; </td>
-											<td>&nbsp;</td>
+												margin-top: -4px;" class="btn-success btn" >Submit</button></td>
+
+
+											
 
 
 

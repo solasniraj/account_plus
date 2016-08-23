@@ -8,3 +8,7 @@
 .log-input input.user {
   background: url(../images/user.png)no-repeat 8px 10px #fff;
 }
+table th {
+
+	text-transform: uppercase;;
+}

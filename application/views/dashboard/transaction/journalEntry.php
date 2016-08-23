@@ -48,7 +48,7 @@
 											</tr>
 											<tr>
 
-												<td class="text-right width100">date:</td>
+												<td class="text-right width100">Date:</td>
 												<td><input class="form-control" type="text"></td>
 
 												
@@ -59,13 +59,13 @@
 									<div class="col-md-4">
 										<table class="table">
 											<tr>
-												<td class="text-right width100">source :</td>
+												<td class="text-right width100">Source :</td>
 												<td><input  class="form-control" type="text"></td>
 
 											</tr>
 											<tr>
 
-												<td class="text-right width100">method if Foreign:</td>
+												<td class="text-right width100">Method If Foreign:</td>
 												<td><input class="form-control" type="text"></td>
 
 												
@@ -76,13 +76,13 @@
 									<div class="col-md-4 ">
 										<table class="table">
 											<tr>
-												<td class="text-right width100">journal type:</td>
+												<td class="text-right width100">Journal Type:</td>
 												<td><input  class="form-control" type="text"></td>
 
 											</tr>
 											<tr>
 
-												<td class="text-right width100">type if Foreign:</td>
+												<td class="text-right width100">Type If Foreign:</td>
 												<td><input class="form-control"  type="text"></td>
 
 												
