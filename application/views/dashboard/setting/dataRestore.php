@@ -6,9 +6,9 @@
                 <?php echo form_open_multipart('setting/restore', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
                 
                <div class="form-group">
-                                <label for="programName" class="col-sm-2 control-label">Upload database to restore</label>
+                                <label for="file" class="col-sm-2 control-label">Upload database to restore</label>
                                 <div class="col-sm-8">
-                                    <input id="exampleInputFile" type="file" class="form-control1" name="file">
+                                    <input type="file" class="form-control1" name="file" id="file">
                                     
                                     <?php echo form_error('file'); ?>
                                 </div>
