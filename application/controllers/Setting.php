@@ -82,7 +82,7 @@ $pass = $CI->db->password;
     {    
     $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
-
+$autoload['libraries'] = array('database');
       $CI = &get_instance();
 $CI->load->database();
 $name = $CI->db->database;
@@ -91,24 +91,39 @@ $user = $CI->db->username;
 $pass = $CI->db->password;             
 $dbname = 'acount';       
 
-	set_time_limit(3000); $SQL_CONTENT = (strlen($sql_file_OR_content) > 200 ?  $sql_file_OR_content : file_get_contents($sql_file_OR_content)  );  
-        if (function_exists('DOMAIN_or_STRING_modifier_in_DB')) { $SQL_CONTENT = DOMAIN_or_STRING_modifier_in_DB($replacements[0], $replacements[1], $SQL_CONTENT); }
-	$allLines = explode("\n",$SQL_CONTENT); 
-	$mysqli = new mysqli($host, $user, $pass, $dbname); if (mysqli_connect_errno()){echo "Failed to connect to MySQL: " . mysqli_connect_error();} 
-		$zzzzzz = $mysqli->query('SET foreign_key_checks = 0');	        preg_match_all("/\nCREATE TABLE(.*?)\`(.*?)\`/si", "\n". $SQL_CONTENT, $target_tables); foreach ($target_tables[2] as $table){$mysqli->query('DROP TABLE IF EXISTS '.$table);}         $zzzzzz = $mysqli->query('SET foreign_key_checks = 1');    $mysqli->query("SET NAMES 'utf8'");	
-	$templine = '';	// Temporary variable, used to store current query
-	foreach ($allLines as $line)	{											// Loop through each line
-		if (substr($line, 0, 2) != '--' && $line != '') {$templine .= $line; 	// (if it is not a comment..) Add this line to the current segment
-			if (substr(trim($line), -1, 1) == ';') {		// If it has a semicolon at the end, it's the end of the query
-				$mysqli->query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . $mysqli->error . '<br /><br />');  $templine = ''; // set variable to empty, to start picking up the lines after ";"
-			}
-		}
-        }	echo 'Importing finished. Now, Delete the import file.';
-   //see also export.php 
+$config['upload_path'] = './database/backups';
+$config['allowed_types'] = 'sql|csv';
+   $this->load->library('upload', $config);          
+  if (!$this->upload->do_upload('file')) {
+                $data['error'] = $this->upload->display_errors();
+                
+               $this->load->view('dashboard/templates/header');
+          $this->load->view('dashboard/templates/sideNavigation');
+          $this->load->view('dashboard/templates/topHead');
+          $this->load->view('dashboard/setting/dataRestore');
+           $this->load->view('dashboard/templates/footer');
+            } else {
+                
+   $file_name = $_FILES['file']['name'];              
+    
+$file_restore = $this->load->file($config['upload_path'] . '/' . $file_name, true);
+
+$file_array = explode(';', $file_restore);
+
+foreach ($file_array as $query)
+ {
+    if(strlen($query)>5){
+      //  var_dump($query);
+         $this->db->query("SET FOREIGN_KEY_CHECKS = 0");
+         $this->db->query($query);
+         $this->db->query("SET FOREIGN_KEY_CHECKS = 1");
+    }
+ }
+       	
        
+   die('backup completed');          
              
-             
-             
+   }           
              
              
     } else {
