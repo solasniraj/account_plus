@@ -125,7 +125,7 @@ public function addSubLedger()
       $url = current_url();
       if ($this->session->userdata('logged_in') == true) 
       {
-        $user_id=$this->session->userdata('user_id');
+       $user_id=$this->session->userdata('user_id');
        $this->load->library('form_validation');
        $this->form_validation->set_rules('subLedgerName', 'Sub-ledger Name', 'trim|required|callback_xss_clean|max_length[200]');
        $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
@@ -159,6 +159,17 @@ public function addSubLedger()
  }
 }
 }
+
+public function viewSubLedger($id=NULL)
+{
+    $url = current_url();
+  if ($this->session->userdata('logged_in') == true) {
+
+  } else {
+    redirect('login/index/?url=' . $url, 'refresh');
+  }
+}
+
 
 public function xss_clean($str)
 {

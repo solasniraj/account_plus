@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 19, 2016 at 01:34 अपराह्न
+-- Generation Time: Aug 25, 2016 at 07:27 पूर्वाह्न
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -23,6 +23,73 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `committee_info`
+--
+
+CREATE TABLE IF NOT EXISTS `committee_info` (
+  `id` int(11) NOT NULL,
+  `committee_name` text,
+  `address` text,
+  `phone` varchar(255) DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fiscal_year_info`
+--
+
+CREATE TABLE IF NOT EXISTS `fiscal_year_info` (
+  `id` int(11) NOT NULL,
+  `fiscal_year` varchar(255) DEFAULT NULL,
+  `committee_name` text,
+  `status` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `programs_list`
+--
+
+CREATE TABLE IF NOT EXISTS `programs_list` (
+  `id` int(255) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `program_name` varchar(255) NOT NULL,
+  `user_id` int(255) NOT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `committee_id` varchar(255) DEFAULT NULL,
+  `subledger_id` text,
+  `fiscal_year` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `programs_list`
+--
+
+INSERT INTO `programs_list` (`id`, `code`, `program_name`, `user_id`, `status`, `committee_id`, `subledger_id`, `fiscal_year`) VALUES
+(7, '345', 'Plantation', 1, NULL, NULL, NULL, NULL),
+(8, '345', 'Fencing', 1, NULL, NULL, NULL, NULL),
+(9, '345', 'sanoj', 1, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subledger_info`
+--
+
+CREATE TABLE IF NOT EXISTS `subledger_info` (
+  `id` int(11) NOT NULL,
+  `subledger_name` varchar(255) DEFAULT NULL,
+  `subledger_code` varchar(255) DEFAULT NULL,
+  `subledger_status` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_info`
 --
 
@@ -31,48 +98,47 @@ CREATE TABLE IF NOT EXISTS `user_info` (
   `user_name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `status` varchar(255) DEFAULT NULL,
-  `user_type` varchar(255) DEFAULT NULL
+  `user_type` varchar(255) DEFAULT NULL,
+  `committee_id` varchar(255) DEFAULT NULL,
+  `fiscal_year` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_info`
 --
 
-INSERT INTO `user_info` (`id`, `user_name`, `password`, `status`, `user_type`) VALUES
-(1, 'bhomnath', '9fe3ef0f7bab8b8f9c60056e680cd727', '1', 'administrator'),
-(2, 'sanoj', '9c5ddd54107734f7d18335a5245c286b', '1', 'administrator'),
-(3, 'sanoj', '9c5ddd54107734f7d18335a5245c286b', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_programs_list`
---
-
-CREATE TABLE IF NOT EXISTS `user_programs_list` (
-  `id` int(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
-  `programName` varchar(255) NOT NULL,
-  `programBudget` varchar(255) NOT NULL,
-  `category` varchar(255) NOT NULL,
-  `user_id` int(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `user_programs_list`
---
-
-INSERT INTO `user_programs_list` (`id`, `code`, `programName`, `programBudget`, `category`, `user_id`) VALUES
-(1, '2nr5g6', 'fasdfadasdas', 'dfasfadfas', 'afafdadfa', 2),
-(2, 'gindagi', 'dopalki', 'intagaj', 'kyakag', 2),
-(3, 'timro', 'name', 'k', 'ho', 2),
-(4, 'fdfasfd', 'dfasdf', 'fasdf', 'fdasdf', 2),
-(5, 'aaa', 'aaa', 'aaa', 'aaa', 1),
-(6, 'sdjfbsdjjk`', 'dskjhfkshdjhjhsdf', 'kjhsdkjhfksd hdskhfkjshdjk', 'jkshjkfds hfsdkjhfjksdf', 1);
+INSERT INTO `user_info` (`id`, `user_name`, `password`, `status`, `user_type`, `committee_id`, `fiscal_year`) VALUES
+(1, 'bhomnath', '9fe3ef0f7bab8b8f9c60056e680cd727', '1', 'administrator', NULL, NULL),
+(2, 'sanoj', '9c5ddd54107734f7d18335a5245c286b', '1', 'administrator', NULL, NULL),
+(3, 'sanoj', '9c5ddd54107734f7d18335a5245c286b', NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `committee_info`
+--
+ALTER TABLE `committee_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fiscal_year_info`
+--
+ALTER TABLE `fiscal_year_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `programs_list`
+--
+ALTER TABLE `programs_list`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `subledger_info`
+--
+ALTER TABLE `subledger_info`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user_info`
@@ -81,25 +147,34 @@ ALTER TABLE `user_info`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_programs_list`
---
-ALTER TABLE `user_programs_list`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `committee_info`
+--
+ALTER TABLE `committee_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `fiscal_year_info`
+--
+ALTER TABLE `fiscal_year_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `programs_list`
+--
+ALTER TABLE `programs_list`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `subledger_info`
+--
+ALTER TABLE `subledger_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `user_programs_list`
---
-ALTER TABLE `user_programs_list`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

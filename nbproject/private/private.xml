@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Setting.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Programs.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Login.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/config/mimes.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/program/addProgram.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/program/addSubLedger.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/setting/dataRestore.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/program/listProgram.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/templates/sideNavigation.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/models/Program_model.php</file>
+        </group>
     </open-files>
 </project-private>

@@ -36,7 +36,7 @@
 												<td><?php echo $list->code;?></td>
 												<td><?php echo $list->program_name;?></td>
 												
-                                                                                                <td><a href="<?php echo base_url().'programs/edit/'.$list->id;?>">Edit</a> / <a href="<?php echo base_url().'programs/delete/'.$list->id;?>">Delete</a> / <a href="<?php echo base_url().'programs/createSubLedger/'.$list->id;?>">Create Sub Ledger</a></td>
+                                                                                                <td><a href="<?php echo base_url().'programs/edit/'.$list->id;?>">Edit</a> / <a href="<?php echo base_url().'programs/delete/'.$list->id;?>">Delete</a> / <a href="<?php echo base_url().'programs/createSubLedger/'.$list->id;?>">Create Sub Ledger</a> / <a href="<?php echo base_url().'programs/viewSubLedger/'.$list->id;?>">View Ledger Details</a></td>
 											</tr>
 										<?php } } 	?>
 											
