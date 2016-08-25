@@ -25,7 +25,20 @@
                 'committee_id' => NULL,
                 'status' => 'Active');
        return  $this->db->insert('donar_info', $data);
+
         }
+
+     public function getAllDonarsByUserid($user_id)
+
+   {
+
+      $this->db->where('status', 'Active');
+      $this->db->where('user_id', $user_id);
+      $query = $this->db->get('donar_info');
+      return $query->result();
+
+
+    }
 
         
 
