@@ -5,12 +5,46 @@ class login extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('dbuser');
+        $this->load->model('dbmanager_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
+        $this->load->library('form_validation');
     }
     
     public function index()
+    {
+         $data = $this->dbmanager_model->check_database_for_first_time();
+          if ($data) {
+              $this->login();
+          }else{
+         $this->load->view('dashboard/login/registration');
+          }
+    }
+    
+    public function addNewCommittee()
+    {
+         $this->form_validation->set_rules('commiteName', 'Name of Committee', 'trim|required|callback_xss_clean');
+        $this->form_validation->set_rules('address', 'Address', 'trim|required|callback_xss_clean');
+        $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|callback_xss_clean');
+        $this->form_validation->set_rules('fiscalYear', 'Fiscal Year', 'trim|required|callback_xss_clean');
+        $this->form_validation->set_error_delimiters('<div class="form_errors">', '</div>');
+        if ($this->form_validation->run() == FALSE) {
+            $this->index();
+        } else {
+           
+        $commiteName=$this->input->post('commiteName');
+        $address=$this->input->post('address');
+        $phone=$this->input->post('phone');
+        $fiscalYear=$this->input->post('fiscalYear');
+        $this->dbmanager_model->add_committee($commiteName, $address, $phone);
+        $this->dbmanager_model->add_fiscal_year($commiteName, $fiscalYear);
+        $this->session->set_flashdata('flashMessage', 'Committee added successfully');
+         return redirect('login/login');
+        }
+    }
+
+        public function login()
     {
         if(isset($_GET['url'])){
         $data['link'] = $_GET['url'];
@@ -21,8 +55,8 @@ class login extends CI_Controller {
             }
          $this->load->view('dashboard/login/login', $data);
     }
-    
-    public function validate()
+
+        public function validate()
     {
         $link = $this->input->post('requersUrl');
         $this->load->library('form_validation');
@@ -99,15 +133,7 @@ class login extends CI_Controller {
 
     public function registration()
     {
-
-        if(isset($_GET['url'])){
-        $data['link'] = $_GET['url'];
-            }
-            else{
-               
-                $data['link'] = base_url().'dashboard';
-            }
-         $this->load->view('dashboard/login/registration', $data);
+      
     }
     
     

@@ -126,8 +126,8 @@ $("#createCredentials").click(function()
 							<?php if($this->session->flashdata('message')){echo $this->session->flashdata('message');}
 							?>
 						</div>
-						<?php echo form_open('login/validate'); ?>
-						<input type="hidden" name="requersUrl" value="<?php echo $link; ?>"/>
+						<?php echo form_open('login/addNewCommittee'); ?>
+						
 						<div class="log-input">
 							<div class="log-input-left">
 								<input type="text" class="user" name="commiteName" value="" placeholder="Name of Committee" />
@@ -138,7 +138,7 @@ $("#createCredentials").click(function()
 						</div>
 						<div class="log-input">
 							<div class="log-input-left">
-								<input type="text" class="address" name="address" value="" placeholder="address" />
+								<input type="text" class="address" name="address" value="" placeholder="Enter Address" />
 								<?php echo form_error('address'); ?>
 							</div>
 
@@ -147,36 +147,36 @@ $("#createCredentials").click(function()
 
 						<div class="log-input">
 							<div class="log-input-left">
-								<input type="text" class="phone" style="margin-bottom:5px;" name="phone" value="" placeholder="phone" />
+								<input type="text" class="phone" style="margin-bottom:5px;" name="phone" value="" placeholder="Enter Phone Number" />
 								<?php echo form_error('phone'); ?>
 							</div>
 
 							<div class="clearfix"> </div>
 						</div>
 
-                       <div class="margin15">
+<!--                       <div class="margin15">
 						<div class="radio">
 							  <label><input type="radio" class="font16" name="optradio">Use default user and password</label>
 							</div>
 							<div class="radio">
 							  <label><input type="radio" class="font16" id="createCredentials" name="optradio">Create user with new Credentials</label>
 							</div>
-						</div>
+						</div>-->
 
 
-						<div class="log-input" id="openCredentials" style="display:none">
+<!--						<div class="log-input" id="openCredentials" style="display:none">
 							<div class="log-input-left">
 								<input type="text"  style="margin-bottom:12px;" name="credintals" value="" placeholder="enter new Credentials" />
-								<?php echo form_error('credintals'); ?>
+								<?php //echo form_error('credintals'); ?>
 							</div>
 
 							<div class="clearfix"> </div>
-						</div>
+						</div>-->
             
 						
 						<div class="log-input" style="margin-bottom:10px;">
 							<div class="log-input-left">
-								<select id="selector1" class="form-control3">
+								<select id="selector1" name="fiscalYear" class="form-control3">
 								    <option>Fisal Year Setup</option>
 									<option value="2072/2073">2072/2073</option>
 								</select>
