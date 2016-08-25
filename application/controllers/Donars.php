@@ -90,15 +90,25 @@ class donars extends CI_Controller {
     }
     
     
-    public function editAccount($id=null)
+    public function assignDonars($progId=null)
     {
+        $url = current_url();
+         if ($this->session->userdata('logged_in') == true) {
+   $user_id=$this->session->userdata('user_id');
+   
+   
+   
+   
+   
+   
+   
+    } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
         
     }
     
-    public function deleteAccount($id=NULL)
-    {
-        
-    }
+    
     
     
     
