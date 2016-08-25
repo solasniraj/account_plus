@@ -40,7 +40,7 @@
                                                 <li class="menu-list"><a href="#"><i class="lnr lnr-briefcase"></i> <span>Donars</span></a>
                                                 <ul class="sub-menu-list">
 								<li><a href="<?php echo base_url().'donars/addDonar' ?>">Add Donar</a> </li>
-								<li><a href="<?php echo base_url().'donars/donarListing' ?>">View Donars</a></li>
+								<li><a href="<?php echo base_url().'donars/index' ?>">View Donars</a></li>
 								
 							</ul>
                                                 </li> 

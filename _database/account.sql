@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 25, 2016 at 07:27 पूर्वाह्न
+-- Generation Time: Aug 25, 2016 at 11:04 पूर्वाह्न
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -23,6 +23,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bank_info`
+--
+
+CREATE TABLE IF NOT EXISTS `bank_info` (
+  `id` int(11) NOT NULL,
+  `bank_name` varchar(255) DEFAULT NULL,
+  `bank_address` varchar(255) DEFAULT NULL,
+  `bank_account_number` varchar(50) NOT NULL,
+  `bank_phone_no` varchar(20) DEFAULT NULL,
+  `committee_id` varchar(255) DEFAULT NULL,
+  `user_id` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bank_info`
+--
+
+INSERT INTO `bank_info` (`id`, `bank_name`, `bank_address`, `bank_account_number`, `bank_phone_no`, `committee_id`, `user_id`, `status`) VALUES
+(1, 'Himalayan Bank Limited', 'Narayangarh, Chitwan', '98452141409845214140', '056-533977', NULL, NULL, 'Active');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `committee_info`
 --
 
@@ -33,7 +57,40 @@ CREATE TABLE IF NOT EXISTS `committee_info` (
   `phone` varchar(255) DEFAULT NULL,
   `code` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `committee_info`
+--
+
+INSERT INTO `committee_info` (`id`, `committee_name`, `address`, `phone`, `code`, `status`) VALUES
+(4, 'TAAL', 'Bharatpur', '9845214140', '12345', 'Active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `donar_info`
+--
+
+CREATE TABLE IF NOT EXISTS `donar_info` (
+  `id` int(11) NOT NULL,
+  `donar_name` text,
+  `donar_address` text,
+  `donar_contact_no` varchar(255) DEFAULT NULL,
+  `donar_code` varchar(100) DEFAULT NULL,
+  `donar_email` varchar(100) DEFAULT NULL,
+  `committee_id` varchar(255) DEFAULT NULL,
+  `user_id` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `donar_info`
+--
+
+INSERT INTO `donar_info` (`id`, `donar_name`, `donar_address`, `donar_contact_no`, `donar_code`, `donar_email`, `committee_id`, `user_id`, `status`) VALUES
+(1, 'UNO', 'Kathmandu', '9845214140', '00210', 'bhomnath@salyani.com.np', NULL, NULL, 'Active'),
+(2, 'kjdshjkh', 'jkhdjkshfkjh', 'khjkdhskjfsd', 'asjdfk', 'jkhdsjkhj', NULL, NULL, 'Active');
 
 -- --------------------------------------------------------
 
@@ -46,7 +103,14 @@ CREATE TABLE IF NOT EXISTS `fiscal_year_info` (
   `fiscal_year` varchar(255) DEFAULT NULL,
   `committee_name` text,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `fiscal_year_info`
+--
+
+INSERT INTO `fiscal_year_info` (`id`, `fiscal_year`, `committee_name`, `status`) VALUES
+(3, '2072/2073', 'TAAL', 'Active');
 
 -- --------------------------------------------------------
 
@@ -117,9 +181,21 @@ INSERT INTO `user_info` (`id`, `user_name`, `password`, `status`, `user_type`, `
 --
 
 --
+-- Indexes for table `bank_info`
+--
+ALTER TABLE `bank_info`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `committee_info`
 --
 ALTER TABLE `committee_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `donar_info`
+--
+ALTER TABLE `donar_info`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -151,15 +227,25 @@ ALTER TABLE `user_info`
 --
 
 --
+-- AUTO_INCREMENT for table `bank_info`
+--
+ALTER TABLE `bank_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `committee_info`
 --
 ALTER TABLE `committee_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `donar_info`
+--
+ALTER TABLE `donar_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `fiscal_year_info`
 --
 ALTER TABLE `fiscal_year_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `programs_list`
 --
