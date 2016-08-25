@@ -34,10 +34,10 @@ class donars extends CI_Controller {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
               $this->load->view('dashboard/templates/header');
-          $this->load->view('dashboard/templates/sideNavigation');
-          $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/donars/addDonar');
-           $this->load->view('dashboard/templates/footer');
+              $this->load->view('dashboard/templates/sideNavigation');
+              $this->load->view('dashboard/templates/topHead');
+              $this->load->view('dashboard/donars/addDonar');
+              $this->load->view('dashboard/templates/footer');
              
     } else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -92,9 +92,19 @@ class donars extends CI_Controller {
     
     public function assignDonars($progId=null)
     {
-        $url = current_url();
-         if ($this->session->userdata('logged_in') == true) {
-   $user_id=$this->session->userdata('user_id');
+          $url = current_url();
+          if ($this->session->userdata('logged_in') == true)
+           {
+
+            $currentProgramId=$this->uri->segment(3);
+            $user_id=$this->session->userdata('user_id');
+            $this->load->model('donar_model');
+            $data['listAllDonerByUserid']=$this->donar_model->getAllDonarsByUserid($user_id);
+            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/sideNavigation');
+            $this->load->view('dashboard/templates/topHead');
+            $this->load->view('dashboard/donars/assignDonars',$data);
+            $this->load->view('dashboard/templates/footer');
    
    
    
