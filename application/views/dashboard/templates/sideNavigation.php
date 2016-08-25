@@ -16,15 +16,15 @@
 					<ul class="nav nav-pills nav-stacked custom-nav">
 						<li class="menu-list"><a href="#"><i class="lnr lnr-pie-chart"></i><span>Daily Transaction</span></a>
                                                 <ul class="sub-menu-list">
-								<li><a href="<?php echo base_url().'transaction/cashReceipt'; ?>">Cash Receipt</a> </li>
+								<li><a href="#">Cash Receipt</a> </li>
 								<li><a href="<?php echo base_url().'transaction/journalEntry'; ?>">Journal Entry</a></li>
 								
 							</ul>
                                                 </li>
 						<li class="menu-list"><a href="#"><i class="lnr lnr-book"></i><span>Bank Account</span></a>
                                                 <ul class="sub-menu-list">
-								<li><a href="">Add Account</a> </li>
-								<li><a href="">View Accounts</a></li>
+								<li><a href="<?php echo base_url().'bank/addAccount'; ?>">Add Account</a> </li>
+								<li><a href="<?php echo base_url().'bank/index'; ?>">View Accounts</a></li>
 							</ul>
                                                 </li>
 						
@@ -36,7 +36,14 @@
 								<li><a href="<?php echo base_url().'programs/programListing' ?>">View Programs</a></li>
 								
 							</ul>
-                                                </li>              
+                                                </li> 
+                                                <li class="menu-list"><a href="#"><i class="lnr lnr-briefcase"></i> <span>Donars</span></a>
+                                                <ul class="sub-menu-list">
+								<li><a href="<?php echo base_url().'donars/addDonar' ?>">Add Donar</a> </li>
+								<li><a href="<?php echo base_url().'donars/donarListing' ?>">View Donars</a></li>
+								
+							</ul>
+                                                </li> 
 						<li class="menu-list"><a href="#"><i class="lnr lnr-cog"></i> <span>Miscelleneous</span></a>
                                                 <ul class="sub-menu-list">
 								<li><a href="<?php echo base_url().'miscelleneous/bankMiscelleneous'; ?>">Bank Reconcillation</a> </li>

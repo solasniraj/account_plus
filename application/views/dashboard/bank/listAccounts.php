@@ -18,11 +18,11 @@
 										<thead>
 											<tr>
 												
-												<th>S.N</th>
-												<th>Code</th>
-												<th>Program Name</th>
-												<th>Program Budget</th>
-												<th>Category</th>
+												<th>S.N.</th>
+												<th>Name of Bank</th>
+												<th>Account Number</th>
+												<th>Address</th>
+												<th>Contact Number</th>
                                                                                                 <th>Action</th>
 											</tr>
 										</thead>
@@ -30,16 +30,16 @@
 										<?php 
 										
 											$i=1;
-										foreach($program_list as $list) 
+										foreach($bankAccount as $blist) 
 										{ ?>		
 											<tr>
 												
 												<td><?php echo $i++;?></td>
-												<td><?php echo $list->code;?></td>
-												<td><?php echo $list->programName;?></td>
-												<td><?php echo $list->programBudget;?></td>
-												<td><?php echo $list->category;?></td>
-                                                                                                <td><a href="<?php echo base_url().'programs/edit/'.$list->id;?>">Edit</a> / <a href="<?php echo base_url().'programs/delete/'.$list->id;?>">Delete</a></td>
+												<td><?php echo $blist->bank_name;?></td>
+												<td><?php echo $blist->bank_account_number;?></td>
+												<td><?php echo $blist->bank_address;?></td>
+												<td><?php echo $blist->bank_phone_no;?></td>
+                                                                                                <td><a href="<?php echo base_url().'programs/edit/'.$blist->id;?>">Edit</a> / <a href="<?php echo base_url().'programs/delete/'.$blist->id;?>">Delete</a></td>
 											</tr>
 										<?php }  	?>
 											
