@@ -144,12 +144,12 @@
     <?php }
 } ?>
                                     </select>
-
+                                </td>
                                 <td>
                                     <select class="form-control" id="subLedgerList">
                                         
                                     </select>
-
+                                </td>
                                 <td>
                                     <select class="form-control" id="sel1">
                                         <option>1</option>
@@ -157,34 +157,17 @@
                                         <option>3</option>
                                         <option>4</option>
                                     </select>
-
+                                </td>
                                 <td>
-                                    <select class="form-control" id="sel1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
-
+                                    <input type="text">
+                                </td>
                                 <td>
-                                    <select class="form-control" id="sel1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
-
+                                    <input type="text">
+                                </td>
                                 <td>
-                                    <select class="form-control" id="sel1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
-
-                                <td><input class="form-control"  type="text"></td>
-                                <td><input class="form-control"  type="text"></td>
-                                <td><input class="form-control"  type="text"></td>
+                                    <input type="text">
+                                    </td>
+                               
                                 <td><button type="text" class="btn btn-default">Add</button></td>
 
                             </tr>

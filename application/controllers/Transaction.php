@@ -54,7 +54,7 @@ public function get_subledgers()
                  $subLegderDetails=$this->program_model->viewSubLedgerofSingleProgramm($currentProgramId);
                 $a= "";
                  foreach ($subLegderDetails as $lDetails){
-                    $a .= '<iption value="'.$lDetails->id.'">'.$lDetails->subledger_name.'</option>';
+                    $a .= '<option value="'.$lDetails->id.'">'.$lDetails->subledger_name.'</option>';
                  }
                  echo $a;
                
