@@ -25,6 +25,7 @@
                                 <div class="col-sm-8">
                                     <input type="text" value="<?php echo set_value('subLedgerName'); ?>" class="form-control1" id="subLedgerName" name="subLedgerName" placeholder="Enter sub ledger name">
                                     <?php echo form_error('subLedgerName'); ?>
+                                     <?php echo form_hidden('program_id',$program_id);?>
                                 </div>
                             </div>
 
@@ -32,7 +33,7 @@
                             
                             
                             <div class="col-sm-8 col-sm-offset-2">
-                                <button class="btn-success btn">Submit</button>
+                                <input type="submit" class="btn-success btn" value="submit">
                             </div>
 
                         </form>
