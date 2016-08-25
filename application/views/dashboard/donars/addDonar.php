@@ -17,35 +17,43 @@
                 </style>
                     <div class="tab-content">
                         <div class="tab-pane active" id="horizontal-form">
-                            <?php echo form_open_multipart('bank/addnewAccount', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
+                            <?php echo form_open_multipart('donars/addNewDonar', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
                             <div class="form-group">
-                                <label for="bankName" class="col-sm-2 control-label">Name of Bank</label>
+                                <label for="donarCode" class="col-sm-2 control-label">Donar's Code</label>
                                 <div class="col-sm-8">
-                                    <input type="text" value="<?php echo set_value('bankName'); ?>" class="form-control1" id="bankName" name="bankName" placeholder="Enter Bank Name">
-                                     <?php echo form_error('bankName'); ?>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="accountNumber" class="col-sm-2 control-label">Account Number</label>
-                                <div class="col-sm-8">
-                                    <input type="text" value="<?php echo set_value('accountNumber'); ?>" class="form-control1" id="programName" name="accountNumber" placeholder="Enter Account Number">
-                                    <?php echo form_error('accountNumber'); ?>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="address" class="col-sm-2 control-label">Address</label>
-                                <div class="col-sm-8">
-                                    <input type="text" value="<?php echo set_value('address'); ?>" class="form-control1" id="address" name="address" placeholder="Enter estimated budget">
-                                    <?php echo form_error('address'); ?>
+                                    <input type="text" value="<?php echo set_value('donarCode'); ?>" class="form-control1" id="donarCode" name="donarCode" placeholder="Enter Donar's Code">
+                                    <?php echo form_error('donarCode'); ?>
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="contactNumber" class="col-sm-2 control-label">Contact Number</label>
+                                <label for="donarName" class="col-sm-2 control-label">Donar's Name</label>
                                 <div class="col-sm-8">
-                                    <input type="text" value="<?php echo set_value('contactNumber'); ?>" class="form-control1" id="contactNumber" name="contactNumber" placeholder="Enter estimated budget">
+                                    <input type="text" value="<?php echo set_value('donarName'); ?>" class="form-control1" id="donarName" name="donarName" placeholder="Enter Donar's Name">
+                                     <?php echo form_error('donarName'); ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="donarAddress" class="col-sm-2 control-label">Donar's Address</label>
+                                <div class="col-sm-8">
+                                    <input type="text" value="<?php echo set_value('donarAddress'); ?>" class="form-control1" id="donarAddress" name="donarAddress" placeholder="Enter Donar's Address">
+                                    <?php echo form_error('donarAddress'); ?>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="emailId" class="col-sm-2 control-label">Donar's Email ID</label>
+                                <div class="col-sm-8">
+                                    <input type="text" value="<?php echo set_value('emailId'); ?>" class="form-control1" id="emailId" name="emailId" placeholder="Enter Donar's Email">
+                                    <?php echo form_error('emailId'); ?>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactNumber" class="col-sm-2 control-label">Donar's Contact Number</label>
+                                <div class="col-sm-8">
+                                    <input type="text" value="<?php echo set_value('contactNumber'); ?>" class="form-control1" id="contactNumber" name="contactNumber" placeholder="Enter Donar's Contact Number">
                                     <?php echo form_error('contactNumber'); ?>
                                 </div>
                             </div>

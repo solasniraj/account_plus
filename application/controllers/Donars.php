@@ -8,6 +8,7 @@ class donars extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
+        $this->load->library('form_validation');
     }
     
     public function index()
@@ -28,14 +29,14 @@ class donars extends CI_Controller {
         }
     }
     
-    public function addAccount()
+    public function addDonar()
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
               $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/bank/addAccount');
+          $this->load->view('dashboard/donars/addDonar');
            $this->load->view('dashboard/templates/footer');
              
     } else {
@@ -43,40 +44,41 @@ class donars extends CI_Controller {
         }
     }
 
-    public function addnewAccount()
+    public function addNewDonar()
     {
         if ($this->session->userdata('logged_in') == true) 
       {
         $user_id=$this->session->userdata('user_id');
-       $this->load->library('form_validation');
-       $this->form_validation->set_rules('bankName', 'Name of Bank', 'trim|required|callback_xss_clean|max_length[200]');
-       $this->form_validation->set_rules('accountNumber', 'Account Number', 'trim|required|callback_xss_clean|max_length[200]');
-       $this->form_validation->set_rules('address', 'Address of Bank', 'trim|callback_xss_clean|max_length[200]');
-       $this->form_validation->set_rules('contactNumber', 'Contact Number of Bank', 'trim|callback_xss_clean|max_length[200]');
+       
+       $this->form_validation->set_rules('donarCode', 'Donar Code', 'trim|required|callback_xss_clean|max_length[200]');
+       $this->form_validation->set_rules('donarName', 'Donar Name', 'trim|required|callback_xss_clean|max_length[1000]');
+       $this->form_validation->set_rules('donarAddress', 'Donar Address', 'trim|callback_xss_clean|max_length[1000]');
+       $this->form_validation->set_rules('emailId', 'Donar Email ID', 'trim|callback_xss_clean|max_length[100]');
+       $this->form_validation->set_rules('contactNumber', 'Contact Number of Bank', 'trim|callback_xss_clean|max_length[50]');
        $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
 
        if ($this->form_validation->run() == FALSE)
        {
-        $this->addAccount();
+        $this->addDonar();
       }
       else 
       {
-        $bankName = $this->input->post('bankName');
-        $accountNumber = $this->input->post('accountNumber');
-        $address = $this->input->post('address');
+        $donarName = $this->input->post('donarName');
+        $donarAddress = $this->input->post('donarAddress');
+        $emailId = $this->input->post('emailId');
         $contactNumber = $this->input->post('contactNumber');
-        
+        $donarCode = $this->input->post('donarCode');
        
-        $result=$this->bank_model->add_new_bank_account($bankName,$accountNumber, $address, $contactNumber);
+        $result=$this->donar_model->add_new_donar($donarName,$donarAddress, $emailId, $contactNumber, $donarCode);
         if($result)
         {
-         $this->session->set_flashdata('flashMessage', 'Bank Account added successfully');
-         return redirect('bank/index');
+         $this->session->set_flashdata('flashMessage', 'Donar added successfully');
+         return redirect('donars/index');
        }
        else 
        {
-        $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding account. Please add again.');
-        return redirect('bank/addAccount');
+        $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding donar. Please add again.');
+        return redirect('donars/addDonar');
       }
 
 
