@@ -37,11 +37,18 @@ class login extends CI_Controller {
         $address=$this->input->post('address');
         $phone=$this->input->post('phone');
         $fiscalYear=$this->input->post('fiscalYear');
-        $this->dbmanager_model->add_committee($commiteName, $address, $phone);
-        $this->dbmanager_model->add_fiscal_year($commiteName, $fiscalYear);
+        $result1 = $this->dbmanager_model->add_committee($commiteName, $address, $phone);
+        $result2 = $this->dbmanager_model->add_fiscal_year($commiteName, $fiscalYear);
+       if($result1 && $result2)
+        {
         $this->session->set_flashdata('flashMessage', 'Committee added successfully');
          return redirect('login/login');
+        }else{
+            $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong during registration. Please try again.');
+
+        return redirect('login/index');
         }
+    }
     }
 
         public function login()

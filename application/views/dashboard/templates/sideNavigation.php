@@ -23,8 +23,8 @@
                                                 </li>
 						<li class="menu-list"><a href="#"><i class="lnr lnr-book"></i><span>Bank Account</span></a>
                                                 <ul class="sub-menu-list">
-								<li><a href="">Add Account</a> </li>
-								<li><a href="">View Accounts</a></li>
+								<li><a href="<?php echo base_url().'bank/addAccount'; ?>">Add Account</a> </li>
+								<li><a href="<?php echo base_url().'bank/index'; ?>">View Accounts</a></li>
 							</ul>
                                                 </li>
 						

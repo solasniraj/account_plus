@@ -4,7 +4,7 @@ class bank extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('session');
-        
+        $this->load->model('bank_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -14,9 +14,9 @@ class bank extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
-             $this->load->model('program_model');
+            
    $user_id=$this->session->userdata('user_id');
-   $data['program_list']=$this->program_model->view_programm_listing($user_id);
+   $data['bankAccount']=$this->bank_model->view_bank_account_listing();
    
          $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
@@ -49,35 +49,34 @@ class bank extends CI_Controller {
       {
         $user_id=$this->session->userdata('user_id');
        $this->load->library('form_validation');
-       $this->form_validation->set_rules('code', 'code', 'trim|required|callback_xss_clean|max_length[200]');
-       $this->form_validation->set_rules('programName', 'program Name', 'trim|required|callback_xss_clean|max_length[200]');
-       $this->form_validation->set_rules('programBudget', 'program Budget', 'trim|required|callback_xss_clean|max_length[200]');
-       $this->form_validation->set_rules('category', 'category', 'trim|required|callback_xss_clean|max_length[200]');
+       $this->form_validation->set_rules('bankName', 'Name of Bank', 'trim|required|callback_xss_clean|max_length[200]');
+       $this->form_validation->set_rules('accountNumber', 'Account Number', 'trim|required|callback_xss_clean|max_length[200]');
+       $this->form_validation->set_rules('address', 'Address of Bank', 'trim|callback_xss_clean|max_length[200]');
+       $this->form_validation->set_rules('contactNumber', 'Contact Number of Bank', 'trim|callback_xss_clean|max_length[200]');
        $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
 
        if ($this->form_validation->run() == FALSE)
        {
-        $this->addProgram();
+        $this->addAccount();
       }
       else 
       {
-        $code=$this->input->post('code');
-        $programName=$this->input->post('programName');
-        $programBudget=$this->input->post('programBudget');
-        $category=$this->input->post('category');
+        $bankName = $this->input->post('bankName');
+        $accountNumber = $this->input->post('accountNumber');
+        $address = $this->input->post('address');
+        $contactNumber = $this->input->post('contactNumber');
         
-        $this->load->model('program_model');
-        $result=$this->program_model->insert_programm_listing($user_id,$code, $programName, $programBudget, $category);
+       
+        $result=$this->bank_model->add_new_bank_account($bankName,$accountNumber, $address, $contactNumber);
         if($result)
         {
-         $this->session->set_flashdata('flashMessage', 'Programm added successfully');
-         return redirect('programs/programListing');
+         $this->session->set_flashdata('flashMessage', 'Bank Account added successfully');
+         return redirect('bank/index');
        }
        else 
        {
-        $this->session->set_flashdata('flashMessage', 'error occur while adding programm');
-
-        return redirect('programs/programListing');
+        $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding account. Please add again.');
+        return redirect('bank/addAccount');
       }
 
 
