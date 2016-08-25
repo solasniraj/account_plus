@@ -12,7 +12,6 @@
   
 <script src="<?php echo base_url().'contents/js/jquery.nicescroll.js'; ?>"></script>
 <script src="<?php echo base_url().'contents/js/scripts.js'; ?>"></script>
-<!-- Bootstrap Core JavaScript -->
-   <script src="<?php echo base_url().'contents/js/bootstrap.min.js'; ?>"></script>
+
 </body>
 </html>

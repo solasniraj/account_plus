@@ -47,7 +47,10 @@
 <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 <!---//webfonts---> 
 <!-- Meters graphs -->
-<script src="<?php echo base_url().'contents/js/jquery-1.10.2.min.js'; ?>"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+   
 <!-- Placed js at the end of the document so the pages load faster -->
 <!--<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 

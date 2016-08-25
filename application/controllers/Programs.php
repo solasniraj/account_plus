@@ -4,7 +4,7 @@
       function __construct() {
         parent::__construct();
         $this->load->library('session');
-
+        $this->load->model('program_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -52,7 +52,7 @@
       else 
       {       
         $programName=$this->input->post('programName');        
-        $this->load->model('program_model');
+        
         $result=$this->program_model->insert_programm_listing($user_id, $programName);
         if($result)
         {
@@ -78,7 +78,7 @@ public function programListing()
 {
   $url = current_url();
   if ($this->session->userdata('logged_in') == true) {
-   $this->load->model('program_model');
+  
    $user_id=$this->session->userdata('user_id');
    $data['program_list']=$this->program_model->view_programm_listing($user_id);
    $this->load->view('dashboard/templates/header');

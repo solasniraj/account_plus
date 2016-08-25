@@ -4,7 +4,7 @@ class transaction extends CI_Controller {
   function __construct() {
     parent::__construct();
     $this->load->library('session');
-
+    $this->load->model('program_model');
     $this->load->helper('url');
     $this->load->helper(array('form', 'url'));
     $this->load->library('pagination');
@@ -26,15 +26,44 @@ class transaction extends CI_Controller {
 
 public function journalEntry()
 {
-
+ $url = current_url();
+  if ($this->session->userdata('logged_in') == true) {
+  
+   $user_id=$this->session->userdata('user_id');
+   $data['program_list']=$this->program_model->view_programm_listing($user_id);
  $this->load->view('dashboard/templates/header');
  $this->load->view('dashboard/templates/sideNavigation');
  $this->load->view('dashboard/templates/topHead');
- $this->load->view('dashboard/transaction/journalEntry');
+ $this->load->view('dashboard/transaction/journalEntry', $data);
  $this->load->view('dashboard/templates/footer');   
-
+ } else {
+  redirect('login/index/?url=' . $url, 'refresh');
+}
 }
 
+
+public function get_subledgers()
+{
+    $url = current_url();
+  if ($this->session->userdata('logged_in') == true) {
+  
+            $userId = $this->session->userdata("user_id");
+            
+            if (isset($_POST['pId'])) {
+                $currentProgramId = $_POST['pId'];
+                 $subLegderDetails=$this->program_model->viewSubLedgerofSingleProgramm($currentProgramId);
+                $a= "";
+                 foreach ($subLegderDetails as $lDetails){
+                    $a .= '<iption value="'.$lDetails->id.'">'.$lDetails->subledger_name.'</option>';
+                 }
+                 echo $a;
+               
+            }
+        } else {
+  redirect('login/index/?url=' . $url, 'refresh');
+}
+   
+}
 
 
 

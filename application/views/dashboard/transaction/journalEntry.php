@@ -1,3 +1,26 @@
+<script>
+    
+   function changeFunc() {
+    var selectBox = document.getElementById("programsList");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;   
+    var dataString = 'pId=' + selectedValue;
+   
+    $.ajax({
+      type: "POST",
+      url: "<?php echo base_url().'transaction/get_subledgers' ;?>",
+      data: dataString,
+      success: function(msg) 
+      {
+          alert(msg);
+       $('#subLedgerList').html(msg);                
+     }   
+   });
+  }
+
+
+</script>
+
+
 <div id="page-wrapper">
     <div class="graphs">
         <h3 class="blank1 text-center">Journal Entry form</h3>
@@ -43,7 +66,7 @@
                     <div class="col-md-4 ">
                         <table class="table">
                             <tr>
-                                <td  class="text-right width100">journal no:</td>
+                                <td  class="text-right width100">Journal no:</td>
                                 <td><input class="form-control" type="text"></td>
 
                             </tr>
@@ -64,13 +87,7 @@
                                 <td><input  class="form-control" type="text"></td>
 
                             </tr>
-                            <tr>
 
-                                <td class="text-right width100">Method If Foreign:</td>
-                                <td><input class="form-control" type="text"></td>
-
-
-                            </tr>
                         </table>
                     </div>
 
@@ -83,8 +100,8 @@
                             </tr>
                             <tr>
 
-                                <td class="text-right width100">Type If Foreign:</td>
-                                <td><input class="form-control"  type="text"></td>
+                                <td class="text-right width100">Bank Balance:</td>
+                                <td><strong style="color:red;">Rs. 0,00,000/-</strong></td>
 
 
                             </tr>
@@ -97,45 +114,40 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>debit | credit</th>
+                                <th>Debit | Credit</th>
+                                <th>Programm</th>
+                                <th>Sub-Ledger</th>
                                 <th>Account type</th>
-                                <th>descrption</th>
-                                <th>subLedger</th>
-                                <th>helper Accout</th>
-                                <th>peski person</th>
-                                <th>programm</th>
-                                <th>amount</th>
-                                <th>receive person</th>
-                                <th>check number</th>
+                                <th>Descrption</th>
+                                <th>Amount</th>
+                                <th>Cheque number</th>
                                 <th> </th>
-
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
                                     <select class="form-control" id="sel1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                        <option value="dr.">Debit</option>
+                                        <option value="cr">Credit</option>
                                     </select>
                                 </td>
 
                                 <td>
-                                    <select class="form-control" id="sel1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                    <select class="form-control" id="programsList" onchange="changeFunc();">
+                                        <option value="0">Select Program</option>
+                                        <?php if (!empty($program_list)) {
+                                            foreach ($program_list as $plists) {
+                                                ?>
+
+                                                <option value="<?php echo $plists->id; ?>"><?php echo $plists->program_name; ?></option>
+    <?php }
+} ?>
                                     </select>
 
                                 <td>
-                                    <select class="form-control" id="sel1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                    <select class="form-control" id="subLedgerList">
+                                        
                                     </select>
 
                                 <td>
