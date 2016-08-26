@@ -36,8 +36,35 @@ class Miscelleneous extends CI_Controller {
        $this->form_validation->set_rules('bankName', 'Bank Account', 'trim|required|callback_xss_clean');
        $this->form_validation->set_rules('amount', 'Bank balance based on statement', 'trim|required|callback_xss_clean');
        $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>');            
-                    
-                    
+        
+       if ($this->form_validation->run() == FALSE)
+       {
+        $this->bankReconcillation();
+      }
+      else 
+      {       
+        $fromDate = $this->input->post('formDate');  
+        $toDate = $this->input->post('toDate');  
+        $bankName = $this->input->post('bankName');  
+        $amount = $this->input->post('amount');  
+        
+       // $result=$this->program_model->insert_programm_listing($user_id, $programName);
+       // if($result)
+      //  {
+       //  $this->session->set_flashdata('flashMessage', 'Programm added successfully');
+         $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/miscelleneous/bankreconcillationForm');
+      $this->load->view('dashboard/templates/footer');
+      // }
+      // else 
+      // {
+      //  $this->session->set_flashdata('flashMessage', 'Sorry ! Someting went wrong. Please try again.');
+
+     //   return redirect('miscelleneous/bankReconcillation');
+     // }
+    }
                     
         } else {
 			redirect('login/index/?url=' . $url, 'refresh');

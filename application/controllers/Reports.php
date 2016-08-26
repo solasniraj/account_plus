@@ -90,11 +90,7 @@ public function monthlyStatement()
 {
     $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
-      $this->load->view('dashboard/templates/header');
-      $this->load->view('dashboard/templates/sideNavigation');
-      $this->load->view('dashboard/templates/topHead');
-      $this->load->view('dashboard/report/monthlyStatement');
-      $this->load->view('dashboard/templates/footer');
+      
       
   } else {
     redirect('login/index/?url=' . $url, 'refresh');

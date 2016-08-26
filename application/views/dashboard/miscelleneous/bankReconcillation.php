@@ -44,14 +44,18 @@
                                 <th>Date&nbsp;(To)</th>
                                 <th>Bank  Account</th>
                                 <th>Bank Balance based on Statement</th>
-
+                                <th>Action</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input class="form-control datepicker" type="text" name="formDate"></td>
-                                <td><input class="form-control datepicker" type="text" name="toDate"></td>
+                                <td><input class="form-control datepicker" type="text" name="formDate" value="<?php echo set_value('fromDate'); ?>">
+                                <?php echo form_error('formDate'); ?>
+                                </td>
+                                <td><input class="form-control datepicker" type="text" name="toDate" value="<?php echo set_value('toDate'); ?>">
+                                <?php echo form_error('toDate'); ?>
+                                </td>
 
                                 <td>
                                     <select class="form-control" id="sel1" name="bankName">
@@ -65,9 +69,12 @@
                                         ?>
                                        
                                     </select>
+                                    <?php echo form_error('bankName'); ?>
                                 </td>
-                                <td><input class="form-control" style="width:150px;display:inline;"  type="text" name="amount">
-                                    <input type="submit" style=" margin-left: 3px;margin-top: -4px;" class="btn-success btn"  value="Submit"/></td>
+                                <td><input class="form-control" type="text" name="amount" value="<?php echo set_value('amount'); ?>">
+                                    <?php echo form_error('amount'); ?>
+                                </td>
+                                <td><input type="submit" style=" margin-left: 3px;margin-top: -4px;" class="btn-success btn"  value="Submit"/></td>
 
 
 

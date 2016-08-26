@@ -1,6 +1,6 @@
 			<div id="page-wrapper">
 				<div class="graphs">
-					<h3 class="blank1">bank hisab milan faram</h3>
+					<h3 class="blank1">Bank Reconcillation Entry Form</h3>
 					<div class="xs tabls">
 						<?php  $flashMessage=$this->session->flashdata('flashMessage'); 
 						if(!empty($flashMessage))
