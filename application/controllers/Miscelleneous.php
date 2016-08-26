@@ -5,25 +5,63 @@ class Miscelleneous extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library('session');
-
+                $this->load->model('bank_model');
 		$this->load->helper('url');
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('pagination');
 	}
 
-	public function bankMiscelleneous()
+	public function bankReconcillation()
 	{
 		$url = current_url();
 		if ($this->session->userdata('logged_in') == true) {
+                    $data['bankAccount']=$this->bank_model->view_bank_account_listing();
 			$this->load->view('dashboard/templates/header');
 			$this->load->view('dashboard/templates/sideNavigation');
 			$this->load->view('dashboard/templates/topHead');
-			$this->load->view('dashboard/miscelleneous/bankMiscelleneous');
+			$this->load->view('dashboard/miscelleneous/bankReconcillation', $data);
 			$this->load->view('dashboard/templates/footer');
 		} else {
 			redirect('login/index/?url=' . $url, 'refresh');
 		}
 	}
+        
+        public function showReconcillationForm()
+        {
+            $url = current_url();
+		if ($this->session->userdata('logged_in') == true) {
+         $this->load->library('form_validation');
+       $this->form_validation->set_rules('formDate', 'Date (From)', 'trim|required|callback_xss_clean');
+       $this->form_validation->set_rules('toDate', 'Date (To)', 'trim|required|callback_xss_clean');
+       $this->form_validation->set_rules('bankName', 'Bank Account', 'trim|required|callback_xss_clean');
+       $this->form_validation->set_rules('amount', 'Bank balance based on statement', 'trim|required|callback_xss_clean');
+       $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>');            
+                    
+                    
+                    
+        } else {
+			redirect('login/index/?url=' . $url, 'refresh');
+		}
+                
+        }
+        
+        
+   public function xss_clean($str)
+{
+  if ($this->security->xss_clean($str, TRUE) === FALSE)
+  {
+    $this->form_validation->set_message('xss_clean', 'The %s is invalid charactor');
+    return FALSE;
+  }
+  else
+  {
+    return TRUE;
+  }
+}
+     
+        
+        
+        
 
 
 
