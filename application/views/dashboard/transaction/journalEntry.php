@@ -1,5 +1,4 @@
 <script>
-
     function changeFunc() {
         var selectBox = document.getElementById("programsList");
         var selectedValue = selectBox.options[selectBox.selectedIndex].value;
@@ -29,7 +28,7 @@
             var chequeNo = $('#chequeNo').val();
 
            
-            if (debit == 'Debit') {
+            if (debit == 'Dr') {
                 
                  view = '<tr><td>' + debit + '</td><td>' + program + '</td>' +
                         '<td>' + ledgerType + '</td><td>' + description + '</td>' +
@@ -38,7 +37,7 @@
                         '<td>' + chequeNo + '</td>' +
                         '<td><button type="text" class="btn btn-default">Add</button> / <button type="text" class="btn btn-default">Edit</button></td></tr>';
             }
-            if (debit == 'Credit') {
+            if (debit == 'Cr') {
                 
                  view = '<tr><td>' + debit + '</td><td>' + program + '</td>' +
                         '<td>' + ledgerType + '</td><td>' + description + '</td>' +
@@ -164,8 +163,8 @@
                             <tr>
                                 <td>
                                     <select class="form-control" id="tranType">
-                                        <option value="Debit">Debit</option>
-                                        <option value="Credit">Credit</option>
+                                        <option value="Dr">Debit</option>
+                                        <option value="Cr">Credit</option>
                                     </select>
                                 </td>
 
