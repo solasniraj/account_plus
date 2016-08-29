@@ -25,21 +25,31 @@
 				.width120 {
 					width:120px;
 				}
+				.table td, .table th {
+    border: 1px solid black;
+}
+
+
+				.table {
+   border-color: 1px solid black;
+}
+         .text-left {border-top-style: groove;}
 
 
 			</style>
 			<div data-example-id="simple-responsive-table" class="bs-example4">
-				<p class="text-center">january 2015-4-5</p>
+				<h3 class="text-center"><span class="label label-default"> January 2015-4-5</h3>
+				
 				<div class="table-responsive">
-					<table class="table table-bordered table-condensed table-stripped">
-						<thead>
-							<tr>
-
-								<th colspan="4" style="width:280px;">bajet rakam number</th>
-								<th>21111</th>
-								<th>21113</th>
-								<th>2212</th>
-								<th>2113</th>
+					<table class="table">
+						<tbody>
+					
+							<tr class="text-left">
+                              <th colspan="4" style="width:280px;">bajet rakam number</th>
+								<td>21111</td>
+								<td>21113</td>
+								<td>2212</td>
+								<td>2113</td>
 
 
 							</tr>
@@ -47,21 +57,19 @@
 							<tr>
 
 								<th colspan="4" style="width:280px;">bajet rakam </th>
-								<th>salary</th>
-								<th>mahangi bhatta</th>
-								<th>sanchalan sammvar karcha</th>
-								<th>office karcha</th>
+									<th>salary</th>
+									<th>mahangi bhatta</th>
+									<th>sanchalan sammvar karcha</th>
+									<th>office karcha</th>
 
 							</tr>
 							
-
-						</thead>
-						<tbody>
+					
 
 							<tr>
 
 								<td colspan="3" style="width:280px;">&nbsp;</td>
-								<td>nepal sarkar</td>
+								<th>Nepal sarkar</th>
 								<td colspan="4">&nbsp;</td>
 
 
@@ -70,7 +78,7 @@
 
 							<tr>
 
-								<td colspan="3" style="width:280px;">barsik baget </td>
+								<th colspan="3" style="width:280px;">barsik baget </th>
 								<td>100000</td>
 								<td>100000</td>
 								<td>100000</td>
@@ -85,7 +93,7 @@
 
 							<tr>
 
-								<td colspan="3" style="width:280px;">yo mahinako nikasa </td>
+							<th colspan="3" style="width:280px;">yo mahinako nikasa </th>
 								<td>100000</td>
 								<td>100000</td>
 								<td>100000</td>
@@ -96,11 +104,11 @@
 
 
 							</tr>
-							<tr >
+							<tr>
 
-								<td >miti </td>
-								<td>ga va no</td>
-								<td colspan="2">descrption</td>
+								<th>Date </th>
+								<th>Ga Va No</th>
+								<th colspan="2">Descrption</th>
 								<td colspan="4">&nbsp;</td>
 								
 
@@ -113,7 +121,7 @@
 
 								<td >2015/05/2</td>
 								<td>2</td>
-								<td colspan="2">malsaman karib bikri</td>
+								<th colspan="2">Product buy and sell</th>
 								<td>100000</td>
 								<td>100000</td>
 								<td>100000</td>
@@ -131,52 +139,42 @@
 
 								<td >2015/05/2</td>
 								<td>2</td>
-								<td colspan="2">malsaman karib bikri</td>
+								<th colspan="2">malsaman karib bikri</th>
 								<td>100000</td>
 								<td>100000</td>
 								<td>100000</td>
 								<td>100000</td>
 		
 					
-								
-
-							
-
-
-							</tr>
+								</tr>
 							<tr>
 
 								<td >2015/05/2</td>
 								<td>2</td>
-								<td colspan="2">malsaman karib bikri</td>
+								<th colspan="2">malsaman karib bikri</th>
 								<td>100000</td>
 								<td>100000</td>
 								<td>100000</td>
 								<td>100000</td>
 					
-					
-								
-
-							
-
-
+				
 							</tr>
 
 
 							<tr>
 
-								<td colspan="4" style="width:280px;">yo mahinako jamma </td>
+								<th colspan="4" style="width:280px;">Total of month </th>
 								<td>100000</td>
 								<td>100000</td>
 								<td>100000</td>
 								<td>100000</td>
 							
 
-							</tr>td
+							</tr>
 
 							<tr>
 
-								<td colspan="4" style="width:280px;">aaglo mahinako karcha </td>
+								<th colspan="4" style="width:280px;">aaglo mahinako karcha </th>
 								<td>100000</td>
 								<td>100000</td>
 								<td>100000</td>
@@ -187,7 +185,7 @@
 							</tr>
 							<tr>
 
-								<td colspan="4" style="width:280px;">yo mahilnako karcha </td>					
+								<th colspan="4" style="width:280px;">yo mahilnako karcha </th>					
 								<td>100000</td>
 								<td>100000</td>
 								<td>100000</td>

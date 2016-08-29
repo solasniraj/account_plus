@@ -7,7 +7,7 @@
 							if(!empty($flashMessage))
 								{  ?>
 							<div class="alert alert-success fade in">
-								<p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
+								<p style="text-align:center;font-size:20px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
 							</div>
 							<hr>
 							<?php }
@@ -21,15 +21,27 @@
 											text-align: center;
 											margin:0 auto;
 										}
+
+										.table td, .table th{
+											border: 1px solid black;
+										}
+
+										.table{
+											border-color : 1px solid black;
+										}
+										.form-control{
+											width: 84%
+										}
+
 									</style>
-									<p class="text-center">programm name | Account name | choose  year and month</p>
+									<h3 class="text-center"><span class="label label-default"> Enter your (program/account name) | Choose  year and month</span></h3>
 									<br>
 
 									<div class="row">
 										<div class="col-md-8 col-md-offset-2">
 											<form class="form-horizontal" role="form">
 												<div class="form-group">
-													<label class="control-label col-sm-3" for="email">programm | Account Name:</label>
+													<label class="control-label col-sm-3" for="email">Program | Account Name</label>
 													<div class="col-sm-9">
 														<select class="form-control" id="sel1">
 															<option>1</option>
@@ -44,7 +56,7 @@
 												<div class="form-group">
 													
 													
-													<label class="control-label col-sm-3" for="pwd">year :</label>
+													<label class="control-label col-sm-3" for="pwd">Year </label>
 													<div class="col-sm-9">
 														<input  class="form-control" type="date" id="datepicker">
 
@@ -53,7 +65,7 @@
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-sm-3" for="pwd">month :</label>
+													<label class="control-label col-sm-3" for="pwd">Month</label>
 													<div class="col-sm-9">
 														<select class="form-control" id="sel1">
 															<option>1</option>
@@ -64,10 +76,12 @@
 
 													</div>
 												</div>
-												<div class="lastButton">
-													<input type="submit" class="btn btn-default" value="submit">
-													<input type="submit" class="btn btn-default" value="reset">
 
+												<div class="lastButton">
+												<button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Submit</button>
+													<button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Reset</button>
+													
+													</div>
 												</div>
 
 											</form>
