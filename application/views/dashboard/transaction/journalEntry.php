@@ -29,27 +29,23 @@
 
            
             if (debit == 'Dr') {
-                
                  view = '<tr><td>' + debit + '</td><td>' + program + '</td>' +
                         '<td>' + ledgerType + '</td><td>' + description + '</td>' +
                         '<td>' + subLedger + '</td><td>' + amount + '</td>' +
                         '<td>0.000</td>' +
                         '<td>' + chequeNo + '</td>' +
                         '<td><button type="text" class="btn btn-default">Add</button> / <button type="text" class="btn btn-default">Edit</button></td></tr>';
-              
     var a = parseInt($("#totalDebit").text());
         var total = a + parseInt(amount);
     $("#totalDebit").html(total); 
             }
             if (debit == 'Cr') {
-                
                  view = '<tr><td>' + debit + '</td><td>' + program + '</td>' +
                         '<td>' + ledgerType + '</td><td>' + description + '</td>' +
                         '<td>' + subLedger + '</td><td>0.000</td>' +
                         '<td>' + amount + '</td>' +
                         '<td>' + chequeNo + '</td>' +
                         '<td><button type="text" class="btn btn-default">Add</button> / <button type="text" class="btn btn-default">Edit</button></td></tr>';
-               
     var a = parseInt($("#totalCredit").text());
         var total = a + parseInt(amount);
     $("#totalCredit").html(total); 
