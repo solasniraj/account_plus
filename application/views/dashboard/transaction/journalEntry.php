@@ -36,6 +36,10 @@
                         '<td>0.000</td>' +
                         '<td>' + chequeNo + '</td>' +
                         '<td><button type="text" class="btn btn-default">Add</button> / <button type="text" class="btn btn-default">Edit</button></td></tr>';
+              
+    var a = parseInt($("#totalDebit").text());
+        var total = a + parseInt(amount);
+    $("#totalDebit").html(total); 
             }
             if (debit == 'Cr') {
                 
@@ -45,6 +49,10 @@
                         '<td>' + amount + '</td>' +
                         '<td>' + chequeNo + '</td>' +
                         '<td><button type="text" class="btn btn-default">Add</button> / <button type="text" class="btn btn-default">Edit</button></td></tr>';
+               
+    var a = parseInt($("#totalCredit").text());
+        var total = a + parseInt(amount);
+    $("#totalCredit").html(total); 
             }
          
             $("table tbody#lastId").prepend(view);
@@ -238,8 +246,8 @@
 
                             <tr>
                                 <td colspan="5">Total Amount</td>
-                                <td id="totalDebit">0.00</td>
-                                <td id="totalCredit">0.00</td>
+                                <td id="totalDebit">0</td>
+                                <td id="totalCredit">0</td>
                                 <td colspan="2"></td>
 
                             </tr>
@@ -295,3 +303,6 @@
                  </div>  
             </div>
         </div>
+        <style>
+            #totalDebit, #totalCredit, #debitGreater, #creditGreater{color: red;}
+            </style>
