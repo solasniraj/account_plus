@@ -12,6 +12,7 @@
 							<hr>
 							<?php }
 							?>
+				
 							<div data-example-id="simple-responsive-table" class="bs-example4">
 								<div class="container">
 
@@ -21,20 +22,24 @@
 											text-align: center;
 											margin:0 auto;
 										}
-									</style>
+										.form-control{
+									       width:73%;
+									     }
+
+									     </style>
 
 
 								</head>
 								<body>
+								<h3 class="text-center"><span class="label label-default"> Bajet Upsirak number | Choose  year and month</span></h3>
 
-									<p class="text-center" style="background-color:black;">bajet upsirak numbr, choose  year and month</p>
 									<br>
 
 									<div class="row">
 										<div class="col-md-8 col-md-offset-2">
 											<form class="form-horizontal" role="form">
 												<div class="form-group">
-													<label class="control-label col-sm-3" for="email">bajet upsirak number :</label>
+													<label class="control-label col-sm-3" for="email"><h4>Bajet upsirak number </h4></label>
 													<div class="col-sm-9">
 														<select class="form-control" id="sel1">
 															<option>1</option>
@@ -47,7 +52,7 @@
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-sm-3" for="pwd">year :</label>
+													<label class="control-label col-sm-3" for="pwd"><h4>Year </h4> </label>
 													<div class="col-sm-9">
 														<input  class="form-control" type="text" id="datepicker">
 
@@ -55,7 +60,7 @@
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-sm-3" for="pwd">month :</label>
+													<label class="control-label col-sm-3" for="pwd"><h4>Month </h4></label>
 													<div class="col-sm-9">
 														<select class="form-control" id="sel1">
 															<option>1</option>
@@ -67,8 +72,11 @@
 													</div>
 												</div>
 												<div class="lastButton">
-													<input type="submit" class="btn btn-default" value="submit">
-													<input type="submit" class="btn btn-default" value="reset">
+												<button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Submit</button>
+												
+
+												<button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Reset</button>
+												</div>
 
 												</div>
 
