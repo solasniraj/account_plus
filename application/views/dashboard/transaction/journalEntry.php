@@ -1,21 +1,57 @@
 <script>
-    
-   function changeFunc() {
-    var selectBox = document.getElementById("programsList");
-    var selectedValue = selectBox.options[selectBox.selectedIndex].value;   
-    var dataString = 'pId=' + selectedValue;
-   
-    $.ajax({
-      type: "POST",
-      url: "<?php echo base_url().'transaction/get_subledgers' ;?>",
-      data: dataString,
-      success: function(msg) 
-      {
-          alert(msg);
-       $('#subLedgerList').html(msg);                
-     }   
-   });
-  }
+
+    function changeFunc() {
+        var selectBox = document.getElementById("programsList");
+        var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+        var dataString = 'pId=' + selectedValue;
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url() . 'transaction/get_subledgers'; ?>",
+            data: dataString,
+            success: function (msg)
+            {
+
+                $('#subLedgerList').html(msg);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $("#addTransaction").click(function () {
+            var view;
+            var debit = document.getElementById("tranType").options[document.getElementById("tranType").selectedIndex].value;
+            var program = document.getElementById("programsList").options[document.getElementById("programsList").selectedIndex].text;
+            var subLedger = document.getElementById("subLedgerList").options[document.getElementById("subLedgerList").selectedIndex].value;
+            var ledgerType = document.getElementById("ledgerType").options[document.getElementById("ledgerType").selectedIndex].value;
+            var description = $('#description').val();
+            var amount = $('#amount').val();
+            var chequeNo = $('#chequeNo').val();
+
+           
+            if (debit == 'Debit') {
+                
+                 view = '<tr><td>' + debit + '</td><td>' + program + '</td>' +
+                        '<td>' + ledgerType + '</td><td>' + description + '</td>' +
+                        '<td>' + subLedger + '</td><td>' + amount + '</td>' +
+                        '<td>0.000</td>' +
+                        '<td>' + chequeNo + '</td>' +
+                        '<td><button type="text" class="btn btn-default">Add</button> / <button type="text" class="btn btn-default">Edit</button></td></tr>';
+            }
+            if (debit == 'Credit') {
+                
+                 view = '<tr><td>' + debit + '</td><td>' + program + '</td>' +
+                        '<td>' + ledgerType + '</td><td>' + description + '</td>' +
+                        '<td>' + subLedger + '</td><td>0.000</td>' +
+                        '<td>' + amount + '</td>' +
+                        '<td>' + chequeNo + '</td>' +
+                        '<td><button type="text" class="btn btn-default">Add</button> / <button type="text" class="btn btn-default">Edit</button></td></tr>';
+            }
+         
+            $("table tbody#lastId").prepend(view);
+        });
+    });
+
 
 
 </script>
@@ -115,9 +151,9 @@
                         <thead>
                             <tr>
                                 <th>Debit | Credit</th>
-                                <th>Programm</th>
+                                <th>Account Head</th>
                                 <th>Sub-Ledger</th>
-                                <th>Account type</th>
+                                <th>Ledger type</th>
                                 <th>Descrption</th>
                                 <th>Amount</th>
                                 <th>Cheque number</th>
@@ -127,31 +163,33 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <select class="form-control" id="sel1">
-                                        <option value="dr.">Debit</option>
-                                        <option value="cr">Credit</option>
+                                    <select class="form-control" id="tranType">
+                                        <option value="Debit">Debit</option>
+                                        <option value="Credit">Credit</option>
                                     </select>
                                 </td>
 
                                 <td>
                                     <select class="form-control" id="programsList" onchange="changeFunc();">
                                         <option value="0">Select Program</option>
-                                        <?php if (!empty($program_list)) {
+                                        <?php
+                                        if (!empty($program_list)) {
                                             foreach ($program_list as $plists) {
                                                 ?>
 
                                                 <option value="<?php echo $plists->id; ?>"><?php echo $plists->program_name; ?></option>
-    <?php }
-} ?>
+                                            <?php }
+                                        }
+                                        ?>
                                     </select>
                                 </td>
                                 <td>
                                     <select class="form-control" id="subLedgerList">
-                                        
+                                        <option value="">Select Subledger</option> 
                                     </select>
                                 </td>
                                 <td>
-                                    <select class="form-control" id="sel1">
+                                    <select class="form-control" id="ledgerType">
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -159,16 +197,16 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="text">
+                                    <input type="text" name="description" id="description">
                                 </td>
                                 <td>
-                                    <input type="text">
+                                    <input type="text" name="amount" id="amount">
                                 </td>
                                 <td>
-                                    <input type="text">
-                                    </td>
-                               
-                                <td><button type="text" class="btn btn-default">Add</button></td>
+                                    <input type="text" name="chequeNo" id="chequeNo">
+                                </td>
+
+                                <td><button type="text" id="addTransaction" class="btn btn-default">Add</button></td>
 
                             </tr>
 
@@ -177,76 +215,40 @@
                 </div> 
 
             </div>
-            <div class="container " style="max-width:1000px;">
+            <div class="container">
 
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>debit | credit</th>
-                                <th>Account type</th>
-                                <th>descrption</th>
-                                <th>subLedger</th>
-                                <th>helper Accout</th>
+                                <th>Debit | Credit</th>
+                                <th>Account Head</th>
+                                <th>Ledger type</th>
+                                <th>Descrption</th>
+                                <th>SubLedger</th>
+                                <th>Debit Amt.</th>
+                                <th>Credit Amt.</th>
 
-                                <th>programm</th>
-                                <th>debit</th>
-                                <th>credit</th>
-                                <th>payee</th>
-                                <th>amount</th>
-
-                                <th>check number</th>
-                                <th> </th>
-                                <th> </th>
-
+                                <th>Cheque number</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Anna</td>
-                                <td>Pitt</td>
-                                <td>35</td>
-                                <td>New York</td>
-                                <td>USA</td>
-                                <td>1</td>
-                                <td>Anna</td>
-                                <td>Pitt</td>
-                                <td>35</td>
-                                <td>35</td>
-
-                                <td><button type="text" class="btn btn-default">Add</button></td>
-                                <td><button type="text" class="btn btn-default">Edit</button></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Anna</td>
-                                <td>Pitt</td>
-                                <td>35</td>
-                                <td>New York</td>
-                                <td>USA</td>
-                                <td>1</td>
-                                <td>Anna</td>
-                                <td>Pitt</td>
-                                <td>35</td>
-                                <td>35</td>
-
-                                <td><button type="text" class="btn btn-default">Add</button></td>
-                                <td><button type="text" class="btn btn-default">Edit</button></td>
-                            </tr>
+                        <tbody id="lastId">
+                            
+                           
 
                             <tr>
-                                <td colspan="7">total</td>
-                                <td>35</td>
-                                <td>New York</td>
+                                <td colspan="5">Total Amount</td>
+                                <td id="totalDebit">0.00</td>
+                                <td id="totalCredit">0.00</td>
                                 <td colspan="2"></td>
 
                             </tr>
 
                             <tr>
-                                <td colspan="7">debit and credit diffence</td>
-                                <td>35</td>
-                                <td>New York</td>
+                                <td colspan="5">Difference in Debit and Credit Amount</td>
+                                <td id="debitGreater">0.00</td>
+                                <td id="creditGreater">0.00</td>
                                 <td colspan="2"></td>
 
                             </tr>
@@ -256,17 +258,17 @@
 
                 <div class="row">
 
-                    <div class="col-md-4 col-md-offset-1" >
+                    <div class="col-md-5 col-md-offset-1" >
                         <div class="form-group">
-                            <label for="comment">Comment:</label>
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                            <label for="comment">Detailed Comment:</label>
+                            <textarea class="form-control" rows="5" style="resize:none" id="comment"></textarea>
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-md-offset-1" >
+                    <div class="col-md-5 col-md-offset-1" >
                         <div class="form-group">
-                            <label for="comment">Comment:</label>
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                            <label for="comment">Summary Comment:</label>
+                            <textarea class="form-control" rows="5" style="resize:none" id="comment"></textarea>
                         </div>
                     </div>
 
@@ -274,28 +276,23 @@
 
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6">
+                 <div class="row">
+                    <div class="col-md-12">
                         <div class="form-group">
-                            <label class="control-label col-sm-5" for="pwd">total check blance</label>
-                            <div class="col-sm-7">
-                                <input style="width:60%;" type="password" class="form-control" id="pwd">
+                            <label class="col-sm-2 control-label" for="pwd">Total cheque blance</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control1" id="pwd">
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="clearfix">
-                    </div>
-                    <div class="lastButton">
+                        
+                <div class="lastButton col-md-12" style="padding-bottom:100px;padding-top: 20px;">
                         <input type="button" class="btn btn-default" value="submit">
                         <input type="submit" class="btn btn-default" value="reset">
 
                     </div>
-                    <br>
-                    <br>
-                    <br>
-
-                </div>
+                 </div>  
             </div>
         </div>

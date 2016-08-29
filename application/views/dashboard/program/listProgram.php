@@ -1,6 +1,6 @@
 <div id="page-wrapper">
     <div class="graphs">
-        <h3 class="blank1">Programs</h3>
+        <h3 class="blank1">Account Headings</h3>
         <div class="xs tabls">
             <?php
             $flashMessage = $this->session->flashdata('flashMessage');
@@ -21,7 +21,7 @@
 
                                 <th>S.N</th>
                                 <th>Code</th>
-                                <th>Program Name</th>
+                                <th>Account Heading</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

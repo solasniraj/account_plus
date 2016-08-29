@@ -30,6 +30,7 @@
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 	<!-- jQuery -->
+        <script src="<?php echo base_url().'contents/js/jquery-1.10.2.min.js'; ?>"></script>
 	<!-- lined-icons -->
 	<link rel="stylesheet" href="<?php echo base_url().'contents/css/icon-font.min.css'; ?>" type='text/css' />
 	<!-- //lined-icons -->
@@ -47,8 +48,7 @@
 <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 <!---//webfonts---> 
 <!-- Meters graphs -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url().'contents/js/bootstrap.min.js'; ?>"></script>
 <!-- Bootstrap Core JavaScript -->
    
 <!-- Placed js at the end of the document so the pages load faster -->

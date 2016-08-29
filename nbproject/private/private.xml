@@ -7,8 +7,8 @@
             <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Programs.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/transaction/journalEntry.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/templates/header.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/bank/addAccount.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/contents/js/scripts.js</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/templates/footer.php</file>
         </group>
     </open-files>
 </project-private>

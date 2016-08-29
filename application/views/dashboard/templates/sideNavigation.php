@@ -30,10 +30,10 @@
 						
 						<li><a href="#"><i class="lnr lnr-menu"></i> <span>Expendiature</span></a></li>              
                                                 <li><a href="#"><i class="lnr lnr-pushpin"></i> <span>Liabilities</span></a></li>   
-                                                <li class="menu-list"><a href="#"><i class="lnr lnr-spell-check"></i> <span>Programs</span></a>
+                                                <li class="menu-list"><a href="#"><i class="lnr lnr-spell-check"></i> <span>Account Headings</span></a>
                                                 <ul class="sub-menu-list">
-								<li><a href="<?php echo base_url().'programs/addProgram' ?>">Add Programs</a> </li>
-								<li><a href="<?php echo base_url().'programs/programListing' ?>">View Programs</a></li>
+								<li><a href="<?php echo base_url().'programs/addProgram' ?>">Add Account Heading</a> </li>
+								<li><a href="<?php echo base_url().'programs/programListing' ?>">View Account Headings</a></li>
 								
 							</ul>
                                                 </li> 

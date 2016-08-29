@@ -1,6 +1,6 @@
             <div id="page-wrapper">
                 <div class="graphs">
-                    <h3 class="blank1">Add Program</h3>
+                    <h3 class="blank1">Add Account Headings</h3>
                      <style>
      /*sanoj custom csss */
                 .form-errors 
@@ -21,9 +21,9 @@
                             
 
                             <div class="form-group">
-                                <label for="programName" class="col-sm-2 control-label">Program Name</label>
+                                <label for="programName" class="col-sm-2 control-label">Account Heading</label>
                                 <div class="col-sm-8">
-                                    <input type="text" value="<?php echo set_value('programName'); ?>" class="form-control1" id="programName" name="programName" placeholder="Enter program name">
+                                    <input type="text" value="<?php echo set_value('programName'); ?>" class="form-control1" id="programName" name="programName" placeholder="Enter account heading">
                                     <?php echo form_error('programName'); ?>
                                 </div>
                             </div>

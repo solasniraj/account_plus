@@ -52,9 +52,12 @@ public function get_subledgers()
             if (isset($_POST['pId'])) {
                 $currentProgramId = $_POST['pId'];
                  $subLegderDetails=$this->program_model->viewSubLedgerofSingleProgramm($currentProgramId);
-                $a= "";
+                 $a= "";
+                 if(!empty($subLegderDetails)){
                  foreach ($subLegderDetails as $lDetails){
-                    $a .= '<option value="'.$lDetails->id.'">'.$lDetails->subledger_name.'</option>';
+                    $a .= '<option value="'.$lDetails->subledger_name.'">'.$lDetails->subledger_name.'</option>';
+                 }}else{
+                      $a .= '<option value="">Select Subledger</option>';
                  }
                  echo $a;
                
