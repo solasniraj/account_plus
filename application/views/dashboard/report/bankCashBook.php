@@ -32,6 +32,7 @@
 										.form-control{
 											width: 84%
 										}
+										
 
 									</style>
 									<h3 class="text-center"><span class="label label-default"> Enter your (program/account name) | Choose  year and month</span></h3>
@@ -87,10 +88,6 @@
 											</form>
 										</div>
 									</div>
-
-
-
-
 								</div>
 							</div>
 						</div>
