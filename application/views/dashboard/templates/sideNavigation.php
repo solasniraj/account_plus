@@ -36,7 +36,14 @@
 								<li><a href="<?php echo base_url().'programs/programListing' ?>">View Account Headings</a></li>
 								
 							</ul>
-                                                </li> 
+                                                </li>
+                                                <li class="menu-list"><a href="#"><i class="lnr lnr-paperclip"></i> <span>Ledger</span></a>
+                                                <ul class="sub-menu-list">
+								<li><a href="<?php echo base_url().'ledger/addLedger' ?>">Add Ledger</a> </li>
+								<li><a href="<?php echo base_url().'ledger/index' ?>">View Ledger</a></li>
+								
+							</ul>
+                                                </li>
                                                 <li class="menu-list"><a href="#"><i class="lnr lnr-briefcase"></i> <span>Donars</span></a>
                                                 <ul class="sub-menu-list">
 								<li><a href="<?php echo base_url().'donars/addDonar' ?>">Add Donar</a> </li>

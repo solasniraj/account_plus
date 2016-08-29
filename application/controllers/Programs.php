@@ -43,7 +43,7 @@
       {
         $user_id=$this->session->userdata('user_id');
        $this->load->library('form_validation');
-       $this->form_validation->set_rules('programName', 'Program Name', 'trim|required|callback_xss_clean|max_length[200]');
+       $this->form_validation->set_rules('programName', 'Account Heading', 'trim|required|callback_xss_clean|max_length[200]');
        $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
 
        if ($this->form_validation->run() == FALSE)

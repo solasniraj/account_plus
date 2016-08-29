@@ -37,7 +37,7 @@
                                         <td><?php echo $list->code; ?></td>
                                         <td><?php echo $list->program_name; ?></td>
 
-                                        <td><a href="<?php echo base_url() . 'programs/edit/' . $list->id; ?>">Edit</a> / <a href="<?php echo base_url() . 'programs/delete/' . $list->id; ?>">Delete</a> / <a href="<?php echo base_url() . 'programs/createSubLedger/' . $list->id; ?>">Create Sub Ledger</a> / <a href="<?php echo base_url() . 'programs/viewSubLedger/' . $list->id; ?>">View Ledger Details</a> / <a href="<?php echo base_url() . 'donars/assignDonars/' . $list->id; ?>">Assign Donars</a></td>
+                                        <td><a href="<?php echo base_url() . 'programs/edit/' . $list->id; ?>">Edit</a> / <a href="<?php echo base_url() . 'programs/delete/' . $list->id; ?>">Delete</a> / <a href="<?php echo base_url() . 'programs/createSubLedger/' . $list->id; ?>">Create Sub Ledger</a> / <a href="<?php echo base_url() . 'programs/viewSubLedger/' . $list->id; ?>">View Ledger Details</a> / <a href="<?php echo base_url() . 'donars/assignDonars/' . $list->id; ?>">Assign Donars</a> / <a href="<?php echo base_url() . 'legder/addLedgerProgram/' . $list->id; ?>">Add Ledger</a></td>
                                     </tr>
     <?php }
 } ?>
