@@ -164,7 +164,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <form action="<?php echo base_urL('transaction/addJournal'); ?>" method="post">
                                     <tr>
                                         <td>
                                             <select class="form-control" id="tranType" name="transType">
@@ -214,7 +213,6 @@
                                         <td><button type="text" id="addTransaction"  class="btn btn-default">Add</button></td>
 
                                     </tr>
-                                </form>
 
                             </tbody>
                         </table>
