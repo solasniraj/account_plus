@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 25, 2016 at 11:04 पूर्वाह्न
+-- Generation Time: Aug 29, 2016 at 01:29 अपराह्न
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -115,6 +115,28 @@ INSERT INTO `fiscal_year_info` (`id`, `fiscal_year`, `committee_name`, `status`)
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ledger_info`
+--
+
+CREATE TABLE IF NOT EXISTS `ledger_info` (
+  `id` int(11) NOT NULL,
+  `ledger_name` varchar(255) DEFAULT NULL,
+  `ledger_code` varchar(255) DEFAULT NULL,
+  `committee_id` varchar(50) DEFAULT NULL,
+  `user_id` varchar(50) DEFAULT NULL,
+  `ledger_status` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `ledger_info`
+--
+
+INSERT INTO `ledger_info` (`id`, `ledger_name`, `ledger_code`, `committee_id`, `user_id`, `ledger_status`) VALUES
+(1, 'asdf', NULL, NULL, NULL, 'Active');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `programs_list`
 --
 
@@ -136,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `programs_list` (
 INSERT INTO `programs_list` (`id`, `code`, `program_name`, `user_id`, `status`, `committee_id`, `subledger_id`, `fiscal_year`) VALUES
 (7, '345', 'Plantation', 1, NULL, NULL, NULL, NULL),
 (8, '345', 'Fencing', 1, NULL, NULL, NULL, NULL),
-(9, '345', 'sanoj', 1, NULL, NULL, NULL, NULL);
+(9, '345', 'sanoj', 1, NULL, NULL, '1<##>2', NULL);
 
 -- --------------------------------------------------------
 
@@ -149,7 +171,15 @@ CREATE TABLE IF NOT EXISTS `subledger_info` (
   `subledger_name` varchar(255) DEFAULT NULL,
   `subledger_code` varchar(255) DEFAULT NULL,
   `subledger_status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `subledger_info`
+--
+
+INSERT INTO `subledger_info` (`id`, `subledger_name`, `subledger_code`, `subledger_status`) VALUES
+(1, 'Wooden Gate Construction', '34343', 'active'),
+(2, 'asdf', '34343', 'active');
 
 -- --------------------------------------------------------
 
@@ -205,6 +235,12 @@ ALTER TABLE `fiscal_year_info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ledger_info`
+--
+ALTER TABLE `ledger_info`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `programs_list`
 --
 ALTER TABLE `programs_list`
@@ -247,6 +283,11 @@ ALTER TABLE `donar_info`
 ALTER TABLE `fiscal_year_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `ledger_info`
+--
+ALTER TABLE `ledger_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `programs_list`
 --
 ALTER TABLE `programs_list`
@@ -255,7 +296,7 @@ ALTER TABLE `programs_list`
 -- AUTO_INCREMENT for table `subledger_info`
 --
 ALTER TABLE `subledger_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user_info`
 --

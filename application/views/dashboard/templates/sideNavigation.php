@@ -44,14 +44,14 @@
 								
 							</ul>
                                                 </li>
-                                                <li class="menu-list"><a href="#"><i class="lnr lnr-briefcase"></i> <span>Donars</span></a>
+                                                <li class="menu-list"><a href="#"><i class="lnr lnr-briefcase"></i> <span>Donors</span></a>
                                                 <ul class="sub-menu-list">
-								<li><a href="<?php echo base_url().'donars/addDonar' ?>">Add Donar</a> </li>
-								<li><a href="<?php echo base_url().'donars/index' ?>">View Donars</a></li>
+								<li><a href="<?php echo base_url().'donars/addDonar' ?>">Add Donor</a> </li>
+								<li><a href="<?php echo base_url().'donars/index' ?>">View Donors</a></li>
 								
 							</ul>
                                                 </li> 
-						<li class="menu-list"><a href="#"><i class="lnr lnr-cog"></i> <span>Miscelleneous</span></a>
+						<li class="menu-list"><a href="#"><i class="lnr lnr-cog"></i> <span>Miscellaneous</span></a>
                                                 <ul class="sub-menu-list">
 								<li><a href="<?php echo base_url().'miscelleneous/bankReconcillation'; ?>">Bank Reconcillation</a> </li>
 								<li><a href="<?php echo base_url().'setting/index'; ?>">Data Backup</a></li>
