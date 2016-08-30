@@ -120,14 +120,20 @@ $("table tbody#lastId").prepend(view);
                  .col-md-4 {
                     width: 31.333%;
                  }
+                 .b{
+                    text-align: center;
+                 }
+                 .col-sm-8{
+                    width: 21%;
+                 }
             </style>
-            <div class="container-fluid " >
+            <div class="form-group" >
                 <div class="row">
                     <div class="col-md-4 ">
                         <table class="table">
                             <tr>
-                                <td><b>Journal no</b></td>
-                                <td><input class="form-control" type="text"></td>
+                             <td for="focusedInput"><b>Journal no</b></td>
+                                <td><input class="form-control"id="focusedInput" type="text"></td>
 
                             </tr>
                             <tr>
@@ -154,14 +160,14 @@ $("table tbody#lastId").prepend(view);
                     <div class="col-md-4 ">
                         <table class="table">
                             <tr>
-                                <td class="text-right width100"><b>Journal Type</b></td>
+                                <td class="text-right width100 "><b>Journal Type</b></td>
                                 <td><input  class="form-control" type="text"></td>
 
                             </tr>
                             <tr>
 
                                 <td class="text-right width100"><b>Bank Balance:-</b></td>
-                                <td><strong style="color:red;">Rs. 0,00,000/-</strong></td>
+                                <td class="b"><strong style="color:red;">Rs. 0,00,000/-</strong></td>
 
 
                             </tr>
@@ -176,14 +182,14 @@ $("table tbody#lastId").prepend(view);
                     <tbody>
                        
                             <tr>
-                                <th>Debit | Credit</th>
-                                <th>Account Head</th>
-                                <th>Sub-Ledger</th>
-                                <th>Ledger type</th>
-                                <th>Descrption</th>
-                                <th>Amount</th>
-                                <th>Cheque number</th>
-                                 <td rowspan="2"><div class="lastButton">
+                                <td  class="b"><b>Dr.|Cr.</b></td>
+                                <td  class="b"><b>A/C Head</b></td>
+                                <td  class="b"><b>Sub-Ledger</b></td>
+                                <td  class="b"><b>Ledger type</b></td>
+                                <td  class="b"><b>Descrption</b></td>
+                                <td  class="b"><b>Amount</b></td>
+                                <td  class="b"><b>Cheque number</b></td>
+                                 <td rowspan="2"  class="b"><div class="lastButton">
                                                 <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Add</button></td>
                                 
                             </tr>
@@ -191,7 +197,7 @@ $("table tbody#lastId").prepend(view);
 
                         
                             <tr>
-                                <td>
+                                <td >
                                     <select class="form-control" id="tranType">
                                         <option value="Dr">Debit</option>
                                         <option value="Cr">Credit</option>
@@ -212,7 +218,7 @@ $("table tbody#lastId").prepend(view);
                                         ?>
                                     </select>
                                 </td>
-                                <td>
+                                <td >
                                     <select class="form-control" id="subLedgerList">
                                         <option>Select Subledger</option> 
                                     </select>
@@ -225,14 +231,14 @@ $("table tbody#lastId").prepend(view);
                                         <option>4</option>
                                     </select>
                                 </td>
-                                <td>
-                                    <input type="text" name="description" id="description">
+                                <td >
+                                    <input  class="form-control" type="text" name="description" id="description">
+                                </td>
+                                <td >
+                                    <input  class="form-control" type="text" name="amount" id="amount">
                                 </td>
                                 <td>
-                                    <input type="text" name="amount" id="amount">
-                                </td>
-                                <td>
-                                    <input type="text" name="chequeNo" id="chequeNo">
+                                    <input  class="form-control" type="text" name="chequeNo" id="chequeNo">
                                 </td>
                                
 
@@ -250,15 +256,15 @@ $("table tbody#lastId").prepend(view);
                     <table class="tablee" width="100%">
                         <thead>
                             <tr>
-                                <th>Debit | Credit</th>
-                                <th>Account Head</th>
-                                <th>Ledger type</th>
-                                <th>Descrption</th>
-                                <th>SubLedger</th>
-                                <th>Debit Amt.</th>
-                                <th>Credit Amt.</th>
-                                  <th>Cheque number</th>
-                                <th>Action</th>
+                                <td class="b"><b>Dr.|Cr.</b></td>
+                                <td class="b"><b>Account Head</b></td>
+                                <td class="b"><b>Ledger type</b></td>
+                                <td class="b"><b>Descrption</b></td>
+                                <td class="b"><b>SubLedger</b></td>
+                                <td class="b"><b>Debit Amt.</b></td>
+                                <td class="b"><b>Credit Amt.</b></td>
+                                <td class="b"><b>Cheque number</b></td>
+                                <td class="b"><b>Action</b></td>
                             </tr>
                         </thead>
                         <tbody id="lastId">
@@ -267,22 +273,24 @@ $("table tbody#lastId").prepend(view);
 
                             <tr>
                                 <td colspan="5"><b>Total Amount</b></td>
-                                <td id="totalDebit">0</td>
-                                <td id="totalCredit">0</td>
+                                <td id="totalDebit" class="b">0</td>
+                                <td id="totalCredit" class="b">0</td>
                                 <td colspan="2"></td>
 
                             </tr>
 
                             <tr>
                                 <td colspan="5"><b>Difference in Debit and Credit Amount</b></td>
-                                <td id="debitGreater">0.00</td>
-                                <td id="creditGreater">0.00</td>
+                                <td id="debitGreater" class="b">0.00</td>
+                                <td id="creditGreater" class="b">0.00</td>
                                 <td colspan="2"></td>
 
                             </tr>
                         </tbody>
                     </table>
                 </div> 
+                <br>
+                <br>
 
                 <div class="row">
 
