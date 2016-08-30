@@ -19,8 +19,9 @@ $('#subLedgerList').html(msg);
 $(document).ready(function () {
 // iput is disable at first()
 
-$("#comment").css('display',"none");
-$("#summery").css('display',"none");
+//$("#comment").css('display',"none");
+$("#comment,#summery").attr("disabled", true); 
+//$("#summery").css('display',"none");
 
 $("#submitTheForm").prop('disabled', true);
 
