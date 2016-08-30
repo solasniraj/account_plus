@@ -21,8 +21,8 @@
                             
 
                             <div class="form-group">
-                                <label for="programName" class="col-sm-2 control-label">Account Heading</label>
-                                <div class="col-sm-8">
+                                <label for="programName" class="col-sm-2 control-label"><b>Account Heading</b></label>
+                                <div class="col-sm-4">
                                     <input type="text" value="<?php echo set_value('programName'); ?>" class="form-control1" id="programName" name="programName" placeholder="Enter account heading">
                                     <?php echo form_error('programName'); ?>
                                 </div>
@@ -32,7 +32,9 @@
                             
                             
                             <div class="col-sm-8 col-sm-offset-2">
-                                <button class="btn-success btn">Submit</button>
+                                   <div class="lastButton">
+                                                <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Submit</button>
+                                                </div>
                             </div>
 
                         </form>
