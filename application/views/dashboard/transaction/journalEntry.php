@@ -58,11 +58,12 @@
 
 
 </script>
+<br>
 
 
 <div id="page-wrapper">
     <div class="graphs">
-        <h3 class="blank1 text-center">Journal Entry form</h3>
+        <h3 class="blank1">Journal Entry Form</h3>
         <div class="xs tabls">
             <?php
             $flashMessage = $this->session->flashdata('flashMessage');
@@ -92,26 +93,29 @@
                 #page-wrapper {
                     background-color: #fff;
                 }
-                table td {
+                .table td {
                     text-align: center;
                 }
                 .lastButton {
                     text-align: center;
                     margin:0 auto;
                 }
+                 .col-md-4 {
+                    width: 31.333%;
+                 }
             </style>
             <div class="container-fluid " >
                 <div class="row">
                     <div class="col-md-4 ">
                         <table class="table">
                             <tr>
-                                <td  class="text-right width100">Journal no:</td>
+                                <td  class="text-right width100"><b>Journal no</b></td>
                                 <td><input class="form-control" type="text"></td>
 
                             </tr>
                             <tr>
 
-                                <td class="text-right width100">Date:</td>
+                                <td class="text-right width100"><b>Date</b></td>
                                 <td><input class="form-control" type="text"></td>
 
 
@@ -122,7 +126,7 @@
                     <div class="col-md-4">
                         <table class="table">
                             <tr>
-                                <td class="text-right width100">Source :</td>
+                                <td class="text-right width100"><b>Source </b></td>
                                 <td><input  class="form-control" type="text"></td>
 
                             </tr>
@@ -133,13 +137,13 @@
                     <div class="col-md-4 ">
                         <table class="table">
                             <tr>
-                                <td class="text-right width100">Journal Type:</td>
+                                <td class="text-right width100"><b>Journal Type</b></td>
                                 <td><input  class="form-control" type="text"></td>
 
                             </tr>
                             <tr>
 
-                                <td class="text-right width100">Bank Balance:</td>
+                                <td class="text-right width100"><b>Bank Balance:-</b></td>
                                 <td><strong style="color:red;">Rs. 0,00,000/-</strong></td>
 
 
@@ -209,7 +213,8 @@
                                     <input type="text" name="chequeNo" id="chequeNo">
                                 </td>
 
-                                <td><button type="text" id="addTransaction" class="btn btn-default">Add</button></td>
+                                <td><div class="lastButton">
+                                                <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Add</button></td>
 
                             </tr>
 
@@ -241,7 +246,7 @@
                            
 
                             <tr>
-                                <td colspan="5">Total Amount</td>
+                                <td colspan="5"><b>Total Amount</b></td>
                                 <td id="totalDebit">0</td>
                                 <td id="totalCredit">0</td>
                                 <td colspan="2"></td>
@@ -249,7 +254,7 @@
                             </tr>
 
                             <tr>
-                                <td colspan="5">Difference in Debit and Credit Amount</td>
+                                <td colspan="5"><b>Difference in Debit and Credit Amount</b></td>
                                 <td id="debitGreater">0.00</td>
                                 <td id="creditGreater">0.00</td>
                                 <td colspan="2"></td>
@@ -263,14 +268,14 @@
 
                     <div class="col-md-5 col-md-offset-1" >
                         <div class="form-group">
-                            <label for="comment">Detailed Comment:</label>
+                            <label for="comment"><b>Detailed Comment</b></label>
                             <textarea class="form-control" rows="5" style="resize:none" id="comment"></textarea>
                         </div>
                     </div>
 
                     <div class="col-md-5 col-md-offset-1" >
                         <div class="form-group">
-                            <label for="comment">Summary Comment:</label>
+                            <label for="comment"><b>Summary Comment</b></label>
                             <textarea class="form-control" rows="5" style="resize:none" id="comment"></textarea>
                         </div>
                     </div>
@@ -282,18 +287,20 @@
                  <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="pwd">Total cheque blance</label>
+                            <label class="col-sm-2 control-label" for="pwd"><b>Total Cheque Balance</b></label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control1" id="pwd">
                             </div>
                         </div>
 
                     </div>
+                   
 
-                        
-                <div class="lastButton col-md-12" style="padding-bottom:100px;padding-top: 20px;">
-                        <input type="button" class="btn btn-default" value="submit">
-                        <input type="submit" class="btn btn-default" value="reset">
+                        <div class="lastButton">
+                                                <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Submit</button>
+                      
+                                                <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Add</button>
+                                                </div>
 
                     </div>
                  </div>  
