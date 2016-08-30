@@ -5,8 +5,16 @@
         <group>
             <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Transaction.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Programs.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/models/Ledger_model.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/program/addProgram.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/transaction/journalEntry.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/templates/header.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/ledger/addLedger.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/program/listProgram.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/templates/sideNavigation.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/ledger/listLedger.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Bank.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Ledger.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/bank/addAccount.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/contents/js/scripts.js</file>
         </group>
