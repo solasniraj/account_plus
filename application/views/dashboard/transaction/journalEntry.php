@@ -99,6 +99,8 @@ $("table tbody#lastId").prepend(view);
 
                 .table td, .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
                     padding: 5px !important;
+                   }
+                    .tablee td, .tablee th {border:1px solid black;
                 }
 
                 .table th {
@@ -124,14 +126,14 @@ $("table tbody#lastId").prepend(view);
                     <div class="col-md-4 ">
                         <table class="table">
                             <tr>
-                                <td  class="text-right width100"><b>Journal no</b></td>
+                                <td><b>Journal no</b></td>
                                 <td><input class="form-control" type="text"></td>
 
                             </tr>
                             <tr>
 
                                 <td class="text-right width100"><b>Date</b></td>
-                                <td><input class="form-control" type="text"></td>
+                                <td><input class="form-control" type="text" placeholder="Day/Month/Year"></td>
 
 
                             </tr>
@@ -168,9 +170,11 @@ $("table tbody#lastId").prepend(view);
 
                 </div>
 
+
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
+                    <table class="tablee">
+                    <tbody>
+                       
                             <tr>
                                 <th>Debit | Credit</th>
                                 <th>Account Head</th>
@@ -179,10 +183,13 @@ $("table tbody#lastId").prepend(view);
                                 <th>Descrption</th>
                                 <th>Amount</th>
                                 <th>Cheque number</th>
-                                <th> </th>
+                                 <td rowspan="2"><div class="lastButton">
+                                                <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Add</button></td>
+                                
                             </tr>
-                        </thead>
-                        <tbody>
+                       
+
+                        
                             <tr>
                                 <td>
                                     <select class="form-control" id="tranType">
@@ -207,7 +214,7 @@ $("table tbody#lastId").prepend(view);
                                 </td>
                                 <td>
                                     <select class="form-control" id="subLedgerList">
-                                        <option value="">Select Subledger</option> 
+                                        <option>Select Subledger</option> 
                                     </select>
                                 </td>
                                 <td>
@@ -227,9 +234,7 @@ $("table tbody#lastId").prepend(view);
                                 <td>
                                     <input type="text" name="chequeNo" id="chequeNo">
                                 </td>
-
-                                <td><div class="lastButton">
-                                                <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Add</button></td>
+                               
 
                             </tr>
 
@@ -238,10 +243,11 @@ $("table tbody#lastId").prepend(view);
                 </div> 
 
             </div>
+            <br>
             <div class="container">
 
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="tablee" width="100%">
                         <thead>
                             <tr>
                                 <th>Debit | Credit</th>
@@ -251,8 +257,7 @@ $("table tbody#lastId").prepend(view);
                                 <th>SubLedger</th>
                                 <th>Debit Amt.</th>
                                 <th>Credit Amt.</th>
-
-                                <th>Cheque number</th>
+                                  <th>Cheque number</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -304,21 +309,25 @@ $("table tbody#lastId").prepend(view);
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="pwd"><b>Total Cheque Balance</b></label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control1" id="pwd">
+                                <input type="text" class="form-control1" id="pwd" style="margin-bottom:15px" >
                             </div>
                         </div>
 
                     </div>
+
                    
 
                         <div class="lastButton">
-                                                <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Submit</button>
+                             <button class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Submit</button>
                       
-                                                <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Add</button>
+                            <button class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Add</button>
                                                 </div>
 
                     </div>
-                 </div>  
+                 </div>
+                 <br>
+                 <br>
+                 <br>  
             </div>
 
             <style>
