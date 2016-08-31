@@ -51,7 +51,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="contactNumber" class="col-sm-2 control-label"><b>Donar's Contact Number</label>
+                                <label for="contactNumber" class="col-sm-2 control-label"><b>Donar's Contact Number</b></label>
                                 <div class="col-sm-4">
                                     <input type="text" value="<?php echo set_value('contactNumber'); ?>" class="form-control1" id="contactNumber" name="contactNumber" placeholder="Enter Donar's Contact Number">
                                     <?php echo form_error('contactNumber'); ?>

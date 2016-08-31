@@ -164,6 +164,11 @@
 							<div class="clearfix"></div>	
 						</ul>
 					</div>-->
+					<style>
+						 a:hover, .dropdown:hover .dropbtn {
+                           background-color: #ccf5ff;
+						 }
+					</style>
 					<div class="profile_details">		
 						<ul>
 							<li class="dropdown profile_details_drop">
