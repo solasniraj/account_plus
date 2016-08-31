@@ -45,7 +45,12 @@
        return  $this->db->insert('chart_master', $data);
         }
             
-
+        public function update_chart_master($id, $programName)
+        {
+            $this->db->where('program_id', $id);
+     $data = array('account_name' => $programName);
+  return $this->db->update('chart_master', $data);
+        }
         
    
 

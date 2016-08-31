@@ -128,7 +128,40 @@ public function updateProgram()
     $url = current_url();
   if ($this->session->userdata('logged_in') == true) {
       $user_id=$this->session->userdata('user_id');
-      
+       $id = $this->input->post('pId');
+      $this->load->library('form_validation');
+       $this->form_validation->set_rules('programName', 'Account Heading', 'trim|required|callback_xss_clean|max_length[200]');
+       $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
+
+       if ($this->form_validation->run() == FALSE)
+       {
+       $user_id=$this->session->userdata('user_id');
+      $data['programDetails'] = $this->program_model->get_program_details($id, $user_id);
+$data['accountCharts']=$this->chartAccount_model->get_account_chart_class();
+         $this->load->view('dashboard/templates/header');
+         $this->load->view('dashboard/templates/sideNavigation');
+         $this->load->view('dashboard/templates/topHead');
+         $this->load->view('dashboard/program/editProgram', $data);
+         $this->load->view('dashboard/templates/footer');
+      }
+      else 
+      {  
+          $programName = $this->input->post('programName');
+         $result = $this->program_model->update_program($id, $programName, $user_id);
+         $result1 = $this->chartAccount_model->update_chart_master($id, $programName);
+          
+           if($result && $result1)
+        {
+         $this->session->set_flashdata('flashMessage', 'Programm updated successfully');
+         return redirect('programs/programListing');
+       }
+       else 
+       {
+        $this->session->set_flashdata('flashMessage', 'error occur while updating programm');
+        return redirect('programs/programListing');
+      }
+          
+      }
       
       
       } else {

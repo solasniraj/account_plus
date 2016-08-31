@@ -53,6 +53,14 @@ public function get_program_details($id, $user_id)
   return $query->result();
 }
 
+public function update_program($id, $programName, $user_id)
+{
+    $this->db->where('id', $id);
+     $data = array('program_name' => $programName);
+  $this->db->where('user_id', $user_id);
+  return $this->db->update('programs_list', $data);
+}
+
 public function addSubLedger($name,$id)
 {
 
