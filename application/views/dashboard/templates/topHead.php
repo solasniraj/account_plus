@@ -169,7 +169,6 @@
 							<li class="dropdown profile_details_drop">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<div class="profile_img">	
-										<span> </span> 
 										 <div class="user-name">
 											<p><?php echo $this->session->userdata('username'); ?><span>Administrator</span></p>
 										 </div>
