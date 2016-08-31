@@ -7,17 +7,31 @@ class Program_model extends CI_Model {
    $this->load->database();
  }
 
-
- function insert_programm_listing($id, $programName)
+ public function get_last_code_of_program()
+ {
+            $this->db->select_max('program_code');
+             $query= $this->db->get("programs_list")->result();
+             if(!empty($query)){
+         return $query[0]->program_code;
+             }else{
+                 return '0';
+             }
+ }
+         
+ 
+ function insert_programm_listing($id, $newProgramCode, $programName)
  {
 
   $data = Array(
-    'code' => 00531,
+    'program_code' => $newProgramCode,
     'program_name' => $programName,
     'user_id' =>$id
     );
 
-  return  $this->db->insert('programs_list', $data);
+   $this->db->insert('programs_list', $data);
+   $insert_id = $this->db->insert_id();
+
+   return  $insert_id;
 }
 
 
@@ -29,6 +43,14 @@ function  view_programm_listing($id)
   $query = $this->db->get("programs_list");
   return $query->result();
 
+}
+
+public function get_program_details($id, $user_id)
+{
+    $this->db->where('id', $id);
+  $this->db->where('user_id', $user_id);
+  $query = $this->db->get("programs_list");
+  return $query->result();
 }
 
 public function addSubLedger($name,$id)

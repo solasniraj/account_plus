@@ -56,10 +56,17 @@
       else 
       {       
         $programName = $this->input->post('programName');        
-        $chartAccType = $this->input->post('chartAccType');        
-        
-        $result=$this->program_model->insert_programm_listing($user_id, $programName);
-        if($result)
+        $chartAccType = $this->input->post('chartAccType');
+        $plastId = $this->program_model->get_last_code_of_program();
+        $newPCode = $plastId + '1';
+        $newProgramCode = str_pad($newPCode, 2, "0", STR_PAD_LEFT);
+        if($newProgramCode <  100){
+        $lastId = $this->chartAccount_model->get_last_code_of_related_chart($chartAccType);
+        $newCode = $lastId + '1';
+       
+        $result = $this->program_model->insert_programm_listing($user_id, $newProgramCode, $programName);
+        $result1 = $this->chartAccount_model->add_new_chart_master($newCode, $programName, $chartAccType, $result);
+        if($result && $result1)
         {
          $this->session->set_flashdata('flashMessage', 'Programm added successfully');
          return redirect('programs/programListing');
@@ -70,6 +77,11 @@
 
         return redirect('programs/programListing');
       }
+        }else{
+            $this->session->set_flashdata('flashMessage', 'You have reached the limit of programs. New program can not be added');
+
+        return redirect('programs/programListing');
+        }
     }
   }
   else {
@@ -94,12 +106,32 @@ public function programListing()
 }
 }
 
-public function editProgram($id=NULL)
+public function edit($id=NULL)
 {
   $url = current_url();
   if ($this->session->userdata('logged_in') == true) {
-
+      $user_id=$this->session->userdata('user_id');
+      $data['programDetails'] = $this->program_model->get_program_details($id, $user_id);
+$data['accountCharts']=$this->chartAccount_model->get_account_chart_class();
+         $this->load->view('dashboard/templates/header');
+         $this->load->view('dashboard/templates/sideNavigation');
+         $this->load->view('dashboard/templates/topHead');
+         $this->load->view('dashboard/program/editProgram', $data);
+         $this->load->view('dashboard/templates/footer');
   } else {
+    redirect('login/index/?url=' . $url, 'refresh');
+  }
+}
+
+public function updateProgram()
+{
+    $url = current_url();
+  if ($this->session->userdata('logged_in') == true) {
+      $user_id=$this->session->userdata('user_id');
+      
+      
+      
+      } else {
     redirect('login/index/?url=' . $url, 'refresh');
   }
 }
