@@ -5,6 +5,7 @@
         parent::__construct();
         $this->load->library('session');
         $this->load->model('program_model');
+         $this->load->model('chartAccount_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -26,10 +27,11 @@
       {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
+             $data['accountCharts']=$this->chartAccount_model->get_account_chart_class();
          $this->load->view('dashboard/templates/header');
          $this->load->view('dashboard/templates/sideNavigation');
          $this->load->view('dashboard/templates/topHead');
-         $this->load->view('dashboard/program/addProgram');
+         $this->load->view('dashboard/program/addProgram', $data);
          $this->load->view('dashboard/templates/footer');
        } else {
         redirect('login/index/?url=' . $url, 'refresh');
@@ -44,6 +46,7 @@
         $user_id=$this->session->userdata('user_id');
        $this->load->library('form_validation');
        $this->form_validation->set_rules('programName', 'Account Heading', 'trim|required|callback_xss_clean|max_length[200]');
+        $this->form_validation->set_rules('chartAccType', 'Account Type', 'trim|required|callback_xss_clean');
        $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
 
        if ($this->form_validation->run() == FALSE)
@@ -52,7 +55,8 @@
       }
       else 
       {       
-        $programName=$this->input->post('programName');        
+        $programName = $this->input->post('programName');        
+        $chartAccType = $this->input->post('chartAccType');        
         
         $result=$this->program_model->insert_programm_listing($user_id, $programName);
         if($result)
