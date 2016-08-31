@@ -39,7 +39,7 @@
 										<div class="col-md-8 col-md-offset-2">
 											<form class="form-horizontal" role="form">
 												<div class="form-group">
-													<label class="control-label col-sm-3" for="email"><h4>Bajet upsirak number </h4></label>
+													<label class="control-label col-sm-3" for="email"><b>Bajet upsirak number </b></label>
 													<div class="col-sm-9">
 														<select class="form-control" id="sel1">
 															<option>1</option>
@@ -52,7 +52,7 @@
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-sm-3" for="pwd"><h4>Year </h4> </label>
+													<label class="control-label col-sm-3" for="pwd"><b>Year </b> </label>
 													<div class="col-sm-9">
 														<input  class="form-control" type="text" id="datepicker">
 
@@ -60,7 +60,7 @@
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-sm-3" for="pwd"><h4>Month </h4></label>
+													<label class="control-label col-sm-3" for="pwd"><b>Month </b></label>
 													<div class="col-sm-9">
 														<select class="form-control" id="sel1">
 															<option>1</option>

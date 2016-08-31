@@ -22,15 +22,15 @@
 
                 <div class="form-group">
                     <label for="programName" class="col-sm-2 control-label"><b>Account Heading</b></label>
-                    <div class="col-sm-8">
+                    <div class="col-sm-4">
                         <input type="text" value="<?php echo set_value('programName'); ?>" class="form-control1" id="programName" name="programName" placeholder="Enter account heading">
                         <?php echo form_error('programName'); ?>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="chartAccType">Select Account</label>
-                    <div class="col-sm-8"><select class="form-control1" id="chartAccType" name="chartAccType">
+                    <label class="col-sm-2 control-label" for="chartAccType"><b>Select Account</b></label>
+                    <div class="col-sm-4"><select class="form-control1" id="chartAccType" name="chartAccType">
                             <option value="">Select Account</option>
                             <?php if (!empty($accountCharts)) {
                                 foreach ($accountCharts as $acharts) {

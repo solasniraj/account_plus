@@ -42,7 +42,7 @@
 										<div class="col-md-8 col-md-offset-2">
 											<form class="form-horizontal" role="form">
 												<div class="form-group">
-													<label class="control-label col-sm-3" for="email">Program | Account Name</label>
+													<label class="control-label col-sm-3" for="email"><b>Program | Account Name</b></label>
 													<div class="col-sm-9">
 														<select class="form-control" id="sel1">
 															<option>1</option>
@@ -57,7 +57,7 @@
 												<div class="form-group">
 													
 													
-													<label class="control-label col-sm-3" for="pwd">Year </label>
+													<label class="control-label col-sm-3" for="pwd"><b>Year</b> </label>
 													<div class="col-sm-9">
 														<input  class="form-control" type="date" id="datepicker">
 
@@ -66,7 +66,7 @@
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-sm-3" for="pwd">Month</label>
+													<label class="control-label col-sm-3" for="pwd"><b>Month</b></label>
 													<div class="col-sm-9">
 														<select class="form-control" id="sel1">
 															<option>1</option>
