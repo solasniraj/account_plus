@@ -24,22 +24,125 @@ class transaction extends CI_Controller {
   }
 }
 
+public function getProgrammListForCurrentChartName()
+{
+
+      $url = current_url();
+       if ($this->session->userdata('logged_in') == true) 
+      {   
+         if (isset($_POST['charClassId'])) 
+        {
+           $currentCharClassId= $_POST['charClassId'];
+           $ProgrammList=$this->program_model->getProgrammListForCurrentChartName($currentCharClassId);
+             $output= "";
+             if(!empty($ProgrammList))
+             {
+               foreach ($ProgrammList as $value)
+               {
+                 $output .= '<option value="'.$value->id.'">'.$value->account_code."#".$value->account_name.'</option>';
+               }
+             }
+             else
+             {
+
+               $output .= '<option value="">Select Program</option>';
+             }
+
+
+            echo $output;
+          
+        }
+        else 
+        {
+
+        echo "Unauthorized access";
+
+         }
+        }
+     else
+      {
+         
+         redirect('login/index/?url=' . $url, 'refresh');
+      }
+
+}
+
+public function getProgrammcodeForCurrentId()
+{
+
+      $url = current_url();
+       if ($this->session->userdata('logged_in') == true) 
+      {   
+         if (isset($_POST['programmId'])) 
+        {
+           $programmId= $_POST['programmId'];
+           $value=$this->program_model->getSingleProgramCode($programmId);
+             $output= "";
+             if(!empty($value))
+             {
+               
+                 $output .= '<input type="text" id="pCode" class="form-control"  value="'.$value->account_code.'" readonly />';
+             }
+             else
+             {
+
+               $output .= '<input type="text" id="pCode" class="form-control" value="" readonly />';
+             }
+
+
+            echo $output;
+          
+        }
+        else 
+        {
+
+        echo "Unauthorized access";
+
+         }
+        }
+     else
+      {
+         
+         redirect('login/index/?url=' . $url, 'refresh');
+      }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 public function journalEntry()
 {
  $url = current_url();
  if ($this->session->userdata('logged_in') == true) {
 
    $user_id=$this->session->userdata('user_id');
+   $data['journalNumber']=$this->program_model->getCurrentJournalNumer();
+   $data['journalTypes']=$this->program_model->getJournalTypes();
    $data['program_list']=$this->program_model->view_programm_listing($user_id);
    $this->load->view('dashboard/templates/header');
    $this->load->view('dashboard/templates/sideNavigation');
    $this->load->view('dashboard/templates/topHead');
    $this->load->view('dashboard/transaction/journalEntry', $data);
    $this->load->view('dashboard/templates/footer');   
- } else {
+ } 
+ else
+  {
+
   redirect('login/index/?url=' . $url, 'refresh');
+
+  }
+
 }
-}
+
 
 
 public function get_subledgers()
