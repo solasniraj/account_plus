@@ -16,19 +16,19 @@ class chartAccount extends CI_Controller {
          if ($this->session->userdata('logged_in') == true) {
             
    $user_id=$this->session->userdata('user_id');
-   $data['ledgerDetails']=$this->chartAccount_model->get_ledger_listing();
+   $data['accountCharts']=$this->chartAccount_model->get_account_chart_class();
    
          $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/ledger/listLedger', $data);
+          $this->load->view('dashboard/accountCharts/listChart', $data);
            $this->load->view('dashboard/templates/footer');
            } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
     
-    public function addLedger()
+    public function addSubClass()
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 

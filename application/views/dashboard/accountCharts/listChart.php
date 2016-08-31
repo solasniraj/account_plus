@@ -28,14 +28,14 @@
 										<?php 
 										
 											$i=1;
-										foreach($ledgerDetails as $llist) 
+										foreach($accountCharts as $aclist) 
 										{ ?>		
 											<tr>
 												
 												<td><?php echo $i++;?></td>
-												<td><?php echo $llist->ledger_name;?></td>
-												<td><?php echo $llist->ledger_code;?></td>
-                                                                                                <td><a href="<?php echo base_url().'ledger/editLedger/'.$llist->id;?>">Edit</a> / <a href="<?php echo base_url().'ledger/deleteLedger/'.$llist->id;?>">Delete</a></td>
+												<td><?php echo $aclist->chart_class_name;?></td>
+												<td><?php echo $aclist->chart_code;?></td>
+                                                                                                <td><a href="<?php echo base_url().'chartAccount/addSubClass/'.$aclist->id;?>">Add Sub Class</a></td>
 											</tr>
 										<?php }  	?>
 											

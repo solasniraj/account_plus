@@ -6,10 +6,10 @@
             $this->load->database();
         }
 
-        public function get_ledger_listing()
+        public function get_account_chart_class()
         {
-            $this->db->where('ledger_status', 'Active');
-            $query = $this->db->get('ledger_info');
+            $this->db->where('chart_status', 'Active');
+            $query = $this->db->get('chart_class');
              return $query->result();
         }
 
