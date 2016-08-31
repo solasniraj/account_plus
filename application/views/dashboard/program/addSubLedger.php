@@ -9,16 +9,11 @@
                     padding: 10px;
                     color:red;
                 }
-
-
-
                 /*sanoj custom css ends*/
-
                 </style>
                     <div class="tab-content">
                         <div class="tab-pane active" id="horizontal-form">
                             <?php echo form_open_multipart('programs/addSubLedger', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
-                            
 
                             <div class="form-group">
                                 <label for="subLedgerName" class="col-sm-2 control-label">Sub-ledger Name</label>
@@ -29,9 +24,6 @@
                                 </div>
                             </div>
 
-                            
-                            
-                            
                             <div class="col-sm-8 col-sm-offset-2">
                                 <input type="submit" class="btn-success btn" value="submit">
                             </div>
@@ -46,5 +38,48 @@
 
 
             </div>
-        </div>
+                <div class="clearfix"></div>
+                <br/><br/>
+            <div class="graphs">
+                    <h3 class="blank1">Sub ledgers under program </h3>
+                     <style>
+     /*sanoj custom csss */
+                .form-errors 
+                {
+                    font-size: 14px;
+                    padding: 10px;
+                    color:red;
+                }
+
+
+
+                /*sanoj custom css ends*/
+
+                </style>
+                    <div class="tab-content">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Sub Ledger </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            
+
+
+
+
+
+            </div>
+            </div>
     </div>

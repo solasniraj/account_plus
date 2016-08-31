@@ -173,7 +173,7 @@ public function createSubLedger($id=NULL)
 {
     $url = current_url();
   if ($this->session->userdata('logged_in') == true) {
-    $data['program_id']=$this->uri->segment(3);
+    $data['program_id']=$id;
     $this->load->view('dashboard/templates/header');
     $this->load->view('dashboard/templates/sideNavigation');
     $this->load->view('dashboard/templates/topHead');
@@ -201,16 +201,13 @@ public function addSubLedger()
 
        if ($this->form_validation->run() == FALSE)
        {
-
             $this->load->view('dashboard/templates/header');
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
             $this->load->view('dashboard/program/addSubLedger',$data);
             $this->load->view('dashboard/templates/footer');
         }
-
        else 
-
          { 
              $subLedgerName=$this->input->post('subLedgerName');        
              $this->load->model('program_model');
@@ -223,17 +220,14 @@ public function addSubLedger()
                   return redirect('programs/programListing');
                 }
              else 
-               {
-    
+               {    
                  $this->session->set_flashdata('flashMessage', 'error occur while adding programm');
                  return redirect('programs/programListing');
               }
           }
    }
-
     else 
    {
-
     return   redirect('login/index/?url=' . $url, 'refresh');
    }
 }
