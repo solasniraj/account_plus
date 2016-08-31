@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 30, 2016 at 01:13 PM
+-- Generation Time: Aug 31, 2016 at 09:22 पूर्वाह्न
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -28,10 +28,15 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `bank_info` (
   `id` int(11) NOT NULL,
+  `account_code` varchar(20) DEFAULT NULL,
+  `account_type` varchar(50) DEFAULT NULL,
+  `bank_account_name` varchar(100) DEFAULT NULL,
   `bank_name` varchar(255) DEFAULT NULL,
   `bank_address` varchar(255) DEFAULT NULL,
   `bank_account_number` varchar(50) NOT NULL,
   `bank_phone_no` varchar(20) DEFAULT NULL,
+  `last_reconciled_date` timestamp NULL DEFAULT NULL,
+  `ending_reconcile_balance` double DEFAULT NULL,
   `committee_id` varchar(255) DEFAULT NULL,
   `user_id` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
@@ -41,8 +46,41 @@ CREATE TABLE IF NOT EXISTS `bank_info` (
 -- Dumping data for table `bank_info`
 --
 
-INSERT INTO `bank_info` (`id`, `bank_name`, `bank_address`, `bank_account_number`, `bank_phone_no`, `committee_id`, `user_id`, `status`) VALUES
-(1, 'Himalayan Bank Limited', 'Narayangarh, Chitwan', '98452141409845214140', '056-533977', NULL, NULL, 'Active');
+INSERT INTO `bank_info` (`id`, `account_code`, `account_type`, `bank_account_name`, `bank_name`, `bank_address`, `bank_account_number`, `bank_phone_no`, `last_reconciled_date`, `ending_reconcile_balance`, `committee_id`, `user_id`, `status`) VALUES
+(1, NULL, NULL, NULL, 'Himalayan Bank Limited', 'Narayangarh, Chitwan', '98452141409845214140', '056-533977', NULL, NULL, NULL, NULL, 'Active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bank_trans_info`
+--
+
+CREATE TABLE IF NOT EXISTS `bank_trans_info` (
+  `id` int(11) NOT NULL,
+  `type` smallint(6) DEFAULT NULL,
+  `trans_no` int(11) DEFAULT NULL,
+  `bank_act` varchar(15) NOT NULL DEFAULT '',
+  `ref` varchar(40) DEFAULT NULL,
+  `trans_date` date NOT NULL DEFAULT '0000-00-00',
+  `amount` double DEFAULT NULL,
+  `dimension_id` int(11) NOT NULL DEFAULT '0',
+  `dimension2_id` int(11) NOT NULL DEFAULT '0',
+  `person_type_id` int(11) NOT NULL DEFAULT '0',
+  `person_id` tinyblob,
+  `reconciled` date DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bank_trans_info`
+--
+
+INSERT INTO `bank_trans_info` (`id`, `type`, `trans_no`, `bank_act`, `ref`, `trans_date`, `amount`, `dimension_id`, `dimension2_id`, `person_type_id`, `person_id`, `reconciled`) VALUES
+(1, 0, 1, '1', '1', '2014-12-31', -312, 0, 0, 0, '', NULL),
+(2, 0, 2, '1', '1', '2015-01-01', 312, 0, 0, 0, '', NULL),
+(3, 0, 3, '1', '2', '2014-12-31', -500, 0, 0, 0, '', NULL),
+(4, 0, 4, '1', '3', '2014-12-31', 500, 0, 0, 0, '', NULL),
+(5, 0, 5, '1', '4', '2014-12-31', 1000, 0, 0, 0, '', NULL),
+(6, 0, 6, '2', '5', '2014-12-31', 100, 0, 0, 0, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -63,10 +101,10 @@ CREATE TABLE IF NOT EXISTS `chart_class` (
 --
 
 INSERT INTO `chart_class` (`id`, `chart_code`, `chart_class_name`, `chart_status`, `chart_class_type`) VALUES
-(1, NULL, 'Assets', 'Active', NULL),
-(2, NULL, 'Liabilities', 'Active', NULL),
-(3, NULL, 'Income', 'Active', NULL),
-(4, NULL, 'Costs', 'Active', NULL);
+(1, '1', 'Assets', 'Active', NULL),
+(2, '2', 'Liabilities', 'Active', NULL),
+(3, '3', 'Income', 'Active', NULL),
+(4, '4', 'Expenses', 'Active', NULL);
 
 -- --------------------------------------------------------
 
@@ -79,125 +117,33 @@ CREATE TABLE IF NOT EXISTS `chart_master` (
   `account_code` varchar(50) DEFAULT NULL,
   `account_code2` varchar(50) DEFAULT NULL,
   `account_name` varchar(255) DEFAULT NULL,
-  `chart_type_id` varchar(100) DEFAULT NULL,
-  `account_status` varchar(100) DEFAULT NULL
+  `account_status` varchar(100) DEFAULT NULL,
+  `chart_class_id` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `chart_master`
 --
 
-INSERT INTO `chart_master` (`id`, `account_code`, `account_code2`, `account_name`, `chart_type_id`, `account_status`) VALUES
-(1, '1060', '', 'Checking Account', '1', '0'),
-(2, '1065', '', 'Petty Cash', '1', '0'),
-(3, '1200', '', 'Accounts Receivables', '1', '0'),
-(4, '1205', '', 'Allowance for doubtful accounts', '1', '0'),
-(5, '1510', '', 'Inventory', '2', '0'),
-(6, '1520', '', 'Stocks of Raw Materials', '2', '0'),
-(7, '1530', '', 'Stocks of Work In Progress', '2', '0'),
-(8, '1540', '', 'Stocks of Finsihed Goods', '2', '0'),
-(9, '1550', '', 'Goods Received Clearing account', '2', '0'),
-(10, '1820', '', 'Office Furniture &amp; Equipment', '3', '0'),
-(11, '1825', '', 'Accum. Amort. -Furn. &amp; Equip.', '3', '0'),
-(12, '1840', '', 'Vehicle', '3', '0'),
-(13, '1845', '', 'Accum. Amort. -Vehicle', '3', '0'),
-(14, '2100', '', 'Accounts Payable', '4', '0'),
-(15, '2110', '', 'Accrued Income Tax - Federal', '4', '0'),
-(16, '2120', '', 'Accrued Income Tax - State', '4', '0'),
-(17, '2130', '', 'Accrued Franchise Tax', '4', '0'),
-(18, '2140', '', 'Accrued Real &amp; Personal Prop Tax', '4', '0'),
-(19, '2150', '', 'Sales Tax', '4', '0'),
-(20, '2160', '', 'Accrued Use Tax Payable', '4', '0'),
-(21, '2210', '', 'Accrued Wages', '4', '0'),
-(22, '2220', '', 'Accrued Comp Time', '4', '0'),
-(23, '2230', '', 'Accrued Holiday Pay', '4', '0'),
-(24, '2240', '', 'Accrued Vacation Pay', '4', '0'),
-(25, '2310', '', 'Accr. Benefits - 401K', '4', '0'),
-(26, '2320', '', 'Accr. Benefits - Stock Purchase', '4', '0'),
-(27, '2330', '', 'Accr. Benefits - Med, Den', '4', '0'),
-(28, '2340', '', 'Accr. Benefits - Payroll Taxes', '4', '0'),
-(29, '2350', '', 'Accr. Benefits - Credit Union', '4', '0'),
-(30, '2360', '', 'Accr. Benefits - Savings Bond', '4', '0'),
-(31, '2370', '', 'Accr. Benefits - Garnish', '4', '0'),
-(32, '2380', '', 'Accr. Benefits - Charity Cont.', '4', '0'),
-(33, '2620', '', 'Bank Loans', '5', '0'),
-(34, '2680', '', 'Loans from Shareholders', '5', '0'),
-(35, '3350', '', 'Common Shares', '6', '0'),
-(36, '3590', '', 'Retained Earnings - prior years', '7', '0'),
-(37, '4010', '', 'Sales', '8', '0'),
-(38, '4430', '', 'Shipping &amp; Handling', '9', '0'),
-(39, '4440', '', 'Interest', '9', '0'),
-(40, '4450', '', 'Foreign Exchange Gain', '9', '0'),
-(41, '4500', '', 'Prompt Payment Discounts', '9', '0'),
-(42, '4510', '', 'Discounts Given', '9', '0'),
-(43, '5010', '', 'Cost of Goods Sold - Retail', '10', '0'),
-(44, '5020', '', 'Material Usage Varaiance', '10', '0'),
-(45, '5030', '', 'Consumable Materials', '10', '0'),
-(46, '5040', '', 'Purchase price Variance', '10', '0'),
-(47, '5050', '', 'Purchases of materials', '10', '0'),
-(48, '5060', '', 'Discounts Received', '10', '0'),
-(49, '5100', '', 'Freight', '10', '0'),
-(50, '5410', '', 'Wages &amp; Salaries', '11', '0'),
-(51, '5420', '', 'Wages - Overtime', '11', '0'),
-(52, '5430', '', 'Benefits - Comp Time', '11', '0'),
-(53, '5440', '', 'Benefits - Payroll Taxes', '11', '0'),
-(54, '5450', '', 'Benefits - Workers Comp', '11', '0'),
-(55, '5460', '', 'Benefits - Pension', '11', '0'),
-(56, '5470', '', 'Benefits - General Benefits', '11', '0'),
-(57, '5510', '', 'Inc Tax Exp - Federal', '11', '0'),
-(58, '5520', '', 'Inc Tax Exp - State', '11', '0'),
-(59, '5530', '', 'Taxes - Real Estate', '11', '0'),
-(60, '5540', '', 'Taxes - Personal Property', '11', '0'),
-(61, '5550', '', 'Taxes - Franchise', '11', '0'),
-(62, '5560', '', 'Taxes - Foreign Withholding', '11', '0'),
-(63, '5610', '', 'Accounting &amp; Legal', '12', '0'),
-(64, '5615', '', 'Advertising &amp; Promotions', '12', '0'),
-(65, '5620', '', 'Bad Debts', '12', '0'),
-(66, '5660', '', 'Amortization Expense', '12', '0'),
-(67, '5685', '', 'Insurance', '12', '0'),
-(68, '5690', '', 'Interest &amp; Bank Charges', '12', '0'),
-(69, '5700', '', 'Office Supplies', '12', '0'),
-(70, '5760', '', 'Rent', '12', '0'),
-(71, '5765', '', 'Repair &amp; Maintenance', '12', '0'),
-(72, '5780', '', 'Telephone', '12', '0'),
-(73, '5785', '', 'Travel &amp; Entertainment', '12', '0'),
-(74, '5790', '', 'Utilities', '12', '0'),
-(75, '5795', '', 'Registrations', '12', '0'),
-(76, '5800', '', 'Licenses', '12', '0'),
-(77, '5810', '', 'Foreign Exchange Loss', '12', '0'),
-(78, '9990', '', 'Year Profit/Loss', '12', '0');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `chart_types`
---
-
-CREATE TABLE IF NOT EXISTS `chart_types` (
-  `id` varchar(10) NOT NULL,
-  `name` varchar(60) NOT NULL DEFAULT '',
-  `chart_class_id` varchar(3) NOT NULL DEFAULT '',
-  `parent` varchar(10) NOT NULL DEFAULT '-1',
-  `status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `chart_types`
---
-
-INSERT INTO `chart_types` (`id`, `name`, `chart_class_id`, `parent`, `status`) VALUES
-('1', 'Current Assets', '1', '', 0),
-('2', 'Inventory Assets', '1', '', 0),
-('3', 'Capital Assets', '1', '', 0),
-('4', 'Current Liabilities', '2', '', 0),
-('5', 'Long Term Liabilities', '2', '', 0),
-('6', 'Share Capital', '2', '', 0),
-('7', 'Retained Earnings', '2', '', 0),
-('8', 'Sales Revenue', '3', '', 0),
-('9', 'Other Revenue', '3', '', 0),
-('10', 'Cost of Goods Sold', '4', '', 0),
-('11', 'Payroll Expenses', '4', '', 0),
-('12', 'General &amp; Administrative expenses', '4', '', 0);
+INSERT INTO `chart_master` (`id`, `account_code`, `account_code2`, `account_name`, `account_status`, `chart_class_id`) VALUES
+(1, '100', '', 'Cash Account', '0', '1'),
+(2, '101', '', 'Bank Account', '0', '1'),
+(3, '102', '', 'Bank Account', '0', '1'),
+(4, '103', '', 'Personal Advance', '0', '1'),
+(5, '104', '', 'Official Advance', '0', '1'),
+(6, '105', '', 'Accounts Receivable', '0', '1'),
+(7, '201', '', 'Accounts Payable', '0', '2'),
+(8, '202', '', 'TDS Payable', '0', '2'),
+(9, '301', '', 'Plantation', '0', '3'),
+(10, '302', '', 'Grassland Management', '0', '3'),
+(11, '303', '', 'AAAAAAAA Income', '0', '3'),
+(12, '401', '', 'Salary Expenses', '0', '4'),
+(13, '402', '', 'TADA Expenses', '0', '4'),
+(14, '403', '', 'Salary Expenses', '0', '4'),
+(15, '404', '', 'Rental Expenses', '0', '4'),
+(16, '405', '', 'Repair &amp; Maintenance Expenses', '0', '4'),
+(17, '406', '', 'Email, Internet, Telephone &amp; Postage Expenses', '0', '4'),
+(18, '407', '', 'AAAAAAAAAA Expenses', '0', '4');
 
 -- --------------------------------------------------------
 
@@ -306,28 +252,6 @@ INSERT INTO `gl_trans_info` (`counter`, `type`, `type_no`, `tran_date`, `account
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ledger_info`
---
-
-CREATE TABLE IF NOT EXISTS `ledger_info` (
-  `id` int(11) NOT NULL,
-  `ledger_name` varchar(255) DEFAULT NULL,
-  `ledger_code` varchar(255) DEFAULT NULL,
-  `committee_id` varchar(50) DEFAULT NULL,
-  `user_id` varchar(50) DEFAULT NULL,
-  `ledger_status` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `ledger_info`
---
-
-INSERT INTO `ledger_info` (`id`, `ledger_name`, `ledger_code`, `committee_id`, `user_id`, `ledger_status`) VALUES
-(1, 'asdf', NULL, NULL, NULL, 'Active');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `programs_list`
 --
 
@@ -340,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `programs_list` (
   `committee_id` varchar(255) DEFAULT NULL,
   `subledger_id` text,
   `fiscal_year` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `programs_list`
@@ -349,7 +273,8 @@ CREATE TABLE IF NOT EXISTS `programs_list` (
 INSERT INTO `programs_list` (`id`, `code`, `program_name`, `user_id`, `status`, `committee_id`, `subledger_id`, `fiscal_year`) VALUES
 (7, '345', 'Plantation', 1, NULL, NULL, NULL, NULL),
 (8, '345', 'Fencing', 1, NULL, NULL, NULL, NULL),
-(9, '345', 'sanoj', 1, NULL, NULL, '1<##>2', NULL);
+(9, '345', 'sanoj', 1, NULL, NULL, '1<##>2', NULL),
+(10, '345', 'Plantation', 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -408,6 +333,16 @@ ALTER TABLE `bank_info`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `bank_trans_info`
+--
+ALTER TABLE `bank_trans_info`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bank_act` (`bank_act`,`ref`),
+  ADD KEY `type` (`type`,`trans_no`),
+  ADD KEY `bank_act_2` (`bank_act`,`reconciled`),
+  ADD KEY `bank_act_3` (`bank_act`,`trans_date`);
+
+--
 -- Indexes for table `chart_class`
 --
 ALTER TABLE `chart_class`
@@ -418,14 +353,6 @@ ALTER TABLE `chart_class`
 --
 ALTER TABLE `chart_master`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `chart_types`
---
-ALTER TABLE `chart_types`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `name` (`name`),
-  ADD KEY `chart_class_id` (`chart_class_id`);
 
 --
 -- Indexes for table `committee_info`
@@ -457,12 +384,6 @@ ALTER TABLE `gl_trans_info`
   ADD KEY `account_and_tran_date` (`account`,`tran_date`);
 
 --
--- Indexes for table `ledger_info`
---
-ALTER TABLE `ledger_info`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `programs_list`
 --
 ALTER TABLE `programs_list`
@@ -489,6 +410,11 @@ ALTER TABLE `user_info`
 --
 ALTER TABLE `bank_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `bank_trans_info`
+--
+ALTER TABLE `bank_trans_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `chart_class`
 --
@@ -520,15 +446,10 @@ ALTER TABLE `fiscal_year_info`
 ALTER TABLE `gl_trans_info`
   MODIFY `counter` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `ledger_info`
---
-ALTER TABLE `ledger_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
 -- AUTO_INCREMENT for table `programs_list`
 --
 ALTER TABLE `programs_list`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `subledger_info`
 --
