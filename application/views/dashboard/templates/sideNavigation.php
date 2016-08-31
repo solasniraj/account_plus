@@ -37,7 +37,7 @@
 								
 							</ul>
                                                 </li>
-                                                <li class="menu-list"><a href="#"><i class="lnr lnr-paperclip"></i> <span>Ledger</span></a>
+                                                <li class="menu-list"><a href="accountChart"><i class="lnr lnr-paperclip"></i> <span>Chart Of Accounts</span></a>
                                                 <ul class="sub-menu-list">
 								<li><a href="<?php echo base_url().'ledger/addLedger' ?>">Add Ledger</a> </li>
 								<li><a href="<?php echo base_url().'ledger/index' ?>">View Ledger</a></li>
@@ -70,7 +70,8 @@
 								<li><a href="<?php echo base_url().'reports/index' ?>">Summary</a> </li>
 								<li><a href="<?php echo base_url().'reports/bankCashBook' ?>">Bank Cash Book</a></li>
                                                                 <li><a href="<?php echo base_url().'reports/trialBalance' ?>">Trial Balance</a></li>
-                                                                <li><a href="<?php echo base_url().'reports/pLAccount' ?>">PL Account</a></li>
+                                                                <li><a href="<?php echo base_url().'reports/trialBalance' ?>">Receipt and Payment Account</a></li>
+                                                                <li><a href="<?php echo base_url().'reports/pLAccount' ?>">Income and Expenditure Account</a></li>
                                                                 <li><a href="<?php echo base_url().'reports/balanceSheet' ?>">Balance Sheet</a></li>
                                                                 <li><a href="<?php echo base_url().'reports/monthlyStatement' ?>">Monthly Statement</a></li>
                                                                 <li><a href="<?php echo base_url().'reports/dayBook' ?>">Day Book</a></li>

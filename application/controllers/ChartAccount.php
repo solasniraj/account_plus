@@ -1,10 +1,10 @@
 <?php if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-class ledger extends CI_Controller {
+class chartAccount extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('session');
-        $this->load->model('ledger_model');
+        $this->load->model('chartAccount_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -16,7 +16,7 @@ class ledger extends CI_Controller {
          if ($this->session->userdata('logged_in') == true) {
             
    $user_id=$this->session->userdata('user_id');
-   $data['ledgerDetails']=$this->ledger_model->get_ledger_listing();
+   $data['ledgerDetails']=$this->chartAccount_model->get_ledger_listing();
    
          $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
