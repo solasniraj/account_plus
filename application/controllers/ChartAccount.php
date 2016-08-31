@@ -28,14 +28,14 @@ class chartAccount extends CI_Controller {
         }
     }
     
-    public function addSubClass()
+    public function addSubClass($id=NULL)
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
               $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/ledger/addLedger');
+          $this->load->view('dashboard/accountCharts/addItem');
            $this->load->view('dashboard/templates/footer');
              
     } else {

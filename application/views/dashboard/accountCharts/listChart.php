@@ -35,7 +35,7 @@
 												<td><?php echo $i++;?></td>
 												<td><?php echo $aclist->chart_class_name;?></td>
 												<td><?php echo $aclist->chart_code;?></td>
-                                                                                                <td><a href="<?php echo base_url().'chartAccount/addSubClass/'.$aclist->id;?>">Add Sub Class</a></td>
+                                                                                                <td><a href="<?php echo base_url().'chartAccount/addSubClass/'.$aclist->id;?>">Add Item</a></td>
 											</tr>
 										<?php }  	?>
 											
