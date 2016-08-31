@@ -6,8 +6,8 @@
                 <?php echo form_open_multipart('setting/restore', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
                 
                <div class="form-group">
-                                <label for="file" class="col-sm-2 control-label">Upload database to restore</label>
-                                <div class="col-sm-8">
+                                <label for="file" class="col-sm-2 control-label"><b>Upload database to restore</b></label>
+                                <div class="col-sm-4">
                                     <input type="file" class="form-control1" name="file" id="file">
                                     
                                     <?php echo form_error('file'); ?>
@@ -15,8 +15,8 @@
                             </div>
                     
                 
-                    <div class="col-sm-8 col-sm-offset-2">
-                            <button class="btn-success btn">Backup Now</button>
+                    <div class="col-sm-2  col-sm-offset-2">
+                             <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Submit</button>
                            
                         </div>
    
