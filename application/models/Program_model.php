@@ -195,7 +195,7 @@
   function getSingleProgramDonerIdsFromDonarBudgetInfo($id)
   {
      $this->db->select('donar_id');
-     $this->db->where('program_id',17);
+     $this->db->where('program_id',$id);
      return $this->db->get("donar_budget_info")->result();
   }
 
