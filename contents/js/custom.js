@@ -45,7 +45,7 @@
         {
 
           $('#programmCode').html(msg);
-  
+
         },
         error: function()
         {
@@ -131,7 +131,7 @@
    if($debitAmount == $creditAmount)
    {
      debitCreditDifference=0.0;
-      activateCommentAndSummerField("activate");
+      activateCommentAndSummerField("dactivate");
        $("#creditGreater").val(0.0);
         $("#debitGreater").val(0.0);
    }
@@ -141,7 +141,7 @@
     debitCreditDifference=$debitAmount -$creditAmount;
     $("#debitGreater").val(debitCreditDifference);
     $("#creditGreater").val(0.0);
-    activateCommentAndSummerField("ffactivate");
+    activateCommentAndSummerField("activate");
 
   }
   else
@@ -149,7 +149,7 @@
     debitCreditDifference=$creditAmount -$debitAmount;
     $("#debitGreater").val(0.0);
     $("#creditGreater").val(debitCreditDifference);
-    activateCommentAndSummerField("ffactivate");
+    activateCommentAndSummerField("activate");
   }
 
   }
