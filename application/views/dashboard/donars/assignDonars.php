@@ -27,11 +27,11 @@ input[type=checkbox]
 <div class="tab-pane active" id="horizontal-form">
 <?php echo form_open_multipart('donars/addNewDonar',array('class'=>'form-horizontal', 'novalidate '=>'novalidate'));?>
 <div class="form-group">
-<label for="donarCode" class="col-sm-2 control-label">List of donor DropDown</label>
+<label for="donarCode" class="col-sm-2 control-label"><b>List of donor DropDown</b></label>
 <div class="col-sm-8">
  <div class="form-group">
   <select class="form-control1" id="sel1" name="donerName">
-    <option>select  the Doner</option>
+    <option>Select  the Doner</option>
   <?php foreach($listAllDonerByUserid as $donerlist) 
   { ?>
     <option value="<?php echo $donerlist->id; ?>"><?php echo $donerlist->donar_name; ?></option>
@@ -43,7 +43,7 @@ input[type=checkbox]
 
 
 <div class="form-group">
-<label for="donarName" class="col-sm-2 control-label">Budget (Rs)</label>
+<label for="donarName" class="col-sm-2 control-label"><b>Budget (Rs)</b></label>
 <div class="col-sm-8">
 <input type="number" step="any" value="<?php echo set_value('Budget'); ?>" class="form-control1" id="Budget" name="Budget" placeholder="Enter Budget">
 <?php echo form_error('donarName'); ?>
@@ -52,14 +52,14 @@ input[type=checkbox]
 
 <div class="form-group">
 <div class="col-sm-4 col-sm-offset-2">
-<input style="padding-left:5px" type="checkbox" >  <span style="padding-left:10px; font-size:17px;" >Assign self as a doner</span>
+<input style="padding-left:5px" type="checkbox" >  <span style="padding-left:10px; font-size:17px;">Assign self as a doner</span>
 </div>
 <div class="col-sm-4">
 </div>
 
 </div>
 <div class="form-group">
-<label for="donarName"  class="col-sm-2 control-label">Amount (Rs)</label>
+<label for="donarName"  class="col-sm-2 control-label"><b>Amount (Rs)</b></label>
 <div class="col-sm-8">
 <input  type="number" step="any" value="<?php echo set_value('Amount'); ?>" class="form-control1" id="Budget" name="Amount" placeholder="Enter Amount">
 <?php echo form_error('Amount'); ?>
@@ -71,12 +71,12 @@ input[type=checkbox]
 
 <div class="col-sm-4">
 
-<button class="btn-success btn">Assign</button>
+<button class="btn btn-success btn-lg" style=" margin-left: 85px; margin-top: -2px; width:99px;">Assign</button>
 
 </div>
 
 <div class="col-sm-8">
-<button class="btn-success btn">Add another doner</button>
+<button class="btn btn-success btn-lg" style=" margin-left: -4px; margin-top: -2px; width:172px;">Add another Donar</button>
 </div>
 </div>
 
