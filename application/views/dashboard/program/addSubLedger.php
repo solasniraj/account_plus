@@ -2,7 +2,8 @@
                 <div class="graphs">
                     <h3 class="blank1">Add Sub Ledger to Program </h3>
                      <style>
-     /*sanoj custom csss */
+                     
+   /*sanoj custom csss */
                 .form-errors 
                 {
                     font-size: 14px;
@@ -58,7 +59,8 @@
                 </style>
                     <div class="tab-content">
                         <?php if(!empty($subledgerInfo)){ ?>
-                        <table>
+                       
+                         <table class="table table-bordered table-striped table-condensed">
                             <thead>
                                 <tr>
                                     <th>Code</th>

@@ -18,6 +18,9 @@ input[type=checkbox]
   -o-transform: scale(1.3); /* Opera */
   padding: 10px;
 }
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #b3b3ff;
+}
 
 
 </style>
@@ -86,7 +89,8 @@ input[type=checkbox]
                 </style>
                     <div class="tab-content">
                         <?php if(!empty($assignedDonors)){ ?>
-                        <table>
+                        
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Donor Code</th>
