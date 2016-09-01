@@ -172,7 +172,7 @@ function getProgrammListForCurrentChartName($id)
 {
 
   $this->db->order_by('id', 'DESC');
-  $this->db->where('chart_type_id',$id);
+  $this->db->where('chart_class_id',$id);
   return $this->db->get("chart_master")->result();
 
 }
@@ -185,6 +185,14 @@ function getSingleProgramCode($id)
 
 }
 
+
+function getSingleProgramSubledgers($id)
+{
+
+ $this->db->where('program_id',$id);
+ return $this->db->get("subledger_info")->result();
+
+}
 
 
 // ******************* sanoj ends ************************8

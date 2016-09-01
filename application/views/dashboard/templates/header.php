@@ -10,34 +10,14 @@
 	<link href="<?php echo base_url().'contents/css/bootstrap.min.css'; ?>" rel='stylesheet' type='text/css' />
 	<!-- Custom CSS -->
 	<link href="<?php echo base_url().'contents/css/style.css'; ?>" rel='stylesheet' type='text/css' />
-	
-	<!-- SANOJ CUSTOM CSS *******************************************88888 -->
-
-
-
-
 	<link href="<?php echo base_url().'contents/css/sanoj.css'; ?>" rel='stylesheet' type='text/css' />
-
-
-
-
-
-  
-  <!-- SANOJ CUSTOM CSS END S ******************************************-- >
-	<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="/resources/demos/style.css">-->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 	<!-- Font Awesome CSS -->
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-	<!-- jQuery -->
-        <script src="<?php echo base_url().'contents/js/jquery-1.10.2.min.js'; ?>"></script>
-	<!-- lined-icons -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 	<link rel="stylesheet" href="<?php echo base_url().'contents/css/icon-font.min.css'; ?>" type='text/css' />
-	<!-- //lined-icons -->
-	<!-- chart -->
 	<script src="<?php echo base_url().'contents/js/Chart.js'; ?>"></script>
-	<!-- //chart -->
-	<!--animate-->
 	<link href="<?php echo base_url().'contents/css/animate.css'; ?>" rel="stylesheet" type="text/css" media="all">
 	<script src="<?php echo base_url().'contents/js/wow.min.js'; ?>"></script>
 	<script>
@@ -46,21 +26,14 @@
 	<!--//end-animate-->
 <!----webfonts--->
 <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
-<!---//webfonts---> 
+<!---//webfonts--->
 <!-- Meters graphs -->
 <script type="text/javascript" src="<?php echo base_url().'contents/js/bootstrap.min.js'; ?>"></script>
 <!-- Bootstrap Core JavaScript -->
-   
+
 <!-- Placed js at the end of the document so the pages load faster -->
-<!--<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-
-<script>
-	$( function() {
-		$( "#datepicker" ).datepicker();
-	} );
-</script>-->
-
-</head> 
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+</head>
 
 <body class="sticky-header left-side-collapsed">
 	<section>
