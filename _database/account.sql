@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 01, 2016 at 08:22 पूर्वाह्न
+-- Generation Time: Sep 01, 2016 at 08:47 पूर्वाह्न
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `bank_info` (
 --
 
 INSERT INTO `bank_info` (`id`, `account_code`, `account_type`, `bank_account_name`, `bank_name`, `bank_address`, `bank_account_number`, `bank_phone_no`, `last_reconciled_date`, `ending_reconcile_balance`, `committee_id`, `user_id`, `status`) VALUES
-(1, NULL, NULL, NULL, 'Himalayan Bank Limited', 'Narayangarh, Chitwan', '98452141409845214140', '056-533977', NULL, NULL, NULL, NULL, 'Active');
+(1, NULL, NULL, NULL, 'Himalayan Bank Limited', 'Narayangarh, Chitwan', '98452141409845214140', '056-533977', NULL, 5000, NULL, NULL, 'Active');
 
 -- --------------------------------------------------------
 
@@ -67,20 +67,21 @@ CREATE TABLE IF NOT EXISTS `bank_trans_info` (
   `dimension2_id` int(11) NOT NULL DEFAULT '0',
   `person_type_id` int(11) NOT NULL DEFAULT '0',
   `person_id` tinyblob,
-  `reconciled` date DEFAULT NULL
+  `reconciled` date DEFAULT NULL,
+  `bank_id` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `bank_trans_info`
 --
 
-INSERT INTO `bank_trans_info` (`id`, `type`, `trans_no`, `bank_act`, `ref`, `trans_date`, `amount`, `dimension_id`, `dimension2_id`, `person_type_id`, `person_id`, `reconciled`) VALUES
-(1, 0, 1, '1', '1', '2014-12-31', -312, 0, 0, 0, '', NULL),
-(2, 0, 2, '1', '1', '2015-01-01', 312, 0, 0, 0, '', NULL),
-(3, 0, 3, '1', '2', '2014-12-31', -500, 0, 0, 0, '', NULL),
-(4, 0, 4, '1', '3', '2014-12-31', 500, 0, 0, 0, '', NULL),
-(5, 0, 5, '1', '4', '2014-12-31', 1000, 0, 0, 0, '', NULL),
-(6, 0, 6, '2', '5', '2014-12-31', 100, 0, 0, 0, '', NULL);
+INSERT INTO `bank_trans_info` (`id`, `type`, `trans_no`, `bank_act`, `ref`, `trans_date`, `amount`, `dimension_id`, `dimension2_id`, `person_type_id`, `person_id`, `reconciled`, `bank_id`) VALUES
+(1, 0, 1, '1', '1', '2014-12-31', -312, 0, 0, 0, '', NULL, NULL),
+(2, 0, 2, '1', '1', '2015-01-01', 312, 0, 0, 0, '', NULL, NULL),
+(3, 0, 3, '1', '2', '2014-12-31', -500, 0, 0, 0, '', NULL, NULL),
+(4, 0, 4, '1', '3', '2014-12-31', 500, 0, 0, 0, '', NULL, NULL),
+(5, 0, 5, '1', '4', '2014-12-31', 1000, 0, 0, 0, '', NULL, NULL),
+(6, 0, 6, '2', '5', '2014-12-31', 100, 0, 0, 0, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -265,16 +266,17 @@ CREATE TABLE IF NOT EXISTS `programs_list` (
   `status` varchar(255) DEFAULT NULL,
   `committee_id` varchar(255) DEFAULT NULL,
   `subledger_id` text,
-  `fiscal_year` varchar(255) DEFAULT NULL
+  `fiscal_year` varchar(255) DEFAULT NULL,
+  `donor_id` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `programs_list`
 --
 
-INSERT INTO `programs_list` (`id`, `program_code`, `program_name`, `user_id`, `status`, `committee_id`, `subledger_id`, `fiscal_year`) VALUES
-(15, '1', 'Grassland Management System', 1, NULL, NULL, NULL, NULL),
-(16, '02', 'Sanoj System', 1, NULL, NULL, NULL, NULL);
+INSERT INTO `programs_list` (`id`, `program_code`, `program_name`, `user_id`, `status`, `committee_id`, `subledger_id`, `fiscal_year`, `donor_id`) VALUES
+(15, '1', 'Grassland Management System', 1, NULL, NULL, NULL, NULL, NULL),
+(16, '02', 'Sanoj System', 1, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

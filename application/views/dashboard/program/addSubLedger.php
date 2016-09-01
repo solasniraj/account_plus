@@ -16,7 +16,7 @@
                             <?php echo form_open_multipart('programs/addSubLedger', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
 
                             <div class="form-group">
-                                <label for="subLedgerName" class="col-sm-2 control-label">Sub-ledger Name</label>
+                                <label for="subLedgerName" class="col-sm-2 control-label"><b>Sub-ledger Name</b></label>
                                 <div class="col-sm-8">
                                     <input type="text" value="<?php echo set_value('subLedgerName'); ?>" class="form-control1" id="subLedgerName" name="subLedgerName" placeholder="Enter sub ledger name">
                                     <?php echo form_error('subLedgerName'); ?>
@@ -25,7 +25,7 @@
                             </div>
 
                             <div class="col-sm-8 col-sm-offset-2">
-                                <input type="submit" class="btn-success btn" value="submit">
+                                <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Submit</button>
                             </div>
 
                         </form>
