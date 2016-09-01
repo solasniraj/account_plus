@@ -109,6 +109,48 @@ public function getProgrammcodeForCurrentId()
 }
 
 
+function getSubledgerForCurrentProgramId()
+{
+   $url = current_url();
+       if ($this->session->userdata('logged_in') == true) 
+      {   
+         if (isset($_POST['programmId'])) 
+        {
+           $programmId= $_POST['programmId'];
+           $subLedgerList=$this->program_model->getSingleProgramSubledgers($programmId);
+            $output= "";
+             if(!empty($subLedgerList))
+             {
+               foreach ($subLedgerList as $value)
+               {
+                 $output .= '<option value="'.$value->id.'">'.$value->subLedger_name.'</option>';
+               }
+             }
+             else
+             {
+
+               $output .= '<option value="">Select Program</option>';
+             }
+
+
+            echo $output;
+        }
+        else 
+        {
+
+        echo "Unauthorized access";
+
+         }
+        }
+     else
+      {
+         
+         redirect('login/index/?url=' . $url, 'refresh');
+      }
+
+}
+
+
 
 
 
