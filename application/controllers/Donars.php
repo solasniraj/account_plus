@@ -96,32 +96,68 @@ class donars extends CI_Controller {
           if ($this->session->userdata('logged_in') == true)
            {
 
-            $currentProgramId=$this->uri->segment(3);
-            $user_id=$this->session->userdata('user_id');
-           
+            $currentProgramId = $progId;
+            $data['programId'] = $currentProgramId;
+            $user_id=$this->session->userdata('user_id');           
             $data['donars']=$this->donar_model->get_all_donars();
+            $data['assignedDonors'] = $this->donar_model->get_all_assigned_donors_to_program($progId);
             $this->load->view('dashboard/templates/header');
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
             $this->load->view('dashboard/donars/assignDonars',$data);
-            $this->load->view('dashboard/templates/footer');
-   
-   
-   
-   
-   
-   
-   
+            $this->load->view('dashboard/templates/footer'); 
     } else {
             redirect('login/index/?url=' . $url, 'refresh');
-        }
-        
+        }   
     }
     
+    public function assignToProgram()
+    {
+        $url = current_url();
+          if ($this->session->userdata('logged_in') == true)
+           {
+           $programId = $this->input->post('programId');             
+       $this->form_validation->set_rules('donorName', 'Donar Name', 'trim|required|callback_xss_clean|max_length[1000]');
+       $this->form_validation->set_rules('budget', 'Budget Amount', 'trim|callback_xss_clean|max_length[1000]');
+       $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
+
+       if ($this->form_validation->run() == FALSE)
+       {
+        $this->assignDonars($programId);
+      }
+      else 
+      {
+        
+          $donarName = $this->input->post('donorName');
+        $budget = $this->input->post('budget');
+       
+        $result=$this->donar_model->assign_donor_to_program($donarName,$budget, $programId);
+        if($result)
+        {
+         $this->session->set_flashdata('flashMessage', 'Donor assigned successfully');
+         return redirect('donars/assignDonars/'.$programId);
+       }
+       else 
+       {
+        $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while assigning donor. Please assign again.');
+        return redirect('donars/assignDonars/'.$programId);
+      }
+          
+      }
+              
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        } 
+    }
+
     
-    
-    
-    
+
+
+
+
+
+
+
     public function xss_clean($str)
 {
   if ($this->security->xss_clean($str, TRUE) === FALSE)

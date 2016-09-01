@@ -39,9 +39,29 @@
 
 
     }
+    
+    public function get_all_assigned_donors_to_program($progId)
+    {
+         $this->db->where('program_id', $progId);
+      $query = $this->db->get('donar_budget_info');
+      return $query->result();
+    }
 
-        
+    public function assign_donor_to_program($donarName,$budget, $programId)
+    {
+         $data = Array(
+            'donar_id' => $donarName,
+            'donation_amount' => $budget,
+                'program_id' => $programId);
+       return  $this->db->insert('donar_budget_info', $data);
+    }
 
+    public function get_donor_info($id)
+    {
+        $this->db->where('id', $id);
+      $query = $this->db->get('donar_info');
+      return $query->result();
+    }
 
         
    

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 01, 2016 at 08:47 पूर्वाह्न
+-- Generation Time: Sep 01, 2016 at 10:40 पूर्वाह्न
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `chart_master` (
   `account_status` varchar(100) DEFAULT NULL,
   `chart_class_id` varchar(20) DEFAULT NULL,
   `program_id` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `chart_master`
@@ -146,7 +146,8 @@ INSERT INTO `chart_master` (`id`, `account_code`, `account_code2`, `account_name
 (16, '405', '', 'Repair &amp; Maintenance Expenses', '0', '4', NULL),
 (17, '406', '', 'Email, Internet, Telephone &amp; Postage Expenses', '0', '4', NULL),
 (18, '407', '', 'AAAAAAAAAA Expenses', '0', '4', NULL),
-(19, '106', NULL, 'Sanoj System', 'Active', '1', '16');
+(19, '106', NULL, 'Sanoj System', 'Active', '1', '16'),
+(20, '107', NULL, 'Grassland Management System', 'Active', '1', '17');
 
 -- --------------------------------------------------------
 
@@ -173,6 +174,29 @@ INSERT INTO `committee_info` (`id`, `committee_name`, `address`, `phone`, `code`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `donar_budget_info`
+--
+
+CREATE TABLE IF NOT EXISTS `donar_budget_info` (
+  `id` int(11) NOT NULL,
+  `donar_id` varchar(50) DEFAULT NULL,
+  `donation_amount` varchar(100) DEFAULT NULL,
+  `program_id` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `donar_budget_info`
+--
+
+INSERT INTO `donar_budget_info` (`id`, `donar_id`, `donation_amount`, `program_id`) VALUES
+(1, NULL, '50000', '17'),
+(2, '4', '50000', '17'),
+(3, '3', '15000', '17'),
+(4, '4', '500', '17');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `donar_info`
 --
 
@@ -186,15 +210,15 @@ CREATE TABLE IF NOT EXISTS `donar_info` (
   `committee_id` varchar(255) DEFAULT NULL,
   `user_id` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `donar_info`
 --
 
 INSERT INTO `donar_info` (`id`, `donar_name`, `donar_address`, `donar_contact_no`, `donar_code`, `donar_email`, `committee_id`, `user_id`, `status`) VALUES
-(1, 'UNO', 'Kathmandu', '9845214140', '00210', 'bhomnath@salyani.com.np', NULL, NULL, 'Active'),
-(2, 'kjdshjkh', 'jkhdjkshfkjh', 'khjkdhskjfsd', 'asjdfk', 'jkhdsjkhj', NULL, NULL, 'Active');
+(3, 'WWF', 'America', '50000', '01', 'bhomnath@salyani.com.np', NULL, NULL, 'Active'),
+(4, 'TAAL', 'Bharatpur, Chitwan', '50000', '02', 'bhomnath@salyani.com.np', NULL, NULL, 'Active');
 
 -- --------------------------------------------------------
 
@@ -268,15 +292,16 @@ CREATE TABLE IF NOT EXISTS `programs_list` (
   `subledger_id` text,
   `fiscal_year` varchar(255) DEFAULT NULL,
   `donor_id` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `programs_list`
 --
 
 INSERT INTO `programs_list` (`id`, `program_code`, `program_name`, `user_id`, `status`, `committee_id`, `subledger_id`, `fiscal_year`, `donor_id`) VALUES
-(15, '1', 'Grassland Management System', 1, NULL, NULL, NULL, NULL, NULL),
-(16, '02', 'Sanoj System', 1, NULL, NULL, NULL, NULL, NULL);
+(15, '1', 'Grassland Management System', 1, 'Active', NULL, NULL, NULL, NULL),
+(16, '02', 'Sanoj System', 1, 'Active', NULL, NULL, NULL, NULL),
+(17, '02', 'Grassland Management System', 1, NULL, NULL, '3<##>4<##>5<##>6<##>7<##>8<##>9<##>10<##>11', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -290,15 +315,18 @@ CREATE TABLE IF NOT EXISTS `subledger_info` (
   `subledger_code` varchar(255) DEFAULT NULL,
   `subledger_status` varchar(255) DEFAULT NULL,
   `program_id` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `subledger_info`
 --
 
 INSERT INTO `subledger_info` (`id`, `subledger_name`, `subledger_code`, `subledger_status`, `program_id`) VALUES
-(1, 'Wooden Gate Construction', '34343', 'active', '15'),
-(2, 'asdf', '34343', 'active', '15');
+(7, 'dilip', '01', 'active', '17'),
+(8, 'HnB', '02', 'active', '17'),
+(9, 'Hom Nath', '03', 'active', '17'),
+(10, 'Niroj', '04', 'active', '17'),
+(11, 'sanoj', '05', 'active', '17');
 
 -- --------------------------------------------------------
 
@@ -361,6 +389,12 @@ ALTER TABLE `chart_master`
 -- Indexes for table `committee_info`
 --
 ALTER TABLE `committee_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `donar_budget_info`
+--
+ALTER TABLE `donar_budget_info`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -427,17 +461,22 @@ ALTER TABLE `chart_class`
 -- AUTO_INCREMENT for table `chart_master`
 --
 ALTER TABLE `chart_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `committee_info`
 --
 ALTER TABLE `committee_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `donar_budget_info`
+--
+ALTER TABLE `donar_budget_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `donar_info`
 --
 ALTER TABLE `donar_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `fiscal_year_info`
 --
@@ -452,12 +491,12 @@ ALTER TABLE `gl_trans_info`
 -- AUTO_INCREMENT for table `programs_list`
 --
 ALTER TABLE `programs_list`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `subledger_info`
 --
 ALTER TABLE `subledger_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `user_info`
 --
