@@ -98,8 +98,8 @@ class donars extends CI_Controller {
 
             $currentProgramId=$this->uri->segment(3);
             $user_id=$this->session->userdata('user_id');
-            $this->load->model('donar_model');
-            $data['listAllDonerByUserid']=$this->donar_model->getAllDonarsByUserid($user_id);
+           
+            $data['donars']=$this->donar_model->get_all_donars();
             $this->load->view('dashboard/templates/header');
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');

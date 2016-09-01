@@ -58,9 +58,10 @@
         $programName = $this->input->post('programName');        
         $chartAccType = $this->input->post('chartAccType');
         $plastId = $this->program_model->get_last_code_of_program();
+         $countProgram = $this->program_model->count_active_programs();
         $newPCode = $plastId + '1';
         $newProgramCode = str_pad($newPCode, 2, "0", STR_PAD_LEFT);
-        if($newProgramCode <  100){
+        if($countProgram <  100){
         $lastId = $this->chartAccount_model->get_last_code_of_related_chart($chartAccType);
         $newCode = $lastId + '1';
        
@@ -204,6 +205,7 @@ public function addSubLedger()
     
       $url = current_url();
       $data['program_id']=$this->input->post('program_id');
+      $currentProgramId = $data['program_id'];
       if ($this->session->userdata('logged_in') == true) 
       {
          $user_id=$this->session->userdata('user_id');
@@ -213,6 +215,8 @@ public function addSubLedger()
 
        if ($this->form_validation->run() == FALSE)
        {
+           
+            $data['subledgerInfo'] = $this->program_model->get_all_subledger_related_to_program($currentProgramId);
             $this->load->view('dashboard/templates/header');
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
@@ -224,24 +228,25 @@ public function addSubLedger()
              $subLedgerName = $this->input->post('subLedgerName');                    
              $currentProgramId = $this->input->post('program_id');
              $sLlastId = $this->program_model->get_last_code_of_subledger();
+             $countSLedger = $this->program_model->count_active_sub_ledgers();
         $newSLCode = $sLlastId + '1';
         $newsubLedgerCode = str_pad($newSLCode, 2, "0", STR_PAD_LEFT);
-        if($newsubLedgerCode <  100){
-             $isAddSubledger=$this->program_model->addSubLedger($subLedgerName,$currentProgramId);
+        if($countSLedger <  100){
+             $isAddSubledger=$this->program_model->addSubLedger($subLedgerName,$currentProgramId, $newsubLedgerCode);
              $isupdateProgrammSubIds=$this->program_model->updateProgrammSublederIds($isAddSubledger,$currentProgramId);
              if($isupdateProgrammSubIds)
                 {
                   $this->session->set_flashdata('flashMessage', 'SubLedger  added successfully');
-                  return redirect('programs/programListing');
+                  return redirect('programs/createSubLedger/'.$currentProgramId);
                 }
              else 
                {    
                  $this->session->set_flashdata('flashMessage', 'error occur while adding programm');
-                 return redirect('programs/programListing');
+                 return redirect('programs/createSubLedger/'.$currentProgramId);
               }
         }else{
              $this->session->set_flashdata('flashMessage', 'You have reached the limit of sub-ledgers. New sub ledger can not be added');
-        return redirect('programs/programListing');
+         return redirect('programs/createSubLedger/'.$currentProgramId);
         }
           }
    }

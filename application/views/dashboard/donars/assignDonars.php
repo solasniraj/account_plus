@@ -27,12 +27,12 @@ input[type=checkbox]
 <div class="tab-pane active" id="horizontal-form">
 <?php echo form_open_multipart('donars/addNewDonar',array('class'=>'form-horizontal', 'novalidate '=>'novalidate'));?>
 <div class="form-group">
-<label for="donarCode" class="col-sm-2 control-label"><b>List of donor DropDown</b></label>
+<label for="donarCode" class="col-sm-2 control-label"><b>Select Donor</b></label>
 <div class="col-sm-8">
  <div class="form-group">
   <select class="form-control1" id="sel1" name="donerName">
     <option>Select  the Doner</option>
-  <?php foreach($listAllDonerByUserid as $donerlist) 
+  <?php foreach($donars as $donerlist) 
   { ?>
     <option value="<?php echo $donerlist->id; ?>"><?php echo $donerlist->donar_name; ?></option>
  <?php } ?>

@@ -18,6 +18,18 @@ class Program_model extends CI_Model {
              }
  }
  
+ public function count_active_sub_ledgers()
+ {
+     $query = $this->db->query("SELECT * FROM subledger_info where `subledger_status`='active' ");
+return $query->num_rows();   
+ }
+ 
+ public function count_active_programs()
+ {
+     $query = $this->db->query("SELECT * FROM programs_list where `status`='Active' ");
+return $query->num_rows();   
+ }
+
  public function get_last_code_of_subledger()
  {
      $this->db->select_max('subledger_code');
@@ -79,14 +91,14 @@ public function update_program($id, $programName, $user_id)
   return $this->db->update('programs_list', $data);
 }
 
-public function addSubLedger($name, $id)
+public function addSubLedger($subLedgerName,$currentProgramId, $newsubLedgerCode)
 {
 
  $data = Array(
-  'subledger_name' => $name,
-  'subledger_code' =>34343,
+  'subledger_name' => $subLedgerName,
+  'subledger_code' => $newsubLedgerCode,
   'subledger_status'=>'active',
-  'program_id' => $id);
+  'program_id' => $currentProgramId);
 
   $this->db->insert('subledger_info', $data);
   return $this->db->insert_id();
