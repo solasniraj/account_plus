@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 31, 2016 at 09:22 पूर्वाह्न
+-- Generation Time: Sep 01, 2016 at 08:22 पूर्वाह्न
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -118,32 +118,34 @@ CREATE TABLE IF NOT EXISTS `chart_master` (
   `account_code2` varchar(50) DEFAULT NULL,
   `account_name` varchar(255) DEFAULT NULL,
   `account_status` varchar(100) DEFAULT NULL,
-  `chart_class_id` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
+  `chart_class_id` varchar(20) DEFAULT NULL,
+  `program_id` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `chart_master`
 --
 
-INSERT INTO `chart_master` (`id`, `account_code`, `account_code2`, `account_name`, `account_status`, `chart_class_id`) VALUES
-(1, '100', '', 'Cash Account', '0', '1'),
-(2, '101', '', 'Bank Account', '0', '1'),
-(3, '102', '', 'Bank Account', '0', '1'),
-(4, '103', '', 'Personal Advance', '0', '1'),
-(5, '104', '', 'Official Advance', '0', '1'),
-(6, '105', '', 'Accounts Receivable', '0', '1'),
-(7, '201', '', 'Accounts Payable', '0', '2'),
-(8, '202', '', 'TDS Payable', '0', '2'),
-(9, '301', '', 'Plantation', '0', '3'),
-(10, '302', '', 'Grassland Management', '0', '3'),
-(11, '303', '', 'AAAAAAAA Income', '0', '3'),
-(12, '401', '', 'Salary Expenses', '0', '4'),
-(13, '402', '', 'TADA Expenses', '0', '4'),
-(14, '403', '', 'Salary Expenses', '0', '4'),
-(15, '404', '', 'Rental Expenses', '0', '4'),
-(16, '405', '', 'Repair &amp; Maintenance Expenses', '0', '4'),
-(17, '406', '', 'Email, Internet, Telephone &amp; Postage Expenses', '0', '4'),
-(18, '407', '', 'AAAAAAAAAA Expenses', '0', '4');
+INSERT INTO `chart_master` (`id`, `account_code`, `account_code2`, `account_name`, `account_status`, `chart_class_id`, `program_id`) VALUES
+(1, '100', '', 'Cash Account', '0', '1', NULL),
+(2, '101', '', 'Bank Account', '0', '1', NULL),
+(3, '102', '', 'Bank Account', '0', '1', NULL),
+(4, '103', '', 'Personal Advance', '0', '1', NULL),
+(5, '104', '', 'Official Advance', '0', '1', NULL),
+(6, '105', '', 'Accounts Receivable', '0', '1', NULL),
+(7, '201', '', 'Accounts Payable', '0', '2', NULL),
+(8, '202', '', 'TDS Payable', '0', '2', NULL),
+(9, '301', '', 'Plantation', '0', '3', NULL),
+(10, '302', '', 'Grassland Management', '0', '3', NULL),
+(11, '303', '', 'AAAAAAAA Income', '0', '3', NULL),
+(12, '401', '', 'Salary Expenses', '0', '4', NULL),
+(13, '402', '', 'TADA Expenses', '0', '4', NULL),
+(14, '403', '', 'Salary Expenses', '0', '4', NULL),
+(15, '404', '', 'Rental Expenses', '0', '4', NULL),
+(16, '405', '', 'Repair &amp; Maintenance Expenses', '0', '4', NULL),
+(17, '406', '', 'Email, Internet, Telephone &amp; Postage Expenses', '0', '4', NULL),
+(18, '407', '', 'AAAAAAAAAA Expenses', '0', '4', NULL),
+(19, '106', NULL, 'Sanoj System', 'Active', '1', '16');
 
 -- --------------------------------------------------------
 
@@ -247,7 +249,7 @@ INSERT INTO `gl_trans_info` (`counter`, `type`, `type_no`, `tran_date`, `account
 (5, 0, 3, '2014-12-31', '2620', '', 500, 0, 0, NULL, NULL),
 (6, 0, 3, '2014-12-31', '1060', '', -500, 0, 0, NULL, NULL),
 (7, 0, 4, '2014-12-31', '2620', '', -500, 0, 0, NULL, NULL),
-(8, 0, 4, '2014-12-31', '1060', '', 500, 0, 0, NULL, NULL);
+(17, 0, 4, '2014-12-31', '1060', '', 500, 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -257,24 +259,22 @@ INSERT INTO `gl_trans_info` (`counter`, `type`, `type_no`, `tran_date`, `account
 
 CREATE TABLE IF NOT EXISTS `programs_list` (
   `id` int(255) NOT NULL,
-  `code` varchar(255) NOT NULL,
+  `program_code` varchar(255) DEFAULT NULL,
   `program_name` varchar(255) NOT NULL,
   `user_id` int(255) NOT NULL,
   `status` varchar(255) DEFAULT NULL,
   `committee_id` varchar(255) DEFAULT NULL,
   `subledger_id` text,
   `fiscal_year` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `programs_list`
 --
 
-INSERT INTO `programs_list` (`id`, `code`, `program_name`, `user_id`, `status`, `committee_id`, `subledger_id`, `fiscal_year`) VALUES
-(7, '345', 'Plantation', 1, NULL, NULL, NULL, NULL),
-(8, '345', 'Fencing', 1, NULL, NULL, NULL, NULL),
-(9, '345', 'sanoj', 1, NULL, NULL, '1<##>2', NULL),
-(10, '345', 'Plantation', 1, NULL, NULL, NULL, NULL);
+INSERT INTO `programs_list` (`id`, `program_code`, `program_name`, `user_id`, `status`, `committee_id`, `subledger_id`, `fiscal_year`) VALUES
+(15, '1', 'Grassland Management System', 1, NULL, NULL, NULL, NULL),
+(16, '02', 'Sanoj System', 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -286,16 +286,17 @@ CREATE TABLE IF NOT EXISTS `subledger_info` (
   `id` int(11) NOT NULL,
   `subledger_name` varchar(255) DEFAULT NULL,
   `subledger_code` varchar(255) DEFAULT NULL,
-  `subledger_status` varchar(255) DEFAULT NULL
+  `subledger_status` varchar(255) DEFAULT NULL,
+  `program_id` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `subledger_info`
 --
 
-INSERT INTO `subledger_info` (`id`, `subledger_name`, `subledger_code`, `subledger_status`) VALUES
-(1, 'Wooden Gate Construction', '34343', 'active'),
-(2, 'asdf', '34343', 'active');
+INSERT INTO `subledger_info` (`id`, `subledger_name`, `subledger_code`, `subledger_status`, `program_id`) VALUES
+(1, 'Wooden Gate Construction', '34343', 'active', '15'),
+(2, 'asdf', '34343', 'active', '15');
 
 -- --------------------------------------------------------
 
@@ -424,7 +425,7 @@ ALTER TABLE `chart_class`
 -- AUTO_INCREMENT for table `chart_master`
 --
 ALTER TABLE `chart_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `committee_info`
 --
@@ -449,7 +450,7 @@ ALTER TABLE `gl_trans_info`
 -- AUTO_INCREMENT for table `programs_list`
 --
 ALTER TABLE `programs_list`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `subledger_info`
 --
