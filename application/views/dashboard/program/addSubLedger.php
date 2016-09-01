@@ -57,6 +57,7 @@
 
                 </style>
                     <div class="tab-content">
+                        <?php if(!empty($subledgerInfo)){ ?>
                         <table>
                             <thead>
                                 <tr>
@@ -66,13 +67,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach ($subledgerInfo as $sllist){ ?>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><?php echo $sllist->subledger_code; ?></td>
+                                    <td><?php echo $sllist->subledger_name; ?></td>
+                                    <td>Edit / Delete</td>
                                 </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
+                        <?php } ?>
                 </div>
             
 

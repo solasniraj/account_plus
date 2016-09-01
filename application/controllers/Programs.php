@@ -174,6 +174,7 @@ public function createSubLedger($id=NULL)
     $url = current_url();
   if ($this->session->userdata('logged_in') == true) {
     $data['program_id']=$id;
+    $data['subledgerInfo'] = $this->program_model->get_all_subledger_related_to_program($id);
     $this->load->view('dashboard/templates/header');
     $this->load->view('dashboard/templates/sideNavigation');
     $this->load->view('dashboard/templates/topHead');
@@ -209,9 +210,12 @@ public function addSubLedger()
         }
        else 
          { 
-             $subLedgerName=$this->input->post('subLedgerName');        
-             $this->load->model('program_model');
-             $currentProgramId=$this->input->post('program_id');
+             $subLedgerName = $this->input->post('subLedgerName');                    
+             $currentProgramId = $this->input->post('program_id');
+             $sLlastId = $this->program_model->get_last_code_of_subledger();
+        $newSLCode = $sLlastId + '1';
+        $newsubLedgerCode = str_pad($newSLCode, 2, "0", STR_PAD_LEFT);
+        if($newsubLedgerCode <  100){
              $isAddSubledger=$this->program_model->addSubLedger($subLedgerName,$currentProgramId);
              $isupdateProgrammSubIds=$this->program_model->updateProgrammSublederIds($isAddSubledger,$currentProgramId);
              if($isupdateProgrammSubIds)
@@ -224,6 +228,10 @@ public function addSubLedger()
                  $this->session->set_flashdata('flashMessage', 'error occur while adding programm');
                  return redirect('programs/programListing');
               }
+        }else{
+             $this->session->set_flashdata('flashMessage', 'You have reached the limit of sub-ledgers. New sub ledger can not be added');
+        return redirect('programs/programListing');
+        }
           }
    }
     else 
