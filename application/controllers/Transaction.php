@@ -45,12 +45,12 @@
        else
        {
 
-         $output .= '<option value="">Select Program</option>';
+         $output .= '<option value=""></option>';
        }
 
 
        echo $output;
-       
+
      }
      else 
      {
@@ -61,7 +61,7 @@
   }
   else
   {
-   
+
    redirect('login/index/?url=' . $url, 'refresh');
   }
 
@@ -80,7 +80,7 @@
        $output= "";
        if(!empty($value))
        {
-         
+
          $output .= '<input type="text" id="pCode" class="form-control"  value="'.$value->account_code.'" readonly />';
        }
        else
@@ -91,7 +91,7 @@
 
 
        echo $output;
-       
+
      }
      else 
      {
@@ -102,7 +102,7 @@
   }
   else
   {
-   
+
    redirect('login/index/?url=' . $url, 'refresh');
   }
 
@@ -129,7 +129,7 @@
        else 
        {
 
-         $output = '<option value="">Select subledger</option>';
+         $output = '<option value=""></option>';
        }
 
        echo $output;
@@ -143,7 +143,7 @@
   }
   else
   {
-   
+
    redirect('login/index/?url=' . $url, 'refresh');
   }
 
@@ -182,7 +182,7 @@
        {
 
 
-         $output = '<option value="">Select doner</option>';
+         $output = '<option value=""></option>';
        }
 
        echo $output;
@@ -196,7 +196,7 @@
   }
   else
   {
-   
+
    redirect('login/index/?url=' . $url, 'refresh');
   }
 
@@ -300,7 +300,7 @@
      else 
      {
       echo "success";
-      
+
     }
 
   } 

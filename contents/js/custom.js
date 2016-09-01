@@ -190,10 +190,10 @@
       var pCode= $("#pCode").val();
 
 
-      console.log("programm" + program + "subLedger" + subLedger + "ledgerType" + ledgerType +  "description" + description +  "chckno" + chequeNo + "pCode" +  pCode);
+      
 
 
-      if( (program == null || program == "") || (ledgerType == null || ledgerType == "")  || (description == null || description == "") ||  (chequeNo == null || chequeNo == "") || (pCode == null || pCode == ""))
+      if( (program == null || program == "") || (ledgerType == null || ledgerType == "")  || (description == null || description == "") || (pCode == null || pCode == ""))
       {
 
        var  msg= '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>plese enter all field</div>';
