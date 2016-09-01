@@ -10,7 +10,7 @@
 	<link href="<?php echo base_url().'contents/css/bootstrap.min.css'; ?>" rel='stylesheet' type='text/css' />
 	<!-- Custom CSS -->
 	<link href="<?php echo base_url().'contents/css/style.css'; ?>" rel='stylesheet' type='text/css' />
-	<link href="<?php echo base_url().'contents/css/sanoj.css'; ?>" rel='stylesheet' type='text/css' />
+	<link href="<?php echo base_url().'contents/css/custom.css'; ?>" rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 	<!-- Font Awesome CSS -->
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">

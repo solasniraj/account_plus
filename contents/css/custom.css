@@ -1,0 +1,49 @@
+  .log-input input.address {
+    background: url(../images/address.png)no-repeat 8px 10px #fff;
+  }
+  .log-input input.phone {
+    background: url(../images/phone.png)no-repeat 8px 10px #fff;
+  }
+
+  .log-input input.user {
+    background: url(../images/user.png)no-repeat 8px 10px #fff;
+  }
+  table th {
+
+  	text-transform: uppercase;;
+  }
+  table th , td {
+    text-align: center;
+  }
+
+  .width100 {
+                width:120px;
+            }
+
+            .table td, .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+                padding: 5px !important;
+            }
+            .tablee td, .tablee th {border:1px solid black;
+            }
+
+            .table th {
+
+                width:150px;
+            }
+            #page-wrapper {
+                background-color: #fff;
+            }
+            .table td {
+                text-align: center;
+            }
+            .lastButton {
+                text-align: center;
+                margin:0 auto;
+            }
+            .col-md-4 {
+                width: 31.333%;
+            }
+            .b{
+                text-align: center;
+            }
+            
