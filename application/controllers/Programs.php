@@ -168,7 +168,18 @@ $data['accountCharts']=$this->chartAccount_model->get_account_chart_class();
     redirect('login/index/?url=' . $url, 'refresh');
   }
 }
-
+//<a href="#" onclick="window.open('newpage.htm', 'newwindow', 'width=300, height=250'); return false;">Click here to open new window</a>
+//<SCRIPT TYPE = "text/javascript">
+//function popup(mylink, windowname) {
+//if (!window.focus)return true;
+//var href;
+//if (typeof(mylink) == 'string') href = mylink;
+//else href = mylink.href;
+//window.open(href, windowname, 'width=400,height=200,scrollbars=yes');
+//return false;
+//}
+//</SCRIPT>
+//<a href="popupbasic.html" onClick="return popup(this, 'stevie')">my popup</a>
 public function createSubLedger($id=NULL)
 {
     $url = current_url();
