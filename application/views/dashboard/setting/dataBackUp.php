@@ -8,19 +8,13 @@
                 <h2>Last date of data back up : </h2>
                     
                 
-                    <div class="col-sm-8 col-sm-offset-2">
-                            <button class="btn-success btn">Backup Now</button>
+                    <div class="col-sm-4 col-sm-offset-2">
+                             <button class="btn btn-success btn-lg" style=" margin-left: 131px; margin-top: -72px; width:119px;">Backup Now</button>
                            
-                        </div>
-   
-                </form>
+                        </div>          
             </div>
-        </div>
-
-
-        
-        
+        </div>   
        
     </div>
 </div>
-</div>
+
