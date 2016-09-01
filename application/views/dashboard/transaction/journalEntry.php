@@ -85,15 +85,15 @@
 
                                                 <tr>
 
-                                                    <td  class="b"><b>Code#</b></td>
-                                                    <td  class="b"><b>A/C Head</b></td>
-                                                    <td  class="b"><b>Sub-Ledger</b></td>
-                                                    <td  class="b"><b>Donar-list</b></td>
-                                                    <td  class="b"><b>Ledger type</b></td>
-                                                    <td  class="b"><b>Descrption</b></td>
-                                                    <td  class="b"><b>Debit</b></td>
-                                                    <td  class="b"><b>Credit</b></td>
-                                                    <td  class="b"><b>Cheque number</b></td>
+                                                    <td class="col-md-1"><b>Code#</b></td>
+                                                    <td class="col-md-1"><b>A/C Head</b></td>
+                                                    <td class="col-md-1"><b>Sub-Ledger</b></td>
+                                                    <td class="col-md-1"><b>Donar-list</b></td>
+                                                    <td class="col-md-1"><b>Ledger type</b></td>
+                                                    <td><b>Descrption</b></td>
+                                                    <td><b>Debit</b></td>
+                                                    <td><b>Credit</b></td>
+                                                    <td><b>Cheque number</b></td>
                                                     <td rowspan="2"  class="b"><div class="lastButton">
                                                         <button class="btn btn-success " id="submitCurrentData" style=" padding:5px;margin:5px;width:70px;font-size:18px;">Add</button></td>
 

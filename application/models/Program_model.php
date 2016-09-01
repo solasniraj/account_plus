@@ -202,10 +202,15 @@
   function getdonerListFromProgamBydonerId($ids)
   { 
 
-    
-       $this->db->order_by('id', 'DESC');
+       if(count($ids))
+       {
+        $this->db->order_by('id', 'DESC');
        $this->db->where_in('id',$ids);
        return $this->db->get("donar_info")->result();
+
+       }
+       return "";
+  
 
   }
 
