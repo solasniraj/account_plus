@@ -49,7 +49,6 @@
         $this->form_validation->set_rules('chartAccType', 'Account Type', 'trim|required|callback_xss_clean');
         $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>');
 
-<<<<<<< HEAD
        if ($this->form_validation->run() == FALSE)
        {
         $this->addProgram();
@@ -69,26 +68,6 @@
         $result = $this->program_model->insert_programm_listing($user_id, $newProgramCode, $programName);
         $result1 = $this->chartAccount_model->add_new_chart_master($newCode, $programName, $chartAccType, $result);
         if($result && $result1)
-=======
-        if ($this->form_validation->run() == FALSE)
->>>>>>> origin/master
-        {
-          $this->addProgram();
-        }
-        else
-        {
-          $programName = $this->input->post('programName');
-          $chartAccType = $this->input->post('chartAccType');
-          $plastId = $this->program_model->get_last_code_of_program();
-          $newPCode = $plastId + '1';
-          $newProgramCode = str_pad($newPCode, 2, "0", STR_PAD_LEFT);
-          if($newProgramCode <  100){
-            $lastId = $this->chartAccount_model->get_last_code_of_related_chart($chartAccType);
-            $newCode = $lastId + '1';
-
-            $result = $this->program_model->insert_programm_listing($user_id, $newProgramCode, $programName);
-            $result1 = $this->chartAccount_model->add_new_chart_master($newCode, $programName, $chartAccType, $result);
-            if($result && $result1)
             {
               $this->session->set_flashdata('flashMessage', 'Programm added successfully');
               return redirect('programs/programListing');
@@ -191,23 +170,7 @@
       }
     }
 
-    public function createSubLedger($id=NULL)
-    {
-      $url = current_url();
-      if ($this->session->userdata('logged_in') == true) {
-        $data['program_id']=$id;
-        $this->load->view('dashboard/templates/header');
-        $this->load->view('dashboard/templates/sideNavigation');
-        $this->load->view('dashboard/templates/topHead');
-        $this->load->view('dashboard/program/addSubLedger',$data);
-        $this->load->view('dashboard/templates/footer');
-
-
-      } else {
-<<<<<<< Updated upstream
-    redirect('login/index/?url=' . $url, 'refresh');
-  }
-}
+    
 //<a href="#" onclick="window.open('newpage.htm', 'newwindow', 'width=300, height=250'); return false;">Click here to open new window</a>
 //<SCRIPT TYPE = "text/javascript">
 //function popup(mylink, windowname) {
@@ -237,19 +200,14 @@ public function createSubLedger($id=NULL)
     redirect('login/index/?url=' . $url, 'refresh');
   }
 }
-=======
-        redirect('login/index/?url=' . $url, 'refresh');
-      }
-    }
 
->>>>>>> Stashed changes
 
     public function addSubLedger()
     {
 
       $url = current_url();
       $data['program_id']=$this->input->post('program_id');
-<<<<<<< HEAD
+
       $currentProgramId = $data['program_id'];
       if ($this->session->userdata('logged_in') == true) 
       {
@@ -267,24 +225,7 @@ public function createSubLedger($id=NULL)
             $this->load->view('dashboard/templates/topHead');
             $this->load->view('dashboard/program/addSubLedger',$data);
             $this->load->view('dashboard/templates/footer');
-=======
-      if ($this->session->userdata('logged_in') == true)
-      {
-        $user_id=$this->session->userdata('user_id');
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('subLedgerName', 'Sub-ledger Name', 'trim|required|callback_xss_clean|max_length[200]');
-        $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>');
-
-        if ($this->form_validation->run() == FALSE)
-        {
-          $this->load->view('dashboard/templates/header');
-          $this->load->view('dashboard/templates/sideNavigation');
-          $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/program/addSubLedger',$data);
-          $this->load->view('dashboard/templates/footer');
->>>>>>> origin/master
-        }
-<<<<<<< Updated upstream
+       }
        else 
          { 
              $subLedgerName = $this->input->post('subLedgerName');                    
@@ -310,25 +251,7 @@ public function createSubLedger($id=NULL)
              $this->session->set_flashdata('flashMessage', 'You have reached the limit of sub-ledgers. New sub ledger can not be added');
          return redirect('programs/createSubLedger/'.$currentProgramId);
         }
-=======
-        else
-        {
-          $subLedgerName=$this->input->post('subLedgerName');
-          $this->load->model('program_model');
-          $currentProgramId=$this->input->post('program_id');
-          $isAddSubledger=$this->program_model->addSubLedger($subLedgerName,$currentProgramId);
-          $isupdateProgrammSubIds=$this->program_model->updateProgrammSublederIds($isAddSubledger,$currentProgramId);
-          if($isupdateProgrammSubIds)
-          {
-            $this->session->set_flashdata('flashMessage', 'SubLedger  added successfully');
-            return redirect('programs/programListing');
->>>>>>> Stashed changes
-          }
-          else
-          {
-            $this->session->set_flashdata('flashMessage', 'error occur while adding programm');
-            return redirect('programs/programListing');
-          }
+          
         }
       }
       else
