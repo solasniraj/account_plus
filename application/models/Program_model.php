@@ -121,6 +121,7 @@ public function updateProgrammSublederIds($subLegId, $prgmUpdateId)
 }
 
 public function viewSubLedgerofSingleProgramm($currentPrmId)
+
 {
 
    $this->db->select('subledger_id');
@@ -133,9 +134,51 @@ public function viewSubLedgerofSingleProgramm($currentPrmId)
    $this->db->where_in('id', $subLegderIdlist);
    return $this->db->get("subledger_info")->result();
  
-   
+  
+}
+
+// / ***************sanoj *******************
+
+function getCurrentJournalNumer()
+
+{
+
+  $table_row_count = $this->db->count_all('gl_trans_info');
+  return  $table_row_count+1;
 
 }
+
+function getJournalTypes()
+{
+  
+ return  $this->db->get("chart_class")->result();
+
+}
+
+
+function getProgrammListForCurrentChartName($id)
+{
+
+  $this->db->order_by('id', 'DESC');
+  $this->db->where('chart_type_id',$id);
+  return $this->db->get("chart_master")->result();
+
+}
+
+function getSingleProgramCode($id)
+{
+
+  $this->db->where('id',$id);
+  return $this->db->get("chart_master")->row();
+
+}
+
+
+
+// ******************* sanoj ends ************************8
+
+
+
 
 
 
