@@ -187,7 +187,7 @@
   function getSingleProgramSubledgers($id)
   {
 
-   $this->db->where('program_id',17);
+   $this->db->where('program_id',$id);
    return $this->db->get("subledger_info")->result();
 
   }
