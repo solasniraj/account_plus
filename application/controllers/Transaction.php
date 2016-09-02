@@ -5,6 +5,7 @@
       parent::__construct();
       $this->load->library('session');
       $this->load->model('program_model');
+       $this->load->model('bank_model');
       $this->load->helper('url');
       $this->load->helper(array('form', 'url'));
       $this->load->library('pagination');
@@ -221,6 +222,28 @@
      $data['journalNumber']=$this->program_model->getCurrentJournalNumer();
      $data['journalTypes']=$this->program_model->getJournalTypes();
      $data['program_list']=$this->program_model->view_programm_listing($user_id);
+     
+     $totalTransBalance = $this->bank_model->get_total_balance_of_all_banks_from_trans_info();
+     $bankAccount = $this->bank_model->view_bank_account_listing();
+     if(!empty($bankAccount)){
+         $totalEnd = '0';
+        foreach($bankAccount as $blist) {
+            $endingBalance = $blist->ending_reconcile_balance;
+            $totalEnd += $endingBalance;
+        }
+     }
+     if((!empty($totalTransBalance )) && (!empty($totalEnd))){         
+         $finalBalance = $totalEnd - $totalTransBalance;
+     }elseif((empty($totalTransBalance )) && (!empty($totalEnd))){       
+             $finalBalance = $totalEnd;
+     }elseif((!empty($totalTransBalance )) && (empty($totalEnd))){        
+             $finalBalance = $totalTransBalance;
+         }else{
+            $finalBalance = '0';
+        }
+     
+     $data['bankBalance'] = $finalBalance;
+     
      $this->load->view('dashboard/templates/header');
      $this->load->view('dashboard/templates/sideNavigation');
      $this->load->view('dashboard/templates/topHead');
