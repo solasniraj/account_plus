@@ -48,6 +48,7 @@
         {
             $this->db->select_sum('amount');
     $this->db->from('bank_trans_info');
+     $this->db->where('bank_id!=', NULL);
     $query = $this->db->get();
     return $query->row()->amount;
         }

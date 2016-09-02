@@ -72,10 +72,10 @@ return false;
 
                                             </tr>
                                             <tr>
-
+                                                <?php if(!empty($bankBalance)){ ?>
                                                 <td class="text-right width100"><b>Bank Balance: </b></td>
-                                                <td class="b"><a href="<?php echo base_url().'bank/getBalance' ?>" onClick="return popup(this, 'stevie')"><strong style="color:red;">Rs. 0,00,000/-</strong></a></td>
-
+                                                <td class="b"><a href="<?php echo base_url().'bank/getBalance' ?>" onClick="return popup(this, 'stevie')"><strong style="color:red;"><?php echo "Rs. ".$bankBalance; ?>/-</strong></a></td>
+                                                <?php } ?>
 
                                             </tr>
                                         </table>
