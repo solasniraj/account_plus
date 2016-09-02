@@ -55,7 +55,7 @@ input[type=checkbox]
 <div class="col-sm-8 col-sm-offset-2">
 
 <div class="col-sm-4">
-<button class="btn btn-success btn-lg" style=" margin-left: 85px; margin-top: -2px; width:99px;">Assign</button>
+<button class="btn btn-success btn-lg" style=" margin-left: -15px; margin-top: -2px; width:99px;">Assign</button>
 </div>
 
 </div>
@@ -86,7 +86,7 @@ input[type=checkbox]
                     <div class="tab-content">
                         <?php if(!empty($assignedDonors)){ ?>
                         
-                        <table class="table table-striped"  "table-bordered" "table-condensed">
+                       <table class="table table-striped table-bordered table-condensed"> 
                             <thead>
                                 <tr>
                                     <th>Donor Code</th>
@@ -95,7 +95,7 @@ input[type=checkbox]
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="table table-striped  table-bordered table-condensed">
                                 <?php foreach ($assignedDonors as $dnrlist){
                                     $donar = $this->donar_model->get_donor_info($dnrlist->donar_id);
                                     foreach ($donar as $lsDnr){

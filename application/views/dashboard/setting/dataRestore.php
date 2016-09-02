@@ -7,7 +7,7 @@
                 
                <div class="form-group">
                                 <label for="file" class="col-sm-2 control-label"><b>Upload database to restore</b></label>
-                                <div class="col-sm-4">
+                                <div class="col-sm-8">
                                     <input type="file" class="form-control1" name="file" id="file">
                                     
                                     <?php echo form_error('file'); ?>
@@ -16,7 +16,7 @@
                     
                 
                     <div class="col-sm-2  col-sm-offset-2">
-                            <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Submit</button>
+                             <button class="btn btn-success btn-lg" style=" margin-left: 0px; margin-top: -4px; width:100px;">Submit</button>
                            
                         </div>
    
