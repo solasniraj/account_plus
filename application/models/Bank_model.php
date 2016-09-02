@@ -35,7 +35,22 @@
        return  $this->db->insert('fiscal_year_info', $data);
         }
 
-
+        public function get_total_bank_balance_of_related_bank($bankId)
+        {
+            $this->db->select_sum('amount');
+    $this->db->from('bank_trans_info');
+    $this->db->where('bank_id', $bankId);
+    $query = $this->db->get();
+    return $query->row()->amount;
+        }
+        
+        public function get_total_balance_of_all_banks_from_trans_info()
+        {
+            $this->db->select_sum('amount');
+    $this->db->from('bank_trans_info');
+    $query = $this->db->get();
+    return $query->row()->amount;
+        }
 
         
    

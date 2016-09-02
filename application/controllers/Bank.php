@@ -45,6 +45,7 @@ class bank extends CI_Controller {
 
     public function addnewAccount()
     {
+        $url = current_url();
         if ($this->session->userdata('logged_in') == true) 
       {
         $user_id=$this->session->userdata('user_id');
@@ -89,7 +90,18 @@ class bank extends CI_Controller {
     
     public function getBalance()
     {
-        
+        $url = current_url();
+         if ($this->session->userdata('logged_in') == true) { 
+             
+             $data['bankAccount']=$this->bank_model->view_bank_account_listing();
+             
+              $this->load->view('dashboard/templates/header');
+          $this->load->view('dashboard/bank/showBalance', $data);
+           $this->load->view('dashboard/templates/footer');
+             
+    } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
     }
 
     
