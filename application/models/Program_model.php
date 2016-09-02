@@ -102,6 +102,15 @@
 
     $this->db->insert('subledger_info', $data);
     return $this->db->insert_id();
+  }
+  
+  public function get_chart_class_master()
+  {
+    $this->db->order_by('account_code', 'ASC');
+   // $this->db->group_by('chart_class_id');
+    $query = $this->db->get("chart_master");
+    return $query->result();
+  
 
   }
 
