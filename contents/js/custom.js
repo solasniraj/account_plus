@@ -358,7 +358,7 @@
 
         $( function() {
           $( "#datepicker" ).datepicker({
-           minDate: dateToday
+           maxDate: dateToday
 
          });
         } );
