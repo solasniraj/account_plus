@@ -234,18 +234,14 @@
      }
      if((!empty($totalTransBalance )) && (!empty($totalEnd))){         
          $finalBalance = $totalEnd - $totalTransBalance;
-     }else{
-         if(!empty($totalEnd)){
+     }elseif((empty($totalTransBalance )) && (!empty($totalEnd))){       
              $finalBalance = $totalEnd;
-         }else{
-             $finalBalance = '0';
-         }
-         if(!empty($totalTransBalance)){
+     }elseif((!empty($totalTransBalance )) && (empty($totalEnd))){        
              $finalBalance = $totalTransBalance;
          }else{
             $finalBalance = '0';
         }
-     }
+     
      $data['bankBalance'] = $finalBalance;
      
      $this->load->view('dashboard/templates/header');
