@@ -29,7 +29,7 @@
 										<tbody>
 										<?php 
 										
-											
+										$total = '0';	
 										foreach($bankAccount as $blist) 
 										{
                                                                                     $bankId = $blist->id;
@@ -48,10 +48,12 @@
 												<td><?php echo $blist->bank_account_number;?></td>
 												<td><?php echo $blist->bank_address;?></td>
 												<td><?php echo $blist->bank_phone_no;?></td>
-                                                                                                <td><?php echo $bankTotal; ?></td>
+                                                                                                <td><?php $total += $bankTotal; echo $bankTotal; ?></td>
 											</tr>
 										<?php }  	?>
-											
+                                                                                        <tr><td colspan="4"><strong>Total</strong></td>
+                                                                                            <td><strong style="color: red;"><?php echo "Rs. ".$total; ?></strong></td>
+                                                                                        </tr>
 										</tbody>
 									</table>
 								</div><!-- /.table-responsive -->

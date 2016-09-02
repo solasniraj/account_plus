@@ -16,7 +16,7 @@
         <ul class="nav nav-pills nav-stacked custom-nav">
             <li class="menu-list"><a href="#"><i class="lnr lnr-pie-chart"></i><span>Daily Transaction</span></a>
                 <ul class="sub-menu-list">
-                    <li><a href="#">Cash Receipt</a> </li>
+                    <li><a href="<?php echo base_url() . 'transaction/cashReceiptEntry'; ?>">Cash Receipt</a> </li>
                     <li><a href="<?php echo base_url() . 'transaction/journalEntry'; ?>">Journal Entry</a></li>
 
                 </ul>

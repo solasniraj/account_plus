@@ -205,14 +205,6 @@
 
 
 
-
-
-
-
-
-
-
-
   public function journalEntry()
   {
    $url = current_url();
@@ -258,9 +250,42 @@
   }
 
   }
+  
+  public function journalList()
+  {
+       $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
 
+      $userId = $this->session->userdata("user_id");
+      
+      $this->load->view('dashboard/templates/header');
+     $this->load->view('dashboard/templates/sideNavigation');
+     $this->load->view('dashboard/templates/topHead');
+     $this->load->view('dashboard/transaction/cashReceiptEntry');
+     $this->load->view('dashboard/templates/footer');   
+      
+      
+       } else {
+      redirect('login/index/?url=' . $url, 'refresh');
+    }
+  }
+  
+  public function cashReceiptEntry()
+  {
+       $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
 
+      $userId = $this->session->userdata("user_id");
+      
+      
+      
+      
+       } else {
+      redirect('login/index/?url=' . $url, 'refresh');
+    }
+  }
 
+  
   public function get_subledgers()
   {
     $url = current_url();
