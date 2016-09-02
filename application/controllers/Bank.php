@@ -87,7 +87,13 @@ class bank extends CI_Controller {
  }
     }
     
+    public function getBalance()
+    {
+        
+    }
+
     
+
     public function editAccount($id=null)
     {
         

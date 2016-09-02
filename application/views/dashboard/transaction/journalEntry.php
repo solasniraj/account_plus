@@ -1,4 +1,13 @@
-    <!--  main script is loaded  -->
+<SCRIPT TYPE = "text/javascript">
+function popup(mylink, windowname) {
+if (!window.focus)return true;
+var href;
+if (typeof(mylink) == 'string') href = mylink;
+else href = mylink.href;
+window.open(href, windowname, 'width=700,height=600,scrollbars=yes');
+return false;
+}
+</SCRIPT>   <!--  main script is loaded  -->
 
     <script type="text/javascript" src="<?php echo base_url('contents/js/custom.js'); ?>"></script>
 
@@ -65,7 +74,7 @@
                                             <tr>
 
                                                 <td class="text-right width100"><b>Bank Balance: </b></td>
-                                                <td class="b"><strong style="color:red;">Rs. 0,00,000/-</strong></td>
+                                                <td class="b"><a href="<?php echo base_url().'bank/getBalance' ?>" onClick="return popup(this, 'stevie')"><strong style="color:red;">Rs. 0,00,000/-</strong></a></td>
 
 
                                             </tr>
