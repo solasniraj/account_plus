@@ -130,7 +130,7 @@
        else 
        {
 
-         $output = '<option value=""></option>';
+         $output ='<option value=""></option>';
        }
 
        echo $output;
