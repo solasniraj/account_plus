@@ -5,6 +5,7 @@ class bank extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('bank_model');
+        $this->load->model('program_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -32,10 +33,11 @@ class bank extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
+             $data['chartMaster'] = $this->program_model->get_chart_class_master();
               $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/bank/addAccount');
+          $this->load->view('dashboard/bank/addAccount', $data);
            $this->load->view('dashboard/templates/footer');
              
     } else {

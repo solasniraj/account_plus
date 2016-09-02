@@ -1,4 +1,4 @@
-8            <div id="page-wrapper">
+           <div id="page-wrapper">
                 <div class="graphs">
                     <h3 class="blank1">Add Bank Account</h3>
                      <style>
@@ -18,6 +18,43 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="horizontal-form">
                             <?php echo form_open_multipart('bank/addnewAccount', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
+                            
+                            <div class="form-group">
+                                <label for="bankAccountName" class="col-sm-2 control-label"><b>Bank Account Name</b></label>
+                                <div class="col-sm-8">
+                                    <input type="text" value="<?php echo set_value('bankAccountName'); ?>" class="form-control1" id="bankAccountName" name="bankAccountName" placeholder="Enter Bank Account Name">
+                                     <?php echo form_error('bankAccountName'); ?>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                    <label class="col-sm-2 control-label" for="accountType"><b>Select Account Type</b></label>
+                    <div class="col-sm-8"><select class="form-control1" id="accountType" name="accountType">
+                            <option value="0">Savings Account</option>
+<option value="1">Chequing Account</option>
+<option value="2">Credit Account</option>
+<option value="3">Cash Account</option>
+                        </select>
+                     <?php echo form_error('chartAccType'); ?>
+                    </div>
+                </div>
+                            <?php if(!empty($chartMaster)){ ?>
+                            <div class="form-group">
+                    <label class="col-sm-2 control-label" for="accountGLCode"><b>Bank Account GL Code</b></label>
+                    <div class="col-sm-8"><select class="form-control1" id="accountGLCode" name="accountGLCode">
+                             <optgroup label="Assets">
+                        <?php foreach ($chartMaster as $clist){
+                           if($clist->chart_class_id== '1') {
+                            ?>                          
+                            <option value="<?php $clist->account_code; ?>"><?php echo $clist->account_code.' '.$clist->account_name; ?></option> 
+                           <?php }  } ?>
+                       </optgroup>
+                        </select>
+                     <?php echo form_error('accountGLCode'); ?>
+                    </div>
+                </div>
+                            <?php } ?>     
+                            
                             <div class="form-group">
                                 <label for="bankName" class="col-sm-2 control-label"><b>Name of Bank</b></label>
                                 <div class="col-sm-8">
