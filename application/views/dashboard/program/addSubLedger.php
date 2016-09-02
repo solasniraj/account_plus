@@ -11,6 +11,9 @@
                     padding: 10px;
                     color:red;
                 }
+                .th{
+                    text-align: center;
+                }
                 /*sanoj custom css ends*/
                 </style>
                     <div class="tab-content">
@@ -27,7 +30,7 @@
                             </div>
 
                             <div class="col-sm-8 col-sm-offset-2">
-                                <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Submit</button>
+                                <button class="btn btn-success btn-lg" style=" margin-left: 0px; margin-top: -4px; width:100px;">Submit</button>
                             </div>
 
                         </form>
@@ -60,8 +63,8 @@
                 </style>
                     <div class="tab-content">
                         <?php if(!empty($subledgerInfo)){ ?>
-                         <table class="table table-striped" "table-bordered">
-                        
+                        <table class="table table-striped table-bordered table-condensed">
+
                             <thead>
                                 <tr>
                                     <th>Code</th>

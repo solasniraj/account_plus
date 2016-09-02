@@ -342,7 +342,7 @@ if(regex.test(price))
   console.log(price);
   $(this).focus();
    $(this).css({"border":"1px solid red"})
-   $(this).css({"border":"1px solid red"})
+   $(this).css({"backgrond":"#ccc"})
  }
 
   })
