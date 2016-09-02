@@ -116,11 +116,11 @@
     else 
     {
       $('.creditError').css({"border":"1px solid red"});
-      var x=$('#creditAmount').val();
-      var parts = x.toString().split(".");
-      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      var output=parts.join(".");
-      $('#creditAmount').val(output);
+      // var x=$('#creditAmount').val();
+      // var parts = x.toString().split(".");
+      // parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      // var output=parts.join(".");
+      // $('#creditAmount').val(output);
     }
 
   }
@@ -131,7 +131,7 @@
    if($debitAmount == $creditAmount)
    {
      debitCreditDifference=0.0;
-      activateCommentAndSummerField("dactivate");
+      activateCommentAndSummerField("activate");
        $("#creditGreater").val(0.0);
         $("#debitGreater").val(0.0);
    }
@@ -141,7 +141,7 @@
     debitCreditDifference=$debitAmount -$creditAmount;
     $("#debitGreater").val(debitCreditDifference);
     $("#creditGreater").val(0.0);
-    activateCommentAndSummerField("activate");
+    activateCommentAndSummerField("adctivate");
 
   }
   else
@@ -149,7 +149,7 @@
     debitCreditDifference=$creditAmount -$debitAmount;
     $("#debitGreater").val(0.0);
     $("#creditGreater").val(debitCreditDifference);
-    activateCommentAndSummerField("activate");
+    activateCommentAndSummerField("adctivate");
   }
 
   }
@@ -197,7 +197,7 @@
       if( (program == null || program == "") || (ledgerType == null || ledgerType == "")  || (description == null || description == "") || (pCode == null || pCode == ""))
       {
 
-       var  msg= '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>plese enter all field</div>';
+       var  msg= '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Plese Enter Necessary Fields</div>';
        $('#errorMessages').html(msg);
        return false;
 
@@ -214,7 +214,7 @@
     if(debitAmount && creditAmount)
     {
 
-     var  msg= '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Either debit and crdit is required</div>';
+     var  msg= '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Either Debit Amount OR Credit Amount is required</div>';
      $('#errorMessages').html(msg);
      return false;
    }
@@ -290,6 +290,7 @@
 
 
   });
+
 
     $( function() {
       $( "#datepicker" ).datepicker({
