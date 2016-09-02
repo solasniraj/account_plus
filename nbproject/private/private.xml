@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Transaction.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Programs.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/donars/assignDonars.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/controllers/ChartAccount.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/models/Donar_model.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/program/addProgram.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/program/addSubLedger.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/models/ChartAccount_model.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/accountCharts/listChart.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Donars.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/templates/header.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/program/editProgram.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/program/listProgram.php</file>
