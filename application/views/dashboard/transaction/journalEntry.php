@@ -122,12 +122,12 @@ return false;
                                                         </td>
 
                                                         <td> <select class="form-control" id="subLedgerList" >
-                                                            <option value="">Select Subledger</option>
+                                                            <option value=""></option>
                                                         </select>
                                                     </td>
 
                                                     <td> <select class="form-control" id="donerList" >
-                                                            <option value="">Select Doner</option>
+                                                            <option value=""></option>
                                                         </select>
                                                     </td>
 
@@ -141,8 +141,8 @@ return false;
                                                 </td>
 
                                                 <td>  <input  class="form-control " type="text" name="description" id="description"></td>
-                                                <td>  <input  class="form-control debitError" type="text" onkeypress='validateDebit(event)' id="debitAmount"></td>
-                                                <td>  <input  class="form-control creditError" type="text" onkeypress='validateCrdit(event)'  id="creditAmount"></td>
+                                                <td>  <input  class="form-control formatComma" type="text"  id="debitAmount"></td>
+                                                <td>  <input  class="form-control formatComma" type="text"  id="creditAmount"></td>
                                                 <td> <input  class="form-control" type="text" name="chequeNo" id="chequeNo"></td>
 
 
@@ -182,7 +182,7 @@ return false;
 
 
                                             <tr>
-                                                <td colspan="6"><b>Total Amount</b></td>
+                                                <td colspan="7"><b>Total Amount</b></td>
                                                 <td id="totalDebit" class="b">0</td>
                                                 <td id="totalCredit" class="b">0</td>
                                                 <td colspan="2"></td>
@@ -190,7 +190,7 @@ return false;
                                             </tr>
 
                                             <tr>
-                                                <td colspan="6"><b>Difference in Debit and Credit Amount</b></td>
+                                                <td colspan="7"><b>Difference in Debit and Credit Amount</b></td>
                                                 <td><input  id="debitGreater"  class="form-control text-center" type="text" value="0.0"  readonly /></td>
                                                 <td><input  id="creditGreater" class="form-control text-center"  type="text" value="0.0"  readonly /></td>
                                                 <td colspan="2"></td>

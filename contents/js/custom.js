@@ -4,6 +4,7 @@
       var creditTotal="";
       var dateToday = new Date(); 
       var baseUrl='http://localhost/account_plus/';
+      var output="";
 
       function  whenJournalTypeIsSelected(selectedType)
       {
@@ -92,47 +93,68 @@
 
      }
 
-     function validateDebit() 
-     {
-       var me=$("#debitAmount").val();
-       if(!isNaN(me))
-       {
-        $('.debitError').css({"border":"1px solid #fff"});
-      }
-      else 
-      {
-        $('.debitError').css({"border":"1px solid red"});
-      }
+  //    function validateDebit() 
+  //    {
+  //      var me=$("#debitAmount").val();
+  //      if(!isNaN(me))
+  //      {
+  //       $('.debitError').css({"border":"1px solid #fff"});
+  //       var x=$('#debitAmount').val();
+  //       var parts = x.toString().split(".");
+  //       parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  //       output=parts.join(".");
+  //       $('#debitAmount').val(output);
+  //       console.log("yes the debit is checking");
+  //       console.log(x);
+  //     }
+  //     else 
+  //     {
+  //       $('.debitError').css({"border":"1px solid red"});
+  //         $('#debitAmount').val(0);
+  //         console.log("error is occur");
+
+
+  //     }
       
-    } 
+  //   } 
 
-    function validateCrdit(evt) 
-    {
-     var me=$("#creditAmount").val();
-     if(!isNaN(me))
-     {
-      $('.creditError').css({"border":"1px solid #fff"});
-    }
-    else 
-    {
-      $('.creditError').css({"border":"1px solid red"});
-      // var x=$('#creditAmount').val();
-      // var parts = x.toString().split(".");
-      // parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      // var output=parts.join(".");
-      // $('#creditAmount').val(output);
-    }
+  //   function validateCrdit(evt) 
+  //   {
+  //    var me=$("#creditAmount").val();
+  //    if(!isNaN(me))
+  //    {
+  //     $('.creditError').css({"border":"1px solid #fff"});
+  //     var x=$('#creditAmount').val();
+  //     var parts = x.toString().split(".");
+  //     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  //     output=parts.join(".");
+  //     $('#creditAmount').val(output);
+  //   }
+  //   else 
+  //   {
+  //     $('.creditError').css({"border":"1px solid red"});
 
-  }
+  //   }
+
+  // }
+
+
+function numberWithCommas(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
+
 
 
   function checkDiffernceBetDebitAndCredit($debitAmount,$creditAmount)
   {
    if($debitAmount == $creditAmount)
    {
-     debitCreditDifference=0.0;
-      activateCommentAndSummerField("activate");
-       $("#creditGreater").val(0.0);
+        debitCreditDifference=0.0;
+        activateCommentAndSummerField("activate");
+        console.log("true");
+        $("#creditGreater").val(0.0);
         $("#debitGreater").val(0.0);
    }
    else  if($debitAmount >$creditAmount)
@@ -160,13 +182,13 @@
     if(type=="activate")
     {
 
-      $("#comment,#summery").attr("disabled", true); 
-      $("#submitTheForm").prop('disabled', true);
+      $("#comment,#summery").attr("disabled", false); 
+      $("#submitTheForm").prop('disabled', false);
     }
     else
     {
-       $("#comment,#summery").attr("disabled", false); 
-       $("#submitTheForm").prop('disabled', false);
+       $("#comment,#summery").attr("disabled", true); 
+       $("#submitTheForm").prop('disabled', true);
 
     }
   }
@@ -175,7 +197,7 @@
 
   $(document).ready(function ()  
   {
-     activateCommentAndSummerField("activate");
+     activateCommentAndSummerField("deactivate");
     $("#submitCurrentData").click(function(event)
     {
 
@@ -290,6 +312,59 @@
 
 
   });
+
+
+
+ // $('input.formatComma').keyup(function(event) {
+
+  // if(event.which >= 37 && event.which <= 40){
+  //   console.log("this is good to seee");
+  //  event.preventDefault();
+  // }
+  
+   $('input.formatComma').keyup(function(e) {
+      var price = $(this).val();
+     var regex = /^[0-9.,]+$/;
+
+if(regex.test(price))
+  {
+   console.log("true");
+   console.log(price);
+   $(this).val(function(index, value)
+    {
+      value = value.replace(/,/g,'');
+      return numberWithCommas(value);
+   });
+ }
+ else
+ {
+  console.log("false");
+  console.log(price);
+  $(this).focus();
+   $(this).css({"border":"1px solid red"})
+   $(this).css({"border":"1px solid red"})
+ }
+
+  })
+    .on("cut copy paste",function(e){
+      e.preventDefault();
+    });
+
+
+// console.log(price.match(priceRegex));
+//     var amountDigit = $("input.formatComma").val();
+//     if (amountDigit !== "" && !$.isNumeric(amountDigit)) {
+//     $(this).focus();
+//     $(this).css({"border":"1px solid red"})
+
+
+//     return false;
+// }
+//   $(this).val(function(index, value) {
+//       value = value.replace(/,/g,'');
+//       return numberWithCommas(value);
+//   });
+// });
 
 
     $( function() {
