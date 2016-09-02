@@ -258,7 +258,11 @@
 
       $userId = $this->session->userdata("user_id");
       
-      
+      $this->load->view('dashboard/templates/header');
+     $this->load->view('dashboard/templates/sideNavigation');
+     $this->load->view('dashboard/templates/topHead');
+     $this->load->view('dashboard/transaction/journalList');
+     $this->load->view('dashboard/templates/footer');
       
       
        } else {
@@ -273,7 +277,7 @@
 
       $userId = $this->session->userdata("user_id");
       
-      $this->load->view('dashboard/templates/header');
+     $this->load->view('dashboard/templates/header');
      $this->load->view('dashboard/templates/sideNavigation');
      $this->load->view('dashboard/templates/topHead');
      $this->load->view('dashboard/transaction/cashReceiptEntry');
@@ -292,7 +296,11 @@
 
       $userId = $this->session->userdata("user_id");
       
-      
+     $this->load->view('dashboard/templates/header');
+     $this->load->view('dashboard/templates/sideNavigation');
+     $this->load->view('dashboard/templates/topHead');
+     $this->load->view('dashboard/transaction/receiptList');
+     $this->load->view('dashboard/templates/footer');  
       
       
       } else {
