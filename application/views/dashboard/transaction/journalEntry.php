@@ -135,9 +135,7 @@ return false;
 
 
                                                     <td> <select class="form-control" id="ledgerType">
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
+                                                        <option value=""></option>
                                                     </select>
 
                                                 </td>
@@ -163,7 +161,7 @@ return false;
                             <br>
                             <div class="container">
 
-                                <div class="table-responsive">
+                               <!--  <div class="table-responsive">
                                     <table class="tablee" width="100%">
                                         <thead>
                                             <tr>
@@ -203,6 +201,54 @@ return false;
                                 </div>
                                 <br>
                                 <br>
+ -->
+                               <!--  working on the object starts -->
+
+
+                                 <div class="table-responsive">
+                                    <table class="tablee" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <td  class="b"><b>Code#</b></td>
+                                                <td  class="b"><b>A/C Head</b></td>
+                                                <td  class="b"><b>Sub-Ledger</b></td>
+                                                <td  class="b"><b>Ledger type</b></td>
+                                                <td  class="b"><b>Donar name</b></td>
+                                                <td  class="b" colspan="2" s><b>Descrption</b></td>
+                                                <td  class="b"><b>Debit</b></td>
+                                                <td  class="b"><b>Credit</b></td>
+                                                <td  class="b"><b>Cheque number</b></td>
+                                                <td class="b" colspan="2"><b>Action</b></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="workingWithObjectData">
+ 
+                                          
+                                        </tbody>
+                                         <tr>
+                                                <td colspan="7"><b>Total Amount</b></td>
+                                                <td id="totalDebit" class="b">0</td>
+                                                <td id="totalCredit" class="b">0</td>
+
+                                                <td colspan="2"></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="7"><b>Difference in Debit and Credit Amount</b></td>
+                                                <td><input  id="debitGreater"  class="form-control text-center" type="text" value="0.0"  readonly /></td>
+                                                <td><input  id="creditGreater" class="form-control text-center"  type="text" value="0.0"  readonly /></td>
+                                                <td colspan="2"></td>
+
+                                        </tr>
+
+                                        </table>
+                                </div>
+                              <br>
+                              <br>
+                              <br>
+
+                                <!-- working on object is closed  -->
 
                                 <div class="row">
 

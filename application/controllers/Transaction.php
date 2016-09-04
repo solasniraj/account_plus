@@ -38,8 +38,10 @@
        $output= "";
        if(!empty($ProgrammList))
        {
+         $output .='<option value="">Select Program</option>';
          foreach ($ProgrammList as $value)
          {
+
            $output .= '<option programmId="'.$value->program_id.'" value="'.$value->id.'">'.$value->account_code."#".$value->account_name.'</option>';
          }
        }
