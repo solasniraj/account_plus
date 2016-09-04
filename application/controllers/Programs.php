@@ -301,7 +301,7 @@ public function createSubLedger($id=NULL)
       
      $this->load->view('dashboard/templates/header');
      $this->load->view('dashboard/templates/sideNavigation');
-     $this->load->view('dashboard/templates/topHead');
+     // $this->load->view('dashboard/templates/topHead');
      $this->load->view('dashboard/bank/viewJournal');
      $this->load->view('dashboard/templates/footer');   
       
