@@ -37,6 +37,8 @@ return false;
                                         <td><input  type="text" class="form-control" value="<?php echo $journalNumber; ?>" readonly></td>
 
                                     </tr>
+
+                                    
                                     <tr>
 
                                         <td class="text-right width100"><b>Date</b></td>
