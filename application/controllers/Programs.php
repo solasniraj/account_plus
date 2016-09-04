@@ -292,6 +292,26 @@ public function createSubLedger($id=NULL)
         return TRUE;
       }
     }
+    public function viewJournal()
+    {
+        $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
+
+      $userId = $this->session->userdata("user_id");
+      
+     $this->load->view('dashboard/templates/header');
+     $this->load->view('dashboard/templates/sideNavigation');
+     $this->load->view('dashboard/templates/topHead');
+     $this->load->view('dashboard/bank/viewJournal');
+     $this->load->view('dashboard/templates/footer');   
+      
+      
+       } else {
+      redirect('login/index/?url=' . $url, 'refresh');
+    }
+  }
+  
+
 
 
 

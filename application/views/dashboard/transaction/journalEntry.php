@@ -101,7 +101,7 @@ return false;
                                                     <td class="col-md-1"><b>Sub-Ledger</b></td>
                                                     <td class="col-md-1"><b>Donar-list</b></td>
                                                     <td class="col-md-1"><b>Ledger type</b></td>
-                                                    <td><b>Descrption</b></td>
+                                                    <td><b>Description</b></td>
                                                     <td><b>Debit</b></td>
                                                     <td><b>Credit</b></td>
                                                     <td><b>Cheque number</b></td>
