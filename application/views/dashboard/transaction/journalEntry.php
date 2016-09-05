@@ -8,6 +8,7 @@ window.open(href, windowname, 'width=700,height=600,scrollbars=yes');
 return false;
 }
 </SCRIPT>   <!--  main script is loaded  -->
+ <script type="text/javascript" src="<?php echo base_url('contents/js/function.js'); ?>"></script>
 
     <script type="text/javascript" src="<?php echo base_url('contents/js/custom.js'); ?>"></script>
 
@@ -105,9 +106,8 @@ return false;
                                                     <td><b>Debit</b></td>
                                                     <td><b>Credit</b></td>
                                                     <td><b>Cheque number</b></td>
-                                                    <td rowspan="2"  class="b"><div class="lastButton">
-                                                        <button class="btn btn-success " id="submitCurrentData" style=" padding:5px;margin:5px;width:70px;font-size:18px;">Add</button></td>
-
+                                                    <td rowspan="2"  class="b" id="toggleButton">
+                                                    <button class="btn btn-success " oncid="submitCurrentData" onClick="ProcessDataandInsertIntoArray()" style=" padding:5px;margin:5px;width:70px;font-size:18px;">Add</button></td>
                                                     </tr>
 
 
