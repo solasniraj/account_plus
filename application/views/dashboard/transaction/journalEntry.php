@@ -35,7 +35,7 @@ return false;
                                 <table class="table">
                                     <tr>
                                         <td for="focusedInput"><b>Journal no</b></td>
-                                        <td><input  type="text" class="form-control" value="<?php echo $journalNumber; ?>" readonly></td>
+                                        <td><input  type="text" id="journalNo" class="form-control" value="<?php echo $journalNumber; ?>" readonly></td>
 
                                     </tr>
 
@@ -43,7 +43,7 @@ return false;
                                     <tr>
 
                                         <td class="text-right width100"><b>Date</b></td>
-                                        <td><input class="form-control" id="datepicker" type="text" placeholder="Day/Month/Year"></td>
+                                        <td><input  class="form-control" id="datepicker" type="text" placeholder="Day/Month/Year"></td>
 
 
                                     </tr>
@@ -284,7 +284,7 @@ return false;
 
 
                                     <div class="lastButton">
-                                        <button class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Submit</button>
+                                        <button  onClick="sendAllJounalTransactionToServer()" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Submit</button>
 
                                         <button class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Add</button>
                                     </div>

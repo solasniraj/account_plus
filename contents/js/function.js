@@ -219,6 +219,7 @@ function  ProcessDataandInsertIntoArray(index)
 
    var  msg= '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Plese Enter Necessary Fields</div>';
    $('#errorMessages').html(msg);
+    hideMessages();
    return false;
 
  }
@@ -235,6 +236,7 @@ if(debitAmount && creditAmount)
 
  var  msg= '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Either Debit Amount OR Credit Amount is required</div>';
  $('#errorMessages').html(msg);
+  hideMessages();
  return false;
 }
 else if((debitAmount && (creditAmount == null || creditAmount == ""))) 
@@ -267,12 +269,19 @@ else if((debitAmount && (creditAmount == null || creditAmount == "")))
     allInsertItemsinVouture.push(objectToStroCurrentData);
     console.log(allInsertItemsinVouture);
     viewTheItemsInArray();
+    var  msg= '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction Added succesfully</div>';
+    $('#errorMessages').html(msg);
+    hideMessages();
   }
   else 
   {   
     allInsertItemsinVouture.splice(index, 1,objectToStroCurrentData);
     console.log(allInsertItemsinVouture);
     viewTheItemsInArray();
+
+    var  msg= '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction updated succesfully</div>';
+    $('#errorMessages').html(msg);
+     hideMessages();
   }
 
 
@@ -309,18 +318,25 @@ else if((creditAmount && (debitAmount == null || debitAmount == "")))
     chequeNo:chequeNo
 
   };
+
   incrementCounterForItem++;
   if(typeof(index) == 'undefined' || index === null)
   { 
     allInsertItemsinVouture.push(objectToStroCurrentData);
     console.log(allInsertItemsinVouture);
     viewTheItemsInArray();
+      var  msg= '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction Added succesfully</div>';
+    $('#errorMessages').html(msg);
+     hideMessages();
   }
   else 
   {   
     allInsertItemsinVouture.splice(index, 1,objectToStroCurrentData);
     console.log(allInsertItemsinVouture);
     viewTheItemsInArray();
+    var  msg= '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction updated succesfully</div>';
+    $('#errorMessages').html(msg);
+     hideMessages();
   }
 
   description = $('#description').val("");
@@ -334,6 +350,7 @@ else
 
   var  msg= '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Plese Enter Either Debit Amount OR Credit Amount</div>';
   $('#errorMessages').html(msg);
+  hideMessages();
   return false;
 }
 
@@ -456,7 +473,6 @@ viewToDisplayInTable="";
 myCustomViewToEnter="";
 debitTotal=0;
 creditTotal=0;
-console.log("end is reached");
 
 
 }
@@ -482,13 +498,11 @@ else
 
 function delteItemFromArray(index)
 {
-  var confirmUser=confirm("!!Are you sure to delte this transaction");
+  var confirmUser=confirm("!!Are you sure to Delete this transaction");
   if(confirmUser)
   {
-       // console.log(allInsertItemsinVouture);
        allInsertItemsinVouture.splice(index, 1);
        console.log("item is delted at idex"+ index);
-      // console.log(allInsertItemsinVouture);
       viewToDisplayInTable="";
       myCustomViewToEnter="";
       $("#workingWithObjectData").html("");
@@ -595,8 +609,43 @@ function updateTheItemInTheArray(index)
 {
 
  ProcessDataandInsertIntoArray(index);
- $("#toggleButton").html('<button   onClick=" ProcessDataandInsertIntoArray()" class="btn btn-success "   style=" padding:5px;margin:5px;width:70px;font-size:18px;">Update</button></td>');
+ $("#toggleButton").html('<button   onClick=" ProcessDataandInsertIntoArray()" class="btn btn-success "   style=" padding:5px;margin:5px;width:70px;font-size:18px;">Add</button></td>');
 
  }
+
+ function hideMessages() {
+  var msg="";
+  setTimeout(function(){
+   $('#errorMessages').html(msg);
+   console.log("timeout function fired");
+    }, 3000);
+console.log("hiddaddsadse hide is called");
+}
+
+
+
+function sendAllJounalTransactionToServer()
+{
+
+  var journalNo= $('#journalNo').val();
+  var dateToBeInsert=$('#datepicker').datepicker().val();
+  console.log(journalNo);
+  console.log(dateToBeInsert);
+  if((journalNo == null || journalNo == "") ||  (dateToBeInsert == null || dateToBeInsert == "") || (allInsertItemsinVouture.length < 1) )
+  {
+
+    var  msg= '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Plese Enter required Fields</div>';
+    $('#errorMessages').html(msg);
+    hideMessages();
+
+  }
+  else 
+  {
+    
+ 
+  }
+
+
+}
 
 
