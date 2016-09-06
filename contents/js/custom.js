@@ -27,7 +27,10 @@ $(document).ready(function ()
 
  $( function() {
   $( "#datepicker" ).datepicker({
-   maxDate: dateToday
+   maxDate: dateToday,
+  dateFormat: 'mm/dd/yy' , 
+  timeFormat: 'hh:mm tt',
+   dateonly:true
 
  });
 } );
