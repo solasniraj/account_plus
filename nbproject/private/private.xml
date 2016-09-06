@@ -3,12 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Programs.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Bank.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/models/Bank_model.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/program/addProgram.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/bank/addAccount.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/models/Program_model.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Preview.php</file>
         </group>
     </open-files>
 </project-private>

@@ -29,6 +29,28 @@
                 'status' => 'Active');
        return  $this->db->insert('committee_info', $data);
         }
+        
+        public function get_latest_unlocked_fiscal_year_start_date()
+        {
+            $this->db->select_max('begin_date');
+               $query= $this->db->get("fiscal_year_info")->result();
+               if(!empty($query)){
+           return $query[0]->begin_date;
+               }else{
+                   return '0';
+               }
+        }
+        
+        public function get_latest_unlocked_fiscal_year_end_date()
+        {
+            $this->db->select_max('end_date');
+               $query= $this->db->get("fiscal_year_info")->result();
+               if(!empty($query)){
+           return $query[0]->end_date;
+               }else{
+                   return '0';
+               }
+        }
 
         public function add_fiscal_year($commiteName, $fiscalYear)
         {

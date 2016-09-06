@@ -14,12 +14,47 @@ class login extends CI_Controller {
     
     public function index()
     {
-         $data = $this->dbmanager_model->check_database_for_first_time();
+        date_default_timezone_set('Asia/Kathmandu');
+$currentDate = date('Y-m-d');
+$fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
+         $fiscalEnd = $this->dbmanager_model->get_latest_unlocked_fiscal_year_end_date();
+   $startYMD = strtr($fiscalStart, '/', ',');
+   $endYMD = strtr($fiscalEnd, '/', ',');
+          
+    $temp1   = array_map('intval', explode(',',$startYMD));
+$stYr   = array_slice($temp1, 0, 1);
+$stM = array_slice($temp1, 1, 1);
+$stD = array_slice($temp1, 2, 1);
+
+$temp2   = array_map('intval', explode(',',$endYMD));
+$enYr   = array_slice($temp2, 0, 1);
+$enM = array_slice($temp2, 1, 1);
+$enD = array_slice($temp2, 2, 1);
+
+        include_once 'nepali_calendar.php';
+	$cal = new Nepali_Calendar();
+	$fiscalYrStart = $cal->nep_to_eng($stYr[0],$stM[0],$stD[0]);
+        $fiscalYrEnd = $cal->nep_to_eng($enYr[0],$enM[0],$enD[0]);
+ $endingDate = date('Y-m-d', strtotime($fiscalYrEnd['ymd']));    
+ $startingDate = date('Y-m-d', strtotime($fiscalYrStart['ymd']));
+   
+
+  if (($currentDate > $startingDate) && ($currentDate < $endingDate))
+    {
+     
+      $data = $this->dbmanager_model->check_database_for_first_time();
           if ($data) {
               $this->login();
           }else{
          $this->load->view('dashboard/login/registration');
           }
+    }
+    else
+    {
+      echo "Your system date and time is not correct. Please correct system date and time first to login";  
+    }
+ 
+ 
     }
     
     public function addNewCommittee()
