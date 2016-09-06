@@ -401,6 +401,18 @@
     }
   }
 
+ 
+
+  public function submitAllTheTransactionData()
+  {
+     echo "yes let's sub,ot tje data";
+     $journalNo = $this->input->post('journalNo');
+     echo "<br>";
+     echo $journalNo;
+     $insertDate =  $this->input->post('datepicker');
+     echo $insertDate;
+  }
+
 
 
   }

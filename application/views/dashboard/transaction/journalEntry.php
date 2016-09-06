@@ -15,7 +15,6 @@ return false;
     <!-- main script is end -->
 
     <div id="page-wrapper">
-
         <div class="graphs">
             <h3 class="blank1">Journal Entry Form</h3>
             <div class="xs tabls">
@@ -29,13 +28,14 @@ return false;
                     <hr>
                     <?php }
                     ?>
+        <form action="<?php echo base_url('transaction/submitAllTheTransactionData'); ?>" method="POST">
                     <div class="form-group" >
                         <div class="row">
                             <div class="col-md-4 ">
                                 <table class="table">
                                     <tr>
                                         <td for="focusedInput"><b>Journal no</b></td>
-                                        <td><input  type="text" id="journalNo" class="form-control" value="<?php echo $journalNumber; ?>" readonly></td>
+                                        <td><input  type="text" id="journalNo" name="journalNo" class="form-control" value="<?php echo $journalNumber; ?>" readonly></td>
 
                                     </tr>
 
@@ -43,7 +43,7 @@ return false;
                                     <tr>
 
                                         <td class="text-right width100"><b>Date</b></td>
-                                        <td><input  class="form-control" id="datepicker" type="text" placeholder="Day/Month/Year"></td>
+                                        <td><input  class="form-control" id="datepicker" name="datepicker" type="text" placeholder="Day/Month/Year"></td>
 
 
                                     </tr>
@@ -66,14 +66,15 @@ return false;
                                     <tr>
                                         <td class="text-right width100 "><b>Journal Type</b></td>
                                         <td>
-                                            <select class="form-control" id="journalType" onchange="whenJournalTypeIsSelected(this)" >
+                                            <select class="form-control" id="journalType" onchange="whenJournalTypeIsSelected(this)">
                                                 <option value=" ">Select Types</option>
                                                 <?php foreach ($journalTypes as $value) { ?>
-                                                    <option value="<?php echo $value->id; ?>"><?php echo $value->chart_class_name; ?></option>
+                                                    <option value="<?php echo $value->id;?>"><?php echo $value->chart_class_name;?></option>
                                                     <?php }  ?>
+                                                </select>
                                                 </td>
 
-                                            </tr>
+                                     </tr>
                                             <tr>
                                                 <?php if(!empty($bankBalance)){ ?>
                                                 <td class="text-right width100"><b>Bank Balance: </b></td>
@@ -107,7 +108,7 @@ return false;
                                                     <td><b>Credit</b></td>
                                                     <td><b>Cheque number</b></td>
                                                     <td rowspan="2"  class="b" id="toggleButton">
-                                                    <button class="btn btn-success " oncid="submitCurrentData" onClick="ProcessDataandInsertIntoArray()" style=" padding:5px;margin:5px;width:70px;font-size:18px;">Add</button></td>
+                                                    <span class="btn btn-success " oncid="submitCurrentData" onClick="ProcessDataandInsertIntoArray()" style=" padding:5px;margin:5px;width:70px;font-size:18px;">Add</span></td>
                                                     </tr>
 
 
@@ -161,47 +162,7 @@ return false;
                             <br>
                             <div class="container">
 
-                               <!--  <div class="table-responsive">
-                                    <table class="tablee" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <td  class="b"><b>Code#</b></td>
-                                                <td  class="b"><b>A/C Head</b></td>
-                                                <td  class="b"><b>Sub-Ledger</b></td>
-                                                <td  class="b"><b>Ledger type</b></td>
-                                                <td  class="b"><b>Donar name</b></td>
-                                                <td  class="b" colspan="2" s><b>Descrption</b></td>
-                                                <td  class="b"><b>Debit</b></td>
-                                                <td  class="b"><b>Credit</b></td>
-                                                <td  class="b"><b>Cheque number</b></td>
-                                                <td class="b" colspan="2"><b>Action</b></td>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="lastId">
-
-
-
-                                            <tr>
-                                                <td colspan="7"><b>Total Amount</b></td>
-                                                <td id="totalDebit" class="b">0</td>
-                                                <td id="totalCredit" class="b">0</td>
-                                                <td colspan="2"></td>
-
-                                            </tr>
-
-                                            <tr>
-                                                <td colspan="7"><b>Difference in Debit and Credit Amount</b></td>
-                                                <td><input  id="debitGreater"  class="form-control text-center" type="text" value="0.0"  readonly /></td>
-                                                <td><input  id="creditGreater" class="form-control text-center"  type="text" value="0.0"  readonly /></td>
-                                                <td colspan="2"></td>
-
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <br>
-                                <br>
- -->
+        
                                <!--  working on the object starts -->
 
 
@@ -241,6 +202,9 @@ return false;
                                                 <td colspan="2"></td>
 
                                         </tr>
+                                        <tr id="addArrayData">
+
+                                        </tr>
 
                                         </table>
                                 </div>
@@ -248,7 +212,7 @@ return false;
                               <br>
                               <br>
 
-                                <!-- working on object is closed  -->
+                                <!--   working on object is closed      -->
 
                                 <div class="row">
 
@@ -295,6 +259,7 @@ return false;
                             <br>
                             <br>
                         </div>
+                </form>
 
                         <style>
                         #totalDebit, #totalCredit, #debitGreater, #creditGreater{color: red;}
