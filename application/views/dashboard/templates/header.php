@@ -11,11 +11,11 @@
 	<!-- Custom CSS -->
 	<link href="<?php echo base_url().'contents/css/style.css'; ?>" rel='stylesheet' type='text/css' />
 	<link href="<?php echo base_url().'contents/css/custom.css'; ?>" rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="<?php echo base_url().'contents/css/jquery-ui-1.12.0/jquery-ui.css'; ?>">
 	<!-- Font Awesome CSS -->
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+	<link href="<?php echo base_url().'contents/css/font-awesome-4.6.3/css/font-awesome.min.css'; ?>" rel="stylesheet">
+	<script src="<?php echo base_url().'contents/js/jquery-1.12.4.min.js'; ?>"></script>
+    <script src="<?php echo base_url().'contents/js/jquery-ui-1.12.0.js'; ?>"></script>
 	<link rel="stylesheet" href="<?php echo base_url().'contents/css/icon-font.min.css'; ?>" type='text/css' />
 	<script src="<?php echo base_url().'contents/js/Chart.js'; ?>"></script>
 	<link href="<?php echo base_url().'contents/css/animate.css'; ?>" rel="stylesheet" type="text/css" media="all">
@@ -31,8 +31,6 @@
 <script type="text/javascript" src="<?php echo base_url().'contents/js/bootstrap.min.js'; ?>"></script>
 <!-- Bootstrap Core JavaScript -->
 
-<!-- Placed js at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 </head>
 
 <body class="sticky-header left-side-collapsed">
