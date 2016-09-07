@@ -10,7 +10,7 @@ return false;
 </SCRIPT>   <!--  main script is loaded  -->
  <script type="text/javascript" src="<?php echo base_url('contents/js/function.js'); ?>"></script>
 
-    <script type="text/javascript" src="<?php echo base_url('contents/js/custom.js'); ?>"></script>
+   
 
     <!-- main script is end -->
 
@@ -28,7 +28,8 @@ return false;
                     <hr>
                     <?php }
                     ?>
-        <form action="<?php echo base_url('transaction/submitAllTheTransactionData'); ?>" method="POST">
+                    <?php echo form_open_multipart('transaction/glTransaction', array('id' => 'glTrans', 'class' => 'form-horizontal', 'novalidate' => 'novalidate')); ?>
+       
                     <div class="form-group" >
                         <div class="row">
                             <div class="col-md-4 ">
@@ -66,7 +67,7 @@ return false;
                                     <tr>
                                         <td class="text-right width100 "><b>Journal Type</b></td>
                                         <td>
-                                            <select class="form-control" id="journalType" onchange="whenJournalTypeIsSelected(this)">
+                                            <select class="form-control" id="journalType" onchange="whenJournalTypeIsSelected(this)" name="journalType">
                                                 <option value=" ">Select Types</option>
                                                 <?php foreach ($journalTypes as $value) { ?>
                                                     <option value="<?php echo $value->id;?>"><?php echo $value->chart_class_name;?></option>
@@ -156,7 +157,7 @@ return false;
 
 
 
-                                <!-- ********************************our main table closed ************************************** -->
+                                <!--********************************our main table closed ************************************** -->
 
                             </div>
                             <br>
@@ -225,8 +226,8 @@ return false;
 
                                     <div class="col-md-5 col-md-offset-1" >
                                         <div class="form-group">
-                                            <label for="comment"><b>Summary Comment</b></label>
-                                            <textarea class="form-control" rows="5" style="resize:none" id="comment"></textarea>
+                                            <label for="summary"><b>Summary Comment</b></label>
+                                            <textarea class="form-control" rows="5" style="resize:none" id="summary"></textarea>
                                         </div>
                                     </div>
 

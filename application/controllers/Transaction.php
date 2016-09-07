@@ -351,24 +351,17 @@
      $this->form_validation->set_rules('description', 'description', 'trim|required|callback_xss_clean|max_length[200]');
      $this->form_validation->set_rules('amount', 'amount', 'trim|required|callback_xss_clean|max_length[200]');
      $this->form_validation->set_rules('chequeNo', 'chequeNo', 'trim|required|callback_xss_clean|max_length[200]');
-     $this->form_validation->set_rules('ledgerType', 'ledgerType', 'trim|required|callback_xss_clean|max_length[200]');
-
-     
+     $this->form_validation->set_rules('ledgerType', 'ledgerType', 'trim|required|callback_xss_clean|max_length[200]');     
      $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
 
      if ($this->form_validation->run() == FALSE)
      {
-
-  // echo validation_errors(); 
-  // exit;
        $data['program_list']=$this->program_model->view_programm_listing($user_id);
        $this->load->view('dashboard/templates/header');
        $this->load->view('dashboard/templates/sideNavigation');
        $this->load->view('dashboard/templates/topHead');
        $this->load->view('dashboard/transaction/journalEntry', $data);
        $this->load->view('dashboard/templates/footer');   
-
-
      }
      else 
      {
@@ -403,14 +396,63 @@
 
  
 
-  public function submitAllTheTransactionData()
+  public function glTransaction()
   {
-     echo "yes let's sub,ot tje data";
-     $journalNo = $this->input->post('journalNo');
-     echo "<br>";
-     echo $journalNo;
-     $insertDate =  $this->input->post('datepicker');
-     echo $insertDate;
+      $url = current_url();
+   if ($this->session->userdata('logged_in') == true) {
+        // transType programType  subLedgerType description amount  chequeNo
+     $user_id=$this->session->userdata('user_id');
+     $this->load->library('form_validation');
+     $this->form_validation->set_rules('journalNo', 'Journal No', 'trim|required|callback_xss_clean|max_length[200]');
+     $this->form_validation->set_rules('datepicker', 'Date', 'trim|required|callback_xss_clean|max_length[200]');
+     $this->form_validation->set_rules('journalType', 'Journal Type', 'trim|required|callback_xss_clean|max_length[200]');
+    
+     
+     $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
+
+     if ($this->form_validation->run() == FALSE)
+     {
+
+  // echo validation_errors(); 
+  // exit;
+       $data['program_list']=$this->program_model->view_programm_listing($user_id);
+       $this->load->view('dashboard/templates/header');
+       $this->load->view('dashboard/templates/sideNavigation');
+       $this->load->view('dashboard/templates/topHead');
+       $this->load->view('dashboard/transaction/journalEntry', $data);
+       $this->load->view('dashboard/templates/footer');   
+
+     }
+     else 
+     {
+        $myData = $_POST['mydata'];
+       var_dump(json_decode($myData));
+      //$indexNo = $myData->indexNumber;//:incrementCounterForItem,
+     //   var_dump($indexNo);
+//      pCode:pCode, 
+//      programName:program,
+//      program_id:program_id,
+//      subLedgerName:subLedger,
+//      subLedger_id:subLedger_id, 
+//      donarName:donar, 
+//      donar_id:donar_id,
+//      ledgerType:ledgerType,
+//      description:description,
+//      debitAmount:debitInsertValue,
+//      creditAmount:creditInsertValue,
+//      chequeNo:chequeNo
+
+    }
+
+  } 
+
+  else 
+  {
+
+    redirect('login/index/?url=' . $url, 'refresh');
+    
+  }
+
   }
 
 

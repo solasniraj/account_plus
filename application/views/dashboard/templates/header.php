@@ -22,6 +22,7 @@
 	<script src="<?php echo base_url().'contents/js/wow.min.js'; ?>"></script>
 	<script>
 		new WOW().init();
+                var baseUrl = "<?php echo base_url(); ?>"; 
 	</script>
 	<!--//end-animate-->
 <!----webfonts--->

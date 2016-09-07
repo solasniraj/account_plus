@@ -2,8 +2,7 @@
   var debitCreditDifference="";
   var debitTotal=0;
   var creditTotal=0;
-  var dateToday = new Date(); 
-  var baseUrl='http://localhost/account_plus/';
+  var dateToday = new Date();
   var output="";
   var allInsertItemsinVouture=[];
   var objectToStroCurrentData;
@@ -153,7 +152,7 @@
         activateCommentAndSummerField("activate");
         $("#creditGreater").val(0);
         $("#debitGreater").val(0);
-        console.log("both is same");
+      //  console.log("both is same");
       }
       else  if(d > b)
       {
@@ -183,12 +182,12 @@
     if(type=="activate")
     {
 
-     $("#comment,#summery").attr("disabled", false); 
+     $("#comment,#summary").attr("disabled", false); 
      $("#submitTheForm").prop('disabled', false);
    }
    else
    {
-     $("#comment,#summery").attr("disabled", true); 
+     $("#comment,#summary").attr("disabled", true); 
      $("#submitTheForm").prop('disabled', true);
 
    }
@@ -196,10 +195,7 @@
 
   function  ProcessDataandInsertIntoArray(index)
   {
-
-
-
-    var view;
+  
     var program = document.getElementById("programsList").options[document.getElementById("programsList").selectedIndex].text;
     var subLedger = document.getElementById("subLedgerList").options[document.getElementById("subLedgerList").selectedIndex].text;
     var ledgerType = document.getElementById("ledgerType").options[document.getElementById("ledgerType").selectedIndex].value;
@@ -209,7 +205,6 @@
     var creditAmount = $('#creditAmount').val();
     var chequeNo = $('#chequeNo').val();
     var pCode= $("#pCode").val();
-
 
     var program_id=document.getElementById("programsList").options[document.getElementById("programsList").selectedIndex].value;
     var subLedger_id = document.getElementById("subLedgerList").options[document.getElementById("subLedgerList").selectedIndex].value;
@@ -242,7 +237,6 @@
   }
   else if((debitAmount && (creditAmount == null || creditAmount == ""))) 
   {
-
 
     var debitInsertValue=debitAmount;
     creditInsertValue=0;
@@ -618,45 +612,67 @@
    }
 
    function hideMessages() {
-    // var msg="";
-    // setTimeout(function(){
-    //  $('#errorMessages').html(msg);
-    //  console.log("timeout function fired");
-    //   }, 3000);
-  console.log("hiddaddsadse hide is called");
+   
   }
- // public function addInputTagforArrayInput()
- //  {
- //    for(var i=0;i<allInsertItemsinVouture.length;i++)
- //    {
- //        var objestTosend= allInsertItemsinVouture[i];
- //        $('#addArrayData').html('<input type="hidden" name="' + 'arrayname['']" value="'+ donar_id +'">' + donar + '</option>');
- //    }
-   
- //  }
+ 
+ 
+ 
+ 
+$(document).ready(function ()  
+{   
+    $('#glTrans').submit(function() {
+       
+    if ($.trim($("#journalNo").val()) === "" || $.trim($("#datepicker").val()) === "" || $.trim($("#journalType").val()) === "" || $.trim($("#comment").val()) === ""|| $.trim($("#summary").val()) === "") {
+       var  msg= '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error !</strong> Plese fill all fields properly</div>';
+    $('#errorMessages').html(msg);
+    hideMessages();
+    return false;
+    }else{
+       
+        var JSONObject = JSON.stringify(allInsertItemsinVouture);
+        var input = $("<input>")
+               .attr("type", "hidden")
+               .attr("name", "mydata").attr("id", "myDataInp").val(JSONObject);
+$('#glTrans').append($(input));
+       $('#glTrans').submit();
+    }
+});
+    
+    
+    
+    
+    
+ activateCommentAndSummerField("deactivate");
+ $('input.formatComma').keyup(function(e) {
+  var price = $(this).val();
+  var regex = /^[0-9.,]+$/;
+  if(this.value!='-')
+    while(isNaN(this.value))
+      this.value = this.value.split('').reverse().join('').replace(/[\D]/i,'')
+    .split('').reverse().join('');
 
-  // function sendAllJounalTransactionToServer()
-  // {
+    if(regex.test(price))
+    {
+     $(this).val(function(index, value)
+     {
+      value = value.replace(/,/g,'');
+      return numberWithCommas(value);
+    });
+   }
 
-  //   var journalNo= $('#journalNo').val();
-  //   var dateToBeInsert=$('#datepicker').datepicker().val();
-  //   console.log(journalNo);
-  //   console.log(dateToBeInsert);
-  //   if((journalNo == null || journalNo == "") ||  (dateToBeInsert == null || dateToBeInsert == "") || (allInsertItemsinVouture.length < 1) )
-  //   {
+ })
+ .on("cut copy paste",function(e){
+  e.preventDefault();
+});
 
-  //     var  msg= '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Plese Enter required Fields</div>';
-  //     $('#errorMessages').html(msg);
-  //     hideMessages();
+});
 
-  //   }
-  //   else 
-  //   {
-      
-   
-  //   }
+ $( function() {
+  $( "#datepicker" ).datepicker({
+   maxDate: dateToday,
+  dateFormat: 'mm/dd/yy' , 
+  timeFormat: 'hh:mm tt',
+   dateonly:true
 
-
-  // }
-
-
+ });
+} );
