@@ -412,9 +412,6 @@
 
      if ($this->form_validation->run() == FALSE)
      {
-
-  // echo validation_errors(); 
-  // exit;
        $data['program_list']=$this->program_model->view_programm_listing($user_id);
        $this->load->view('dashboard/templates/header');
        $this->load->view('dashboard/templates/sideNavigation');
@@ -425,8 +422,22 @@
      }
      else 
      {
+         $ledgerName = $this->input->post('ledgerName');     
+         $datepicker = $this->input->post('datepicker');     
+         $journalType = $this->input->post('journalType');     
+         $comment = $this->input->post('comment');     
+         $summary = $this->input->post('summary');     
+         $journalNo = $this->input->post('journalNo');     
+         var_dump($journalNo);
+         var_dump($journalType);
+         var_dump($datepicker);
+         var_dump($comment);
+         var_dump($summary);
+         
+         
         $myData = $_POST['mydata'];
-       var_dump(json_decode($myData));
+       $drCr = json_decode($myData);
+       
       //$indexNo = $myData->indexNumber;//:incrementCounterForItem,
      //   var_dump($indexNo);
 //      pCode:pCode, 

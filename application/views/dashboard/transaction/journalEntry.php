@@ -220,14 +220,14 @@ return false;
                                     <div class="col-md-5 col-md-offset-1" >
                                         <div class="form-group">
                                             <label for="comment"><b>Detailed Comment</b></label>
-                                            <textarea class="form-control" rows="5" style="resize:none" id="comment"></textarea>
+                                            <textarea class="form-control" rows="5" style="resize:none" id="comment" name="comment"></textarea>
                                         </div>
                                     </div>
 
                                     <div class="col-md-5 col-md-offset-1" >
                                         <div class="form-group">
                                             <label for="summary"><b>Summary Comment</b></label>
-                                            <textarea class="form-control" rows="5" style="resize:none" id="summary"></textarea>
+                                            <textarea class="form-control" rows="5" style="resize:none" id="summary"  name="summary"></textarea>
                                         </div>
                                     </div>
 
