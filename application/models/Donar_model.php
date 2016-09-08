@@ -8,22 +8,24 @@
 
         public function get_all_donars()
         {
-            $this->db->where('status', 'Active');
+            $this->db->where('status', '1');
             $query = $this->db->get('donar_info');
              return $query->result();
         }
 
-        public function add_new_donar($donarName,$donarAddress, $emailId, $contactNumber, $donarCode)
+        public function add_new_donar($donarName,$donarAddress, $emailId, $contactNumber, $contactPerson, $contactPCellNo)
         {
             $data = Array(
             'donar_name' => $donarName,
             'donar_address' => $donarAddress,
                 'donar_contact_no' => $contactNumber,
-                'donar_code' => $donarCode,
+                'donar_code' => NULL,
                 'donar_email' => $emailId,
+                'contact_person' => $contactPerson,
+                'contact_person_cell_no' => $contactPCellNo,
                 'user_id' => NULL,
                 'committee_id' => NULL,
-                'status' => 'Active');
+                'status' => '1');
        return  $this->db->insert('donar_info', $data);
 
         }
@@ -32,7 +34,7 @@
 
    {
 
-      $this->db->where('status', 'Active');
+      $this->db->where('status', '1');
       $this->db->where('user_id', $user_id);
       $query = $this->db->get('donar_info');
       return $query->result();

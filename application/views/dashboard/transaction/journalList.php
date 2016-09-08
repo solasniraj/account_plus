@@ -1,6 +1,6 @@
 <div id="page-wrapper">
     <div class="graphs">
-        <h3 class="blank1">Journal Entry Headings</h3>
+        <h3 class="blank1">Journal Entries</h3>
         <div class="xs tabls">
             <?php
             $flashMessage = $this->session->flashdata('flashMessage');
@@ -19,28 +19,27 @@
                         <thead>
                             <tr>
 
-                                <th>S.N</th>
-                                <th>Code</th>
-                                <th>Account Heading</th>
+                               
+                                <th>Entry No.</th>
+                                <th>Summary</th>
+                                <th>Amount</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            if (count($program_list)) {
-                                $i = 1;
-                                foreach ($program_list as $list) {
+                                foreach ($transactionDetails as $tGLList) {
                                     ?>		
                                     <tr>
 
-                                        <td><?php echo $i++; ?></td>
-                                        <td><?php echo $list->program_code; ?></td>
-                                        <td><?php echo $list->program_name; ?></td>
+                                        <td><?php echo $tGLList->gl_no; ?></td>
+                                        <td><?php echo $tGLList->summary_comment; ?></td>
+                                        <td><?php echo $tGLList->amount; ?></td>
 
-                                        <td><a href="<?php echo base_url() . 'programs/edit/' . $list->id; ?>">Edit</a> / <a href="<?php echo base_url() . 'programs/delete/' . $list->id; ?>">Delete</a> / <a href="<?php echo base_url() . 'programs/createSubLedger/' . $list->id; ?>">Create Sub Ledger</a> / <a href="<?php echo base_url() . 'programs/viewSubLedger/' . $list->id; ?>">View Ledger Details</a> / <a href="<?php echo base_url() . 'donars/assignDonars/' . $list->id; ?>">Assign Donars</a> / <a href="<?php echo base_url() . 'legder/addLedgerProgram/' . $list->id; ?>">Add Ledger</a></td>
+                                        <td><a href="<?php echo base_url() . 'transaction/preview/' . $tGLList->gl_no; ?>">Preview</a></td>
                                     </tr>
     <?php }
-} ?>
+ ?>
 
                         </tbody>
                     </table>

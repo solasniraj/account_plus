@@ -260,20 +260,30 @@
     if ($this->session->userdata('logged_in') == true) {
 
       $userId = $this->session->userdata("user_id");
-   $data['transaction details'] = $this->transaction_model->get_transactions_details();  
-      $this->load->view('dashboard/templates/header');
+   $data['transactionDetails'] = $this->transaction_model->get_transactions_details();     
+   $this->load->view('dashboard/templates/header');
      $this->load->view('dashboard/templates/sideNavigation');
      $this->load->view('dashboard/templates/topHead');
-     $this->load->view('dashboard/transaction/journalList');
-     $this->load->view('dashboard/templates/footer');
-      
-      
+     $this->load->view('dashboard/transaction/journalList', $data);
+     $this->load->view('dashboard/templates/footer');   
        } else {
       redirect('login/index/?url=' . $url, 'refresh');
     }
   }
   
-  public function cashReceiptEntry()
+  public function preview($id)
+  {
+      $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
+      $userId = $this->session->userdata("user_id");
+    $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($id);
+    var_dump($data);  
+       } else {
+      redirect('login/index/?url=' . $url, 'refresh');
+    }
+  }
+
+    public function cashReceiptEntry()
   {
        $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
@@ -397,7 +407,9 @@
            
            $indexNumber = $transData->indexNumber;
            $pCode = $transData->pCode;
-           $accountHead = $transData->programName;
+           $accountHd = $transData->programName;
+           $temp1   = explode('#', $accountHd)[1];
+           $accountHead = $temp1;
            $account_id = $transData->program_id;
            $subLedgerName = $transData->subLedgerName;
            $subLedger_id = $transData->subLedger_id;

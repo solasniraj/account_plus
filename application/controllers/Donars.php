@@ -50,11 +50,12 @@ class donars extends CI_Controller {
       {
         $user_id=$this->session->userdata('user_id');
        
-       $this->form_validation->set_rules('donarCode', 'Donar Code', 'trim|required|callback_xss_clean|max_length[200]');
+       
        $this->form_validation->set_rules('donarName', 'Donar Name', 'trim|required|callback_xss_clean|max_length[1000]');
        $this->form_validation->set_rules('donarAddress', 'Donar Address', 'trim|callback_xss_clean|max_length[1000]');
        $this->form_validation->set_rules('emailId', 'Donar Email ID', 'trim|callback_xss_clean|max_length[100]');
        $this->form_validation->set_rules('contactNumber', 'Contact Number of Bank', 'trim|callback_xss_clean|max_length[50]');
+       
        $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
 
        if ($this->form_validation->run() == FALSE)
@@ -67,9 +68,11 @@ class donars extends CI_Controller {
         $donarAddress = $this->input->post('donarAddress');
         $emailId = $this->input->post('emailId');
         $contactNumber = $this->input->post('contactNumber');
-        $donarCode = $this->input->post('donarCode');
+        $contactPerson = $this->input->post('contactPerson');
+        $contactPCellNo = $this->input->post('contactPCellNo');
+        
        
-        $result=$this->donar_model->add_new_donar($donarName,$donarAddress, $emailId, $contactNumber, $donarCode);
+        $result=$this->donar_model->add_new_donar($donarName,$donarAddress, $emailId, $contactNumber, $contactPerson, $contactPCellNo);
         if($result)
         {
          $this->session->set_flashdata('flashMessage', 'Donar added successfully');

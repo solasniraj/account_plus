@@ -8,12 +8,26 @@ class Transaction_model extends CI_Model {
 
     public function get_transactions_details()
     {
-        $this->db->where('status', 'Active');
-            $query = $this->db->get('bank_info');
-             return $query->result();
+        $this->db->where('status', '1');
+        $this->db->select('*');
+        $this->db->from('gl_trans_info');
+$this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.gl_no');
+$query = $this->db->get();
+ return $query->result();               
+    }
+    
+    public function get_single_transaction_details($id)
+    {
+        $this->db->where('gl_no', $id);
+        $this->db->where('status', '1');
+        $this->db->select('*');
+        $this->db->from('gl_trans_info');
+$this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.gl_no');
+$query = $this->db->get();
+ return $query->result();   
     }
 
-        public function add_gl_transaction($journalNo, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo)
+    public function add_gl_transaction($journalNo, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo)
     {
         $data = Array(
             'gl_no' => $journalNo,
@@ -27,7 +41,7 @@ class Transaction_model extends CI_Model {
                 'memo' => $description,
                 'amount' => $debitAmount,
                 'cheque_no' => $chequeNo,
-                'status' => "Active",
+                'status' => "1",
                 );
        return  $this->db->insert('gl_trans_info', $data);
      		
