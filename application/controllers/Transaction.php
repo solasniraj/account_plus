@@ -277,7 +277,11 @@
     if ($this->session->userdata('logged_in') == true) {
       $userId = $this->session->userdata("user_id");
     $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($id);
-    var_dump($data);  
+    $this->load->view('printPreview/preview/templates/header');
+     $this->load->view('printPreview/preview/transaction/singleJournalEntry', $data);
+     $this->load->view('printPreview/preview/templates/footer');
+    
+    
        } else {
       redirect('login/index/?url=' . $url, 'refresh');
     }
