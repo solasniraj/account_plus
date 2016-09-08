@@ -6,6 +6,7 @@
       $this->load->library('session');
       $this->load->model('program_model');
        $this->load->model('bank_model');
+        $this->load->model('transaction_model');
       $this->load->helper('url');
       $this->load->helper(array('form', 'url'));
       $this->load->library('pagination');
@@ -259,7 +260,7 @@
     if ($this->session->userdata('logged_in') == true) {
 
       $userId = $this->session->userdata("user_id");
-      
+   $data['transaction details'] = $this->transaction_model->get_transactions_details();  
       $this->load->view('dashboard/templates/header');
      $this->load->view('dashboard/templates/sideNavigation');
      $this->load->view('dashboard/templates/topHead');
@@ -338,47 +339,6 @@
   }
 
 
-  public function  addJournal()
-  {
-   $url = current_url();
-   if ($this->session->userdata('logged_in') == true) {
-        // transType programType  subLedgerType description amount  chequeNo
-     $user_id=$this->session->userdata('user_id');
-     $this->load->library('form_validation');
-     $this->form_validation->set_rules('transType', 'transType', 'trim|required|callback_xss_clean|max_length[200]');
-     $this->form_validation->set_rules('program_name', 'program name', 'trim|required|callback_xss_clean|max_length[200]');
-     $this->form_validation->set_rules('subLedger_name', 'subLedger name', 'trim|required|callback_xss_clean|max_length[200]');
-     $this->form_validation->set_rules('description', 'description', 'trim|required|callback_xss_clean|max_length[200]');
-     $this->form_validation->set_rules('amount', 'amount', 'trim|required|callback_xss_clean|max_length[200]');
-     $this->form_validation->set_rules('chequeNo', 'chequeNo', 'trim|required|callback_xss_clean|max_length[200]');
-     $this->form_validation->set_rules('ledgerType', 'ledgerType', 'trim|required|callback_xss_clean|max_length[200]');     
-     $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
-
-     if ($this->form_validation->run() == FALSE)
-     {
-       $data['program_list']=$this->program_model->view_programm_listing($user_id);
-       $this->load->view('dashboard/templates/header');
-       $this->load->view('dashboard/templates/sideNavigation');
-       $this->load->view('dashboard/templates/topHead');
-       $this->load->view('dashboard/transaction/journalEntry', $data);
-       $this->load->view('dashboard/templates/footer');   
-     }
-     else 
-     {
-      echo "success";
-
-    }
-
-  } 
-
-  else 
-  {
-
-    redirect('login/index/?url=' . $url, 'refresh');
-    
-  }
-
-  }
 
 
   public function xss_clean($str)
@@ -428,30 +388,54 @@
          $comment = $this->input->post('comment');     
          $summary = $this->input->post('summary');     
          $journalNo = $this->input->post('journalNo');     
-         var_dump($journalNo);
-         var_dump($journalType);
-         var_dump($datepicker);
-         var_dump($comment);
-         var_dump($summary);
+         
          
          
         $myData = $_POST['mydata'];
        $drCr = json_decode($myData);
+       foreach ($drCr as $transData){
+           
+           $indexNumber = $transData->indexNumber;
+           $pCode = $transData->pCode;
+           $accountHead = $transData->programName;
+           $account_id = $transData->program_id;
+           $subLedgerName = $transData->subLedgerName;
+           $subLedger_id = $transData->subLedger_id;
+           $donarName = $transData->donarName;
+           $donar_id = $transData->donar_id;
+           $ledgerType = $transData->ledgerType;
+           $description = $transData->description;
+           $debitAmount = $transData->debitAmount;
+           $creditAmount = $transData->creditAmount;
+           $chequeNo = $transData->chequeNo;
+          
+           if(!empty($debitAmount)){
+              if($journalType == '1' || $journalType == '4'){
+                  $this->transaction_model->add_gl_transaction($journalNo, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
+              }elseif($journalType == '2' || $journalType == '3'){
+                  $debitAmount = -$debitAmount;
+                          $this->transaction_model->add_gl_transaction($journalNo, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
+              }else{
+                  echo "something went wrong";
+              }
+               
+           }elseif(!empty ($creditAmount)){
+               if($journalType == '1' || $journalType == '4'){
+                  $creditAmount = -$creditAmount;
+                  $this->transaction_model->add_gl_transaction($journalNo, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);
+              }elseif($journalType == '2' || $journalType == '3'){
+                  $this->transaction_model->add_gl_transaction($journalNo, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);
+              }else{
+                  echo "something went wrong";
+              }
+           }else{
+               echo 'neither debit nor credit';
+           }
+       }
+       $this->transaction_model->add_comment_of_transaction($journalNo, $comment, $summary);
        
-      //$indexNo = $myData->indexNumber;//:incrementCounterForItem,
-     //   var_dump($indexNo);
-//      pCode:pCode, 
-//      programName:program,
-//      program_id:program_id,
-//      subLedgerName:subLedger,
-//      subLedger_id:subLedger_id, 
-//      donarName:donar, 
-//      donar_id:donar_id,
-//      ledgerType:ledgerType,
-//      description:description,
-//      debitAmount:debitInsertValue,
-//      creditAmount:creditInsertValue,
-//      chequeNo:chequeNo
+     echo "Transaction has been added successfully";
+       
 
     }
 
