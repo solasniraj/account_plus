@@ -26,27 +26,31 @@
                                      <?php echo form_error('bankAccountName'); ?>
                                 </div>
                             </div>
-                            
+                           
                             <div class="form-group">
                     <label class="col-sm-2 control-label" for="accountType"><b>Select Account Type</b></label>
-                    <div class="col-sm-8"><select class="form-control1" id="accountType" name="accountType">
-                            <option value="0">Savings Account</option>
-<option value="1">Chequing Account</option>
-<option value="2">Credit Account</option>
-<option value="3">Cash Account</option>
+                    <div class="col-sm-8">
+                        <select class="form-control1" id="accountType" name="accountType">
+                            <option value="">Select Account Type</option>
+                            <?php if(!empty($accountTypes)){
+foreach ($accountTypes as $aTypes){ ?>
+                            <option value="<?php echo $aTypes->id; ?>"><?php echo $aTypes->bank_account_type; ?></option>
+
+                            <?php }} ?>
                         </select>
-                     <?php echo form_error('chartAccType'); ?>
+                     <?php echo form_error('accountType'); ?>
                     </div>
                 </div>
                             <?php if(!empty($chartMaster)){ ?>
                             <div class="form-group">
                     <label class="col-sm-2 control-label" for="accountGLCode"><b>Bank Account GL Code</b></label>
-                    <div class="col-sm-8"><select class="form-control1" id="accountGLCode" name="accountGLCode">
+                    <div class="col-sm-8">
+                        <select class="form-control1" id="accountGLCode" name="accountGLCode">
                              <optgroup label="Assets">
                         <?php foreach ($chartMaster as $clist){
                            if($clist->chart_class_id== '1') {
                             ?>                          
-                            <option value="<?php $clist->account_code; ?>"><?php echo $clist->account_code.' '.$clist->account_name; ?></option> 
+                            <option value="<?php echo $clist->account_code; ?>"><?php echo $clist->account_code.' '.$clist->account_name; ?></option> 
                            <?php }  } ?>
                        </optgroup>
                         </select>
@@ -88,7 +92,7 @@
                             </div>
                             
                             <div class="col-sm-5 col-sm-offset-2">
-                                                <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Submit</button>
+                                    <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Submit</button>
                             </div>
 
                         </form>

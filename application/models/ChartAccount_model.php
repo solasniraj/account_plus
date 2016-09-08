@@ -37,11 +37,11 @@
         {
             $data = Array(
             'account_code' => $newCode,
-                'account_code2' => NULL,
                 'account_name' => $programName,
                 'account_status' => 'Active',
                 'chart_class_id' => $chartAccType,
-                'program_id' => $result);
+                'program_id' => $result,
+                'bank_id' => NULL);
        return  $this->db->insert('chart_master', $data);
         }
             
