@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/opt/lampp/htdocs/account_plus/contents/js/function.js</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Transaction.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/transaction/journalEntry.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/templates/header.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Preview.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Ledger.php</file>
         </group>
     </open-files>
 </project-private>
