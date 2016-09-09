@@ -40,7 +40,7 @@
                             <th><input id="datepicker" class="form-control" type="text" placeholder="Day/Month/Year" name="datepicker"></th>
                             <th>123457</th>
                            
-                             <th><a href="http://localhost/account_plus/programs/edit/5">Preview</a></th>
+                            <td><a href="<?php echo base_url() . 'transaction/preview/' . $tGLList->gl_no; ?>">Preview</a></td>
                         </tr>
                          
 
