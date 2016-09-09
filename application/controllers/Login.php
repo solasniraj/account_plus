@@ -130,7 +130,7 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
         $this->load->library('form_validation');
         $this->form_validation->set_rules('userName', 'Username', 'trim|required|callback_xss_clean');
         $this->form_validation->set_rules('userPass', 'Password', 'trim|required|callback_xss_clean');
-        $this->form_validation->set_rules('fiscalYear', 'FIscal Year', 'trim|required|callback_xss_clean');
+        $this->form_validation->set_rules('fiscalYear', 'Fiscal Year', 'trim|required|callback_xss_clean');
         $this->form_validation->set_error_delimiters('<div class="form_errors">', '</div>');
         if ($this->form_validation->run() == FALSE) {
             $this->index();

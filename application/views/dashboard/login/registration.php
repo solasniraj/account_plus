@@ -168,9 +168,10 @@ $("#createCredentials").click(function()
 						<div class="log-input" style="margin-bottom:10px;">
 							<div class="log-input-left">
 								<select id="selector1" name="fiscalYear" class="form-control3">
-								    <option>Fisal Year Setup</option>
+                                                                    <option value="">Fisal Year Setup</option>
 									<option value="2016">2016</option>
 								</select>
+                                                            <?php echo form_error('fiscalYear'); ?>
 							</div>
 
 							<div class="clearfix"> </div>
