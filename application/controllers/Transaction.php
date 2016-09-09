@@ -281,7 +281,7 @@ $user_id = $this->session->userdata('user_id');
     if ($this->session->userdata('logged_in') == true) {
 
       $userId = $this->session->userdata("user_id");
-      $data['transactionDetails'] = $this->transaction_model->get_transactions_details();     
+      $data['transactionDetails'] = $this->transaction_model->get_transactions_details();  
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
@@ -292,7 +292,7 @@ $user_id = $this->session->userdata('user_id');
     }
   }
   
-  public function preview($id)
+  public function preview($id= NULL)
   {
       $url = current_url();
     if ($this->session->userdata('logged_in') == true) {

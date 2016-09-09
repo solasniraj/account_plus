@@ -16,32 +16,28 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered">
-                         <thead>
-                            <tr>
-                            <center>
-                            <th colspan="6">new bhaouchar </th>
-                                </center>
-                            </tr>
-                        </thead>
-                        <tbody>
+                       <thead>
                         <tr>
                             <th>Bhoucher No </th>
                             <th>Discription</th>
-                            <th>source</th>
                             <th>date</th>
                             <th>Amount(Rs)</th>
-                            <th>&nbsp</th>
+                            <th>Action</th>
                             
                         </tr>
+                        </thead>
+                        <tbody>
+
                         <tr>
-                            <th>1 </th>
-                            <th>GBS tranfered money</th>
-                            <th>Nepal Government</th>
-                            <th><input id="datepicker" class="form-control" type="text" placeholder="Day/Month/Year" name="datepicker"></th>
-                            <th>123457</th>
-                           
+                        <?php
+                        foreach ($transactionDetails as $tGLList) {   ?>  
+                            <td><?php echo $tGLList->gl_no; ?> </td>
+                            <td><?php echo $tGLList->memo; ?> </td>
+                            <td><?php echo $tGLList->tran_date; ?> </td>
+                            <td><?php echo $tGLList->amount; ?> </td>
                             <td><a href="<?php echo base_url() . 'transaction/preview/1' ?>">Preview</a></td>
                         </tr>
+                        <?php } ?>
                          
 
                             

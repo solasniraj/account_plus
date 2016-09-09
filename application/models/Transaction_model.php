@@ -11,9 +11,9 @@ class Transaction_model extends CI_Model {
         $this->db->where('status', '1');
         $this->db->select('*');
         $this->db->from('gl_trans_info');
-$this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.gl_no');
-$query = $this->db->get();
- return $query->result();               
+        $this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.gl_no');
+         $query = $this->db->get();
+        return $query->result();               
     }
     
     public function get_single_transaction_details($id)
