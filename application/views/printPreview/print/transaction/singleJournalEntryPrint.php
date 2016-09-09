@@ -1,13 +1,36 @@
 
+  <style>
+
+
+@media print {
+    aside#sidebar,header[role="banner"],footer,#comments,#respond {
+        display: none;
+    }
+    #container #content #main {
+        width: 90%;
+        margin: 0px;
+        padding: 0px;
+    }
+    * {
+        color: #000;    
+        background-color: #fff;
+        @include box-shadow(none);
+        @include text-shadow(none);
+    }
+    a:after {
+        content: "( "attr(href)" )";
+    }
+
+}
+
+
+  </style>
+
     <div class="container">
         <div class="top text-center" style="margin-top:22px;margin-bottom:10px;">
            <img src="http://localhost/account_plus/image/watersplash.png" img-align="top" alt="images" style= "width:40px; height:40px;">
            <br>
-           <h2 style="display:inline;"> GDB Nepal government Ltd </h2>
-           <span class="text-right pull-right">
-             <button id="btnDownload" class="btn btn-primary">Download</button>&nbsp;&nbsp;
-        <a href="<?php echo base_url() . 'prints/singleJournalEntryPrint/1';?>"> <button id="print" class="btn btn-primary" >print</button></a>
-         </span>
+           <h2 > GDB Nepal government Ltd </h2>
      </div>
     </div>
     <div id="page-wrapper">
