@@ -37,7 +37,7 @@ return false;
                                     <tr>
                                         <td for="focusedInput"><b>Journal no</b></td>
                                         <td><input  type="text" id="journalNo" name="journalNo" class="form-control" value="<?php echo $journalNumber; ?>" readonly></td>
-
+                                        <?php echo form_error('journalNo'); ?>
                                     </tr>
 
                                     
@@ -45,7 +45,7 @@ return false;
 
                                         <td class="text-right width100"><b>Date</b></td>
                                         <td><input  class="form-control" id="datepicker" name="datepicker" type="text" placeholder="Day/Month/Year"></td>
-
+                                        <?php echo form_error('datepicker'); ?>
 
                                     </tr>
                                 </table>
@@ -73,6 +73,7 @@ return false;
                                                     <option value="<?php echo $value->id;?>"><?php echo $value->chart_class_name;?></option>
                                                     <?php }  ?>
                                                 </select>
+                                            <?php echo form_error('journalType'); ?>
                                                 </td>
 
                                      </tr>

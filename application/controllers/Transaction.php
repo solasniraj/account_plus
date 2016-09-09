@@ -395,15 +395,46 @@ $user_id = $this->session->userdata('user_id');
   {
       $url = current_url();
    if ($this->session->userdata('logged_in') == true) {
-        // transType programType  subLedgerType description amount  chequeNo
-     $user_id=$this->session->userdata('user_id');
-     $this->load->library('form_validation');
-     $this->form_validation->set_rules('journalNo', 'Journal No', 'trim|required|callback_xss_clean|max_length[200]');
-     $this->form_validation->set_rules('datepicker', 'Date', 'trim|required|callback_xss_clean|max_length[200]');
-     $this->form_validation->set_rules('journalType', 'Journal Type', 'trim|required|callback_xss_clean|max_length[200]');
-    
+        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');
      
-     $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
+     $journalNumber = $this->program_model->getCurrentJournalNumer();
+     
+  $jnNumber = str_pad($journalNumber, 5, "0", STR_PAD_LEFT);
+     $data['journalNumber'] = $committee_code.'-FY'.$fiscal_year.'-'.$jnNumber;
+     $data['journalTypes']=$this->program_model->getJournalTypes();
+     $data['program_list']=$this->program_model->view_programm_listing($user_id);
+     
+     $totalTransBalance = $this->bank_model->get_total_balance_of_all_banks_from_trans_info();
+     $bankAccount = $this->bank_model->view_bank_account_listing();
+     if(!empty($bankAccount)){
+         $totalEnd = '0';
+        foreach($bankAccount as $blist) {
+            $endingBalance = $blist->ending_reconcile_balance;
+            $totalEnd += $endingBalance;
+        }
+     }
+     if((!empty($totalTransBalance )) && (!empty($totalEnd))){         
+         $finalBalance = $totalEnd - $totalTransBalance;
+     }elseif((empty($totalTransBalance )) && (!empty($totalEnd))){       
+             $finalBalance = $totalEnd;
+     }elseif((!empty($totalTransBalance )) && (empty($totalEnd))){        
+             $finalBalance = $totalTransBalance;
+         }else{
+            $finalBalance = '0';
+        }
+     
+     $data['bankBalance'] = $finalBalance;
+     
+     $this->load->library('form_validation');
+     $this->form_validation->set_rules('journalNo', 'Journal No', 'trim|required|max_length[200]');
+     $this->form_validation->set_rules('datepicker', 'Date', 'trim|required|callback_xss_clean|max_length[200]');
+     $this->form_validation->set_rules('journalType', 'Journal Type', 'trim|required|callback_xss_clean|max_length[200]');   
+     
+     $this->form_validation->set_error_delimiters('<div class="form_errors">', '</div>');
 
      if ($this->form_validation->run() == FALSE)
      {
@@ -433,7 +464,7 @@ $user_id = $this->session->userdata('user_id');
            $indexNumber = $transData->indexNumber;
            $pCode = $transData->pCode;
            $accountHd = $transData->programName;
-           $temp1   = explode('#', $accountHd)[1];
+            $temp1 = preg_replace("/^(\w+\s)/", "", $accountHd);
            $accountHead = $temp1;
            $account_id = $transData->program_id;
            $subLedgerName = $transData->subLedgerName;
@@ -470,8 +501,8 @@ $user_id = $this->session->userdata('user_id');
            }
        }
        $this->transaction_model->add_comment_of_transaction($journalNo, $comment, $summary);
-       
-     echo "Transaction has been added successfully";
+       $this->session->set_flashdata('message', 'Transaction added successfully.');
+       redirect('transaction/journalList');
        
 
     }
