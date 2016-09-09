@@ -449,13 +449,11 @@ $user_id = $this->session->userdata('user_id');
      else 
      {
          $ledgerName = $this->input->post('ledgerName');     
-         $datepicker = $this->input->post('datepicker');     
+         $datepicker = date('Y-m-d', strtotime($this->input->post('datepicker')));     
          $journalType = $this->input->post('journalType');     
          $comment = $this->input->post('comment');     
          $summary = $this->input->post('summary');     
          $journalNo = $this->input->post('journalNo');     
-         
-         
          
         $myData = $_POST['mydata'];
        $drCr = json_decode($myData);
@@ -464,7 +462,7 @@ $user_id = $this->session->userdata('user_id');
            $indexNumber = $transData->indexNumber;
            $pCode = $transData->pCode;
            $accountHd = $transData->programName;
-            $temp1 = preg_replace("/^(\w+\s)/", "", $accountHd);
+           $temp1 = preg_replace("/^(\w+\s)/", "", $accountHd);
            $accountHead = $temp1;
            $account_id = $transData->program_id;
            $subLedgerName = $transData->subLedgerName;

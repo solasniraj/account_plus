@@ -20,7 +20,7 @@
                         <tr>
                             <th>Bhoucher No </th>
                             <th>Discription</th>
-                            <th>date</th>
+                            <th>Date</th>
                             <th>Amount(Rs)</th>
                             <th>Action</th>
                             
@@ -32,10 +32,10 @@
                         <?php
                         foreach ($transactionDetails as $tGLList) {   ?>  
                             <td><?php echo $tGLList->gl_no; ?> </td>
-                            <td><?php echo $tGLList->memo; ?> </td>
+                            <td><?php echo $tGLList->summary_comment; ?> </td>
                             <td><?php echo $tGLList->tran_date; ?> </td>
                             <td><?php echo $tGLList->amount; ?> </td>
-                            <td><a href="<?php echo base_url() . 'transaction/preview/1' ?>">Preview</a></td>
+                            <td><a href="<?php echo base_url() . 'transaction/preview/'.$tGLList->gl_no; ?>">Preview</a></td>
                         </tr>
                         <?php } ?>
                          

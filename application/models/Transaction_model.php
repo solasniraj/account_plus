@@ -33,6 +33,7 @@ $query = $this->db->get();
             'gl_no' => $journalNo,
             'type' => "Assets",
             'type_no' => $journalType,
+            'tran_date' => $datepicker,
                 'account_code' => $account_id,
                 'account_head' => $accountHead,
                 'sub_ledger' => $subLedgerName,
