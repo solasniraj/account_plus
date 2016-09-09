@@ -60,7 +60,7 @@
         $plastId = $this->program_model->get_last_code_of_program();
          $countProgram = $this->program_model->count_active_programs();
         $newPCode = $plastId + '1';
-        $newProgramCode = str_pad($newPCode, 2, "0", STR_PAD_LEFT);
+        $newProgramCode = $chartAccType.(str_pad($newPCode, 2, "0", STR_PAD_LEFT));
         if($countProgram <  100){
         $lastId = $this->chartAccount_model->get_last_code_of_related_chart($chartAccType);
         $newCode = $lastId + '1';

@@ -15,7 +15,7 @@
 
 	<!-- sanoj css -->
 
-<link href="<?php echo base_url().'contents/css/sanoj.css'; ?>" rel='stylesheet' type='text/css' />
+<link href="<?php echo base_url().'contents/css/custom.css'; ?>" rel='stylesheet' type='text/css' />
 
 
 	<!-- sanoj css ends  -->
@@ -154,19 +154,10 @@ $("#createCredentials").click(function()
 							<div class="clearfix"> </div>
 						</div>
 
-<!--                       <div class="margin15">
-						<div class="radio">
-							  <label><input type="radio" class="font16" name="optradio">Use default user and password</label>
-							</div>
-							<div class="radio">
-							  <label><input type="radio" class="font16" id="createCredentials" name="optradio">Create user with new Credentials</label>
-							</div>
-						</div>-->
 
-
-<!--						<div class="log-input" id="openCredentials" style="display:none">
+<!--						<div class="log-input">
 							<div class="log-input-left">
-								<input type="text"  style="margin-bottom:12px;" name="credintals" value="" placeholder="enter new Credentials" />
+								<input type="text"  style="margin-bottom:12px;" name="credintals" value="" placeholder="enter password" />
 								<?php //echo form_error('credintals'); ?>
 							</div>
 
@@ -184,7 +175,6 @@ $("#createCredentials").click(function()
 
 							<div class="clearfix"> </div>
 						</div>
-
 
 						<input type="submit" value="Proceed">
 					</form>	 
