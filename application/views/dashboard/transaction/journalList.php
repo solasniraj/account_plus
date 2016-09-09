@@ -16,36 +16,40 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered">
-                        <thead>
+                         <thead>
                             <tr>
-
-                               
-                                <th>Entry No.</th>
-                                <th>Summary</th>
-                                <th>Amount</th>
-                                <th>Action</th>
+                            <center>
+                            <th colspan="6">new bhaouchar </th>
+                                </center>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                                foreach ($transactionDetails as $tGLList) {
-                                    ?>		
-                                    <tr>
+                        <tr>
+                            <th>Bhoucher No </th>
+                            <th>Discription</th>
+                            <th>source</th>
+                            <th>date</th>
+                            <th>Amount(Rs)</th>
+                            <th>&nbsp</th>
+                            
+                        </tr>
+                        <tr>
+                            <th>1 </th>
+                            <th>GBS tranfered money</th>
+                            <th>Nepal Government</th>
+                            <th><input id="datepicker" class="form-control" type="text" placeholder="Day/Month/Year" name="datepicker"></th>
+                            <th>123457</th>
+                           
+                            <td><a href="<?php echo base_url() . 'transaction/preview/1' ?>">Preview</a></td>
+                        </tr>
+                         
 
-                                        <td><?php echo $tGLList->gl_no; ?></td>
-                                        <td><?php echo $tGLList->summary_comment; ?></td>
-                                        <td><?php echo $tGLList->amount; ?></td>
-
-                                        <td><a href="<?php echo base_url() . 'transaction/preview/' . $tGLList->gl_no; ?>">Preview</a></td>
-                                    </tr>
-    <?php }
- ?>
-
+                            
                         </tbody>
-                    </table>
-                </div><!-- /.table-responsive -->
+                        </table>
+
+                </div>
             </div>
         </div>
-    </div>
-</div>
+   </div>
 </div>

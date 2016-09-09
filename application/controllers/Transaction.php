@@ -40,11 +40,11 @@
        $output= "";
        if(!empty($ProgrammList))
        {
-         $output .='<option value="">Select Program</option>';
+         $output .='<option value="" class="text-center">Select Program</option>';
          foreach ($ProgrammList as $value)
          {
 
-           $output .= '<option programmId="'.$value->program_id.'" value="'.$value->id.'">'.$value->account_code."#".$value->account_name.'</option>';
+           $output .= '<option programmId="'.$value->program_id.'" value="'.$value->id.'">'.$value->account_code." &nbsp;&nbsp;".$value->account_name.'</option>';
          }
        }
        else
@@ -264,12 +264,12 @@
     if ($this->session->userdata('logged_in') == true) {
 
       $userId = $this->session->userdata("user_id");
-   $data['transactionDetails'] = $this->transaction_model->get_transactions_details();     
-   $this->load->view('dashboard/templates/header');
-     $this->load->view('dashboard/templates/sideNavigation');
-     $this->load->view('dashboard/templates/topHead');
-     $this->load->view('dashboard/transaction/journalList', $data);
-     $this->load->view('dashboard/templates/footer');   
+      $data['transactionDetails'] = $this->transaction_model->get_transactions_details();     
+      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/transaction/journalList', $data);
+      $this->load->view('dashboard/templates/footer');   
        } else {
       redirect('login/index/?url=' . $url, 'refresh');
     }
