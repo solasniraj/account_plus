@@ -34,7 +34,7 @@
                             <th><a href="http://localhost/account_plus/programs/edit/5">Edit</a> </th>
                             <th><a href="http://localhost/account_plus/programs/edit/5">Delete</a></th>
                             <th><a href="http://localhost/account_plus/programs/edit/5">Post</a></th>
-                            <td><a href="<?php echo base_url() . 'transaction/preview/' . $tGLList->gl_no; ?>">Preview</a></td>
+             <!--                <td><a href="<?php echo base_url() . 'transaction/preview/' . $tGLList->gl_no; ?>">Preview</a></td> -->
                         </tr>
 
                             
