@@ -17,6 +17,19 @@
     {
       $url = current_url();
       if ($this->session->userdata('logged_in') == true) {
+          $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');
+             var_dump($user_id);
+              var_dump($username);
+               var_dump($committee_id);
+                var_dump($committee_code);
+               var_dump($fiscal_year);
+             
+          
+          
        $this->load->view('dashboard/templates/header');
        $this->load->view('dashboard/templates/sideNavigation');
        $this->load->view('dashboard/templates/topHead');
@@ -213,12 +226,16 @@
   {
    $url = current_url();
    if ($this->session->userdata('logged_in') == true) {
-
-     $user_id=$this->session->userdata('user_id');
+$user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');
+     
      $journalNumber = $this->program_model->getCurrentJournalNumer();
      
   $jnNumber = str_pad($journalNumber, 5, "0", STR_PAD_LEFT);
-    // $data['journalNumber'] = 
+     $data['journalNumber'] = $committee_code.'-FY'.$fiscal_year.'-'.$jnNumber;
      $data['journalTypes']=$this->program_model->getJournalTypes();
      $data['program_list']=$this->program_model->view_programm_listing($user_id);
      
