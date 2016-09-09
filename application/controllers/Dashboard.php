@@ -14,6 +14,12 @@ class dashboard extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
+             $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');
+                     
          $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');

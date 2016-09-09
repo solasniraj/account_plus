@@ -5,6 +5,48 @@
         public function __construct() {
             $this->load->database();
         }
+        
+        public function add_committee_default_user_fiscal_year($dataCommittee, $dataFiscalYear, $dataUser)
+        {
+            $this->db->trans_start();
+            
+           $this->db->insert('committee_info', $dataCommittee);
+       $id = $this->db->insert_id();
+$q = $this->db->get_where('committee_info', array('id' => $id));
+
+$committeeId = $q->row()->id; 
+$committeeCode = $q->row()->code;
+
+            $dataFiscalYear['committee_code'] = $committeeCode;
+            $dataFiscalYear['committee_id'] = $committeeId;
+        $dataUser['committee_id'] = $committeeId;
+        $dataUser['committee_code'] = $committeeCode;
+ 
+  $this->db->insert('fiscal_year_info', $dataFiscalYear);
+ $this->db->insert('user_info', $dataUser);
+ 
+ $this->db->trans_complete();
+ 
+ if ($this->db->trans_status() === FALSE) {
+    # Something went wrong.
+    $this->db->trans_rollback();
+    return FALSE;
+} 
+else {
+    # Everything is Perfect. 
+    # Committing data to the database.
+    $this->db->trans_commit();
+    return TRUE;
+}
+ 
+        }
+
+        
+
+
+
+
+
 
         public function check_database_for_first_time()
         {
@@ -19,18 +61,6 @@
         }
         }
 
-        public function add_committee($commiteName, $address, $phone)
-        {
-            //$this->session->set_userdata("committee_code",'12345');
-            $data = Array(
-            'committee_name' => $commiteName,
-            'address' => $address,
-                'phone' => $phone,
-                'code' => '12345',
-                'status' => '1');
-       return  $this->db->insert('committee_info', $data);
-        
-        }
         
         public function get_latest_unlocked_fiscal_year_start_date()
         {
@@ -52,16 +82,6 @@
                }else{
                    return '0';
                }
-        }
-
-        public function add_fiscal_year($commiteName, $fiscalYear)
-        {
-           // $this->session->set_userdata("fiscalYear",'16');
-            $data = Array(
-            'committee_name' => $commiteName,
-            'fiscal_year' => $fiscalYear,
-                'status' => '1');
-       return  $this->db->insert('fiscal_year_info', $data);
         }
 
 

@@ -18,27 +18,29 @@ class login extends CI_Controller {
 $currentDate = date('Y-m-d');
 $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
          $fiscalEnd = $this->dbmanager_model->get_latest_unlocked_fiscal_year_end_date();
-   $startYMD = strtr($fiscalStart, '/', ',');
-   $endYMD = strtr($fiscalEnd, '/', ',');
-          
-    $temp1   = array_map('intval', explode(',',$startYMD));
-$stYr   = array_slice($temp1, 0, 1);
-$stM = array_slice($temp1, 1, 1);
-$stD = array_slice($temp1, 2, 1);
-
-$temp2   = array_map('intval', explode(',',$endYMD));
-$enYr   = array_slice($temp2, 0, 1);
-$enM = array_slice($temp2, 1, 1);
-$enD = array_slice($temp2, 2, 1);
-
-        include_once 'nepali_calendar.php';
-	$cal = new Nepali_Calendar();
-	$fiscalYrStart = $cal->nep_to_eng($stYr[0],$stM[0],$stD[0]);
-        $fiscalYrEnd = $cal->nep_to_eng($enYr[0],$enM[0],$enD[0]);
- $endingDate = date('Y-m-d', strtotime($fiscalYrEnd['ymd']));    
- $startingDate = date('Y-m-d', strtotime($fiscalYrStart['ymd']));
-   
-
+$startingDate = date('Y-m-d', strtotime($fiscalStart));
+$endingDate = date('Y-m-d', strtotime($fiscalEnd));
+//   $startYMD = strtr($fiscalStart, '/', ',');
+//   $endYMD = strtr($fiscalEnd, '/', ',');
+//          
+//    $temp1   = array_map('intval', explode(',',$startYMD));
+//$stYr   = array_slice($temp1, 0, 1);
+//$stM = array_slice($temp1, 1, 1);
+//$stD = array_slice($temp1, 2, 1);
+//
+//$temp2   = array_map('intval', explode(',',$endYMD));
+//$enYr   = array_slice($temp2, 0, 1);
+//$enM = array_slice($temp2, 1, 1);
+//$enD = array_slice($temp2, 2, 1);
+//
+//        include_once 'nepali_calendar.php';
+//	$cal = new Nepali_Calendar();
+//	$fiscalYrStart = $cal->nep_to_eng($stYr[0],$stM[0],$stD[0]);
+//        $fiscalYrEnd = $cal->nep_to_eng($enYr[0],$enM[0],$enD[0]);
+// $endingDate = date('Y-m-d', strtotime($fiscalYrEnd['ymd']));    
+// $startingDate = date('Y-m-d', strtotime($fiscalYrStart['ymd']));
+    
+if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
   if (($currentDate > $startingDate) && ($currentDate < $endingDate))
     {
      
@@ -53,7 +55,9 @@ $enD = array_slice($temp2, 2, 1);
     {
       echo "Your system date and time is not correct. Please correct system date and time first to login";  
     }
- 
+}else{
+  $this->load->view('dashboard/login/registration');  
+}
  
     }
     
@@ -72,9 +76,42 @@ $enD = array_slice($temp2, 2, 1);
         $address=$this->input->post('address');
         $phone=$this->input->post('phone');
         $fiscalYear=$this->input->post('fiscalYear');
+        
+        $dataCommittee = Array(
+            'committee_name' => $commiteName,
+            'address' => $address,
+                'phone' => $phone,
+                'code' => '12345',
+                'status' => '1');
+        
+        $dataFiscalYear = Array(
+            'fiscal_year' => $fiscalYear,
+                'begin_date' => $fiscalYear . '/01/01',
+            'end_date' => $fiscalYear . '/12/30',
+                'status' => '1');
+        
+        $dataUser = Array(
+            'user_name' => 'admin',
+            'password' => md5('admin'),
+                'user_type' => 'administrator',
+                'status' => '1');
+        
+      $result1 = $this->dbmanager_model->add_committee_default_user_fiscal_year($dataCommittee, $dataFiscalYear, $dataUser);
+       var_dump($result1); 
+        die;
+        
         $result1 = $this->dbmanager_model->add_committee($commiteName, $address, $phone);
-        $result2 = $this->dbmanager_model->add_fiscal_year($commiteName, $fiscalYear);
-       if($result1 && $result2)
+                if(!empty($result1)){
+              $committeeId = $result1->id;
+              $committeeCode = $result1->code;          
+      }else{
+          $committeeId = NULL;
+          $committeeCode =NULL;
+      }        
+        $result2 = $this->dbmanager_model->add_fiscal_year($committeeCode, $committeeId, $fiscalYear);
+        
+        $result3 = $this->dbmanager_model->add_default_user($committeeId, $committeeCode);
+        if($result1 && $result2 && $result3)
         {
         $this->session->set_flashdata('flashMessage', 'Committee added successfully');
          return redirect('login/login');
@@ -104,6 +141,7 @@ $enD = array_slice($temp2, 2, 1);
         $this->load->library('form_validation');
         $this->form_validation->set_rules('userName', 'Username', 'trim|required|callback_xss_clean');
         $this->form_validation->set_rules('userPass', 'Password', 'trim|required|callback_xss_clean');
+        $this->form_validation->set_rules('fiscalYear', 'FIscal Year', 'trim|required|callback_xss_clean');
         $this->form_validation->set_error_delimiters('<div class="form_errors">', '</div>');
         if ($this->form_validation->run() == FALSE) {
             $this->index();
@@ -111,11 +149,8 @@ $enD = array_slice($temp2, 2, 1);
            
             $query = $this->dbuser->validate();
             if ($query) {
-           
-              
                 $data = array(
-                    'username' => $this->input->post('userName'),
-                    'logged_in' => true                   
+                    'fiscal_year' => $this->input->post('fiscalYear')                
                 );
                 $this->session->set_userdata($data);
              if($link == base_url().'/login/logout')

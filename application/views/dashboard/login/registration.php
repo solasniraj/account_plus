@@ -169,7 +169,7 @@ $("#createCredentials").click(function()
 							<div class="log-input-left">
 								<select id="selector1" name="fiscalYear" class="form-control3">
 								    <option>Fisal Year Setup</option>
-									<option value="2072/2073">2072/2073</option>
+									<option value="2016">2016</option>
 								</select>
 							</div>
 

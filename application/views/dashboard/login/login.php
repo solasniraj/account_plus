@@ -102,10 +102,11 @@
 						</div>
 						<div class="log-input">
 							<div class="log-input-left">
-								<select id="selector1" class="form-control3">
+								<select id="selector1" class="form-control3" name="fiscalYear">
 									<option value="">Select Fiscal Year</option>
-									<option value="2072/2073">2072/2073</option>
+									<option value="2016">2016</option>
 								</select>
+                                                            <?php echo form_error('fiscalYear'); ?>
 							</div>
 
 							<div class="clearfix"> </div>
