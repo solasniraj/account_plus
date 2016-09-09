@@ -264,12 +264,12 @@
     if ($this->session->userdata('logged_in') == true) {
 
       $userId = $this->session->userdata("user_id");
-   $data['transactionDetails'] = $this->transaction_model->get_transactions_details();     
-   $this->load->view('dashboard/templates/header');
-     $this->load->view('dashboard/templates/sideNavigation');
-     $this->load->view('dashboard/templates/topHead');
-     $this->load->view('dashboard/transaction/journalList', $data);
-     $this->load->view('dashboard/templates/footer');   
+      $data['transactionDetails'] = $this->transaction_model->get_transactions_details();     
+      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/transaction/journalList', $data);
+      $this->load->view('dashboard/templates/footer');   
        } else {
       redirect('login/index/?url=' . $url, 'refresh');
     }
