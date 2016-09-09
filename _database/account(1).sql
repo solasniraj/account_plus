@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 09, 2016 at 07:23 AM
+-- Generation Time: Sep 09, 2016 at 12:29 अपराह्न
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `chart_master` (
   `chart_class_id` varchar(20) DEFAULT NULL,
   `program_id` varchar(20) DEFAULT NULL,
   `bank_id` varchar(25) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `chart_master`
@@ -164,8 +164,8 @@ INSERT INTO `chart_master` (`id`, `account_code`, `account_code2`, `account_name
 (16, '405', '', 'Repair &amp; Maintenance Expenses', '0', '4', NULL, NULL),
 (17, '406', '', 'Email, Internet, Telephone &amp; Postage Expenses', '0', '4', NULL, NULL),
 (18, '407', '', 'AAAAAAAAAA Expenses', '0', '4', NULL, NULL),
-(22, NULL, NULL, 'Dilip Poudel', 'Active', '101', NULL, '5'),
-(23, '304', NULL, 'Grassland Management System', 'Active', '3', '19', NULL);
+(23, '304', NULL, 'Grassland Management System', 'Active', '3', '19', NULL),
+(26, '305', NULL, 'Grassland Management', 'Active', '3', '22', NULL);
 
 -- --------------------------------------------------------
 
@@ -180,14 +180,7 @@ CREATE TABLE IF NOT EXISTS `committee_info` (
   `phone` varchar(255) DEFAULT NULL,
   `code` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `committee_info`
---
-
-INSERT INTO `committee_info` (`id`, `committee_name`, `address`, `phone`, `code`, `status`) VALUES
-(4, 'TAAL', 'Bharatpur', '9845214140', '12345', 'Active');
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -243,17 +236,10 @@ CREATE TABLE IF NOT EXISTS `fiscal_year_info` (
   `fiscal_year` varchar(255) DEFAULT NULL,
   `begin_date` varchar(255) DEFAULT NULL,
   `end_date` varchar(255) DEFAULT NULL,
-  `committee_name` text,
+  `committee_code` varchar(255) DEFAULT NULL,
+  `committee_id` varchar(25) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `fiscal_year_info`
---
-
-INSERT INTO `fiscal_year_info` (`id`, `fiscal_year`, `begin_date`, `end_date`, `committee_name`, `status`) VALUES
-(3, '2072/2073', '2072/04/01', '2073/03/30', 'TAAL', 'Active'),
-(4, '2073/2074', '2073/04/01', '2074/03/01', 'ASDF', 'Active');
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -322,14 +308,7 @@ CREATE TABLE IF NOT EXISTS `programs_list` (
   `subledger_id` text,
   `fiscal_year` varchar(255) DEFAULT NULL,
   `donor_id` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `programs_list`
---
-
-INSERT INTO `programs_list` (`id`, `program_code`, `program_name`, `user_id`, `status`, `committee_id`, `subledger_id`, `fiscal_year`, `donor_id`) VALUES
-(19, '01', 'Grassland Management System', 1, NULL, NULL, NULL, NULL, NULL);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -358,17 +337,8 @@ CREATE TABLE IF NOT EXISTS `user_info` (
   `status` varchar(255) DEFAULT NULL,
   `user_type` varchar(255) DEFAULT NULL,
   `committee_id` varchar(255) DEFAULT NULL,
-  `fiscal_year` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `user_info`
---
-
-INSERT INTO `user_info` (`id`, `user_name`, `password`, `status`, `user_type`, `committee_id`, `fiscal_year`) VALUES
-(1, 'bhomnath', '9fe3ef0f7bab8b8f9c60056e680cd727', '1', 'administrator', NULL, NULL),
-(2, 'sanoj', '9c5ddd54107734f7d18335a5245c286b', '1', 'administrator', NULL, NULL),
-(3, 'sanoj', '9c5ddd54107734f7d18335a5245c286b', NULL, NULL, NULL, NULL);
+  `committee_code` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -493,12 +463,12 @@ ALTER TABLE `chart_class`
 -- AUTO_INCREMENT for table `chart_master`
 --
 ALTER TABLE `chart_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `committee_info`
 --
 ALTER TABLE `committee_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `donar_budget_info`
 --
@@ -513,7 +483,7 @@ ALTER TABLE `donar_info`
 -- AUTO_INCREMENT for table `fiscal_year_info`
 --
 ALTER TABLE `fiscal_year_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `gl_trans_comment_details`
 --
@@ -528,7 +498,7 @@ ALTER TABLE `gl_trans_info`
 -- AUTO_INCREMENT for table `programs_list`
 --
 ALTER TABLE `programs_list`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `subledger_info`
 --
@@ -538,7 +508,7 @@ ALTER TABLE `subledger_info`
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

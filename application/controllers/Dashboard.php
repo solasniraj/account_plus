@@ -19,6 +19,12 @@ class dashboard extends CI_Controller {
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');
+             var_dump($user_id);
+              var_dump($username);
+               var_dump($committee_id);
+                var_dump($committee_code);
+               var_dump($fiscal_year);
+             die;  
                      
          $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');

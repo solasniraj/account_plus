@@ -97,21 +97,10 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
                 'status' => '1');
         
       $result1 = $this->dbmanager_model->add_committee_default_user_fiscal_year($dataCommittee, $dataFiscalYear, $dataUser);
-       var_dump($result1); 
-        die;
+       
         
-        $result1 = $this->dbmanager_model->add_committee($commiteName, $address, $phone);
-                if(!empty($result1)){
-              $committeeId = $result1->id;
-              $committeeCode = $result1->code;          
-      }else{
-          $committeeId = NULL;
-          $committeeCode =NULL;
-      }        
-        $result2 = $this->dbmanager_model->add_fiscal_year($committeeCode, $committeeId, $fiscalYear);
-        
-        $result3 = $this->dbmanager_model->add_default_user($committeeId, $committeeCode);
-        if($result1 && $result2 && $result3)
+       
+        if($result1)
         {
         $this->session->set_flashdata('flashMessage', 'Committee added successfully');
          return redirect('login/login');
