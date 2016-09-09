@@ -8,38 +8,39 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-
-                               
-                                <th>Entry No.</th>
-                                <th>Summary</th>
-                                <th>Amount</th>
-                                <th>Action</th>
+                            <center>
+                            <th colspan="9">new bhaouchar </th>
+                                </center>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                                foreach ($singleGLDetails as $tGLList) {
-                                    ?>		
-                                    <tr>
+                        <tr>
+                            <th>Bhoucher No </th>
+                            <th>Discription</th>
+                            <th>source</th>
+                            <th>date</th>
+                            <th>Amount(Rs)</th>
+                            <th>&nbsp</th>
+                            <th>&nbsp</th>
+                            <th>&nbsp</th>
+                            <th>&nbsp</th>
+                        </tr>
+                        <tr>
+                            <th>1 </th>
+                            <th>GBS tranfered money</th>
+                            <th>Nepal Government</th>
+                            <th><input id="datepicker" class="form-control" type="text" placeholder="Day/Month/Year" name="datepicker"></th>
+                            <th>Amount(Rs)</th>
+                            <th><a href="http://localhost/account_plus/programs/edit/5">Edit</a>
+/ </th>
+                            <th><a href="http://localhost/account_plus/programs/edit/5">Delete</a>
+/ </th>
+                            <th><a href="http://localhost/account_plus/programs/edit/5">Post</a>
+/ </th>
+                            <th><a href="http://localhost/account_plus/programs/edit/5">Print</a>
+/ </th>
+                        </tr>
 
-                                        <td><?php echo $tGLList->gl_no; ?></td>
-                                        <td><?php echo $tGLList->summary_comment; ?></td>
-                                        <td><?php echo $tGLList->amount; ?></td>
-
-                                        <td><a href="<?php echo base_url() . 'transaction/preview/' . $tGLList->gl_no; ?>">Preview</a></td>
-                                    </tr>
-    <?php }
- ?>
-
+                            
                         </tbody>
-                    </table>
-                </div><!-- /.table-responsive -->
-            </div>
-        </div>
-        
-        
-        <a href="#">Print</a> <a href="#">PDF Download</a>
-        
-    </div>
-</div>
-
+                       
