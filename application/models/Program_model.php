@@ -163,7 +163,7 @@
   {
 
     $table_row_count = $this->db->count_all('gl_trans_info');
-    return  $table_row_count+1;
+    return  $table_row_count + 1;
 
   }
 

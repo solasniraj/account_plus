@@ -8,7 +8,7 @@
 
         public function check_database_for_first_time()
         {
-            $this->db->where('status', 'Active');
+            $this->db->where('status', '1');
             $query = $this->db->get('committee_info');
             if ($query->num_rows() == 1) {
               $user_id=$query->row()->id;
@@ -21,13 +21,15 @@
 
         public function add_committee($commiteName, $address, $phone)
         {
+            //$this->session->set_userdata("committee_code",'12345');
             $data = Array(
             'committee_name' => $commiteName,
             'address' => $address,
                 'phone' => $phone,
                 'code' => '12345',
-                'status' => 'Active');
+                'status' => '1');
        return  $this->db->insert('committee_info', $data);
+        
         }
         
         public function get_latest_unlocked_fiscal_year_start_date()
@@ -54,10 +56,11 @@
 
         public function add_fiscal_year($commiteName, $fiscalYear)
         {
+           // $this->session->set_userdata("fiscalYear",'16');
             $data = Array(
             'committee_name' => $commiteName,
             'fiscal_year' => $fiscalYear,
-                'status' => 'Active');
+                'status' => '1');
        return  $this->db->insert('fiscal_year_info', $data);
         }
 

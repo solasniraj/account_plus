@@ -7,6 +7,7 @@
       $this->load->model('program_model');
        $this->load->model('bank_model');
         $this->load->model('transaction_model');
+       
       $this->load->helper('url');
       $this->load->helper(array('form', 'url'));
       $this->load->library('pagination');
@@ -214,7 +215,10 @@
    if ($this->session->userdata('logged_in') == true) {
 
      $user_id=$this->session->userdata('user_id');
-     $data['journalNumber']=$this->program_model->getCurrentJournalNumer();
+     $journalNumber = $this->program_model->getCurrentJournalNumer();
+     
+  $jnNumber = str_pad($journalNumber, 5, "0", STR_PAD_LEFT);
+    // $data['journalNumber'] = 
      $data['journalTypes']=$this->program_model->getJournalTypes();
      $data['program_list']=$this->program_model->view_programm_listing($user_id);
      
