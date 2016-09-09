@@ -1,5 +1,5 @@
 
-<div class="top text-center">
+<div class="top text-center" style="margin-top:22px;">
  <img src="http://localhost/account_plus/image/watersplash.png" img-align="top" alt="images" style= "width:40px; height:40px;">
 
    <h2> GDB Nepal government Ltd </h2>
