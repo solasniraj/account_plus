@@ -503,7 +503,7 @@ $user_id = $this->session->userdata('user_id');
        $this->transaction_model->add_comment_of_transaction($journalNo, $comment, $summary);
        $this->session->set_flashdata('message', 'Transaction added successfully.');
        redirect('transaction/journalList');
-       
+      //<body onload="window.print();   setTimeout(function(){window.close();}, 1000); "> 
 
     }
 
