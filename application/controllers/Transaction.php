@@ -476,21 +476,23 @@ $user_id = $this->session->userdata('user_id');
            $chequeNo = $transData->chequeNo;
           
            if(!empty($debitAmount)){
+               $type='dr';
               if($journalType == '1' || $journalType == '4'){
-                  $this->transaction_model->add_gl_transaction($journalNo, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
+                  $this->transaction_model->add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
               }elseif($journalType == '2' || $journalType == '3'){
                   $debitAmount = -$debitAmount;
-                          $this->transaction_model->add_gl_transaction($journalNo, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
+                          $this->transaction_model->add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
               }else{
                   echo "something went wrong";
               }
                
            }elseif(!empty ($creditAmount)){
+               $type='cr';
                if($journalType == '1' || $journalType == '4'){
                   $creditAmount = -$creditAmount;
-                  $this->transaction_model->add_gl_transaction($journalNo, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);
+                  $this->transaction_model->add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);
               }elseif($journalType == '2' || $journalType == '3'){
-                  $this->transaction_model->add_gl_transaction($journalNo, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);
+                  $this->transaction_model->add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);
               }else{
                   echo "something went wrong";
               }

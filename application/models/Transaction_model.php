@@ -29,11 +29,11 @@ $query = $this->db->get();
  return $query->result();   
     }
 
-    public function add_gl_transaction($journalNo, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo)
+    public function add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo)
     {
         $data = Array(
             'gl_no' => $journalNo,
-            'type' => "Assets",
+            'type' => $type,
             'type_no' => $journalType,
             'tran_date' => $datepicker,
                 'account_code' => $account_id,

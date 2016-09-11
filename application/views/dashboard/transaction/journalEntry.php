@@ -186,7 +186,7 @@ return false;
                                         </thead>
                                         <tbody id="workingWithObjectData">
  
-                                          
+                                        </tbody>
                             
                                          <tr>
                                                 <td colspan="7"><b>Total Amount</b></td>
@@ -207,7 +207,7 @@ return false;
                                         <tr id="addArrayData">
 
                                         </tr>
-                                                    </tbody>
+                                                    
                                         </table>
                                 </div>
                               <br>

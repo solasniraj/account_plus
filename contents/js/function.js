@@ -214,7 +214,8 @@
       {
 
         indexNumber:incrementCounterForItem,
-        pCode:pCode, 
+        pCode:pCode,
+        type:'dr',
         programName:program,
         program_id:program_id,
         subLedgerName:subLedger,
@@ -265,6 +266,7 @@
 
         indexNumber:incrementCounterForItem,
         pCode:pCode, 
+        type:'cr',
         programName:program,
         program_id:program_id,
         subLedgerName:subLedger,
