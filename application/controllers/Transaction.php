@@ -457,6 +457,7 @@ $user_id = $this->session->userdata('user_id');
          
         $myData = $_POST['mydata'];
        $drCr = json_decode($myData);
+       
        foreach ($drCr as $transData){
            
            $indexNumber = $transData->indexNumber;
@@ -471,25 +472,27 @@ $user_id = $this->session->userdata('user_id');
            $donar_id = $transData->donar_id;
            $ledgerType = $transData->ledgerType;
            $description = $transData->description;
-           $debitAmount = $transData->debitAmount;
-           $creditAmount = $transData->creditAmount;
+           $debits = $transData->debitAmount;
+           $debitAmount = str_replace( ',', '', $debits );
+           $credits = $transData->creditAmount;
+           $creditAmount = str_replace( ',', '', $credits );
            $chequeNo = $transData->chequeNo;
           
-           if(!empty($debitAmount)){
+           if((!empty($debitAmount)) && is_numeric( $debitAmount )){
                $type='dr';
               if($journalType == '1' || $journalType == '4'){
                   $this->transaction_model->add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
               }elseif($journalType == '2' || $journalType == '3'){
-                  $debitAmount = -$debitAmount;
+                  $debitAmount = ('-1') * $debitAmount;
                           $this->transaction_model->add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
               }else{
                   echo "something went wrong";
               }
                
-           }elseif(!empty ($creditAmount)){
+           }elseif((!empty ($creditAmount)) && is_numeric( $creditAmount )){
                $type='cr';
                if($journalType == '1' || $journalType == '4'){
-                  $creditAmount = -$creditAmount;
+                  $creditAmount = ('-1') * $creditAmount;
                   $this->transaction_model->add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);
               }elseif($journalType == '2' || $journalType == '3'){
                   $this->transaction_model->add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);

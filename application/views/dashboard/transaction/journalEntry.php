@@ -172,7 +172,7 @@ return false;
                                     <table class="tablee" width="100%">
                                         <thead>
                                             <tr>
-                                                <td  class="b"><b>Code#</b></td>
+                                                <td  class="b"><b>A/C Code</b></td>
                                                 <td  class="b"><b>A/C Head</b></td>
                                                 <td  class="b"><b>Sub-Ledger</b></td>
                                                 <td  class="b"><b>Ledger type</b></td>

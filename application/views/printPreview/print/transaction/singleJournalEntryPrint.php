@@ -72,7 +72,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($singleGLDetails as $gLList){ ?>
+                            <?php foreach ($singleGLDetails as $gLList){ $type= $gLList->type; ?>
                             <tr>
                                 <th><?php echo $gLList->account_code; ?></th>
                                 <th><?php echo $gLList->account_head; ?></th>                           
@@ -80,8 +80,8 @@
                                 <th><?php echo $gLList->donor_id; ?></th>
                                 <th><?php echo $gLList->ledger_type; ?></th>
                                 <th><?php echo $gLList->memo; ?></th>
-                                <th><?php echo $gLList->amount; ?></th>
-                                <th><?php echo $gLList->amount; ?></th>
+                                <th><?php if($type =='dr'){ echo abs($gLList->amount);}else{ NULL; } ?></th>
+                                <th><?php if($type =='cr'){ echo abs($gLList->amount);}else{ NULL; } ?></th>
                                 <th><?php echo $gLList->cheque_no; ?></th>
 
 
