@@ -100,7 +100,7 @@ return false;
 
                                                 <tr>
 
-                                                    <td class="col-md-1"><b>Code#</b></td>
+                                                    <td class="col-md-1"><b>Account Code</b></td>
                                                     <td class="col-md-1"><b>A/C Head</b></td>
                                                     <td class="col-md-1"><b>Sub-Ledger</b></td>
                                                     <td class="col-md-1"><b>Donar-list</b></td>

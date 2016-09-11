@@ -14,8 +14,7 @@
         <div class="graphs">
             <div class="xs tabls">
                 <div data-example-id="simple-responsive-table" class="bs-example4">
-
-                   <!-- priview first table of singleJournla entry -->
+                      <!-- priview first table of singleJournla entry -->
 
                    <div class="table-responsive">
                     <table class="table table-bordered">
@@ -23,6 +22,7 @@
                             <tr>
                                 <center>
                                     <th>General Ledger Transaction Details</th>
+                                    <th>Cheque Number</th>
                                     <th>Reference</th>
                                     <th>Date </th>
                                     <th>Person/item </th>
@@ -49,32 +49,45 @@
                                 <center>
                                     <th>Account code</th>
                                     <th>Account name</th>
-                                    <th>DEmension </th>
-                                    <th>Debit </th>
+                                    <th>Sub-ledger </th>
+                                    <th>Ledger type</th>
+                                    <th>Donar name</th>
+                                    <th>Debit</th>
                                     <th>Credit</th>
+                                    <th>Description</th>
+                                    <th>Demension </th>
                                     <th>Memo</th>
                                 </center>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th>1200 </th>
-                                <th>Account Receivables</th>                           
                                 <th>&nbsp</th>
-                                <th>500.oo</th>
+                                <th>&nbsp</th>                           
                                 <th>&nbsp</th>
                                 <th>&nbsp</th>
+                                <th>&nbsp</th>
+                                <th>&nbsp</th>
+                                <th>&nbsp</th>
+                                <th>&nbsp</th>
+                                <th>&nbsp</th>
+                                <th>&nbsp</th>
+
 
 
                             </tr>
                             <tbody>
                                 <tr>
-                                    <th>1060 </th>
-                                    <th>Checking Account</th>                           
                                     <th>&nbsp</th>
-                                    <th>&nbsp</th>
-                                    <th>500</th>
-                                    <th>&nbsp</th>
+                                <th>&nbsp</th>                           
+                                <th>&nbsp</th>
+                                <th>&nbsp</th>
+                                <th>&nbsp</th>
+                                <th>&nbsp</th>
+                                <th>&nbsp</th>
+                                <th>&nbsp</th>
+                                <th>&nbsp</th>
+                                <th>&nbsp</th>
 
 
                                 </tr>
@@ -93,6 +106,25 @@
                         </tbody>
                     </table>
                 </div>
+                 <div class="row">
+
+                                    <div class="col-md-5 col-md-offset-1" >
+                                        <div class="form-group">
+                                            <label for="comment"><b>Detailed Comment</b></label>
+                                            <textarea class="form-control" rows="5" style="resize:none" id="comment" name="comment"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5 col-md-offset-1" >
+                                        <div class="form-group">
+                                            <label for="summary"><b>Summary Comment</b></label>
+                                            <textarea class="form-control" rows="5" style="resize:none" id="summary"  name="summary"></textarea>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
             </div>
         </div>
     </div>
