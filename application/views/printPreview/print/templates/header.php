@@ -34,5 +34,5 @@
 
 </head>
 
-<body class="sticky-header left-side-collapsed">
+<body class="sticky-header left-side-collapsed" onload="window.print();   setTimeout(function(){window.close();}, 1000); ">
 	<section>

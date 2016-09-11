@@ -22,14 +22,7 @@
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');
-             var_dump($user_id);
-              var_dump($username);
-               var_dump($committee_id);
-                var_dump($committee_code);
-               var_dump($fiscal_year);
              
-          
-          
        $this->load->view('dashboard/templates/header');
        $this->load->view('dashboard/templates/sideNavigation');
        $this->load->view('dashboard/templates/topHead');
@@ -501,8 +494,7 @@ $user_id = $this->session->userdata('user_id');
        $this->transaction_model->add_comment_of_transaction($journalNo, $comment, $summary);
        $this->session->set_flashdata('message', 'Transaction added successfully.');
        redirect('transaction/journalList');
-      //<body onload="window.print();   setTimeout(function(){window.close();}, 1000); "> 
-
+     
     }
 
   } 

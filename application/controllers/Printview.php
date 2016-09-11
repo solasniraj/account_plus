@@ -7,7 +7,7 @@
       $this->load->model('program_model');
        $this->load->model('bank_model');
         $this->load->model('transaction_model');
-       
+        $this->load->model('dbmanager_model');
       $this->load->helper('url');
       $this->load->helper(array('form', 'url'));
       $this->load->library('pagination');
@@ -23,10 +23,17 @@
           return redirect('dashboard', 'refresh');
          }
       
-      // $userId = $this->session->userdata("user_id");
+     $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year'); 
+             
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             
       // $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($id);
       $this->load->view('printPreview/print/templates/header');
-      $this->load->view('printPreview/print/transaction/singleJournalEntryPrint');
+      $this->load->view('printPreview/print/transaction/singleJournalEntryPrint', $data);
       $this->load->view('printPreview/print/templates/footer');
        }
         else 

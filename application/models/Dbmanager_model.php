@@ -41,10 +41,16 @@ else {
  
         }
 
+        public function get_committee_info($committee_id, $committee_code)
+        {
+            $this->db->where('id', $committee_id);
+            $this->db->where('code', $committee_code);
+           $this->db->where('status', '1');
+            $query = $this->db->get('committee_info');
+             return $query->result(); 
+        }
+
         
-
-
-
 
 
 

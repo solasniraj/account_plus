@@ -1,5 +1,4 @@
-
-  <style>
+<style>
 
 
 @media print {
@@ -14,8 +13,7 @@
     * {
         color: #000;    
         background-color: #fff;
-        @include box-shadow(none);
-        @include text-shadow(none);
+
     }
     a:after {
         content: "( "attr(href)" )";
@@ -27,11 +25,15 @@
   </style>
 
     <div class="container">
+        <?php if(!empty($committeeInfo)){ foreach ($committeeInfo as $cLists){ ?>
         <div class="top text-center" style="margin-top:22px;margin-bottom:10px;">
-           <img src="http://localhost/account_plus/image/watersplash.png" img-align="top" alt="images" style= "width:40px; height:40px;">
-           <br>
-           <h2 > GDB Nepal government Ltd </h2>
+           <!--<img src="" img-align="top" alt="images" style= "">-->
+           
+           <h2><?php echo $cLists->committee_name; ?></h2>
+           <h4><?php echo $cLists->address; ?></h4>
+           <p><strong>Ph : <?php echo $cLists->phone; ?></strong></p>
      </div>
+        <?php }} ?>
     </div>
     <div id="page-wrapper">
         <div class="graphs">
