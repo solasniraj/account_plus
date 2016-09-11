@@ -1,3 +1,5 @@
+
+
 <?php if(!empty($singleGLDetails)){ 
      foreach($singleGLDetails as $glDetails){
       $gLDate = $glDetails->tran_date;
@@ -109,7 +111,60 @@
                         
                     </table>
                 </div>
-                 
+            
+
+            <tbody>
+                  <div class="form-group" >
+                        <div class="row">
+                            <div class="col-md-4 ">
+                                <table class="table">
+                                <tr>
+                                <th>Prepared By:</th>
+                                </tr>
+                                
+                                    <tr>
+                                        <td for="focusedInput">Name</td>
+                                        <td><input  type="text" id="Name" name="Name" class="form-control">
+                                        </td>
+                                                                            </tr>
+
+                                    
+                                    <td for="focusedInput">Ressignation</td>
+                                        <td><input  type="text" id="sign" name="sign" class="form-control"></td>
+                                       
+                                    </tr>  
+                                    </table>
+                                    </div>
+                                    </div>
+                                    </div>
+
+                                 
+                  
+                                <table class="table" style="float:right">
+                                <tr>
+                                <th>Apporoved By:</th>
+                                </tr>
+                                <br>
+                                    <tr>
+                                        <td for="focusedInput">Name</td>
+                                        <td><input  type="text" id="Name" name="Name" class="form-control">
+                                        </td>
+                                                                            </tr>
+
+                                    
+                                    <td for="focusedInput">Ressignation</td>
+                                        <td><input  type="text" id="sign" name="sign" class="form-control"></td>
+                                       
+                                    </tr>  
+                                    </table>
+                                    </div>
+                                    </div>
+                                    </div>
+
+                                    </tbody>
+
+
+                            </div>
             </div>
                 
         </div>
