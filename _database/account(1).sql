@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 09, 2016 at 12:29 अपराह्न
+-- Generation Time: Sep 11, 2016 at 01:32 अपराह्न
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -64,13 +64,6 @@ CREATE TABLE IF NOT EXISTS `bank_info` (
   `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `bank_info`
---
-
-INSERT INTO `bank_info` (`id`, `account_code`, `account_type`, `bank_account_name`, `bank_name`, `bank_address`, `bank_account_number`, `bank_phone_no`, `last_reconciled_date`, `ending_reconcile_balance`, `committee_id`, `user_id`, `status`) VALUES
-(5, '10101', '1', 'Dilip Poudel', 'Himalayan Bank Limited', 'Narayangarh, Chitwan', '98452141409845214140', '056-533977', NULL, NULL, NULL, NULL, '1');
-
 -- --------------------------------------------------------
 
 --
@@ -92,13 +85,6 @@ CREATE TABLE IF NOT EXISTS `bank_trans_info` (
   `reconciled` date DEFAULT NULL,
   `bank_id` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `bank_trans_info`
---
-
-INSERT INTO `bank_trans_info` (`id`, `type`, `trans_no`, `bank_act`, `ref`, `trans_date`, `amount`, `dimension_id`, `dimension2_id`, `person_type_id`, `person_id`, `reconciled`, `bank_id`) VALUES
-(4, 0, 4, '1', '3', '2014-12-31', 500, 0, 0, 0, '', NULL, '2');
 
 -- --------------------------------------------------------
 
@@ -163,9 +149,7 @@ INSERT INTO `chart_master` (`id`, `account_code`, `account_code2`, `account_name
 (15, '404', '', 'Rental Expenses', '0', '4', NULL, NULL),
 (16, '405', '', 'Repair &amp; Maintenance Expenses', '0', '4', NULL, NULL),
 (17, '406', '', 'Email, Internet, Telephone &amp; Postage Expenses', '0', '4', NULL, NULL),
-(18, '407', '', 'AAAAAAAAAA Expenses', '0', '4', NULL, NULL),
-(23, '304', NULL, 'Grassland Management System', 'Active', '3', '19', NULL),
-(26, '305', NULL, 'Grassland Management', 'Active', '3', '22', NULL);
+(18, '407', '', 'AAAAAAAAAA Expenses', '0', '4', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -180,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `committee_info` (
   `phone` varchar(255) DEFAULT NULL,
   `code` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -215,16 +199,6 @@ CREATE TABLE IF NOT EXISTS `donar_info` (
   `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `donar_info`
---
-
-INSERT INTO `donar_info` (`id`, `donar_name`, `donar_address`, `donar_contact_no`, `donar_code`, `donar_email`, `contact_person`, `contact_person_cell_no`, `committee_id`, `user_id`, `status`) VALUES
-(3, 'WWF', 'America', '50000', '01', 'bhomnath@salyani.com.np', NULL, NULL, NULL, NULL, 'Active'),
-(4, 'TAAL', 'Bharatpur, Chitwan', '50000', '02', 'bhomnath@salyani.com.np', NULL, NULL, NULL, NULL, 'Active'),
-(5, 'sdhjkf dsbkj', 'bkjsdbfk fsjkd', 'dskj fkjs sd f', 'sdkjf kjsd fs', 'kdsjbfjs jksd kj', NULL, NULL, NULL, NULL, 'Active'),
-(6, 'TAAL', 'America', '056-533977', NULL, 'bhomnath@salyani.com.np', 'dhfjksf jksbdkj', 'bkjbskjdf sdkj', NULL, NULL, '1');
-
 -- --------------------------------------------------------
 
 --
@@ -239,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `fiscal_year_info` (
   `committee_code` varchar(255) DEFAULT NULL,
   `committee_id` varchar(25) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -252,14 +226,7 @@ CREATE TABLE IF NOT EXISTS `gl_trans_comment_details` (
   `trans_no` varchar(255) DEFAULT NULL,
   `detailed_comment` text,
   `summary_comment` text
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `gl_trans_comment_details`
---
-
-INSERT INTO `gl_trans_comment_details` (`id`, `trans_no`, `detailed_comment`, `summary_comment`) VALUES
-(3, '1', 'jhg', 'jhghjs');
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -270,9 +237,9 @@ INSERT INTO `gl_trans_comment_details` (`id`, `trans_no`, `detailed_comment`, `s
 CREATE TABLE IF NOT EXISTS `gl_trans_info` (
   `id` int(11) NOT NULL,
   `gl_no` varchar(255) DEFAULT NULL,
-  `type` smallint(6) NOT NULL DEFAULT '0',
+  `type` varchar(6) DEFAULT '0',
   `type_no` bigint(16) NOT NULL DEFAULT '1',
-  `tran_date` date NOT NULL DEFAULT '0000-00-00',
+  `tran_date` varchar(50) DEFAULT NULL,
   `account_code` varchar(255) DEFAULT NULL,
   `account_head` varchar(255) DEFAULT '',
   `sub_ledger` varchar(255) DEFAULT NULL,
@@ -282,15 +249,7 @@ CREATE TABLE IF NOT EXISTS `gl_trans_info` (
   `amount` double NOT NULL DEFAULT '0',
   `cheque_no` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `gl_trans_info`
---
-
-INSERT INTO `gl_trans_info` (`id`, `gl_no`, `type`, `type_no`, `tran_date`, `account_code`, `account_head`, `sub_ledger`, `donor_id`, `ledger_type`, `memo`, `amount`, `cheque_no`, `status`) VALUES
-(24, '1', 0, 1, '0000-00-00', '23', 'Grassland Management System', '', '', '', 'sajdh', 500, '', '1'),
-(25, '1', 0, 1, '0000-00-00', '2', 'Bank Account', '', '', '', 'asdf', -500, '', '1');
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -338,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `user_info` (
   `user_type` varchar(255) DEFAULT NULL,
   `committee_id` varchar(255) DEFAULT NULL,
   `committee_code` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -414,8 +373,7 @@ ALTER TABLE `gl_trans_comment_details`
 ALTER TABLE `gl_trans_info`
   ADD PRIMARY KEY (`id`),
   ADD KEY `Type_and_Number` (`type`,`type_no`),
-  ADD KEY `tran_date` (`tran_date`),
-  ADD KEY `account_and_tran_date` (`account_head`,`tran_date`);
+  ADD KEY `account_and_tran_date` (`account_head`);
 
 --
 -- Indexes for table `programs_list`
@@ -468,7 +426,7 @@ ALTER TABLE `chart_master`
 -- AUTO_INCREMENT for table `committee_info`
 --
 ALTER TABLE `committee_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `donar_budget_info`
 --
@@ -483,17 +441,17 @@ ALTER TABLE `donar_info`
 -- AUTO_INCREMENT for table `fiscal_year_info`
 --
 ALTER TABLE `fiscal_year_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `gl_trans_comment_details`
 --
 ALTER TABLE `gl_trans_comment_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `gl_trans_info`
 --
 ALTER TABLE `gl_trans_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=67;
 --
 -- AUTO_INCREMENT for table `programs_list`
 --
@@ -508,7 +466,7 @@ ALTER TABLE `subledger_info`
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
