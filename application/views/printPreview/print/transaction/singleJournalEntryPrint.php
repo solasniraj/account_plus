@@ -108,6 +108,42 @@
                  
             </div>
                 
+                 <!--prepared and approverd by section-->
+
+
+                    <div class="form-group" style="padding-top: 100px;">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <table class="table">
+                                    <tr>
+                                        <th>Prepared By:</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Name :-........................</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Designation :-........................</td>
+                                    </tr>  
+                                </table>
+                            </div>
+                            <div class="col-md-4 col-md-offset-2">
+                                <table class="table">
+                                    <tr>
+                                        <th>Apporoved By:</th>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>Name :-........................</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ressignation :-.......................</td>
+                                    </tr>  
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                
         </div>
     </div>
 </div>
