@@ -5,8 +5,8 @@
            <br>
            <h2 style="display:inline;"> GDB Nepal government Ltd </h2>
            <span class="text-right pull-right">
-             <button id="btnDownload" class="btn btn-primary">Download</button>&nbsp;&nbsp;
-        <a href="<?php echo base_url() . 'prints/singleJournalEntryPrint/1';?>"> <button id="print" class="btn btn-primary" >print</button></a>
+               <a href="<?php echo base_url() . 'preview/jounalView/12345-FY2016-00001';?>"><button id="btnDownload" class="btn btn-primary">Download</button></a>&nbsp;&nbsp;
+        <a href="<?php echo base_url() . 'printview/printJoural/12345-FY2016-00001';?>"> <button id="print" class="btn btn-primary" >print</button></a>
          </span>
      </div>
     </div>

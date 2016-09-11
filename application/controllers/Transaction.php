@@ -292,7 +292,7 @@ $user_id = $this->session->userdata('user_id');
     }
   }
   
-  public function preview($id= NULL)
+  public function journalPreview($id= NULL)
   {
       $url = current_url();
     if ($this->session->userdata('logged_in') == true) {

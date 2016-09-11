@@ -18,13 +18,6 @@ class preview extends CI_Controller {
 
     public function jounalView() {
         
-//          <script>
-//  $( function() {
-//    $( "#datepicker" ).datepicker({ minDate: "+1M +10D", maxDate: new Date() });
-//    	dateFormat: 'dd/mm/yy'
-//  } );
-//  </script>
-        
         
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
