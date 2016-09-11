@@ -1,6 +1,6 @@
   <?php if (!defined('BASEPATH'))
   exit('No direct script access allowed');
-  class prints extends CI_Controller {
+  class printview extends CI_Controller {
     function __construct() {
       parent::__construct();
       $this->load->library('session');
@@ -13,7 +13,7 @@
       $this->load->library('pagination');
     }
 
-    public function singleJournalEntryPrint($id= NULL )
+    public function printJoural($id= NULL )
     {
      if ($this->session->userdata('logged_in') == true)
       {

@@ -8,6 +8,8 @@ class Transaction_model extends CI_Model {
 
     public function get_transactions_details()
     {
+        $this->db->distinct();
+        $this->db->group_by('gl_no');
         $this->db->where('status', '1');
         $this->db->select('*');
         $this->db->from('gl_trans_info');

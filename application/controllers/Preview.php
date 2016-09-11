@@ -16,7 +16,7 @@ class preview extends CI_Controller {
         $this->load->helper('csv');
     }
 
-    public function index() {
+    public function jounalView() {
         
 //          <script>
 //  $( function() {
