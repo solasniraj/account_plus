@@ -30,7 +30,7 @@
              $fiscal_year = $this->session->userdata('fiscal_year'); 
              
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-             
+        $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($id);     
       // $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($id);
       $this->load->view('printPreview/print/templates/header');
       $this->load->view('printPreview/print/transaction/singleJournalEntryPrint', $data);

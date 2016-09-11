@@ -1,30 +1,16 @@
 <style>
-
-
-@media print {
-    aside#sidebar,header[role="banner"],footer,#comments,#respond {
-        display: none;
-    }
-    #container #content #main {
-        width: 90%;
-        margin: 0px;
-        padding: 0px;
-    }
-    * {
-        color: #000;    
-        background-color: #fff;
-
-    }
-    a:after {
-        content: "( "attr(href)" )";
-    }
-
-}
-
-
-  </style>
-
-    <div class="container">
+    @media print{@page {size: landscape}}
+    </style>
+<?php if(!empty($singleGLDetails)){ 
+     foreach($singleGLDetails as $glDetails){
+      $gLDate = $glDetails->tran_date;
+      $voucherNo = $glDetails->gl_no;
+      $summary = $glDetails->summary_comment;
+      $details = $glDetails->detailed_comment;
+     }
+        
+    ?>
+<div class="container">
         <?php if(!empty($committeeInfo)){ foreach ($committeeInfo as $cLists){ ?>
         <div class="top text-center" style="margin-top:22px;margin-bottom:10px;">
            <!--<img src="" img-align="top" alt="images" style= "">-->
@@ -35,12 +21,12 @@
      </div>
         <?php }} ?>
     </div>
-    <div id="page-wrapper">
+     <div id="page-wrapper">
         <div class="graphs">
             <div class="xs tabls">
+                
                 <div data-example-id="simple-responsive-table" class="bs-example4">
-
-                   <!-- priview first table of singleJournla entry -->
+                      <!-- priview first table of singleJournla entry -->
 
                    <div class="table-responsive">
                     <table class="table table-bordered">
@@ -48,61 +34,62 @@
                             <tr>
                                 <center>
                                     <th>General Ledger Transaction Details</th>
-                                    <th>Reference</th>
-                                    <th>Date </th>
-                                    <th>Person/item </th>
+                                    <th>Date</th>
+                                    <th>Summary of Transaction</th>
+                                    <th>Details of Transaction</th>
                                 </center>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th>Journal Entry #14 </th>
-                                <th>13</th>
-                                <th><input id="datepicker" class="form-control" type="text" placeholder="Day/Month/Year" name="datepicker"></th>
-                                <th>&nbsp</th>
+                                <td>Journal Entry : <?php echo $voucherNo; ?> </td>
+                                <td><?php echo $gLDate; ?></td>
+                                <td><?php echo $summary; ?></td>
+                                <td><?php echo $details; ?></td>
 
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <!-- second table for singleJournalEntry  -->
-
+                
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <center>
                                     <th>Account code</th>
-                                    <th>Account name</th>
-                                    <th>DEmension </th>
-                                    <th>Debit </th>
+                                    <th>Account head</th>
+                                    <th>Sub-ledger </th>
+                                    <th>Donar name</th>
+                                    <th>Ledger type</th>
+                                    <th>Description</th>
+                                    <th>Debit</th>
                                     <th>Credit</th>
-                                    <th>Memo</th>
+                                    <th>Cheque No.</th>
+                                    
                                 </center>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach ($singleGLDetails as $gLList){ ?>
                             <tr>
-                                <th>1200 </th>
-                                <th>Account Receivables</th>                           
-                                <th>&nbsp</th>
-                                <th>500.oo</th>
-                                <th>&nbsp</th>
-                                <th>&nbsp</th>
+                                <th><?php echo $gLList->account_code; ?></th>
+                                <th><?php echo $gLList->account_head; ?></th>                           
+                                <th><?php echo $gLList->sub_ledger; ?></th>
+                                <th><?php echo $gLList->donor_id; ?></th>
+                                <th><?php echo $gLList->ledger_type; ?></th>
+                                <th><?php echo $gLList->memo; ?></th>
+                                <th><?php echo $gLList->amount; ?></th>
+                                <th><?php echo $gLList->amount; ?></th>
+                                <th><?php echo $gLList->cheque_no; ?></th>
+
 
 
                             </tr>
-                            <tbody>
-                                <tr>
-                                    <th>1060 </th>
-                                    <th>Checking Account</th>                           
-                                    <th>&nbsp</th>
-                                    <th>&nbsp</th>
-                                    <th>500</th>
-                                    <th>&nbsp</th>
-
-
-                                </tr>
+                            <?php } ?>
+                           
+                                
                                 <tr>
                                     <th colspan="2">Total </th>
 
@@ -115,10 +102,16 @@
                                 </tr>
 
                             </tbody>
-                        </tbody>
+                        
                     </table>
                 </div>
+                 
             </div>
+                
         </div>
     </div>
 </div>
+<?php }else{
+                    echo "Data not Found";
+                } ?>
+
