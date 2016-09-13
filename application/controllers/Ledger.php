@@ -35,9 +35,17 @@ class ledger extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
-            
-             
-        } else {
+   $data['ledgerDetails']=$this->ledger_model->get_ledger_master_listing();
+   $data['accountCharts']=$this->ledger_model->get_account_chart_class();
+        $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
+        $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
+        $data['donorInfo'] = $this->donar_model->get_all_donars();
+         $this->load->view('dashboard/templates/header');
+          $this->load->view('dashboard/templates/sideNavigation');
+          $this->load->view('dashboard/templates/topHead');
+          $this->load->view('dashboard/ledger/listLedgerMaster', $data);
+           $this->load->view('dashboard/templates/footer');
+           } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
