@@ -64,7 +64,25 @@ class chartAccount extends CI_Controller {
        
         if($result)
             {
-              
+         $a = base_url();
+              echo '<html>
+<head><script src="'. $a . 'contents/js/jquery-1.12.4.min.js"></script><script type="text/javascript">
+window.onunload = function(){
+  window.opener.location.reload();
+};
+function loaded()
+{
+    window.setTimeout(CloseMe, 1000);
+}
+
+function CloseMe() 
+{
+    window.close();
+}
+</script></head>
+<body onLoad="loaded()">
+Account Ledger created successfully
+</body>';
             }
             else
             {
