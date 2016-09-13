@@ -4,7 +4,7 @@ class chartAccount extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('session');
-        $this->load->model('chartAccount_model');
+        $this->load->model('ledger_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -15,20 +15,13 @@ class chartAccount extends CI_Controller {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
             
-   $user_id=$this->session->userdata('user_id');
-   $data['accountCharts']=$this->chartAccount_model->get_account_chart_class();
-   
-         $this->load->view('dashboard/templates/header');
-          $this->load->view('dashboard/templates/sideNavigation');
-          $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/accountCharts/listChart', $data);
-           $this->load->view('dashboard/templates/footer');
+  
            } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
     
-    public function addSubClass($id=NULL)
+    public function addLedger($id=NULL)
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
@@ -58,27 +51,43 @@ class chartAccount extends CI_Controller {
       }
       else 
       {
-        $ledgerName = $this->input->post('ledgerName');     
        
-        $result=$this->ledger_model->add_new_ledger($ledgerName);
+         $ledgerName = $this->input->post('ledgerName'); 
+        $accLastId = $this->ledger_model->get_last_code_of_ledger();
+        $countLedger = $this->ledger_model->count_ledger();
+        $newACode = $accLastId + '1';
+        
+        $newAccountCode = str_pad($newACode, 2, "0", STR_PAD_LEFT);
+        if($countLedger <  100){
+        
+        $result = $this->ledger_model->add_new_ledger($newAccountCode, $ledgerName);
+       
         if($result)
-        {
-         $this->session->set_flashdata('flashMessage', 'Ledger added successfully');
-         return redirect('ledger/index');
+            {
+              
+            }
+            else
+            {
+              $this->session->set_flashdata('flashMessage', 'error occur while creating ledger');
+
+              //return redirect('programs/programListing');
+            }
+          }else{
+            $this->session->set_flashdata('flashMessage', 'You have reached the limit of ledgers. New ledger can not be created');
+
+           // return redirect('programs/programListing');
+          }
        }
+      }
        else 
        {
         $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding ledger. Please add again.');
-        return redirect('bank/addLedger');
+       // return redirect('bank/addLedger');
       }
 
 
     }
-  }
-  else {
-   return   redirect('login/index/?url=' . $url, 'refresh');
- }
-    }
+ 
     
     public function addLedgerProgram($id)
     {

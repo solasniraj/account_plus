@@ -17,13 +17,13 @@
                 </style>
                     <div class="tab-content">
                         <div class="tab-pane active" id="horizontal-form">
-                            <?php echo form_open_multipart('ledger/addnewLedger', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
+                            <?php echo form_open_multipart('chartAccount/addnewLedger', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
                             
 
                             <div class="form-group">
                                 <label for="ledgerName" class="col-sm-2 control-label">Ledger Name</label>
                                 <div class="col-sm-8">
-                                    <input type="text" value="<?php echo set_value('ledgerName'); ?>" class="form-control1" id="programName" name="ledgerName" placeholder="Enter ledger name">
+                                    <input type="text" value="<?php echo set_value('ledgerName'); ?>" class="form-control1" id="ledgerName" name="ledgerName" placeholder="Enter ledger name">
                                     <?php echo form_error('ledgerName'); ?>
                                 </div>
                             </div>

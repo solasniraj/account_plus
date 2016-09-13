@@ -15,33 +15,48 @@ class ledger extends CI_Controller {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
             
-   $user_id=$this->session->userdata('user_id');
-   $data['ledgerDetails']=$this->ledger_model->get_ledger_listing();
-   
-         $this->load->view('dashboard/templates/header');
-          $this->load->view('dashboard/templates/sideNavigation');
-          $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/ledger/listLedger', $data);
-           $this->load->view('dashboard/templates/footer');
+//   $user_id=$this->session->userdata('user_id');
+//   $data['ledgerDetails']=$this->ledger_model->get_ledger_listing();
+//   
+//         $this->load->view('dashboard/templates/header');
+//          $this->load->view('dashboard/templates/sideNavigation');
+//          $this->load->view('dashboard/templates/topHead');
+//          $this->load->view('dashboard/ledger/listLedger', $data);
+//           $this->load->view('dashboard/templates/footer');
            } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
     
-    public function addLedger()
+    
+    public function accountGroup()
     {
         $url = current_url();
-         if ($this->session->userdata('logged_in') == true) { 
-              $this->load->view('dashboard/templates/header');
-          $this->load->view('dashboard/templates/sideNavigation');
-          $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/ledger/addLedger');
-           $this->load->view('dashboard/templates/footer');
+         if ($this->session->userdata('logged_in') == true) {
              
-    } else {
+             
+        } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
+    
+    
+    public function createLedger()
+    {
+        $url = current_url();
+         if ($this->session->userdata('logged_in') == true) { 
+        $data['accountCharts']=$this->ledger_model->get_account_chart_class();
+        $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
+        $this->load->view('dashboard/templates/header');
+          $this->load->view('dashboard/templates/sideNavigation');
+          $this->load->view('dashboard/templates/topHead');
+          $this->load->view('dashboard/ledger/createLedger', $data);
+           $this->load->view('dashboard/templates/footer');
+            } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+
 
     public function addnewLedger()
     {
