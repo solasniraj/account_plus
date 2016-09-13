@@ -21,7 +21,7 @@
              return $query->result();
         }
 
-                public function add_new_ledger($newAccountCode, $ledgerName)
+   public function add_new_ledger($newAccountCode, $ledgerName)
    {
        $data = Array(
       'ledger_code' => $newAccountCode,
@@ -31,10 +31,9 @@
 
      $this->db->insert('account_ledger_info', $data);
      $insert_id = $this->db->insert_id();
-     return  $insert_id;
-       
+     return  $insert_id;      
    }
-
+   
    public function count_ledger()
    {
        $query = $this->db->query("SELECT * FROM account_ledger_info");
@@ -51,6 +50,70 @@
                    return '0';
                }
    }
+   
+   public function get_sub_ledger_info()
+        {
+            $this->db->where('subledger_status', '1');
+            $query = $this->db->get('subledger_info');
+             return $query->result();
+        }
+   
+   public function add_new_sub_ledger($newAccountCode, $subledgerName)
+   {
+       $data = Array(
+      'subledger_code' => $newAccountCode,
+      'subledger_name' => $subledgerName,
+      'subledger_status' => '1'
+      );
+
+     $this->db->insert('subledger_info', $data);
+     $insert_id = $this->db->insert_id();
+     return  $insert_id;  
+   }
+
+   public function get_last_code_of_subledger()
+   {
+        $this->db->select_max('subledger_code');
+               $query= $this->db->get("subledger_info")->result();
+               if(!empty($query)){
+           return $query[0]->subledger_code;
+               }else{
+                   return '0';
+               }
+   }
+   
+    public function count_subledger()
+   {
+       $query = $this->db->query("SELECT * FROM subledger_info");
+  return $query->num_rows();   
+   }
+
+   public function add_new_ledger_master($chartNo, $accLedger, $accSubLedger, $donorType, $ledgerType, $codeNo, $accDescription)
+   {
+       
+       $data = Array(
+      'ledger_master_code' => $codeNo,
+      'ledger_master_name' => $accDescription,
+           'account_code' => $chartNo,
+           'ledger_code' => $accLedger,
+           'subledger_code' => $accSubLedger,
+           'donor_code' => $donorType,
+           'ledger_type_code' => $ledgerType,
+      'status' => '1'
+      );
+
+     $this->db->insert('ledger_master', $data);
+     $insert_id = $this->db->insert_id();
+     return  $insert_id; 
+       
+       
+       
+       
+       
+   }
+
+   
+
 
 
 
@@ -77,11 +140,7 @@
                }
    }
    
-   public function count_active_sub_ledgers()
-   {
-       $query = $this->db->query("SELECT * FROM subledger_info where `subledger_status`='active' ");
-  return $query->num_rows();   
-   }
+  
    
    public function count_active_programs()
    {
@@ -89,16 +148,6 @@
   return $query->num_rows();   
    }
 
-   public function get_last_code_of_subledger()
-   {
-       $this->db->select_max('subledger_code');
-               $query= $this->db->get("subledger_info")->result();
-               if(!empty($query)){
-           return $query[0]->subledger_code;
-               }else{
-                   return '0';
-               }
-   }
         
    public function get_all_subledger_related_to_program($id)
    {
@@ -150,18 +199,7 @@
     return $this->db->update('programs_list', $data);
   }
 
-  public function addSubLedger($subLedgerName,$currentProgramId, $newsubLedgerCode)
-  {
-
-   $data = Array(
-    'subledger_name' => $subLedgerName,
-    'subledger_code' => $newsubLedgerCode,
-    'subledger_status'=>'active',
-    'program_id' => $currentProgramId);
-
-    $this->db->insert('subledger_info', $data);
-    return $this->db->insert_id();
-  }
+  
   
   public function get_chart_class_master()
   {

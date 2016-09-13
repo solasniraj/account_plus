@@ -12,19 +12,34 @@
             $query = $this->db->get('donar_info');
              return $query->result();
         }
+        
+        public function get_last_code_of_donor()
+        {
+            $this->db->select_max('donar_code');
+               $query= $this->db->get("donar_info")->result();
+               if(!empty($query)){
+           return $query[0]->donar_code;
+               }else{
+                   return '0';
+               }
+        }
+        
+        public function count_donars()
+        {
+            $query = $this->db->query("SELECT * FROM donar_info");
+  return $query->num_rows(); 
+        }
 
-        public function add_new_donar($donarName,$donarAddress, $emailId, $contactNumber, $contactPerson, $contactPCellNo)
+        public function add_new_donar($newDCode, $donarName,$donarAddress, $emailId, $contactNumber, $contactPerson, $contactPCellNo)
         {
             $data = Array(
             'donar_name' => $donarName,
             'donar_address' => $donarAddress,
                 'donar_contact_no' => $contactNumber,
-                'donar_code' => NULL,
+                'donar_code' => $newDCode,
                 'donar_email' => $emailId,
                 'contact_person' => $contactPerson,
                 'contact_person_cell_no' => $contactPCellNo,
-                'user_id' => NULL,
-                'committee_id' => NULL,
                 'status' => '1');
        return  $this->db->insert('donar_info', $data);
 

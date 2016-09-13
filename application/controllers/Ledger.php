@@ -5,6 +5,7 @@ class ledger extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('ledger_model');
+        $this->load->model('donar_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -14,7 +15,7 @@ class ledger extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
-            
+             echo 'here you are';
 //   $user_id=$this->session->userdata('user_id');
 //   $data['ledgerDetails']=$this->ledger_model->get_ledger_listing();
 //   
@@ -33,7 +34,7 @@ class ledger extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
-             
+            
              
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -47,6 +48,8 @@ class ledger extends CI_Controller {
          if ($this->session->userdata('logged_in') == true) { 
         $data['accountCharts']=$this->ledger_model->get_account_chart_class();
         $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
+        $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
+        $data['donorInfo'] = $this->donar_model->get_all_donars();
         $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
@@ -64,18 +67,26 @@ class ledger extends CI_Controller {
       {
         $user_id=$this->session->userdata('user_id');
        $this->load->library('form_validation');
-       $this->form_validation->set_rules('ledgerName', 'Ledger name', 'trim|required|callback_xss_clean|max_length[200]');
+       $this->form_validation->set_rules('chartAccType', 'Account', 'trim|required|callback_xss_clean|max_length[500]');
+       $this->form_validation->set_rules('codeNo', 'Account Code', 'trim|required|callback_xss_clean|max_length[500]');
+       $this->form_validation->set_rules('accDescription', 'Account Description', 'trim|required|callback_xss_clean|max_length[500]');
        $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
 
        if ($this->form_validation->run() == FALSE)
        {
-        $this->addLedger();
+        $this->createLedger();
       }
       else 
       {
-        $ledgerName = $this->input->post('ledgerName');     
+        $chartNo = $this->input->post('chartAccType');  
+        $accLedger = $this->input->post('accLedger'); 
+        $accSubLedger = $this->input->post('accSubLedger'); 
+        $donorType = $this->input->post('donorType'); 
+        $ledgerType = $this->input->post('ledgerType'); 
+        $codeNo = $this->input->post('codeNo'); 
+        $accDescription = $this->input->post('accDescription'); 
        
-        $result=$this->ledger_model->add_new_ledger($ledgerName);
+        $result=$this->ledger_model->add_new_ledger_master($chartNo, $accLedger, $accSubLedger, $donorType, $ledgerType, $codeNo, $accDescription);
         if($result)
         {
          $this->session->set_flashdata('flashMessage', 'Ledger added successfully');

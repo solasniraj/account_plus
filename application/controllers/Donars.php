@@ -71,18 +71,47 @@ class donars extends CI_Controller {
         $contactPerson = $this->input->post('contactPerson');
         $contactPCellNo = $this->input->post('contactPCellNo');
         
-       
-        $result=$this->donar_model->add_new_donar($donarName,$donarAddress, $emailId, $contactNumber, $contactPerson, $contactPCellNo);
+       $donorLastId = $this->donar_model->get_last_code_of_donor();
+        $countDonars = $this->donar_model->count_donars();
+        $newDCode = $donorLastId + '1';
+        
+        $newDonarCode = str_pad($newDCode, 2, "0", STR_PAD_LEFT);
+        if($countDonars <  100){
+        $result=$this->donar_model->add_new_donar($newDCode, $donarName,$donarAddress, $emailId, $contactNumber, $contactPerson, $contactPCellNo);
         if($result)
         {
-         $this->session->set_flashdata('flashMessage', 'Donar added successfully');
-         return redirect('donars/index');
+            $a = base_url();
+              echo '<html>
+<head><script src="'. $a . 'contents/js/jquery-1.12.4.min.js"></script><script type="text/javascript">
+window.onunload = function(){
+  window.opener.location.reload();
+};
+function loaded()
+{
+    window.setTimeout(CloseMe, 1000);
+}
+
+function CloseMe() 
+{
+    window.close();
+}
+</script></head>
+<body onLoad="loaded()">
+Donor created successfully
+</body>';
+         //$this->session->set_flashdata('flashMessage', 'Donar added successfully');
+         //return redirect('donars/index');
        }
        else 
        {
         $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding donar. Please add again.');
         return redirect('donars/addDonar');
       }
+        }else{
+            
+            $this->session->set_flashdata('flashMessage', 'You have reached the limit of donors');
+        return redirect('donars/addDonar');
+        }
 
 
     }

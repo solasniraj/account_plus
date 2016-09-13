@@ -42,7 +42,7 @@ $('.selectOpt').bind("change", function(){
                 </style>
                     <div class="tab-content">
                         <div class="tab-pane active" id="horizontal-form">
-                            <?php echo form_open_multipart('donars/addNewDonar', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
+                            <?php echo form_open_multipart('ledger/addnewLedger', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
                             
                             
                             <div class="form-group">
@@ -80,26 +80,26 @@ $('.selectOpt').bind("change", function(){
                     <label class="col-sm-2 control-label" for="accSubLedger"><b>Account Sub Ledger</b></label>
                     <div class="col-sm-8"><select class="form-control1 selectOpt" id="accSubLedger" name="accSubLedger">
                             <option value="00">Select Account Sub Ledger</option>
-                            <?php if (!empty($accountCharts)) {
-                                foreach ($accountCharts as $acharts) {
+                            <?php if (!empty($subLedgers)) {
+                                foreach ($subLedgers as $aSLedgers) {
                                     ?>
-                                    <option value="<?php echo $acharts->chart_code; ?>"><?php echo $acharts->chart_class_name; ?></option>
+                                    <option value="<?php echo $aSLedgers->subledger_code; ?>"><?php echo $aSLedgers->subledger_code.'&nbsp;&nbsp;&nbsp;'.$aSLedgers->subledger_name; ?></option>
     <?php }
 } ?>
                         </select>
                      <?php echo form_error('accSubLedger'); ?>
                     </div>
-                    <div class="col-sm-2"><a class="btn btn-default" href="<?php echo base_url().'donars/addDonar' ?>" onClick="return popup(this, 'Sub Ledger')"><strong style="color:red;">Create New</strong></a></div>
+                    <div class="col-sm-2"><a class="btn btn-default" href="<?php echo base_url().'chartAccount/addSubLedger' ?>" onClick="return popup(this, 'Sub Ledger')"><strong style="color:red;">Create New</strong></a></div>
                 </div>
                             
                             <div class="form-group">
                     <label class="col-sm-2 control-label" for="donorType"><b>Donor</b></label>
                     <div class="col-sm-8"><select class="form-control1 selectOpt" id="donorType" name="donorType">
                             <option value="00">Select Donor</option>
-                            <?php if (!empty($accountCharts)) {
-                                foreach ($accountCharts as $acharts) {
+                            <?php if (!empty($donorInfo)) {
+                                foreach ($donorInfo as $dInfo) {
                                     ?>
-                                    <option value="<?php echo $acharts->chart_code; ?>"><?php echo $acharts->chart_class_name; ?></option>
+                                    <option value="<?php echo $dInfo->donar_code; ?>"><?php echo $dInfo->donar_code.'&nbsp;&nbsp;&nbsp;'.$dInfo->donar_name; ?></option>
     <?php }
 } ?>
                         </select>
@@ -133,7 +133,7 @@ $('.selectOpt').bind("change", function(){
                             <div class="form-group">
                                 <label for="accDescription" class="col-sm-2 control-label"><b>Account Description</b></label>
                                 <div class="col-sm-8">
-                                    <input type="text" value="<?php echo set_value('accDescription'); ?>" class="form-control1" id="contactPCellNo" name="contactPCellNo" placeholder="Enter Contact Person's Mobile Number">
+                                    <input type="text" value="<?php echo set_value('accDescription'); ?>" class="form-control1" id="accDescription" name="accDescription" placeholder="Enter Account Description">
                                     <?php echo form_error('accDescription'); ?>
                                 </div>
                             </div>
