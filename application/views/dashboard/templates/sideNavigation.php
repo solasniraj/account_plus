@@ -81,6 +81,8 @@
                     <li><a href="<?php echo base_url() . 'reports/dayBook' ?>">Day Book</a></li>
                     <li><a href="<?php echo base_url() . 'reports/trialBalance' ?>">Donor Report</a></li>
                     <li><a href="<?php echo base_url() . 'reports/trialBalance' ?>">Activity Report</a></li>
+                    <li><a href="<?php echo base_url() . 'reports/trialBalance' ?>">Sub Ledger Report</a></li>
+                    <li><a href="<?php echo base_url() . 'reports/trialBalance' ?>">Ledger Type Report</a></li>
 
                 </ul>
             </li>

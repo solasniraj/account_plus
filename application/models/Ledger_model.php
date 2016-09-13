@@ -104,12 +104,14 @@
 
      $this->db->insert('ledger_master', $data);
      $insert_id = $this->db->insert_id();
-     return  $insert_id; 
-       
-       
-       
-       
-       
+     return  $insert_id;       
+   }
+   
+   public function get_ledger_master_listing()
+   {
+       $this->db->where('status', '1');
+            $query = $this->db->get('ledger_master');
+             return $query->result();
    }
 
    
