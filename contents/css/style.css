@@ -2460,7 +2460,7 @@ i.icon_13{
 }
 .activity_box{
   background: #fff;
-  min-height: 485px;
+ /* min-height: 485px;*/
 }
 .icon_11{
   color: #27cce4;
@@ -3362,7 +3362,7 @@ h4.content-box-header{
     box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2);
 }
 .inbox_right {
-    background:#F8F8F8;
+   /* background:#F8F8F8;*/
     padding-left: 1.5em;
 }
 .fo-rm {

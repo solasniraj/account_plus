@@ -88,9 +88,11 @@
    {   
      if (isset($_POST['chartId']) && isset($_POST['programmId'])) 
      {
-       $accountId= $_POST['programmId'];
+       if(!empty($_POST['programmId'])){
+           $accountId= $_POST['programmId'];}
+       else{ $accountId = '0';   }
         $currentCharClassId= $_POST['chartId'];
-     
+        
        $subLedgerList=$this->ledger_model->get_subledger_of_ledger($accountId, $currentCharClassId);
        
        
