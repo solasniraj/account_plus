@@ -63,7 +63,7 @@ $('.selectOpt').bind("change", function(){
                             <div class="form-group">
                     <label class="col-sm-2 control-label" for="accLedger"><b>Account Ledger</b></label>
                     <div class="col-sm-8"><select class="form-control1 selectOpt" id="accLedger" name="accLedger">
-                            <option value="">Select Account Ldger</option>
+                            <option value="">Select Account Ledger</option>
                             <?php if (!empty($accountLedgers)) {
                                 foreach ($accountLedgers as $aLedgers) {
                                     ?>

@@ -46,7 +46,7 @@ ul.collection li{
                          <div class="form-group">
                     
                     <div class="col-sm-12"><select class="form-control1 selectOpt" id="accLedger" name="accLedger">
-                            <option value="">Select Account Ldger</option>
+                            <option value="">Select Account Ledger</option>
                             <?php if (!empty($accountLedgers)) {
                                 foreach ($accountLedgers as $aLedgers) {
                                     ?>
