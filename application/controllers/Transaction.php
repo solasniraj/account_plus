@@ -230,10 +230,10 @@ $user_id = $this->session->userdata('user_id');
   $jnNumber = str_pad($journalNumber, 5, "0", STR_PAD_LEFT);
      $data['journalNumber'] = $committee_code.'-FY'.$fiscal_year.'-'.$jnNumber;
      $data['journalTypes']=$this->program_model->getJournalTypes();
-     $data['program_list']=$this->program_model->view_programm_listing($user_id);
+   
      
-     $totalTransBalance = $this->bank_model->get_total_balance_of_all_banks_from_trans_info();
-     $bankAccount = $this->bank_model->view_bank_account_listing();
+//     $totalTransBalance = $this->bank_model->get_total_balance_of_all_banks_from_trans_info();
+//     $bankAccount = $this->bank_model->view_bank_account_listing();
      if(!empty($bankAccount)){
          $totalEnd = '0';
         foreach($bankAccount as $blist) {
