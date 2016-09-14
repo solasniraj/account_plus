@@ -13,14 +13,14 @@
     var edittheJournalItems=false;
     var reqiureTotriggerwhenUpdateisDone='';
 
-    function  whenJournalTypeIsSelected(selectedType)
+    function  getAccountLedger(selectedType)
     {
      reqiureTotriggerwhenUpdateisDone=selectedType;
       var index = selectedType.selectedIndex;      
       var typeValue= selectedType.options[index].value;  
       $.ajax({
         type: "POST",
-        url: baseUrl +"transaction/getProgrammListForCurrentChartName",
+        url: baseUrl +"transaction/getAssociatedLedger",
         data: {charClassId:typeValue},
         success: function (msg)
         {
@@ -33,65 +33,86 @@
 
     }
 
-    function  whenProgramIsSelected(selectedType)
+    function  getSubLedger(selectedType)
     {
 
-      var index = selectedType.selectedIndex;      
-      var cId= selectedType.options[index].value; 
-      var pId=selectedType.options[index].getAttribute("programmId");
+    
+      var cId= $('#journalType').val(); 
+      var pId= $('#programsList').val();
 
       $.ajax({
         type: "POST",
-        url: baseUrl +"transaction/getProgrammcodeForCurrentId",
-        data: {chartId:cId},
+        url: baseUrl +"transaction/getAssociatedSubLedger",
+        data: {chartId:cId, programmId:pId},
         success: function (msg)
         {
-
-          $('#programmCode').html(msg);
+            $('#subLedgerList').html(msg);
+          $('#programmCode').html(cId+pId+'000000');
 
         },
         error: function()
         {     }
       });
 
+//      $.ajax({
+//        type: "POST",
+//        url: baseUrl +"transaction/getSubledgerForCurrentProgramId",
+//        data: {programmId:pId},
+//        success: function (msg)
+//        {
+//
+//          $('#subLedgerList').html(msg);
+//          if(msg.length >34)
+//          {
+//
+//            $('#ledgerType').html('<option value="1">1</option><option value="">2</option><option value="">3</option>');
+//
+//          }
+//          else 
+//          {
+//            $('#ledgerType').html('<option value=""></option>');
+//
+//          }
+//
+//        },
+//        error: function()
+//        {  }
+//      });
+//
+//
+//      $.ajax({
+//        type: "POST",
+//        url: baseUrl +"transaction/getDonarListForCurrentProgramId",
+//        data: {programmId:pId},
+//        success: function (msg)
+//        {
+//       $('#donerList').html(msg);
+//        },
+//        error: function()
+//        {  }
+//      });
+
+    }
+    
+    function getDonor()
+    {
+        var cId= $('#journalType').val(); 
+      var pId= $('#programsList').val();
+      var subLedger = $('#subLedgerList').val();
+
       $.ajax({
         type: "POST",
-        url: baseUrl +"transaction/getSubledgerForCurrentProgramId",
-        data: {programmId:pId},
+        url: baseUrl +"transaction/getAssociatedDonor",
+        data: {chartId:cId, programmId:pId, subLedger:subLedger},
         success: function (msg)
         {
-
-          $('#subLedgerList').html(msg);
-          if(msg.length >34)
-          {
-
-            $('#ledgerType').html('<option value="1">1</option><option value="">2</option><option value="">3</option>');
-
-          }
-          else 
-          {
-            $('#ledgerType').html('<option value=""></option>');
-
-          }
+            $('#subLedgerList').html(msg);
+          $('#programmCode').html(cId+pId+'000000');
 
         },
         error: function()
-        {  }
+        {     }
       });
-
-
-      $.ajax({
-        type: "POST",
-        url: baseUrl +"transaction/getDonarListForCurrentProgramId",
-        data: {programmId:pId},
-        success: function (msg)
-        {
-       $('#donerList').html(msg);
-        },
-        error: function()
-        {  }
-      });
-
     }
 
     function numberWithCommas(x)

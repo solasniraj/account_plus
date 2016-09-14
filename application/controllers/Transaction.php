@@ -5,6 +5,7 @@
       parent::__construct();
       $this->load->library('session');
       $this->load->model('program_model');
+      $this->load->model('ledger_model');
        $this->load->model('bank_model');
         $this->load->model('transaction_model');
        $this->load->model('dbmanager_model');
@@ -32,6 +33,156 @@
       redirect('login/index/?url=' . $url, 'refresh');
     }
   }
+  
+  public function getAssociatedLedger()
+  {
+     $url = current_url();
+    if ($this->session->userdata('logged_in') == true) 
+    {
+        if (isset($_POST['charClassId'])) 
+     {
+           
+       $currentCharClassId= $_POST['charClassId'];
+       
+       $accountLedger=$this->ledger_model->get_account_ledger_by_chard_class_id($currentCharClassId);
+       
+       $output= "";
+       if(!empty($accountLedger))
+       {
+         $output .='<option value="" class="text-center">Select Program</option>';
+         foreach ($accountLedger as $value)
+         {
+
+           $output .= '<option programmId="'.$value->ledger_code.'" value="'.$value->ledger_code.'">'.$value->ledger_code." &nbsp;&nbsp;".$value->ledger_name.'</option>';
+         }
+       }
+       else
+       {
+
+         $output .= '<option value=""></option>';
+       }
+
+
+       echo $output;
+
+     }
+     else 
+     {
+
+      echo "Unauthorized access";
+
+    }
+    }else
+  {
+
+   redirect('login/index/?url=' . $url, 'refresh');
+  } 
+  }
+
+  
+  public function getAssociatedSubLedger()
+  {
+       {
+   $url = current_url();
+   if ($this->session->userdata('logged_in') == true) 
+   {   
+     if (isset($_POST['chartId']) && isset($_POST['programmId'])) 
+     {
+       $accountId= $_POST['programmId'];
+        $currentCharClassId= $_POST['chartId'];
+     
+       $subLedgerList=$this->ledger_model->get_subledger_of_ledger($accountId, $currentCharClassId);
+       
+       
+       
+       
+       $output= "";
+       if(!empty($subLedgerList))
+       {
+           $output .='<option value="" class="text-center">Select subledger</option>';
+         foreach ($subLedgerList as $value)
+         {
+           $output .= '<option value="'.$value->id.'">'.$value->subledger_name.'</option>';
+         }
+       }
+       else 
+       {
+
+         $output ='<option value=""></option>';
+       }
+
+       echo $output;
+     }
+     else 
+     {
+
+      echo "Unauthorized access";
+
+    }
+  }
+  else
+  {
+
+   redirect('login/index/?url=' . $url, 'refresh');
+  }
+
+  }
+  }
+
+  public function getAssociatedDonor()
+   {
+       {
+   $url = current_url();
+   if ($this->session->userdata('logged_in') == true) 
+   {   
+     if (isset($_POST['chartId']) && isset($_POST['programmId']) && isset($_POST['subLedger'])) 
+     {
+       $accountId= $_POST['programmId'];
+        $currentCharClassId= $_POST['chartId'];
+        $subLedgerId = $_POST['subLedger'];
+     
+       $subLedgerList=$this->ledger_model->get_donor_of_ledger_and_subledger($accountId, $currentCharClassId);
+       
+       
+       
+       
+       $output= "";
+       if(!empty($subLedgerList))
+       {
+           $output .='<option value="" class="text-center">Select subledger</option>';
+         foreach ($subLedgerList as $value)
+         {
+           $output .= '<option value="'.$value->id.'">'.$value->subledger_name.'</option>';
+         }
+       }
+       else 
+       {
+
+         $output ='<option value=""></option>';
+       }
+
+       echo $output;
+     }
+     else 
+     {
+
+      echo "Unauthorized access";
+
+    }
+  }
+  else
+  {
+
+   redirect('login/index/?url=' . $url, 'refresh');
+  }
+
+  }
+  }
+
+  
+
+
+
 
   public function getProgrammListForCurrentChartName()
   {
@@ -230,7 +381,6 @@ $user_id = $this->session->userdata('user_id');
   $jnNumber = str_pad($journalNumber, 5, "0", STR_PAD_LEFT);
      $data['journalNumber'] = $committee_code.'-FY'.$fiscal_year.'-'.$jnNumber;
      $data['journalTypes']=$this->program_model->getJournalTypes();
-   
      
 //     $totalTransBalance = $this->bank_model->get_total_balance_of_all_banks_from_trans_info();
 //     $bankAccount = $this->bank_model->view_bank_account_listing();

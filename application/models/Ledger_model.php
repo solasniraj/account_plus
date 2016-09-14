@@ -14,6 +14,21 @@
              return $query->result();
         }
         
+        public function get_account_ledger_by_chard_class_id($currentCharClassId)
+        {
+           
+$query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledger_info.ledger_code, account_ledger_info.ledger_name FROM `account_ledger_info` JOIN `ledger_master` ON `account_ledger_info`.`ledger_code` = `ledger_master`.`ledger_code` WHERE `ledger_master`.`account_code` = $currentCharClassId ");
+     return $query->result();         
+                
+        }
+        
+        public function get_subledger_of_ledger($accountId, $currentCharClassId)
+        {
+            $query = $this->db->query("SELECT DISTINCT subledger_info.id, subledger_info.subledger_code, subledger_info.subledger_name FROM `subledger_info` JOIN `ledger_master` ON `subledger_info`.`subledger_code` = `ledger_master`.`subledger_code` WHERE (`ledger_master`.`ledger_code` = $accountId && `ledger_master`.`account_code` = $currentCharClassId)");
+            return $query->result();  
+        }
+
+        
         public function get_account_ledger_info()
         {
             $this->db->where('account_ledger_status', '1');
