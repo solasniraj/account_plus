@@ -116,7 +116,7 @@
                                         </select>
                                     </td>
 
-                                    <td> <select class="form-control" id="donerList" >
+                                    <td> <select class="form-control" id="donerList" onchange="getledgerType(this)">
                                             <option value=""></option>
                                         </select>
                                     </td>

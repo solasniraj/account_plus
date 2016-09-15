@@ -22,13 +22,60 @@ $query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledge
                 
         }
         
+        public function get_account_sub_ledger_by_chard_class_id($currentCharClassId)
+        {
+            $query = $this->db->query("SELECT DISTINCT subledger_info.id, subledger_info.subledger_code, subledger_info.subledger_name FROM `subledger_info` JOIN `ledger_master` ON `subledger_info`.`subledger_code` = `ledger_master`.`subledger_code` WHERE `ledger_master`.`account_code` = $currentCharClassId");
+     return $query->result(); 
+        }
+        
+        public function get_account_donor_by_chard_class_id($currentCharClassId)
+        {
+            $query = $this->db->query("SELECT DISTINCT donar_info.id, donar_info.donar_code, donar_info.donar_name FROM `donar_info` JOIN `ledger_master` ON `donar_info`.`donar_code` = `ledger_master`.`donor_code` WHERE `ledger_master`.`account_code` = $currentCharClassId");
+     return $query->result(); 
+        }
+        
+        public function get_account_ledger_type_by_chard_class_id($currentCharClassId)
+        {
+             $query = $this->db->query("SELECT DISTINCT ledger_type_info.id, ledger_type_info.ledger_type_code, ledger_type_info.ledger_type_name FROM `ledger_type_info` JOIN `ledger_master` ON `ledger_type_info`.`ledger_type_code` = `ledger_master`.`ledger_type_code` WHERE `ledger_master`.`account_code` = $currentCharClassId");
+     return $query->result(); 
+        }
+
         public function get_subledger_of_ledger($accountId, $currentCharClassId)
         {
             $query = $this->db->query("SELECT DISTINCT subledger_info.id, subledger_info.subledger_code, subledger_info.subledger_name FROM `subledger_info` JOIN `ledger_master` ON `subledger_info`.`subledger_code` = `ledger_master`.`subledger_code` WHERE (`ledger_master`.`ledger_code` = $accountId && `ledger_master`.`account_code` = $currentCharClassId)");
             return $query->result();  
         }
 
+        public function get_account_donor_by_chard_class_id_and_ledger($accountId, $currentCharClassId)
+        {
+            $query = $this->db->query("SELECT DISTINCT donar_info.id, donar_info.donar_code, donar_info.donar_name FROM `donar_info` JOIN `ledger_master` ON `donar_info`.`donar_code` = `ledger_master`.`donor_code` WHERE (`ledger_master`.`ledger_code` = $accountId && `ledger_master`.`account_code` = $currentCharClassId)");
+     return $query->result(); 
+        }
         
+        public function get_account_ledger_type_by_chard_class_id_and_ledger($accountId, $currentCharClassId)
+        {
+            $query = $this->db->query("SELECT DISTINCT ledger_type_info.id, ledger_type_info.ledger_type_code, ledger_type_info.ledger_type_name FROM `ledger_type_info` JOIN `ledger_master` ON `ledger_type_info`.`ledger_type_code` = `ledger_master`.`ledger_type_code` WHERE (`ledger_master`.`ledger_code` = $accountId && `ledger_master`.`account_code` = $currentCharClassId)");
+     return $query->result(); 
+        }
+        
+        public function get_donor_of_ledger_and_subledger($accountId, $currentCharClassId, $subLedgerId)
+        {
+            $query = $this->db->query("SELECT DISTINCT donar_info.id, donar_info.donar_code, donar_info.donar_name FROM `donar_info` JOIN `ledger_master` ON `donar_info`.`donar_code` = `ledger_master`.`donor_code` WHERE (`ledger_master`.`ledger_code` = $accountId && `ledger_master`.`account_code` = $currentCharClassId && `ledger_master`.`subledger_code` = $subLedgerId)");
+     return $query->result(); 
+        }
+        
+        public function get_account_ledger_type_by_chard_class_id_ledger_and_subledger($accountId, $currentCharClassId, $subLedgerId)
+        {
+            $query = $this->db->query("SELECT DISTINCT ledger_type_info.id, ledger_type_info.ledger_type_code, ledger_type_info.ledger_type_name FROM `ledger_type_info` JOIN `ledger_master` ON `ledger_type_info`.`ledger_type_code` = `ledger_master`.`ledger_type_code` WHERE (`ledger_master`.`ledger_code` = $accountId && `ledger_master`.`account_code` = $currentCharClassId && `ledger_master`.`subledger_code` = $subLedgerId)");
+     return $query->result();
+        }
+        
+        public function get_account_ledger_type_by_chard_class_id_ledger_subledger_and_donar($accountId, $currentCharClassId, $subLedgerId, $donar)
+        {
+            $query = $this->db->query("SELECT DISTINCT ledger_type_info.id, ledger_type_info.ledger_type_code, ledger_type_info.ledger_type_name FROM `ledger_type_info` JOIN `ledger_master` ON `ledger_type_info`.`ledger_type_code` = `ledger_master`.`ledger_type_code` WHERE (`ledger_master`.`ledger_code` = $accountId && `ledger_master`.`account_code` = $currentCharClassId && `ledger_master`.`subledger_code` = $subLedgerId && `ledger_master`.`donor_code` = $donar)");
+     return $query->result();
+        }
+
         public function get_account_ledger_info()
         {
             $this->db->where('account_ledger_status', '1');

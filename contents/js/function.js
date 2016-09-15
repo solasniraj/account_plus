@@ -24,8 +24,19 @@
         data: {charClassId:typeValue},
         success: function (msg)
         {
-
-          $('#programsList').html(msg);
+             var msg = $.parseJSON(msg);               
+            if(msg.ledger) {
+        $('#programsList').html(msg.ledger);
+    }    
+    if(msg.subLedger) {
+        $('#subLedgerList').html(msg.subLedger);
+    }     
+    if(msg.donor) {
+        $('#donerList').html(msg.donor);
+    }     
+    if(msg.ledgerType) {
+        $('#ledgerType').html(msg.ledgerType);
+    }                                  
         },
         error: function()
         { }
@@ -44,9 +55,18 @@
         type: "POST",
         url: baseUrl +"transaction/getAssociatedSubLedger",
         data: {chartId:cId, programmId:pId},
-        success: function (msg)
+        success: function(msg)
         {
-            $('#subLedgerList').html(msg);
+           var msg = $.parseJSON(msg);               
+    if(msg.subLedger) {
+        $('#subLedgerList').html(msg.subLedger);
+    }     
+    if(msg.donor) {
+        $('#donerList').html(msg.donor);
+    }     
+    if(msg.ledgerType) {
+        $('#ledgerType').html(msg.ledgerType);
+    }                                  
           $('#programmCode').html(cId+pId+'000000');
 
         },
@@ -106,14 +126,47 @@
         data: {chartId:cId, programmId:pId, subLedger:subLedger},
         success: function (msg)
         {
-            $('#subLedgerList').html(msg);
-          $('#programmCode').html(cId+pId+'000000');
+            var msg = $.parseJSON(msg);                   
+    if(msg.donor) {
+        $('#donerList').html(msg.donor);
+    }     
+    if(msg.ledgerType) {
+        $('#ledgerType').html(msg.ledgerType);
+    }                             
+          $('#programmCode').html(cId+pId+subLedger+'0000');
 
         },
         error: function()
         {     }
       });
     }
+    
+    function getledgerType()
+     {
+        var cId= $('#journalType').val(); 
+      var pId= $('#programsList').val();
+      var subLedger = $('#subLedgerList').val();
+       var donar = $('#donerList').val();
+
+      $.ajax({
+        type: "POST",
+        url: baseUrl +"transaction/getAssociatedLedgerType",
+        data: {chartId:cId, programmId:pId, subLedger:subLedger, donar:donar},
+        success: function (msg)
+        {
+            var msg = $.parseJSON(msg);                       
+    if(msg.ledgerType) {
+        $('#ledgerType').html(msg.ledgerType);
+    }                             
+          $('#programmCode').html(cId+pId+subLedger+donar+'00');
+
+        },
+        error: function()
+        {     }
+      });
+    }
+    
+    
 
     function numberWithCommas(x)
     {

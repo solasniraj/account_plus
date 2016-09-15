@@ -45,25 +45,73 @@
        $currentCharClassId= $_POST['charClassId'];
        
        $accountLedger=$this->ledger_model->get_account_ledger_by_chard_class_id($currentCharClassId);
-       
-       $output= "";
+       $accountSubLedger = $this->ledger_model->get_account_sub_ledger_by_chard_class_id($currentCharClassId);
+       $donor = $this->ledger_model->get_account_donor_by_chard_class_id($currentCharClassId);
+       $ledgerType = $this->ledger_model->get_account_ledger_type_by_chard_class_id($currentCharClassId);
+       $outputL= "";
+       $outputS = "";
+       $outputD = "";
+       $outputLT = "";
        if(!empty($accountLedger))
        {
-         $output .='<option value="" class="text-center">Select Program</option>';
+         $outputL .='<option value="00" class="text-center">Select Program</option>';
          foreach ($accountLedger as $value)
          {
 
-           $output .= '<option programmId="'.$value->ledger_code.'" value="'.$value->ledger_code.'">'.$value->ledger_code." &nbsp;&nbsp;".$value->ledger_name.'</option>';
+           $outputL .= '<option programmId="'.$value->ledger_code.'" value="'.$value->ledger_code.'">'.$value->ledger_code." &nbsp;&nbsp;".$value->ledger_name.'</option>';
          }
        }
        else
        {
 
-         $output .= '<option value=""></option>';
+         $outputL .= '<option value="00">Select None</option>';
        }
+       
+       if(!empty($accountSubLedger))
+       {
+           $outputS .='<option value="00" class="text-center">Select subledger</option>';
+         foreach ($accountSubLedger as $value)
+         {
+           $outputS .= '<option value="'.$value->subledger_code.'">'.$value->subledger_code.'&nbsp;&nbsp;'.$value->subledger_name.'</option>';
+         }
+       }
+       else 
+       {
 
-
-       echo $output;
+         $outputS ='<option value="00"> Select None</option>';
+       }
+       
+       if(!empty($donor))
+       {
+           $outputD .='<option value="00" class="text-center">Select Donor</option>';
+         foreach ($donor as $value)
+         {
+           $outputD .= '<option value="'.$value->donar_code.'">'.$value->donar_code.'&nbsp;&nbsp;'.$value->donar_name.'</option>';
+         }
+       }
+       else 
+       {
+         $outputD = '<option value="00"> Select None</option>';
+       }
+       
+       if(!empty($ledgerType))
+       {
+         foreach ($ledgerType as $value)
+         {
+           $outputLT .= '<option value="'.$value->ledger_type_code.'">'.$value->ledger_type_code.'&nbsp;&nbsp;'.$value->ledger_type_name.'</option>';
+         }
+       }
+       else 
+       {
+         $outputLT = '<option value="00"> Select None</option>';
+       }
+       
+       $response['ledger'] = $outputL;
+        $response['subLedger'] = $outputS;
+        $response['donor'] = $outputD;
+        $response['ledgerType'] = $outputLT;
+       
+echo json_encode($response);
 
      }
      else 
@@ -94,26 +142,58 @@
         $currentCharClassId= $_POST['chartId'];
         
        $subLedgerList=$this->ledger_model->get_subledger_of_ledger($accountId, $currentCharClassId);
+       $donor = $this->ledger_model->get_account_donor_by_chard_class_id_and_ledger($accountId, $currentCharClassId);
+       $ledgerType = $this->ledger_model->get_account_ledger_type_by_chard_class_id_and_ledger($accountId, $currentCharClassId);
+       $outputS = "";
+       $outputD = "";
+       $outputLT = "";
        
        
        
-       
-       $output= "";
-       if(!empty($subLedgerList))
+      if(!empty($subLedgerList))
        {
-           $output .='<option value="" class="text-center">Select subledger</option>';
+           $outputS .='<option value="00" class="text-center">Select subledger</option>';
          foreach ($subLedgerList as $value)
          {
-           $output .= '<option value="'.$value->id.'">'.$value->subledger_name.'</option>';
+           $outputS .= '<option value="'.$value->subledger_code.'">'.$value->subledger_code.'&nbsp;&nbsp;'.$value->subledger_name.'</option>';
          }
        }
        else 
        {
 
-         $output ='<option value=""></option>';
+         $outputS ='<option value="00"> Select None</option>';
        }
-
-       echo $output;
+       
+       if(!empty($donor))
+       {
+           $outputD .='<option value="00" class="text-center">Select Donor</option>';
+         foreach ($donor as $value)
+         {
+           $outputD .= '<option value="'.$value->donar_code.'">'.$value->donar_code.'&nbsp;&nbsp;'.$value->donar_name.'</option>';
+         }
+       }
+       else 
+       {
+         $outputD = '<option value="00"> Select None</option>';
+       }
+       
+       if(!empty($ledgerType))
+       {
+         foreach ($ledgerType as $value)
+         {
+           $outputLT .= '<option value="'.$value->ledger_type_code.'">'.$value->ledger_type_code.'&nbsp;&nbsp;'.$value->ledger_type_name.'</option>';
+         }
+       }
+       else 
+       {
+         $outputLT = '<option value="00"> Select None</option>';
+       }
+       
+        $response['subLedger'] = $outputS;
+        $response['donor'] = $outputD;
+        $response['ledgerType'] = $outputLT;
+       
+echo json_encode($response);
      }
      else 
      {
@@ -143,27 +223,41 @@
         $currentCharClassId= $_POST['chartId'];
         $subLedgerId = $_POST['subLedger'];
      
-       $subLedgerList=$this->ledger_model->get_donor_of_ledger_and_subledger($accountId, $currentCharClassId);
+       $donor=$this->ledger_model->get_donor_of_ledger_and_subledger($accountId, $currentCharClassId, $subLedgerId);
+       $ledgerType = $this->ledger_model->get_account_ledger_type_by_chard_class_id_ledger_and_subledger($accountId, $currentCharClassId, $subLedgerId);
        
+        $outputD = "";
+       $outputLT = "";
        
-       
-       
-       $output= "";
-       if(!empty($subLedgerList))
+       if(!empty($donor))
        {
-           $output .='<option value="" class="text-center">Select subledger</option>';
-         foreach ($subLedgerList as $value)
+           $outputD .='<option value="00" class="text-center">Select Donor</option>';
+         foreach ($donor as $value)
          {
-           $output .= '<option value="'.$value->id.'">'.$value->subledger_name.'</option>';
+           $outputD .= '<option value="'.$value->donar_code.'">'.$value->donar_code.'&nbsp;&nbsp;'.$value->donar_name.'</option>';
          }
        }
        else 
        {
-
-         $output ='<option value=""></option>';
+         $outputD = '<option value="00"> Select None</option>';
        }
-
-       echo $output;
+       
+       if(!empty($ledgerType))
+       {
+         foreach ($ledgerType as $value)
+         {
+           $outputLT .= '<option value="'.$value->ledger_type_code.'">'.$value->ledger_type_code.'&nbsp;&nbsp;'.$value->ledger_type_name.'</option>';
+         }
+       }
+       else 
+       {
+         $outputLT = '<option value="00"> Select None</option>';
+       }
+       
+        $response['donor'] = $outputD;
+        $response['ledgerType'] = $outputLT;
+       
+echo json_encode($response);
      }
      else 
      {
@@ -182,9 +276,67 @@
   }
 
   
+  public function getAssociatedLedgerType()
+   {
+       {
+   $url = current_url();
+   if ($this->session->userdata('logged_in') == true) 
+   {   
+     if (isset($_POST['chartId']) && isset($_POST['programmId']) && isset($_POST['subLedger'])) 
+     {
+       $accountId= $_POST['programmId'];
+        $currentCharClassId= $_POST['chartId'];
+        $subLedgerId = $_POST['subLedger'];
+        $donar = $_POST['donar'];
+       
+       $ledgerType = $this->ledger_model->get_account_ledger_type_by_chard_class_id_ledger_subledger_and_donar($accountId, $currentCharClassId, $subLedgerId, $donar);
+       
+       $outputLT = "";
+       
+       if(!empty($ledgerType))
+       {
+         foreach ($ledgerType as $value)
+         {
+           $outputLT .= '<option value="'.$value->ledger_type_code.'">'.$value->ledger_type_code.'&nbsp;&nbsp;'.$value->ledger_type_name.'</option>';
+         }
+       }
+       else 
+       {
+         $outputLT = '<option value="00"> Select None</option>';
+       }
+       
+        $response['ledgerType'] = $outputLT;
+       
+echo json_encode($response);
+     }
+     else 
+     {
+
+      echo "Unauthorized access";
+
+    }
+  }
+  else
+  {
+
+   redirect('login/index/?url=' . $url, 'refresh');
+  }
+
+  }
+  }
 
 
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   public function getProgrammListForCurrentChartName()
   {
@@ -344,8 +496,6 @@
        }
        else 
        {
-
-
          $output = '<option value=""></option>';
        }
 
