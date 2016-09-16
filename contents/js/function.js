@@ -328,14 +328,15 @@ function ledMCode()
 function clearformTable()
 {
     viewToDisplayInTable = "";
-        myCustomViewToEnter = "";
-        $("#workingWithObjectData").html("");
-        $("#totalDebit").html("0.0");
-        $("#totalCredit").html("0.0");
-        debitCreditDifference = 0;
-        activateCommentAndSummerField("deactivate");
-        $("#creditGreater").val(0);
-        $("#debitGreater").val(0);
+    myCustomViewToEnter = "";
+    $("#workingWithObjectData").html("");
+    $("#glTrans")[0].reset();
+    $("#totalDebit").html("0.0");
+    $("#totalCredit").html("0.0");
+    debitCreditDifference = 0;
+    activateCommentAndSummerField("deactivate");
+    $("#creditGreater").val(0);
+    $("#debitGreater").val(0);
     objectToStroCurrentData = [];
 }
 
@@ -406,7 +407,7 @@ function  addData()
     var debitAmount = $('#debitAmount').val();
     var creditAmount = $('#creditAmount').val();
     var chequeNo = $('#chequeNo').val();
-
+    $("#glTrans")[0].reset();
     if (debitAmount && creditAmount)
     {
         var msg = '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Either Debit Amount OR Credit Amount is required</div>';
@@ -421,8 +422,8 @@ function  addData()
         objectToStroCurrentData =
                 {
                     indexNumber: incrementCounterForItem,
-                    chartCode : chartId,
-                    lMCode : lMCode,
+                    chartCode: chartId,
+                    lMCode: lMCode,
                     accCode: accountId,
                     type: 'dr',
                     subLedger_id: subLedger,
@@ -465,8 +466,8 @@ function  addData()
         objectToStroCurrentData =
                 {
                     indexNumber: incrementCounterForItem,
-                    chartCode : chartId,
-                    lMCode : lMCode,
+                    chartCode: chartId,
+                    lMCode: lMCode,
                     accCode: accountId,
                     type: 'dr',
                     subLedger_id: subLedger,
