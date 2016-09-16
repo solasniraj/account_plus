@@ -96,6 +96,7 @@
        
        if(!empty($ledgerType))
        {
+           $outputLT .='<option value="00" class="text-center">Select Ledger Type</option>';
          foreach ($ledgerType as $value)
          {
            $outputLT .= '<option value="'.$value->ledger_type_code.'">'.$value->ledger_type_code.'&nbsp;&nbsp;'.$value->ledger_type_name.'</option>';
@@ -179,6 +180,7 @@ echo json_encode($response);
        
        if(!empty($ledgerType))
        {
+           $outputLT .='<option value="00" class="text-center">Select Ledger Type</option>';
          foreach ($ledgerType as $value)
          {
            $outputLT .= '<option value="'.$value->ledger_type_code.'">'.$value->ledger_type_code.'&nbsp;&nbsp;'.$value->ledger_type_name.'</option>';
@@ -244,6 +246,7 @@ echo json_encode($response);
        
        if(!empty($ledgerType))
        {
+           $outputLT .='<option value="00" class="text-center">Select Ledger Type</option>';
          foreach ($ledgerType as $value)
          {
            $outputLT .= '<option value="'.$value->ledger_type_code.'">'.$value->ledger_type_code.'&nbsp;&nbsp;'.$value->ledger_type_name.'</option>';
@@ -295,6 +298,7 @@ echo json_encode($response);
        
        if(!empty($ledgerType))
        {
+           $outputLT .='<option value="00" class="text-center">Select Ledger Type</option>';
          foreach ($ledgerType as $value)
          {
            $outputLT .= '<option value="'.$value->ledger_type_code.'">'.$value->ledger_type_code.'&nbsp;&nbsp;'.$value->ledger_type_name.'</option>';
@@ -324,19 +328,58 @@ echo json_encode($response);
 
   }
   }
+  
+  public function checkLedgerMasterCode()
+  {
+      
+      $url = current_url();
+   if ($this->session->userdata('logged_in') == true) 
+   {   
+        $mCode = $_POST['lmCode'];
+        
+     if (isset($_POST['lmCode'])) 
+     {
+         $mCode = $_POST['lmCode'];
+       $code = $this->ledger_model->check_ledger_master_for_code($mCode); 
+       if($code){
+           $codeS = 'true';
+       }else{
+           $codeS = 'false';
+       }
+       
+       $response['code'] = $codeS;
+       echo json_encode($response);  
+     }
+     }
+     else
+  {
+
+   redirect('login/index/?url=' . $url, 'refresh');
+  }
+  }
+
+  
 
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   public function getProgrammListForCurrentChartName()
   {

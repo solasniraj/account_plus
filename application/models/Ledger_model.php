@@ -75,6 +75,27 @@ $query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledge
             $query = $this->db->query("SELECT DISTINCT ledger_type_info.id, ledger_type_info.ledger_type_code, ledger_type_info.ledger_type_name FROM `ledger_type_info` JOIN `ledger_master` ON `ledger_type_info`.`ledger_type_code` = `ledger_master`.`ledger_type_code` WHERE (`ledger_master`.`ledger_code` = $accountId && `ledger_master`.`account_code` = $currentCharClassId && `ledger_master`.`subledger_code` = $subLedgerId && `ledger_master`.`donor_code` = $donar)");
      return $query->result();
         }
+        
+        public function check_ledger_master_for_code($mCode)
+        {
+             $this->db->where('ledger_master_code', $mCode);
+            $this->db->where('status', '1');
+            $query = $this->db->get('ledger_master');
+            if ($query->num_rows() == 1) {
+                return true;
+            } else {
+            return FALSE;
+        }
+        }
+
+        
+
+
+
+
+
+
+
 
         public function get_account_ledger_info()
         {

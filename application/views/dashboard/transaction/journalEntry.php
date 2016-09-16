@@ -98,16 +98,16 @@
                                     <td><b>Credit</b></td>
                                     <td><b>Cheque number</b></td>
                                     <td rowspan="2"  class="b" id="toggleButton">
-                                        <span class="btn btn-success " oncid="submitCurrentData" onClick="ProcessDataandInsertIntoArray()" style=" padding:5px;margin:5px;width:70px;font-size:18px;">Add</span></td>
+                                        <span class="btn btn-success " id="submitCurrentData" onClick="addData()" style=" padding:5px;margin:5px;width:70px;font-size:18px;">Add</span></td>
                                 </tr>
                                 <tr>
 
-                                    <td id="programmCode">
-                                        <input type="text" id="pCode" class="form-control" >
+                                    <td id="ledgerMasterCode">
+                                        <input type="text" id="lMCode" value="" class="form-control" >
                                     </td>
 
-                                    <td>  <select class="form-control" id="programsList" onchange="getSubLedger(this)">
-                                            <option value="">Select Program</option>
+                                    <td>  <select class="form-control" id="accountList" onchange="getSubLedger(this)">
+                                            <option value="">Select Account</option>
                                         </select>
                                     </td>
 
@@ -122,7 +122,7 @@
                                     </td>
 
 
-                                    <td> <select class="form-control" id="ledgerType">
+                                    <td> <select class="form-control" id="ledgerType" onchange="updateCode(this)">
                                             <option value="00">Select Ledger Type</option>
                             <option value="01">Cash</option>
                             <option value="02">Internal Cash</option>
@@ -236,9 +236,11 @@
 
 
                         <div class="lastButton">
-                            <button  onClick="sendAllJounalTransactionToServer()" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Submit</button>
+                            <button id="submitTheForm" onClick="sendAllJounalTransactionToServer()" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Submit</button>
 
-                            <button class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Add</button>
+                            <span onclick="clearformTable()" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Reset</span>
+                            
+                            <button id="previewForm" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Preview</button>
                         </div>
 
                     </div>
