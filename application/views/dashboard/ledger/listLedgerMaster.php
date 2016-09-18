@@ -1,4 +1,35 @@
-<style>
+<script>
+     var typingTimer;
+var doneTypingInterval = 200;
+$(document).ready(function(){
+$("#tags").on("input", function () {
+    window.clearTimeout(typingTimer);
+    typingTimer = window.setTimeout(doneTyping, doneTypingInterval);
+});
+});
+
+function doneTyping () {
+        var q = $("#tags").val();
+        $.ajax({
+            type: "POST",
+            url: baseUrl + 'ledger/search',
+            
+            data: {'searchKey': q},
+            success: function (data) {
+               
+                $("#testSearch").html(data);
+               // toastr.success('Pager has been changed', "Success!");
+            },
+            error: function (jqXHR, exception) {
+                ShowErrorMessage(jqXHR, exception);
+            }
+        });  
+}
+     
+ </script>
+ 
+ 
+ <style>
     ul.collection {
     padding: 1em;
 }
@@ -120,11 +151,12 @@ ul.collection li{
             <div class="col-md-8 inbox_right">
                 <form method="GET" action="#">
                     <div class="input-group input-group-ind">
-                        <input type="text" placeholder="Search by Ledger Account Heading or code..." class="form-control1 input-search" name="search">
+                        <input id="tags" type="text" placeholder="Search by Ledger Account Heading or code..." class="form-control1 input-search" name="search">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-success"><i class="fa fa-search icon-ser"></i></button>
                         </span>
                     </div><!-- Input Group -->
+                   
                 </form>
                 <div class="mailbox-content">
                     <table class="table table-bordered table-fhr">
@@ -135,7 +167,7 @@ ul.collection li{
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="testSearch">
                             <?php
                             if (!empty($ledgerDetails)) {
                                 foreach ($ledgerDetails as $lAList) {

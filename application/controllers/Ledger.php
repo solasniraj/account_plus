@@ -11,6 +11,29 @@ class ledger extends CI_Controller {
         $this->load->library('pagination');
     }
     
+    public function search() {
+        if (isset($_POST['searchKey'])) {
+            $searchKey = $_POST['searchKey'];
+        } else {
+            $searchKey = "";
+        }
+
+        $result = $this->ledger_model->search_ledger_by_key_or_description($searchKey);
+
+        if ($searchKey != "" && $searchKey != NULL  && (!empty($result))) {
+            
+            $view = '';
+            foreach ($result as $data){
+            $view .= '<tr><td>'.$data->ledger_master_code.'</td>'
+                    . '<td>'.$data->ledger_master_name.'</td>'
+                    . '<td><a href="#">Edit</a> / <a href="#">Delete</a></td></tr>';
+            }
+                   
+            echo $view;
+        }
+    }
+
+
     public function index()
     {
         $url = current_url();

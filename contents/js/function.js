@@ -1,4 +1,9 @@
 
+            
+
+
+
+
 var debitCreditDifference = "";
 var debitTotal = 0;
 var creditTotal = 0;

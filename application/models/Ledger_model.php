@@ -7,7 +7,20 @@
      $this->load->database();
    }
    
-   public function get_account_chart_class()
+   public function search_ledger_by_key_or_description($searchKey)
+   {
+       $this->db->select('id, ledger_master_code, ledger_master_name');
+        $this->db->where("status", "1");
+        $where = "(ledger_master_code LIKE '%$searchKey%' 
+          OR ledger_master_name LIKE '%$searchKey%')";
+        $this->db->where($where);
+        $query = $this->db->get('ledger_master');
+
+        return $query->result();
+       
+   }
+
+      public function get_account_chart_class()
         {
             $this->db->where('chart_status', 'Active');
             $query = $this->db->get('chart_class');
