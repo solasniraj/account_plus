@@ -35,135 +35,84 @@ if (!empty($singleGLDetails)) {
             <div class="xs tabls">
 
                 <div data-example-id="simple-responsive-table" class="bs-example4">
-                    <!-- priview first table of singleJournla entry -->
+                    <!-- priview first table of singleJournal entry -->
 
                     <div class="table-responsive">
                         <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                            <center>
-                                <th>General Ledger Transaction Details</th>
-                                <th>Date</th>
-                                <th>Summary of Transaction</th>
-                                <th>Details of Transaction</th>
-                            </center>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Journal Entry : <?php echo $voucherNo; ?> </td>
-                                    <td><?php echo $gLDate; ?></td>
-                                    <td><?php echo $summary; ?></td>
-                                    <td><?php echo $details; ?></td>
+                          
+                               
+            
+                    <tr>
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- second table for singleJournalEntry  -->
+                    <th> A/C Name </th>
+                    <th> A/C Description</th>
+                    <th> Donar's Name</th>
+                    <th>Description</th>
+                    <th>Debits</th>
+                    <th>Credits</th>
+                   </tr>
 
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                            <center>
-                                <th>Account code</th>
-                                <th>Account head</th>
-                                <th>Sub-ledger </th>
-                                <th>Donar name</th>
-                                <th>Ledger type</th>
-                                <th>Description</th>
-                                <th>Debit</th>
-                                <th>Credit</th>
-                                <th>Cheque No.</th>
-
-                            </center>
-                            </tr>
-                            </thead>
-                            <tbody>
-    <?php foreach ($singleGLDetails as $gLList) {
-        $type = $gLList->type; ?>
-                                    <tr>
-                                        <td><?php echo $gLList->account_code; ?></td>
-                                        <td><?php echo $gLList->account_head; ?></td>                           
-                                        <td><?php echo $gLList->sub_ledger; ?></td>
-                                        <td><?php echo $gLList->donor_id; ?></td>
-                                        <td><?php echo $gLList->ledger_type; ?></td>
-                                        <td><?php echo $gLList->memo; ?></td>
-                                        <td><?php if ($type == 'dr') {
-            echo abs($gLList->amount);
-        } else {
-            NULL;
-        } ?></td>
-                                        <td><?php if ($type == 'cr') {
-                                echo abs($gLList->amount);
-                            } else {
-                                NULL;
-                            } ?></td>
-                                        <td><?php echo $gLList->cheque_no; ?></td>
-                                    </tr>
-    <?php } ?>
-
-                                <tr>
-                                    <th colspan="2">Total </th>
-                                    <th>&nbsp</th>
-                                    <th>500</th>
-                                    <th>500</th>
-                                    <th>&nbsp</th>
-                                </tr>
-
-                            </tbody>
-
-                        </table>
-                    </div>
+                    <tr>
+                    <td>0101001010010</td>
+                    <td>0101001010010</td>
+                    <td>0101001010010</td>
+                    <td>0101001010010</td>
+                    <td>0101001010010</td>
+                    <td>0101001010010</td>
+                    </tr>
 
 
-                    <!--prepared and approverd by section-->
 
-
-                    <div class="form-group" >
-                        <div class="row">
-                            <div class="col-md-4">
-                                <table class="table">
-                                    <tr>
-                                        <th>Prepared By:</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Name :-........................</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Designation :-........................</td>
-                                    </tr>  
-                                </table>
-                            </div>
-                            <div class="col-md-4 col-md-offset-2">
-                                <table class="table">
-                                    <tr>
-                                        <th>Apporoved By:</th>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>Name :-........................</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ressignation :-.......................</td>
-                                    </tr>  
-                                </table>
-                            </div>
-                            
-                        </div>
-                    </div>
-
-
+                    <tr>
+                    <td colspan="4">Total</td>
+                    <td></td>
+                    <td></td>
+                    </tr>
 
 
                     
+                     <div class="form-group" >
+                        <div class="row">
+                            
+                                <table class="table">
+                                    <tr>
+                                        <pre>
 
-                </div>
-            </div>
-        </div>
+         Designation :-                                                        Designation :-
+    
+
+         Name : _____________________                                          Name : ______________________
+
+
+         Sign : .....................                                          Sign : ......................
+                                       
+                                        
+                                      </pre>
+                                      </tr>
+                                </table>
+                          
+                           
 <?php
 } else {
     echo "Data not Found";
 }
 ?>
+
+                   
+                            
+                        </div>
+                    </div>
+                 
+                  </tbody>
+
+
+
+
+
+              
+
+
+
+
+
+   
