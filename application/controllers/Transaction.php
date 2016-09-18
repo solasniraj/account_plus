@@ -575,7 +575,7 @@ $user_id = $this->session->userdata('user_id');
      
   $jnNumber = str_pad($journalNumber, 5, "0", STR_PAD_LEFT);
      $data['journalNumber'] = $committee_code.'-FY'.$fiscal_year.'-'.$jnNumber;
-     $data['journalTypes']=$this->program_model->getJournalTypes();
+     $data['journalTypes']=$this->ledger_model->getJournalTypes();
      
 //     $totalTransBalance = $this->bank_model->get_total_balance_of_all_banks_from_trans_info();
 //     $bankAccount = $this->bank_model->view_bank_account_listing();
@@ -750,40 +750,40 @@ $user_id = $this->session->userdata('user_id');
      
   $jnNumber = str_pad($journalNumber, 5, "0", STR_PAD_LEFT);
      $data['journalNumber'] = $committee_code.'-FY'.$fiscal_year.'-'.$jnNumber;
-     $data['journalTypes']=$this->program_model->getJournalTypes();
-     $data['program_list']=$this->program_model->view_programm_listing($user_id);
+     $data['journalTypes']=$this->ledger_model->getJournalTypes();
+    
      
-     $totalTransBalance = $this->bank_model->get_total_balance_of_all_banks_from_trans_info();
-     $bankAccount = $this->bank_model->view_bank_account_listing();
-     if(!empty($bankAccount)){
-         $totalEnd = '0';
-        foreach($bankAccount as $blist) {
-            $endingBalance = $blist->ending_reconcile_balance;
-            $totalEnd += $endingBalance;
-        }
-     }
-     if((!empty($totalTransBalance )) && (!empty($totalEnd))){         
-         $finalBalance = $totalEnd - $totalTransBalance;
-     }elseif((empty($totalTransBalance )) && (!empty($totalEnd))){       
-             $finalBalance = $totalEnd;
-     }elseif((!empty($totalTransBalance )) && (empty($totalEnd))){        
-             $finalBalance = $totalTransBalance;
-         }else{
-            $finalBalance = '0';
-        }
-     
-     $data['bankBalance'] = $finalBalance;
+//     $totalTransBalance = $this->bank_model->get_total_balance_of_all_banks_from_trans_info();
+//     $bankAccount = $this->bank_model->view_bank_account_listing();
+//     if(!empty($bankAccount)){
+//         $totalEnd = '0';
+//        foreach($bankAccount as $blist) {
+//            $endingBalance = $blist->ending_reconcile_balance;
+//            $totalEnd += $endingBalance;
+//        }
+//     }
+//     if((!empty($totalTransBalance )) && (!empty($totalEnd))){         
+//         $finalBalance = $totalEnd - $totalTransBalance;
+//     }elseif((empty($totalTransBalance )) && (!empty($totalEnd))){       
+//             $finalBalance = $totalEnd;
+//     }elseif((!empty($totalTransBalance )) && (empty($totalEnd))){        
+//             $finalBalance = $totalTransBalance;
+//         }else{
+//            $finalBalance = '0';
+//        }
+//     
+     $data['bankBalance'] = '0';
      
      $this->load->library('form_validation');
      $this->form_validation->set_rules('journalNo', 'Journal No', 'trim|required|max_length[200]');
      $this->form_validation->set_rules('datepicker', 'Date', 'trim|required|callback_xss_clean|max_length[200]');
-     $this->form_validation->set_rules('journalType', 'Journal Type', 'trim|required|callback_xss_clean|max_length[200]');   
+    
      
      $this->form_validation->set_error_delimiters('<div class="form_errors">', '</div>');
 
      if ($this->form_validation->run() == FALSE)
      {
-       $data['program_list']=$this->program_model->view_programm_listing($user_id);
+       
        $this->load->view('dashboard/templates/header');
        $this->load->view('dashboard/templates/sideNavigation');
        $this->load->view('dashboard/templates/topHead');
@@ -794,26 +794,26 @@ $user_id = $this->session->userdata('user_id');
      else 
      {
          $ledgerName = $this->input->post('ledgerName');     
-         $datepicker = date('Y-m-d', strtotime($this->input->post('datepicker')));     
-         $journalType = $this->input->post('journalType');     
+         $datepicker = date('Y-m-d', strtotime($this->input->post('datepicker')));       
          $comment = $this->input->post('comment');     
          $summary = $this->input->post('summary');     
          $journalNo = $this->input->post('journalNo');     
          
         $myData = $_POST['mydata'];
        $drCr = json_decode($myData);
-       
+      
        foreach ($drCr as $transData){
            
            $indexNumber = $transData->indexNumber;
-           $pCode = $transData->pCode;
-           $accountHd = $transData->programName;
-           $temp1 = preg_replace("/^(\w+\s)/", "", $accountHd);
-           $accountHead = $temp1;
-           $account_id = $transData->program_id;
-           $subLedgerName = $transData->subLedgerName;
+           $chartCode = $transData->chartCode;
+           $lmcode = $transData->lMCode;
+           //$accountHd = $transData->programName;
+          // $temp1 = preg_replace("/^(\w+\s)/", "", $accountHd);
+          // $accountHead = $temp1;
+           $accCode = $transData->accCode;
+         //  $subLedgerName = $transData->subLedgerName;
            $subLedger_id = $transData->subLedger_id;
-           $donarName = $transData->donarName;
+          // $donarName = $transData->donarName;
            $donar_id = $transData->donar_id;
            $ledgerType = $transData->ledgerType;
            $description = $transData->description;
@@ -825,22 +825,22 @@ $user_id = $this->session->userdata('user_id');
           
            if((!empty($debitAmount)) && is_numeric( $debitAmount )){
                $type='dr';
-              if($journalType == '1' || $journalType == '4'){
-                  $this->transaction_model->add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
-              }elseif($journalType == '2' || $journalType == '3'){
+              if($chartCode == '1' || $chartCode == '4'){
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
+              }elseif($chartCode == '2' || $chartCode == '3'){
                   $debitAmount = ('-1') * $debitAmount;
-                          $this->transaction_model->add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
+                          $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
               }else{
                   echo "something went wrong";
               }
                
            }elseif((!empty ($creditAmount)) && is_numeric( $creditAmount )){
                $type='cr';
-               if($journalType == '1' || $journalType == '4'){
+               if($chartCode == '1' || $chartCode == '4'){
                   $creditAmount = ('-1') * $creditAmount;
-                  $this->transaction_model->add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);
-              }elseif($journalType == '2' || $journalType == '3'){
-                  $this->transaction_model->add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);
+              }elseif($chartCode == '2' || $chartCode == '3'){
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);
               }else{
                   echo "something went wrong";
               }

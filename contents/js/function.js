@@ -340,19 +340,38 @@ function clearformTable()
     objectToStroCurrentData = [];
 }
 
-
+function drcr()
+{
+   var debitAmount = $('#debitAmount').val();
+    var creditAmount = $('#creditAmount').val();
+    if (debitAmount && creditAmount)
+    {
+        $("#donerList").focus();
+        return false;
+    } else {
+        $("#donerList").css("border", "1px solid green");
+        return true;
+    }
+}
 
 
 // till here goes the updated code for program
 
 
-
-
-
-
-
 function  addData()
 {
+    var chartId = $('#journalType').val();
+    var lMCode = $("#lMCode").val();
+    var accountId = $('#accountList').val();
+    var subLedger = $('#subLedgerList').val();
+    var donar = $('#donerList').val();
+    var ledgerType = $('#ledgerType').val();
+    var description = $('#description').val();
+    var debitAmount = $('#debitAmount').val();
+    var creditAmount = $('#creditAmount').val();
+    var chequeNo = $('#chequeNo').val();
+    //$("#glTrans")[0].reset();
+    
     if (journal() == false)
     {
         $("#journalType").focus();
@@ -374,49 +393,11 @@ function  addData()
     } else if (Desc() == false)
     {
         $("#description").focus();
-    }
-//        else(name() == true && email() == true && phone() == true && message() == true && captcha() == true)
-//                {
-//                     var aname = $("#name").val();
-//                                            var aemail = $("#email").val();
-//                                            var aphone = $("#phone").val();
-//                                            var amessage = $("#message").val();
-//                                            var acaptcha = $("#captcha").val();
-//                    $.ajax({
-//                                                    type: "POST",
-//                                                    url: "<?php echo base_url() . 'index.php/subscribers/addFeedback'; ?>",
-//                                                    data: {'name': aname, 'email': aemail, 'phone': aphone, 'message': amessage, 'captcha': acaptcha},
-//                                                    cache: false,
-//                                                    success: function(msgs) {
-//
-//                                                        $('.well').html(msgs);
-//
-//
-//
-//
-//                                                    }
-//                                                });
-//                }
-    var chartId = $('#journalType').val();
-    var lMCode = $("#lMCode").val();
-    var accountId = $('#accountList').val();
-    var subLedger = $('#subLedgerList').val();
-    var donar = $('#donerList').val();
-    var ledgerType = $('#ledgerType').val();
-    var description = $('#description').val();
-    var debitAmount = $('#debitAmount').val();
-    var creditAmount = $('#creditAmount').val();
-    var chequeNo = $('#chequeNo').val();
-    $("#glTrans")[0].reset();
-    if (debitAmount && creditAmount)
+    }else if (drcr() == false)
     {
-        var msg = '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Either Debit Amount OR Credit Amount is required</div>';
-        $('#errorMessages').html(msg);
-        hideMessages();
-
-    } else if ((debitAmount && (creditAmount == null || creditAmount == "")))
+        $("#debitAmount").focus();
+    }else if ((debitAmount && (creditAmount == null || creditAmount == "")))
     {
-
         var debitInsertValue = debitAmount;
         creditInsertValue = 0;
         objectToStroCurrentData =
@@ -435,8 +416,7 @@ function  addData()
                     chequeNo: chequeNo
                 };
         incrementCounterForItem++;
-        if (typeof (index) == 'undefined' || index === null)
-        {
+        if (typeof (index) == 'undefined' || index === null){
             allInsertItemsinVouture.push(objectToStroCurrentData);
             viewTheItemsInArray();
             var msg = '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction Added succesfully</div>';
@@ -446,21 +426,13 @@ function  addData()
         {
             allInsertItemsinVouture.splice(index, 1, objectToStroCurrentData);
             viewTheItemsInArray();
-
-            var msg = '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction updated succesfully</div>';
-            $('#errorMessages').html(msg);
-            hideMessages();
         }
 
-        description = $('#description').val("");
-        debitAmount = $('#debitAmount').val("");
-        creditAmount = $('#creditAmount').val("");
-        chequeNo = $('#chequeNo').val("");
+        $("#glTrans")[0].reset();
         objectToStroCurrentData = {};
 
     } else if ((creditAmount && (debitAmount == null || debitAmount == "")))
     {
-
         var creditInsertValue = creditAmount;
         debitInsertValue = 0;
         objectToStroCurrentData =
@@ -480,8 +452,7 @@ function  addData()
                 };
 
         incrementCounterForItem++;
-        if (typeof (index) == 'undefined' || index === null)
-        {
+        if (typeof (index) == 'undefined' || index === null){
             allInsertItemsinVouture.push(objectToStroCurrentData);
             viewTheItemsInArray();
             var msg = '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction Added succesfully</div>';
@@ -491,16 +462,9 @@ function  addData()
         {
             allInsertItemsinVouture.splice(index, 1, objectToStroCurrentData);
             viewTheItemsInArray();
-            var msg = '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction updated succesfully</div>';
-            $('#errorMessages').html(msg);
-            hideMessages();
         }
-
-        description = $('#description').val("");
-        debitAmount = $('#debitAmount').val("");
-        creditAmount = $('#creditAmount').val("");
-        chequeNo = $('#chequeNo').val("");
-
+       $("#glTrans")[0].reset();
+        objectToStroCurrentData = {};
     } else
     {
         var msg = '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Plese Enter Either Debit Amount OR Credit Amount</div>';
@@ -520,38 +484,20 @@ function viewTheItemsInArray()
         {
 
             var objestToLoop = allInsertItemsinVouture[i];
-            var pCode = objestToLoop.pCode;
+            var lMCode = objestToLoop.lMCode;
             var program = objestToLoop.programName;
-            var program_id = objestToLoop.program_id;
-            var subLedger = objestToLoop.subLedgerName;
-            if (subLedger)
-            {
-            } else
-            {
-
-                subLedger = '';
-            }
-
+            var accCode = objestToLoop.accCode;
             var subLedger_id = objestToLoop.subLedger_id;
-
             if (subLedger_id)
             {
             } else
             {
-                subLedger_id = '';
 
+                subLedger_id = '';
             }
 
             var donar = objestToLoop.donarName;
-            var donar_id = objestToLoop.doner_id;
-
-            if (donar)
-            {
-            } else
-            {
-                donar = '';
-
-            }
+            var donar_id = objestToLoop.donar_id;
 
             if (donar_id)
             {
@@ -597,11 +543,11 @@ function viewTheItemsInArray()
             }
 
             myCustomViewToEnter = '<tr>' +
-                    '<td>' + pCode + '</td>' +
-                    '<td>' + program + '</td>' +
-                    '<td>' + subLedger + '</td>' +
+                    '<td>' + lMCode + '</td>' +
+                    '<td>' + accCode + '</td>' +
+                    '<td>' + subLedger_id + '</td>' +
+                    '<td>' + donar_id + '</td>' +
                     '<td>' + ledgerType + '</td>' +
-                    '<td>' + donar + '</td>' +
                     '<td colspan="2">' + description + '</td>' +
                     '<td>' + debitAmount + '</td>' +
                     '<td>' + creditAmount + '</td>' +

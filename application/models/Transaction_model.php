@@ -9,40 +9,38 @@ class Transaction_model extends CI_Model {
     public function get_transactions_details()
     {
         $this->db->distinct();
-        $this->db->group_by('gl_no');
+        $this->db->group_by('journal_voucher_no');
         $this->db->where('status', '1');
         $this->db->select('*');
         $this->db->from('gl_trans_info');
-        $this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.gl_no');
+        $this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.journal_voucher_no');
          $query = $this->db->get();
         return $query->result();               
     }
     
     public function get_single_transaction_details($id)
     {
-        $this->db->where('gl_no', $id);
+        $this->db->where('journal_voucher_no', $id);
         $this->db->where('status', '1');
         $this->db->select('*');
         $this->db->from('gl_trans_info');
-$this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.gl_no');
+$this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.journal_voucher_no');
 $query = $this->db->get();
  return $query->result();   
     }
 
-    public function add_gl_transaction($journalNo, $type, $ledgerName, $datepicker, $journalType, $indexNumber, $pCode, $accountHead, $account_id, $subLedgerName, $subLedger_id, $donarName, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo)
+    public function add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $Amount, $chequeNo)
     {
         $data = Array(
-            'gl_no' => $journalNo,
-            'type' => $type,
-            'type_no' => $journalType,
+            'journal_voucher_no' => $journalNo,            
             'tran_date' => $datepicker,
-                'account_code' => $account_id,
-                'account_head' => $accountHead,
-                'sub_ledger' => $subLedgerName,
-                'donor_id' => $donar_id,
-                'ledger_type' => $ledgerType,
+                'ledger_master_code' => $lmcode,
+                'account_ledger_head_code' => $accCode,
+                'sub_ledger_code' => $subLedger_id,
+                'donor_code' => $donar_id,
+                'ledger_type_code' => $ledgerType,
                 'memo' => $description,
-                'amount' => $debitAmount,
+                'amount' => $Amount,
                 'cheque_no' => $chequeNo,
                 'status' => "1",
                 );

@@ -31,11 +31,11 @@
                         <tr>
                         <?php
                         foreach ($transactionDetails as $tGLList) {   ?>  
-                            <td><?php echo $tGLList->gl_no; ?> </td>
+                            <td><?php echo $tGLList->journal_voucher_no; ?> </td>
                             <td><?php echo $tGLList->summary_comment; ?> </td>
                             <td><?php echo $tGLList->tran_date; ?> </td>
                             <td><?php echo $tGLList->amount; ?> </td>
-                            <td><a href="<?php echo base_url() . 'transaction/journalPreview/'.$tGLList->gl_no; ?>">Preview</a></td>
+                            <td><a href="<?php echo base_url() . 'transaction/journalPreview/'.$tGLList->journal_voucher_no; ?>">Preview</a></td>
                         </tr>
                         <?php } ?>
                          

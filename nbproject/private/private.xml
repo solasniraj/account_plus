@@ -7,7 +7,6 @@
             <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Transaction.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/models/Ledger_model.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/transaction/journalEntry.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/models/Dbuser.php</file>
         </group>
     </open-files>
 </project-private>

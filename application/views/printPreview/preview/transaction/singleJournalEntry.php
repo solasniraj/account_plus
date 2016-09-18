@@ -4,7 +4,7 @@
 if (!empty($singleGLDetails)) {
     foreach ($singleGLDetails as $glDetails) {
         $gLDate = $glDetails->tran_date;
-        $voucherNo = $glDetails->gl_no;
+        $voucherNo = $glDetails->journal_voucher_no;
         $summary = $glDetails->summary_comment;
         $details = $glDetails->detailed_comment;
     }
