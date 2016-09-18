@@ -738,6 +738,9 @@ $user_id = $this->session->userdata('user_id');
 
   public function glTransaction()
   {
+      
+      
+      
       $url = current_url();
    if ($this->session->userdata('logged_in') == true) {
         $user_id = $this->session->userdata('user_id');
@@ -822,7 +825,8 @@ $user_id = $this->session->userdata('user_id');
            $credits = $transData->creditAmount;
            $creditAmount = str_replace( ',', '', $credits );
            $chequeNo = $transData->chequeNo;
-          
+           
+           
            if((!empty($debitAmount)) && is_numeric( $debitAmount )){
                $type='dr';
               if($chartCode == '1' || $chartCode == '4'){
@@ -849,8 +853,21 @@ $user_id = $this->session->userdata('user_id');
            }
        }
        $this->transaction_model->add_comment_of_transaction($journalNo, $comment, $summary);
-       $this->session->set_flashdata('message', 'Transaction added successfully.');
-       redirect('transaction/journalList');
+      //switch cases for preview and submit
+           switch($_REQUEST['journalEntry']) {
+       case 'Submit':
+           $this->transaction_model->update_transaction_status_to_approved($journalNo);
+           $this->session->set_flashdata('message', 'Transaction added successfully with active status.');
+       redirect('transaction/journalList');            
+           break;
+
+    case 'Preview': 
+        $this->transaction_model->update_transaction_status_to_pending($journalNo);
+        $this->session->set_flashdata('message', 'Transaction added successfully with status pending.');
+       redirect('transaction/journalPreview/'.$journalNo);           
+        break;
+
+}   
      
     }
 

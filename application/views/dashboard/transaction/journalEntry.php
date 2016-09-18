@@ -236,11 +236,11 @@
 
 
                         <div class="lastButton">
-                            <button id="submitTheForm" onClick="sendAllJounalTransactionToServer()" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Submit</button>
+                            <button name="journalEntry" id="submitTheForm" onClick="sendAllJounalTransactionToServer()" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;" value="Submit">Submit</button>
 
                             <span onclick="clearformTable()" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Reset</span>
                             
-                            <button id="previewForm" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Preview</button>
+                            <button name="journalEntry" id="previewForm" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;" value="Preview">Preview</button>
                         </div>
 
                     </div>

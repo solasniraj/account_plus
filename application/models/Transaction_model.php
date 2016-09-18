@@ -21,7 +21,6 @@ class Transaction_model extends CI_Model {
     public function get_single_transaction_details($id)
     {
         $this->db->where('journal_voucher_no', $id);
-        $this->db->where('status', '1');
         $this->db->select('*');
         $this->db->from('gl_trans_info');
 $this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.journal_voucher_no');
@@ -56,6 +55,20 @@ $query = $this->db->get();
                 'summary_comment' => $summary
                 );
        return  $this->db->insert('gl_trans_comment_details', $data);
+    }
+    
+    public function update_transaction_status_to_approved($journalNo)
+    {
+         $this->db->where('journal_voucher_no', $journalNo);
+       $data = array('status' => '1');
+    return $this->db->update('gl_trans_info', $data);
+    }
+    
+    public function update_transaction_status_to_pending($journalNo)
+    {
+         $this->db->where('journal_voucher_no', $journalNo);
+       $data = array('status' => '2');
+    return $this->db->update('gl_trans_info', $data);
     }
     
     
