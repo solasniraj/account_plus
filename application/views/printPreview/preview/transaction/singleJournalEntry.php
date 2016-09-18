@@ -25,8 +25,8 @@ if (!empty($singleGLDetails)) {
         <?php }
     } ?>
         <span class="text-right pull-right">
-            <a href="<?php echo base_url() . 'preview/jounalView/12345-FY2016-00001'; ?>"><button id="btnDownload" class="btn btn-primary">Download</button></a>&nbsp;&nbsp;
-            <a href="<?php echo base_url() . 'printview/printJoural/12345-FY2016-00001'; ?>"> <button id="print" class="btn btn-primary" >print</button></a>
+            <a href="<?php echo base_url() . 'preview/jounalView/12345-FY2016-00001'; ?>"><button id="btnDownload" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px">Download</button></a>&nbsp;&nbsp;
+            <a href="<?php echo base_url() . 'printview/printJoural/12345-FY2016-00001'; ?>"> <button id="print" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px" >Print</button></a>
         </span>
 
     </div>
@@ -54,10 +54,10 @@ if (!empty($singleGLDetails)) {
 
                     <tr>
                     <td>0101001010010</td>
-                    <td>0101001010010</td>
-                    <td>0101001010010</td>
-                    <td>0101001010010</td>
-                    <td>0101001010010</td>
+                    <td>WWF</td>
+                    <td>WWF/Taal</td>
+                    <td>1st grant</td>
+                    <td>400</td>
                     <td>0101001010010</td>
                     </tr>
 
@@ -71,21 +71,21 @@ if (!empty($singleGLDetails)) {
 
 
                     
-                     <div class="form-group" >
+                     <div class="form-group">
                         <div class="row">
                             
                                 <table class="table">
                                     <tr>
                                         <pre>
-
-         Designation :-                                                        Designation :-
+  
+                    Designation :-                                                           Designation :-
     
 
-         Name : _____________________                                          Name : ______________________
+                  Name : _____________________                                               Name : ______________________
 
 
-         Sign : .....................                                          Sign : ......................
-                                       
+                  Sign : .....................                                               Sign : ......................
+                                               
                                         
                                       </pre>
                                       </tr>
@@ -104,6 +104,13 @@ if (!empty($singleGLDetails)) {
                     </div>
                  
                   </tbody>
+                  </table>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  
 
 
 
