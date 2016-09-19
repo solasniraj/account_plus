@@ -28,10 +28,19 @@
         $this->db->where($where);
         $query = $this->db->get('ledger_master');
         return $query->result(); 
-       
+   }
+   
+   public function search_ledger_master_for_submitted_key_only_in_code($searchKey)
+   {
+       $this->db->select('id, ledger_master_code, ledger_master_name');
+        $this->db->where("status", "1");
+        $where = "(ledger_master_code LIKE '%$searchKey%')";
+        $this->db->where($where);
+        $query = $this->db->get('ledger_master');
+        return $query->result(); 
    }
 
-      public function get_account_chart_class()
+   public function get_account_chart_class()
         {
             $this->db->where('chart_status', 'Active');
             $query = $this->db->get('chart_class');

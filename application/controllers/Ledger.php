@@ -1,6 +1,10 @@
-<?php if (!defined('BASEPATH'))
+<?php
+
+if (!defined('BASEPATH'))
     exit('No direct script access allowed');
+
 class ledger extends CI_Controller {
+
     function __construct() {
         parent::__construct();
         $this->load->library('session');
@@ -10,7 +14,7 @@ class ledger extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
     }
-    
+
     public function search() {
         if (isset($_POST['searchKey'])) {
             $searchKey = $_POST['searchKey'];
@@ -20,200 +24,195 @@ class ledger extends CI_Controller {
 
         $result = $this->ledger_model->search_ledger_by_key_or_description($searchKey);
 
-        if ($searchKey != "" && $searchKey != NULL  && (!empty($result))) {
-            
+        if ($searchKey != "" && $searchKey != NULL && (!empty($result))) {
+
             $view = '';
-            foreach ($result as $data){
-            $view .= '<tr><td>'.$data->ledger_master_code.'</td>'
-                    . '<td>'.$data->ledger_master_name.'</td>'
-                    . '<td><a href="#">Edit</a> / <a href="#">Delete</a></td></tr>';
+            foreach ($result as $data) {
+                $view .= '<tr><td>' . $data->ledger_master_code . '</td>'
+                        . '<td>' . $data->ledger_master_name . '</td>'
+                        . '<td><a href="#">Edit</a> / <a href="#">Delete</a></td></tr>';
             }
-                   
+
             echo $view;
         }
     }
-    
-    public function accountGroupSearch()
-    {
-        if ($this->session->userdata('logged_in') == true) 
-      {
-        $user_id=$this->session->userdata('user_id');
-       $this->load->library('form_validation');
-       $this->form_validation->set_rules('search', 'Search Key', 'trim|required|callback_xss_clean|max_length[500]');
-       $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
 
-       if ($this->form_validation->run() == FALSE)
-       {
-        $this->accountGroup();
-      }
-      else 
-      {
-        $searchKey = $this->input->post('search');  
-       
-        $data['ledgerDetails'] = $this->ledger_model->search_ledger_master_for_submitted_key($searchKey);
-        $data['accountCharts']=$this->ledger_model->get_account_chart_class();
-        $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
-        $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
-        $data['donorInfo'] = $this->donar_model->get_all_donars();
-         $this->load->view('dashboard/templates/header');
-          $this->load->view('dashboard/templates/sideNavigation');
-          $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/ledger/listLedgerMaster', $data);
-           $this->load->view('dashboard/templates/footer');
+    public function accountGroupSearch() {
+        if ($this->session->userdata('logged_in') == true) {
+            $user_id = $this->session->userdata('user_id');
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('search', 'Search Key', 'trim|required|callback_xss_clean|max_length[500]');
+            $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>');
 
-
-    }
-  }
-  else {
-   return   redirect('login/index/?url=' . $url, 'refresh');
- }
-    }
-    
-    public function accountGrSearch()
-    {
-        
-    }
-
-    
-
-
-
-
-    public function index()
-    {
-        $url = current_url();
-         if ($this->session->userdata('logged_in') == true) {
-   $data['ledgerDetails']=$this->ledger_model->get_ledger_master_listing();
-   $data['accountCharts']=$this->ledger_model->get_account_chart_class();
-        $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
-        $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
-        $data['donorInfo'] = $this->donar_model->get_all_donars();
-         $this->load->view('dashboard/templates/header');
-          $this->load->view('dashboard/templates/sideNavigation');
-          $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/ledger/listLedgerMaster', $data);
-           $this->load->view('dashboard/templates/footer');
-           } else {
-            redirect('login/index/?url=' . $url, 'refresh');
-        }
-    }
-    
-    
-    public function accountGroup()
-    {
-        $url = current_url();
-         if ($this->session->userdata('logged_in') == true) {
-   $data['ledgerDetails']=$this->ledger_model->get_ledger_master_listing();
-   $data['accountCharts']=$this->ledger_model->get_account_chart_class();
-        $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
-        $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
-        $data['donorInfo'] = $this->donar_model->get_all_donars();
-         $this->load->view('dashboard/templates/header');
-          $this->load->view('dashboard/templates/sideNavigation');
-          $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/ledger/listLedgerMaster', $data);
-           $this->load->view('dashboard/templates/footer');
-           } else {
-            redirect('login/index/?url=' . $url, 'refresh');
-        }
-    }
-    
-    
-    public function createLedger()
-    {
-        $url = current_url();
-         if ($this->session->userdata('logged_in') == true) { 
-        $data['accountCharts']=$this->ledger_model->get_account_chart_class();
-        $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
-        $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
-        $data['donorInfo'] = $this->donar_model->get_all_donars();
-        $this->load->view('dashboard/templates/header');
-          $this->load->view('dashboard/templates/sideNavigation');
-          $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/ledger/createLedger', $data);
-           $this->load->view('dashboard/templates/footer');
+            if ($this->form_validation->run() == FALSE) {
+                $this->accountGroup();
             } else {
+                $searchKey = $this->input->post('search');
+
+                $data['ledgerDetails'] = $this->ledger_model->search_ledger_master_for_submitted_key($searchKey);
+                $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
+                $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
+                $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
+                $data['donorInfo'] = $this->donar_model->get_all_donars();
+                $this->load->view('dashboard/templates/header');
+                $this->load->view('dashboard/templates/sideNavigation');
+                $this->load->view('dashboard/templates/topHead');
+                $this->load->view('dashboard/ledger/listLedgerMaster', $data);
+                $this->load->view('dashboard/templates/footer');
+            }
+        } else {
+            return redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+
+    public function accountGrSearch() {
+        if ($this->session->userdata('logged_in') == true) {
+            $user_id = $this->session->userdata('user_id');
+
+            $chartAccType = $this->input->post('chartAccType');
+            $accLedger = $this->input->post('accLedger');
+            $accSubLedger = $this->input->post('accSubLedger');
+            $donorType = $this->input->post('donorType');
+            $ledgerType = $this->input->post('ledgerType');
+            if ((!empty($chartAccType)) && (!empty($accLedger)) && (!empty($accSubLedger)) && (!empty($donorType)) && (!empty($ledgerType))) {
+                $searchKey = $chartAccType . $accLedger . $accSubLedger . $donorType . $ledgerType;
+                $data['ledgerDetails'] = $this->ledger_model->search_ledger_master_for_submitted_key_only_in_code($searchKey);
+            } elseif ((!empty($chartAccType)) && (!empty($accLedger)) && (!empty($accSubLedger)) && (!empty($donorType))) {
+                $searchKey = $chartAccType . $accLedger . $accSubLedger . $donorType;
+                $data['ledgerDetails'] = $this->ledger_model->search_ledger_master_for_submitted_key_only_in_code($searchKey);
+            } elseif ((!empty($chartAccType)) && (!empty($accLedger)) && (!empty($accSubLedger))) {
+                $searchKey = $chartAccType . $accLedger . $accSubLedger;
+                $data['ledgerDetails'] = $this->ledger_model->search_ledger_master_for_submitted_key_only_in_code($searchKey);
+            } elseif ((!empty($chartAccType)) && (!empty($accLedger))) {
+                $searchKey = $chartAccType . $accLedger;
+                $data['ledgerDetails'] = $this->ledger_model->search_ledger_master_for_submitted_key_only_in_code($searchKey);
+            } elseif (!empty($chartAccType)) {
+                $searchKey = $chartAccType;
+                $data['ledgerDetails'] = $this->ledger_model->search_ledger_master_for_submitted_key_only_in_code($searchKey);
+            } else {
+                $data['ledgerDetails'] = $this->ledger_model->get_ledger_master_listing();
+            }
+
+            $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
+            $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
+            $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
+            $data['donorInfo'] = $this->donar_model->get_all_donars();
+            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/sideNavigation');
+            $this->load->view('dashboard/templates/topHead');
+            $this->load->view('dashboard/ledger/listLedgerMaster', $data);
+            $this->load->view('dashboard/templates/footer');
+        } else {
+            return redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+
+    public function index() {
+        $url = current_url();
+        if ($this->session->userdata('logged_in') == true) {
+            $data['ledgerDetails'] = $this->ledger_model->get_ledger_master_listing();
+            $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
+            $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
+            $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
+            $data['donorInfo'] = $this->donar_model->get_all_donars();
+            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/sideNavigation');
+            $this->load->view('dashboard/templates/topHead');
+            $this->load->view('dashboard/ledger/listLedgerMaster', $data);
+            $this->load->view('dashboard/templates/footer');
+        } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
 
-
-    public function addnewLedger()
-    {
-        if ($this->session->userdata('logged_in') == true) 
-      {
-        $user_id=$this->session->userdata('user_id');
-       $this->load->library('form_validation');
-       $this->form_validation->set_rules('chartAccType', 'Account', 'trim|required|callback_xss_clean|max_length[500]');
-       $this->form_validation->set_rules('codeNo', 'Account Code', 'trim|required|callback_xss_clean|max_length[500]');
-       $this->form_validation->set_rules('accDescription', 'Account Description', 'trim|required|callback_xss_clean|max_length[500]');
-       $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
-
-       if ($this->form_validation->run() == FALSE)
-       {
-        $this->createLedger();
-      }
-      else 
-      {
-        $chartNo = $this->input->post('chartAccType');  
-        $accLedger = $this->input->post('accLedger'); 
-        $accSubLedger = $this->input->post('accSubLedger'); 
-        $donorType = $this->input->post('donorType'); 
-        $ledgerType = $this->input->post('ledgerType'); 
-        $codeNo = $this->input->post('codeNo'); 
-        $accDescription = $this->input->post('accDescription'); 
-       
-        $result=$this->ledger_model->add_new_ledger_master($chartNo, $accLedger, $accSubLedger, $donorType, $ledgerType, $codeNo, $accDescription);
-        if($result)
-        {
-         $this->session->set_flashdata('flashMessage', 'Ledger added successfully');
-         return redirect('ledger/index');
-       }
-       else 
-       {
-        $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding ledger. Please add again.');
-        return redirect('bank/addLedger');
-      }
-
-
+    public function accountGroup() {
+        $url = current_url();
+        if ($this->session->userdata('logged_in') == true) {
+            $data['ledgerDetails'] = $this->ledger_model->get_ledger_master_listing();
+            $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
+            $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
+            $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
+            $data['donorInfo'] = $this->donar_model->get_all_donars();
+            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/sideNavigation');
+            $this->load->view('dashboard/templates/topHead');
+            $this->load->view('dashboard/ledger/listLedgerMaster', $data);
+            $this->load->view('dashboard/templates/footer');
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
     }
-  }
-  else {
-   return   redirect('login/index/?url=' . $url, 'refresh');
- }
+
+    public function createLedger() {
+        $url = current_url();
+        if ($this->session->userdata('logged_in') == true) {
+            $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
+            $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
+            $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
+            $data['donorInfo'] = $this->donar_model->get_all_donars();
+            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/sideNavigation');
+            $this->load->view('dashboard/templates/topHead');
+            $this->load->view('dashboard/ledger/createLedger', $data);
+            $this->load->view('dashboard/templates/footer');
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
     }
-    
-    public function addLedgerProgram($id)
-    {
+
+    public function addnewLedger() {
+        if ($this->session->userdata('logged_in') == true) {
+            $user_id = $this->session->userdata('user_id');
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('chartAccType', 'Account', 'trim|required|callback_xss_clean|max_length[500]');
+            $this->form_validation->set_rules('codeNo', 'Account Code', 'trim|required|callback_xss_clean|max_length[500]');
+            $this->form_validation->set_rules('accDescription', 'Account Description', 'trim|required|callback_xss_clean|max_length[500]');
+            $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>');
+
+            if ($this->form_validation->run() == FALSE) {
+                $this->createLedger();
+            } else {
+                $chartNo = $this->input->post('chartAccType');
+                $accLedger = $this->input->post('accLedger');
+                $accSubLedger = $this->input->post('accSubLedger');
+                $donorType = $this->input->post('donorType');
+                $ledgerType = $this->input->post('ledgerType');
+                $codeNo = $this->input->post('codeNo');
+                $accDescription = $this->input->post('accDescription');
+
+                $result = $this->ledger_model->add_new_ledger_master($chartNo, $accLedger, $accSubLedger, $donorType, $ledgerType, $codeNo, $accDescription);
+                if ($result) {
+                    $this->session->set_flashdata('flashMessage', 'Ledger added successfully');
+                    return redirect('ledger/index');
+                } else {
+                    $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding ledger. Please add again.');
+                    return redirect('bank/addLedger');
+                }
+            }
+        } else {
+            return redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+
+    public function addLedgerProgram($id) {
         
     }
 
-    
+    public function editLedger($id = null) {
+        
+    }
 
-    public function editLedger($id=null)
-    {
+    public function deleteLedger($id = NULL) {
         
     }
-    
-    public function deleteLedger($id=NULL)
-    {
-        
+
+    public function xss_clean($str) {
+        if ($this->security->xss_clean($str, TRUE) === FALSE) {
+            $this->form_validation->set_message('xss_clean', 'The %s is invalid charactor');
+            return FALSE;
+        } else {
+            return TRUE;
+        }
     }
-    
-    
-    
-    public function xss_clean($str)
-{
-  if ($this->security->xss_clean($str, TRUE) === FALSE)
-  {
-    $this->form_validation->set_message('xss_clean', 'The %s is invalid charactor');
-    return FALSE;
-  }
-  else
-  {
-    return TRUE;
-  }
-}
-    
-    
+
 }

@@ -92,7 +92,7 @@ ul.collection li{
 
                         <li>
                            <select class="form-control1 selectOpt" id="accSubLedger" name="accSubLedger">
-                            <option value="00">Select Account Sub Ledger</option>
+                            <option value="">Select Account Sub Ledger</option>
                             <?php if (!empty($subLedgers)) {
                                 foreach ($subLedgers as $aSLedgers) {
                                     ?>
@@ -107,7 +107,7 @@ ul.collection li{
                         
                         <li>
                            <select class="form-control1 selectOpt" id="donorType" name="donorType">
-                            <option value="00">Select Donor</option>
+                            <option value="">Select Donor</option>
                             <?php if (!empty($donorInfo)) {
                                 foreach ($donorInfo as $dInfo) {
                                     ?>
@@ -122,7 +122,7 @@ ul.collection li{
                         
                         <li>
                           <select class="form-control1 selectOpt" id="ledgerType" name="ledgerType">
-                            <option value="00">Select Ledger Type</option>
+                            <option value="">Select Ledger Type</option>
                             <option value="01">Cash</option>
                             <option value="02">Internal Cash</option>
                             <option value="03">Labour Support</option>
