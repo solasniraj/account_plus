@@ -108,30 +108,26 @@ if (!empty($singleGLDetails)) {
                 <tr>
 
                    <td colspan="3">
-                   
-                       <h4> Designation :-</h4>
-                       <pre>
-                       
-     Name :..............
+                    <pre>
+                 
+     Designation :-______________
+                      
+            Name :-______________
                            
-     Sign :..............
+            Sign :-______________
                        </pre>
                 
 
                    </td>
                 
-
-
-
-
                    <td colspan="3">
-                   
-                       <h4> Designation :-</h4>
-                       <pre>
+                     <pre>
+
+                    Designation :-______________               
                        
-     Name :..............
+            Name :-______________
                            
-     Sign :..............
+            Sign :-______________
                        </pre>
                 
 
