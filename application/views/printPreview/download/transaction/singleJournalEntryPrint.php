@@ -85,10 +85,10 @@
 
                     <tr>
                     <td colspan="4">Total</td>
-                    <td></td>
-                    <td></td>
+                    <td>&nbsp</td>
+                    <td>&nbsp</td>
                     </tr>
-
+                    </tbody>
                      <!--prepared and approverd by section-->
                      <div class="form-group">
                 <div class="row">
@@ -120,39 +120,7 @@
                         </td>
 
 
-                    </tr> <div class="form-group">
-                <div class="row">
-
-                    <table class="table">
-                       <tr>
-
-                        <td>
-                            Designation :-_________________ <br><br>
-
-                                   Name :-_________________  <br><br>
-
-                                   Sign :-_________________ 
-
-                        </td>
-
-
-
-                        <td>
-                       
-
-                                Designation :- _________________<br><br>
-
-                                       Name :- _________________<br><br>
-
-                                       Sign :- _________________
-
-                              
-                        </td>
-
-
-                    </tr>
-             </tbody>
-                        
+            </tr>
                     </table>
                 </div>
                  
