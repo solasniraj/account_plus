@@ -25,8 +25,8 @@ if (!empty($singleGLDetails)) {
         <?php }
     } ?>
         <span class="text-right pull-right">
-            <a href="<?php echo base_url() . 'preview/jounalView/12345-FY2016-00001'; ?>"><button id="btnDownload" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px">Download</button></a>&nbsp;&nbsp;
-            <a href="<?php echo base_url() . 'printview/printJoural/12345-FY2016-00001'; ?>"> <button id="print" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px" >Print</button></a>
+            <a href="<?php echo base_url() . 'preview/jounalView/'.$voucherNo; ?>"><button id="btnDownload" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px">Download</button></a>&nbsp;&nbsp;
+            <a href="<?php echo base_url() . 'printview/printJoural/'.$voucherNo; ?>"> <button id="print" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px" >Print</button></a>
         </span>
 
     </div>
@@ -69,24 +69,31 @@ if (!empty($singleGLDetails)) {
              <thead>
                     <tr>
 
-                    <th> A/C Name </th>
+                    <th> A/C Number </th>
                     <th> A/C Description</th>
                     <th> Donar's Name</th>
                     <th>Description</th>
-                    <th>Debits</th>
-                    <th>Credits</th>
+                    <th>Debit Amount</th>
+                    <th>Credit Amount</th>
 
                    </tr>
              </thead>
              <tbody>
-                    <tr>
-                    <td>0101001010010</td>
-                    <td>WWF</td>
-                    <td>WWF/Taal</td>
-                    <td>1st grant</td>
-                    <td>400</td>
-                    <td>0101001010010</td>
-                    </tr>
+                    <?php foreach ($singleGLDetails as $gLList){ $type= $gLList->trans_type; ?>
+                            <tr>
+                                <td><?php echo $gLList->ledger_master_code; ?></td>
+                                <td><?php echo $gLList->ledger_master_name; ?></td>                           
+                                <td><?php echo $gLList->donar_name; ?></td>
+                                <td><?php echo $gLList->memo; ?></td>
+                                
+                                <td><?php if($type =='dr'){ echo abs($gLList->amount);}else{ echo '0'; } ?></td>
+                                <td><?php if($type =='cr'){ echo abs($gLList->amount);}else{ echo '0'; } ?></td>
+                            
+
+
+
+                            </tr>
+                            <?php } ?>
 
 
 

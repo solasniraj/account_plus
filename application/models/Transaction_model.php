@@ -24,9 +24,6 @@ class Transaction_model extends CI_Model {
         $this->db->from('gl_trans_info');
         $this->db->where('journal_voucher_no', $id);
         $query = $this->db->get();
-        
-        
-       // $query = $this->db->query("SELECT SUM (abs(``)) from gl_trans_info WHERE `journal_voucher_no` = $id");
         return $query->result();
     }
 
@@ -36,11 +33,13 @@ class Transaction_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('gl_trans_info');
 $this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.journal_voucher_no');
+$this->db->join('donar_info', 'donar_info.donar_code = gl_trans_info.donor_code');
+$this->db->join('ledger_master', 'ledger_master.ledger_master_code = gl_trans_info.ledger_master_code');
 $query = $this->db->get();
  return $query->result();   
     }
 
-    public function add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $Amount, $chequeNo)
+    public function add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $Amount, $chequeNo, $type)
     {
         $data = Array(
             'journal_voucher_no' => $journalNo,            
@@ -53,6 +52,7 @@ $query = $this->db->get();
                 'memo' => $description,
                 'amount' => $Amount,
                 'cheque_no' => $chequeNo,
+                'trans_type' => $type,
                 'status' => "1",
                 );
        return  $this->db->insert('gl_trans_info', $data);

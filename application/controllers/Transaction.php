@@ -830,10 +830,10 @@ $user_id = $this->session->userdata('user_id');
            if((!empty($debitAmount)) && is_numeric( $debitAmount )){
                $type='dr';
               if($chartCode == '1' || $chartCode == '4'){
-                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type);
               }elseif($chartCode == '2' || $chartCode == '3'){
                   $debitAmount = ('-1') * $debitAmount;
-                          $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo);
+                          $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type);
               }else{
                   echo "something went wrong";
               }
@@ -842,9 +842,9 @@ $user_id = $this->session->userdata('user_id');
                $type='cr';
                if($chartCode == '1' || $chartCode == '4'){
                   $creditAmount = ('-1') * $creditAmount;
-                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type);
               }elseif($chartCode == '2' || $chartCode == '3'){
-                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo);
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type);
               }else{
                   echo "something went wrong";
               }
