@@ -32,9 +32,9 @@
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
         $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($id);     
       
-      $this->load->view('printPreview/print/templates/header');
-      $this->load->view('printPreview/print/transaction/singleJournalEntryPrint', $data);
-      $this->load->view('printPreview/print/templates/footer');
+      $this->load->view('printPreview/printView/templates/header');
+      $this->load->view('printPreview/printView/transaction/singleJournalEntryPrint', $data);
+      $this->load->view('printPreview/printView/templates/footer');
        }
         else 
         {

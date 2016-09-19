@@ -8,29 +8,44 @@ class preview extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('session');
-        $this->load->model('bank_model');
-        $this->load->model('program_model');
+       $this->load->model('ledger_model');
+       $this->load->model('bank_model');
+        $this->load->model('transaction_model');
+       $this->load->model('dbmanager_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
         $this->load->helper('csv');
     }
 
-    public function jounalView() {
+    public function jounalView($id) {
         
         
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
 
-            $orientation = 'landscape';
-
-            $data['bankAccount'] = $this->bank_model->view_bank_account_listing();
-
-            $this->load->view('dashboard/templates/header', $data, true);
-            $this->load->view('dashboard/templates/sideNavigation');
-            $this->load->view('dashboard/templates/topHead');
-            $this->load->view('dashboard/bank/listAccounts', $data);
-            $this->load->view('dashboard/templates/footer');
+            $orientation = 'landscape';       
+        
+     $url = current_url();
+         if( $id === NULL )
+         {
+          return redirect('dashboard', 'refresh');
+         }
+      
+     $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year'); 
+             
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+        $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($id);     
+      
+      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/transaction/singleJournalEntryPrint', $data);
+      $this->load->view('printPreview/download/templates/footer');
+    
+         
             // Get output html
             $html = $this->output->get_output();
 
@@ -41,7 +56,7 @@ class preview extends CI_Controller {
             $this->dompdf->load_html($html);
             $this->dompdf->set_paper('a4', $orientation);
             $this->dompdf->render();
-            $this->dompdf->stream("welcome.pdf");
+            $this->dompdf->stream("Journal.pdf");
             die;
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
