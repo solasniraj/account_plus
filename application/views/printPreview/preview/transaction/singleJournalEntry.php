@@ -35,13 +35,38 @@ if (!empty($singleGLDetails)) {
             <div class="xs tabls">
 
                 <div data-example-id="simple-responsive-table" class="bs-example4">
-                    <!-- priview first table of singleJournal entry -->
+                    <!-- priview first table of singleJournla entry -->
+
+                   <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <center>
+                                    <th>General Ledger Transaction Details</th>
+                                    <th>Date</th>
+                                    <th>Summary of Transaction</th>
+                                    <th>Details of Transaction</th>
+                                </center>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Journal Entry : <?php echo $voucherNo; ?> </td>
+                                <td><?php echo $gLDate; ?></td>
+                                <td><?php echo $summary; ?></td>
+                                <td><?php echo $details; ?></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- second table for singleJournalEntry  -->
 
                     <div class="table-responsive">
                         <table class="table table-bordered">
                           
                                
-            
+             <thead>
                     <tr>
 
                     <th> A/C Name </th>
@@ -50,8 +75,10 @@ if (!empty($singleGLDetails)) {
                     <th>Description</th>
                     <th>Debits</th>
                     <th>Credits</th>
-                   </tr>
 
+                   </tr>
+             </thead>
+             <tbody>
                     <tr>
                     <td>0101001010010</td>
                     <td>WWF</td>
@@ -68,8 +95,8 @@ if (!empty($singleGLDetails)) {
                     <td></td>
                     <td></td>
                     </tr>
-
-
+             </tbody>
+</table>
                     
                      <div class="form-group">
                         <div class="row">
@@ -89,7 +116,7 @@ if (!empty($singleGLDetails)) {
                                         
                                       </pre>
                                       </tr>
-                                </table>
+                                
                           
                            
 <?php

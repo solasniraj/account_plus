@@ -30,11 +30,14 @@
 
                         <tr>
                         <?php
-                        foreach ($transactionDetails as $tGLList) {   ?>  
+                        foreach ($transactionDetails as $tGLList) { 
+                            $sum = $this->transaction_model->get_debit_credit_amount($tGLList->journal_voucher_no);
+                         
+                                    ?>  
                             <td><?php echo $tGLList->journal_voucher_no; ?> </td>
                             <td><?php echo $tGLList->summary_comment; ?> </td>
                             <td><?php echo $tGLList->tran_date; ?> </td>
-                            <td><?php echo $tGLList->amount; ?> </td>
+                            <td><?php echo $sum['0']->sum/'2'; ?> </td>
                             <td><a href="<?php echo base_url() . 'transaction/journalPreview/'.$tGLList->journal_voucher_no; ?>">Preview</a></td>
                         </tr>
                         <?php } ?>

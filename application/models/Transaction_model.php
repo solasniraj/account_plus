@@ -18,7 +18,19 @@ class Transaction_model extends CI_Model {
         return $query->result();               
     }
     
-    public function get_single_transaction_details($id)
+    public function get_debit_credit_amount($id)
+    {
+        $this->db->select('SUM(ABS(amount)) AS sum', false);
+        $this->db->from('gl_trans_info');
+        $this->db->where('journal_voucher_no', $id);
+        $query = $this->db->get();
+        
+        
+       // $query = $this->db->query("SELECT SUM (abs(``)) from gl_trans_info WHERE `journal_voucher_no` = $id");
+        return $query->result();
+    }
+
+        public function get_single_transaction_details($id)
     {
         $this->db->where('journal_voucher_no', $id);
         $this->db->select('*');
