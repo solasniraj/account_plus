@@ -1,6 +1,3 @@
-<style>
-    @media print{@page {size: landscape}}
-    </style>
 <?php if(!empty($singleGLDetails)){ 
      foreach($singleGLDetails as $glDetails){
       $gLDate = $glDetails->tran_date;
@@ -32,12 +29,12 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <center>
+                                
                                     <th>General Ledger Transaction Details</th>
                                     <th>Date</th>
                                     <th>Summary of Transaction</th>
                                     <th>Details of Transaction</th>
-                                </center>
+                               
                             </tr>
                         </thead>
                         <tbody>
