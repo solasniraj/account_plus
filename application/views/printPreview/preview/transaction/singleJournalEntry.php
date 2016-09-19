@@ -102,34 +102,46 @@ if (!empty($singleGLDetails)) {
                     <td></td>
                     <td></td>
                     </tr>
+
+
+
+                <tr>
+
+                   <td colspan="3">
+                   
+                       <h4> Designation :-</h4>
+                       <pre>
+                       
+     Name :..............
+                           
+     Sign :..............
+                       </pre>
+                
+
+                   </td>
+                
+
+
+
+
+                   <td colspan="3">
+                   
+                       <h4> Designation :-</h4>
+                       <pre>
+                       
+     Name :..............
+                           
+     Sign :..............
+                       </pre>
+                
+
+                   </td>
+                
+                </tr>
              </tbody>
 </table>
                     
-                     <div class="form-group">
-                        <div class="row">
-                            
-                                <table class="table">
-
-                                <tbody>
-                                    <tr>
-                                        <pre>
-  
-                    Designation :-                                                           Designation :-
-    
-
-                  Name : _____________________                                               Name : ______________________
-
-
-                  Sign : .....................                                               Sign : ......................
-                                               
-                                        
-                                      </pre>
-                                      </tr>
-                                      </tbody>
-                                      </table>
-                                            </div>
-                    </div>
-
+                    
                           
                            
 <?php
@@ -140,15 +152,14 @@ if (!empty($singleGLDetails)) {
 
                    
                             
-                  
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
                  
                  
-                  </div>
-                  </div>
-                  </div>
-                  </div>
-                  </div>
-                  
+                
 
 
 
