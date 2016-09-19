@@ -14,6 +14,7 @@
 <script type="text/javascript" src="<?php echo base_url('contents/js/function.js'); ?>"></script>
 <style>
     .width25per{width: 25%;}
+    .has-error{color: red;font-size: 0.85em;display: none;} 
 </style>
 
 
@@ -40,13 +41,13 @@
                     <div class="col-md-12 col-lg-12 sol-sm-12 ">
                         <table class="table">
                             <tr>
-                                <td for="focusedInput" class="text-right width25per"><b>Journal no</b>
+                                <td for="journalNo" class="text-right width25per"><b>Journal no</b>
                                     <input  type="text" id="journalNo" name="journalNo" class="form-control" value="<?php echo $journalNumber; ?>" readonly>
-                                    <?php echo form_error('journalNo'); ?></td>
+                                    <?php echo form_error('journalNo'); ?><label class="has-error" for="journalNo" id="journal_error">This field is required.</label></td>
 
                                 <td class="text-right width25per"><b>Date</b>
                                     <input  class="form-control" id="datepicker" name="datepicker" type="text" placeholder="Day/Month/Year">
-                                    <?php echo form_error('datepicker'); ?></td>
+                                    <?php echo form_error('datepicker'); ?><label class="has-error" for="datepicker" id="date_error">This field is required.</label></td>
 
                                 <td class="text-right width25per"><b>Journal Type</b>
 
@@ -57,6 +58,7 @@
                                         <?php } ?>
                                     </select>
                                     <?php echo form_error('journalType'); ?>
+                                    <label class="has-error" for="journalType" id="journalType_error">This field is required.</label>
                                 </td>
 
 
@@ -104,11 +106,14 @@
 
                                     <td id="ledgerMasterCode">
                                         <input type="text" id="lMCode" value="" class="form-control" >
+                                        <label class="has-error" for="journalType" id="accCode_error">This field is required.</label>
+                                        <label class="has-error" for="journalType" id="accCodeMis_error">Account Code doesn't exist.</label>
                                     </td>
 
                                     <td>  <select class="form-control" id="accountList" onchange="getSubLedger(this)">
                                             <option value="">Select Account</option>
                                         </select>
+                                        <label class="has-error" for="journalType" id="acchead_error">This field is required.</label>
                                     </td>
 
                                     <td> <select class="form-control" id="subLedgerList" onchange="getDonor(this)">
@@ -132,7 +137,9 @@
 
                                     </td>
 
-                                    <td>  <input  class="form-control " type="text" name="description" id="description"></td>
+                                    <td>  <input  class="form-control " type="text" name="description" id="description">
+                                    <label class="has-error" for="journalType" id="description_error">This field is required.</label>
+                                    </td>
                                     <td>  <input  class="form-control formatComma" type="text"  id="debitAmount"></td>
                                     <td>  <input  class="form-control formatComma" type="text"  id="creditAmount"></td>
                                     <td> <input  class="form-control" type="text" name="chequeNo" id="chequeNo"></td>

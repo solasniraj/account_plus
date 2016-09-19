@@ -1,9 +1,4 @@
 
-            
-
-
-
-
 var debitCreditDifference = "";
 var debitTotal = 0;
 var creditTotal = 0;
@@ -221,10 +216,12 @@ function journal()
     var f = chartId.length;
     if (f < 1 || chartId == '' || chartId == null || chartId == '0') {
         $("#journalType").focus();
+        $("label#journalType_error").show();
         $("#journalType").css("border", "1px solid red");
         return false;
     } else {
-        $("input#journalType").css("border", "1px solid green");
+        $("label#journalType_error").hide();
+        $("#journalType").css("border", "1px solid green");
         return true;
     }
 
@@ -238,9 +235,11 @@ function account()
     if (e < 1 || accountId == '' || accountId == null || accountId == '00')
     {
         $("#accountList").focus();
+        $("label#acchead_error").show();
         $("#accountList").css("border", "1px solid red");
         return false;
     } else {
+        $("label#acchead_error").hide();
         $("#accountList").css("border", "1px solid green");
         return true;
     }
@@ -295,9 +294,11 @@ function Desc()
     if (dsc == 00 || description == '')
     {
         $("#description").focus();
+        $("label#description_error").show();
         $("#description").css("border", "1px solid red");
         return false;
     } else {
+        $("label#description_error").hide();
         $("#description").css("border", "1px solid green");
         return true;
     }
@@ -307,7 +308,12 @@ function ledMCode()
 {
     var lMCode = $("#lMCode").val();
     var lMlen = lMCode.length;
-
+if(lMlen < 10 || lMCode == '' ){
+     $("#lMCode").focus();
+                $("label#accCode_error").show();
+                $('#lMCode').css("border", "1px solid red");
+                return false;
+} else{
     $.ajax({
         type: "POST",
         url: baseUrl + "transaction/checkLedgerMasterCode",
@@ -315,11 +321,14 @@ function ledMCode()
         success: function (msg)
         {
             var msg = $.parseJSON(msg);
-            if (msg.code == 'false' || lMlen < 10 || lMCode == '') {
+            if (msg.code == 'false') {
                 $("#lMCode").focus();
+                $("label#accCode_error").hide();
+                $("label#accCodeMis_error").show();
                 $('#lMCode').css("border", "1px solid red");
                 return false;
             } else {
+                $("label#accCode_error").hide();
                 $("#lMCode").css("border", "1px solid green");
                 return true;
             }
@@ -327,7 +336,7 @@ function ledMCode()
         error: function ()
         { }
     });
-
+    }
 }
 
 function clearformTable()
