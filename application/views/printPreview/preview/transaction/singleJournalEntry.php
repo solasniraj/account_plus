@@ -109,6 +109,8 @@ if (!empty($singleGLDetails)) {
                         <div class="row">
                             
                                 <table class="table">
+
+                                <tbody>
                                     <tr>
                                         <pre>
   
@@ -123,7 +125,11 @@ if (!empty($singleGLDetails)) {
                                         
                                       </pre>
                                       </tr>
-                                
+                                      </tbody>
+                                      </table>
+                                            </div>
+                    </div>
+
                           
                            
 <?php
@@ -134,11 +140,9 @@ if (!empty($singleGLDetails)) {
 
                    
                             
-                        </div>
-                    </div>
+                  
                  
-                  </tbody>
-                  </table>
+                 
                   </div>
                   </div>
                   </div>
