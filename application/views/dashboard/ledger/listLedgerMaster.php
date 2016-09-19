@@ -55,10 +55,11 @@ ul.collection li{
                 <div class="activity_box">
                     <h3>Search Panel</h3>
                     <ul class="collection">
-                        <li class="collection-item avatar email-unread">
-<div class="form-group">
+                        <?php echo form_open_multipart('ledger/accountGrSearch'); ?>
+                        <li>
+
                     
-                    <div class="col-sm-12"><select class="form-control1 selectOpt" id="chartAccType" name="chartAccType">
+                    <select class="form-control1 selectOpt" id="chartAccType" name="chartAccType">
                             <option value="">Select Account</option>
                             <?php if (!empty($accountCharts)) {
                                 foreach ($accountCharts as $acharts) {
@@ -68,15 +69,13 @@ ul.collection li{
 } ?>
                         </select>
                      <?php echo form_error('chartAccType'); ?>
-                    </div>
-                </div>
+                    
+
                          <div class="clearfix"> </div>   
                         </li>
 
-<li class="collection-item avatar email-unread email_last">
-                         <div class="form-group">
-                    
-                    <div class="col-sm-12"><select class="form-control1 selectOpt" id="accLedger" name="accLedger">
+<li>
+                        <select class="form-control1 selectOpt" id="accLedger" name="accLedger">
                             <option value="">Select Account Ledger</option>
                             <?php if (!empty($accountLedgers)) {
                                 foreach ($accountLedgers as $aLedgers) {
@@ -86,17 +85,13 @@ ul.collection li{
 } ?>
                         </select>
                      <?php echo form_error('accLedger'); ?>
-                    </div>
-                    
-                </div>     
+                         
                             <div class="clearfix"> </div>
                         </li>
 
 
-                        <li class="collection-item avatar email-unread email_last">
-                           <div class="form-group">
-                    
-                    <div class="col-sm-12"><select class="form-control1 selectOpt" id="accSubLedger" name="accSubLedger">
+                        <li>
+                           <select class="form-control1 selectOpt" id="accSubLedger" name="accSubLedger">
                             <option value="00">Select Account Sub Ledger</option>
                             <?php if (!empty($subLedgers)) {
                                 foreach ($subLedgers as $aSLedgers) {
@@ -106,16 +101,12 @@ ul.collection li{
 } ?>
                         </select>
                      <?php echo form_error('accSubLedger'); ?>
-                    </div>
-                    
-                </div>  
+                      
                             <div class="clearfix"> </div>
                         </li>
                         
-                        <li class="collection-item avatar email-unread email_last">
-                           <div class="form-group">
-                    
-                    <div class="col-sm-12"><select class="form-control1 selectOpt" id="donorType" name="donorType">
+                        <li>
+                           <select class="form-control1 selectOpt" id="donorType" name="donorType">
                             <option value="00">Select Donor</option>
                             <?php if (!empty($donorInfo)) {
                                 foreach ($donorInfo as $dInfo) {
@@ -125,26 +116,30 @@ ul.collection li{
 } ?>
                         </select>
                      <?php echo form_error('donorType'); ?>
-                    </div>
-                    
-                </div>  
+                      
                             <div class="clearfix"> </div>
                         </li>
                         
-                        <li class="collection-item avatar email-unread email_last">
-                          <div class="form-group">
-                    
-                    <div class="col-sm-12"><select class="form-control1 selectOpt" id="ledgerType" name="ledgerType">
+                        <li>
+                          <select class="form-control1 selectOpt" id="ledgerType" name="ledgerType">
                             <option value="00">Select Ledger Type</option>
                             <option value="01">Cash</option>
                             <option value="02">Internal Cash</option>
                             <option value="03">Labour Support</option>
                         </select>
                      <?php echo form_error('ledgerType'); ?>
-                    </div>
-                </div>  
+                      
                             <div class="clearfix"> </div>
                         </li>
+                        
+                          <li>
+                          
+                        <button class="btn btn-success btn-lg" style="width:100%;">Submit</button>
+                      
+                            <div class="clearfix"> </div>
+                        </li>
+                        
+                        <?php echo form_close(); ?>
                     </ul>
                 </div>	
             </div>

@@ -68,8 +68,18 @@ class ledger extends CI_Controller {
    return   redirect('login/index/?url=' . $url, 'refresh');
  }
     }
+    
+    public function accountGrSearch()
+    {
+        
+    }
 
-        public function index()
+    
+
+
+
+
+    public function index()
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
