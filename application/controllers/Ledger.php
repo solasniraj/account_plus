@@ -32,9 +32,44 @@ class ledger extends CI_Controller {
             echo $view;
         }
     }
+    
+    public function accountGroupSearch()
+    {
+        if ($this->session->userdata('logged_in') == true) 
+      {
+        $user_id=$this->session->userdata('user_id');
+       $this->load->library('form_validation');
+       $this->form_validation->set_rules('search', 'Search Key', 'trim|required|callback_xss_clean|max_length[500]');
+       $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
+
+       if ($this->form_validation->run() == FALSE)
+       {
+        $this->accountGroup();
+      }
+      else 
+      {
+        $searchKey = $this->input->post('search');  
+       
+        $data['ledgerDetails'] = $this->ledger_model->search_ledger_master_for_submitted_key($searchKey);
+        $data['accountCharts']=$this->ledger_model->get_account_chart_class();
+        $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
+        $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
+        $data['donorInfo'] = $this->donar_model->get_all_donars();
+         $this->load->view('dashboard/templates/header');
+          $this->load->view('dashboard/templates/sideNavigation');
+          $this->load->view('dashboard/templates/topHead');
+          $this->load->view('dashboard/ledger/listLedgerMaster', $data);
+           $this->load->view('dashboard/templates/footer');
 
 
-    public function index()
+    }
+  }
+  else {
+   return   redirect('login/index/?url=' . $url, 'refresh');
+ }
+    }
+
+        public function index()
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {

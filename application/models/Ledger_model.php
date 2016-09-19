@@ -16,7 +16,18 @@
         $this->db->where($where);
         $query = $this->db->get('ledger_master');
 
-        return $query->result();
+        return $query->result(); 
+   }
+
+   public function search_ledger_master_for_submitted_key($searchKey)
+   {
+       $this->db->select('id, ledger_master_code, ledger_master_name');
+        $this->db->where("status", "1");
+        $where = "(ledger_master_code LIKE '%$searchKey%' 
+          OR ledger_master_name LIKE '%$searchKey%')";
+        $this->db->where($where);
+        $query = $this->db->get('ledger_master');
+        return $query->result(); 
        
    }
 

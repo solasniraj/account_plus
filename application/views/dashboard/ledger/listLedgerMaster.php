@@ -149,15 +149,15 @@ ul.collection li{
                 </div>	
             </div>
             <div class="col-md-8 inbox_right">
-                <form method="GET" action="#">
+                <?php echo form_open_multipart('ledger/accountGroupSearch'); ?>
                     <div class="input-group input-group-ind">
-                        <input id="tags" type="text" placeholder="Search by Ledger Account Heading or code..." class="form-control1 input-search" name="search">
+                        <input id="tags" type="text" placeholder="Search by Ledger Account Heading or code..." class="form-control1 input-search" name="search" required>
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-success"><i class="fa fa-search icon-ser"></i></button>
                         </span>
                     </div><!-- Input Group -->
-                   
-                </form>
+                   <?php echo form_close(); ?>
+                
                 <div class="mailbox-content">
                     <table class="table table-bordered table-fhr">
                         <thead>
