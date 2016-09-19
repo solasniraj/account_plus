@@ -10,7 +10,6 @@ class Transaction_model extends CI_Model {
     {
         $this->db->distinct();
         $this->db->group_by('journal_voucher_no');
-        $this->db->where('status', '1');
         $this->db->select('*');
         $this->db->from('gl_trans_info');
         $this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.journal_voucher_no');
@@ -53,7 +52,7 @@ $query = $this->db->get();
                 'amount' => $Amount,
                 'cheque_no' => $chequeNo,
                 'trans_type' => $type,
-                'status' => "1",
+                'gl_trans_status' => Null,
                 );
        return  $this->db->insert('gl_trans_info', $data);
      		
@@ -72,14 +71,14 @@ $query = $this->db->get();
     public function update_transaction_status_to_approved($journalNo)
     {
          $this->db->where('journal_voucher_no', $journalNo);
-       $data = array('status' => '1');
+       $data = array('gl_trans_status' => '1');
     return $this->db->update('gl_trans_info', $data);
     }
     
     public function update_transaction_status_to_pending($journalNo)
     {
          $this->db->where('journal_voucher_no', $journalNo);
-       $data = array('status' => '2');
+       $data = array('gl_trans_status' => '2');
     return $this->db->update('gl_trans_info', $data);
     }
     
