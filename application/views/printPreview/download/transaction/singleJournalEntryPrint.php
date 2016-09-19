@@ -90,35 +90,67 @@
                     </tr>
 
                      <!--prepared and approverd by section-->
-                     <tr>
+                     <div class="form-group">
+                <div class="row">
 
-                   <td colspan="3">
-                    <pre>
-                 
-     Designation :-______________
-                      
-            Name :-______________
-                           
-            Sign :-______________
-                       </pre>
-                
+                    <table class="table">
+                       <tr>
 
-                   </td>
-                
-                   <td colspan="3">
-                     <pre>
+                        <td>
+                            Designation :-_________________ <br><br>
 
-                       Designation :-______________               
+                                   Name :-_________________  <br><br>
+
+                                   Sign :-_________________ 
+
+                        </td>
+
+
+
+                        <td>
                        
-            Name :-______________
-                           
-            Sign :-______________
-                       </pre>
-                
 
-                   </td>
-                
-                </tr>
+                                Designation :- _________________<br><br>
+
+                                       Name :- _________________<br><br>
+
+                                       Sign :- _________________
+
+                              
+                        </td>
+
+
+                    </tr> <div class="form-group">
+                <div class="row">
+
+                    <table class="table">
+                       <tr>
+
+                        <td>
+                            Designation :-_________________ <br><br>
+
+                                   Name :-_________________  <br><br>
+
+                                   Sign :-_________________ 
+
+                        </td>
+
+
+
+                        <td>
+                       
+
+                                Designation :- _________________<br><br>
+
+                                       Name :- _________________<br><br>
+
+                                       Sign :- _________________
+
+                              
+                        </td>
+
+
+                    </tr>
              </tbody>
                         
                     </table>
