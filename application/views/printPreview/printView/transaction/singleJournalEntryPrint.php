@@ -32,12 +32,12 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <center>
+                                
                                     <th>General Ledger Transaction Details</th>
                                     <th>Date</th>
                                     <th>Summary of Transaction</th>
                                     <th>Details of Transaction</th>
-                                </center>
+                               
                             </tr>
                         </thead>
                         <tbody>

@@ -8,44 +8,30 @@ class preview extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('session');
-       $this->load->model('ledger_model');
+        $this->load->model('program_model');
        $this->load->model('bank_model');
         $this->load->model('transaction_model');
-       $this->load->model('dbmanager_model');
+        $this->load->model('dbmanager_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
         $this->load->helper('csv');
     }
 
-    public function jounalView($id) {
+    public function jounalView($id=null) {
         
         
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
 
-            $orientation = 'landscape';       
-        
-     $url = current_url();
-         if( $id === NULL )
-         {
-          return redirect('dashboard', 'refresh');
-         }
-      
-     $user_id = $this->session->userdata('user_id');
-             $username = $this->session->userdata('username');
+            $orientation = 'landscape';
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
-             $fiscal_year = $this->session->userdata('fiscal_year'); 
-             
-             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+        $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
         $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($id);     
-      
-      $this->load->view('printPreview/download/templates/header');
+            $this->load->view('printPreview/download/templates/header');
       $this->load->view('printPreview/download/transaction/singleJournalEntryPrint', $data);
       $this->load->view('printPreview/download/templates/footer');
-    
-         
             // Get output html
             $html = $this->output->get_output();
 
@@ -56,7 +42,7 @@ class preview extends CI_Controller {
             $this->dompdf->load_html($html);
             $this->dompdf->set_paper('a4', $orientation);
             $this->dompdf->render();
-            $this->dompdf->stream("Journal.pdf");
+            $this->dompdf->stream($id.".pdf");
             die;
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -99,6 +85,51 @@ class preview extends CI_Controller {
         $quer = $this->db->get('bank_info');
 
         query_to_csv($quer, TRUE, 'bank_info_' . date('dMy') . '.csv');
+    }
+    
+    public function jounalViewtds($id) {
+        
+        
+        $url = current_url();
+        if ($this->session->userdata('logged_in') == true) {
+
+            $orientation = 'landscape';       
+        
+     $url = current_url();
+         if( $id === NULL )
+         {
+          return redirect('dashboard', 'refresh');
+         }
+      
+     $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year'); 
+             
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+        $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($id);     
+      
+      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/transaction/singleJournalEntryPrint', $data);
+      $this->load->view('printPreview/download/templates/footer');
+    
+         
+            // Get output html
+            $html = $this->output->get_output();
+
+            // Load library
+            $this->load->library('dompdf_gen');
+
+            // Convert to PDF
+            $this->dompdf->load_html($html);
+            $this->dompdf->set_paper('a4', $orientation);
+            $this->dompdf->render();
+            $this->dompdf->stream("Journal.pdf");
+            die;
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
     }
 
 }
