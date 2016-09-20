@@ -1,4 +1,3 @@
-
 var debitCreditDifference = "";
 var debitTotal = 0;
 var creditTotal = 0;
@@ -41,16 +40,12 @@ function  getAccountLedger(selectedType)
         error: function ()
         { }
     });
-
 }
 
 function  getSubLedger(selectedType)
 {
-
-
     var cId = $('#journalType').val();
     var account = $('#accountList').val();
-
     $.ajax({
         type: "POST",
         url: baseUrl + "transaction/getAssociatedSubLedger",
@@ -68,12 +63,10 @@ function  getSubLedger(selectedType)
                 $('#ledgerType').html(msg.ledgerType);
             }
             $('#lMCode').val(cId + account + '000000');
-
         },
         error: function ()
         { }
     });
-
 }
 
 function getDonor()
@@ -81,7 +74,6 @@ function getDonor()
     var cId = $('#journalType').val();
     var account = $('#accountList').val();
     var subLedger = $('#subLedgerList').val();
-
     $.ajax({
         type: "POST",
         url: baseUrl + "transaction/getAssociatedDonor",
@@ -96,7 +88,6 @@ function getDonor()
                 $('#ledgerType').html(msg.ledgerType);
             }
             $('#lMCode').val(cId + account + subLedger + '0000');
-
         },
         error: function ()
         { }
@@ -109,7 +100,6 @@ function getledgerType()
     var account = $('#accountList').val();
     var subLedger = $('#subLedgerList').val();
     var donar = $('#donerList').val();
-
     $.ajax({
         type: "POST",
         url: baseUrl + "transaction/getAssociatedLedgerType",
@@ -121,7 +111,6 @@ function getledgerType()
                 $('#ledgerType').html(msg.ledgerType);
             }
             $('#lMCode').val(cId + account + subLedger + donar + '00');
-
         },
         error: function ()
         { }
@@ -142,7 +131,6 @@ function updateCode()
 
 function numberWithCommas(x)
 {
-
     var parts = x.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
@@ -152,7 +140,6 @@ function numberWithOutCommas(x)
 {
     if (x.toString().length <= 3)
     {
-
         return  parseInt(x);
     } else
     {
@@ -163,7 +150,6 @@ function numberWithOutCommas(x)
 
 function checkDiffernceBetDebitAndCredit()
 {
-
     var d = numberWithOutCommas(debitTotal);
     var b = numberWithOutCommas(creditTotal);
     if (d == b)
@@ -172,10 +158,8 @@ function checkDiffernceBetDebitAndCredit()
         activateCommentAndSummerField("activate");
         $("#creditGreater").val(0);
         $("#debitGreater").val(0);
-
     } else if (d > b)
     {
-
         debitCreditDifference = numberWithCommas(d - b);
         $("#debitGreater").val(debitCreditDifference);
         $("#creditGreater").val(0);
@@ -186,17 +170,13 @@ function checkDiffernceBetDebitAndCredit()
         $("#debitGreater").val(0.0);
         $("#creditGreater").val(debitCreditDifference);
         activateCommentAndSummerField("adctivate");
-
     }
-
 }
 
 function activateCommentAndSummerField(type)
 {
-
     if (type == "activate")
     {
-
         $("#comment,#summary").attr("disabled", false);
         $("#submitTheForm").prop('disabled', false);
         $("#previewForm").prop('disabled', false);
@@ -207,8 +187,6 @@ function activateCommentAndSummerField(type)
         $("#previewForm").prop('disabled', true);
     }
 }
-
-// from here code has been updated
 
 function journal()
 {
@@ -287,7 +265,7 @@ function ledgerTypef()
     }
 }
 
-function Desc()
+function Descf()
 {
     var description = $('#description').val();
     var dsc = description.length;
@@ -304,18 +282,20 @@ function Desc()
     }
 }
 
-function ledMCode()
+function ledMCodef()
 {
+    var a;
     var lMCode = $("#lMCode").val();
     var lMlen = lMCode.length;
 if(lMlen < 10 || lMCode == '' ){
      $("#lMCode").focus();
                 $("label#accCode_error").show();
                 $('#lMCode').css("border", "1px solid red");
-                return false;
+                a = false;
 } else{
     $.ajax({
         type: "POST",
+        'async':false,
         url: baseUrl + "transaction/checkLedgerMasterCode",
         data: {lmCode: lMCode},
         success: function (msg)
@@ -326,17 +306,19 @@ if(lMlen < 10 || lMCode == '' ){
                 $("label#accCode_error").hide();
                 $("label#accCodeMis_error").show();
                 $('#lMCode').css("border", "1px solid red");
-                return false;
+                a = false;
             } else {
                 $("label#accCode_error").hide();
                 $("#lMCode").css("border", "1px solid green");
-                return true;
+                a = true;
             }
         },
         error: function ()
         { }
     });
+    
     }
+    return a;
 }
 
 function clearformTable()
@@ -360,10 +342,22 @@ function drcr()
     var creditAmount = $('#creditAmount').val();
     if (debitAmount && creditAmount)
     {
-        $("#donerList").focus();
+        $("label#debitAmount_error").show();
+        $("label#creditAmount_error").show();
+        $("#debitAmount").css("border", "1px solid red");
+        $("#creditAmount").css("border", "1px solid red");
         return false;
-    } else {
-        $("#donerList").css("border", "1px solid green");
+    } else if(!debitAmount && !creditAmount) {
+        $("label#debitAmount_error").show();
+        $("label#creditAmount_error").show();
+        $("#debitAmount").css("border", "1px solid red");
+        $("#creditAmount").css("border", "1px solid red");
+        return false;
+    }else{
+        $("label#debitAmount_error").hide();
+        $("label#creditAmount_error").hide();
+        $("#debitAmount").css("border", "1px solid green");
+        $("#creditAmount").css("border", "1px solid green");
         return true;
     }
 }
@@ -389,7 +383,7 @@ function  addData()
     if (journal() == false)
     {
         $("#journalType").focus();
-    } else if (ledMCode() == false)
+    } else if (ledMCodef() == false)
     {
         $("#lMCode").focus();
     } else if (account() == false)
@@ -404,87 +398,108 @@ function  addData()
     } else if (ledgerTypef() == false)
     {
         $("#ledgerType").focus();
-    } else if (Desc() == false)
+    } else if (Descf() == false)
     {
         $("#description").focus();
     }else if (drcr() == false)
     {
         $("#debitAmount").focus();
-    }else if ((debitAmount && (creditAmount == null || creditAmount == "")))
-    {
-        var debitInsertValue = debitAmount;
-        creditInsertValue = 0;
-        objectToStroCurrentData =
-                {
-                    indexNumber: incrementCounterForItem,
-                    chartCode: chartId,
-                    lMCode: lMCode,
-                    accCode: accountId,
-                    type: 'dr',
-                    subLedger_id: subLedger,
-                    donar_id: donar,
-                    ledgerType: ledgerType,
-                    description: description,
-                    debitAmount: debitInsertValue,
-                    creditAmount: creditInsertValue,
-                    chequeNo: chequeNo
-                };
-        incrementCounterForItem++;
-        if (typeof (index) == 'undefined' || index === null){
-            allInsertItemsinVouture.push(objectToStroCurrentData);
-            viewTheItemsInArray();
-            var msg = '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction Added succesfully</div>';
-            $('#errorMessages').html(msg);
-            hideMessages();
-        } else
-        {
-            allInsertItemsinVouture.splice(index, 1, objectToStroCurrentData);
-            viewTheItemsInArray();
-        }
-
-        $("#glTrans")[0].reset();
-        objectToStroCurrentData = {};
-
-    } else if ((creditAmount && (debitAmount == null || debitAmount == "")))
-    {
-        var creditInsertValue = creditAmount;
-        debitInsertValue = 0;
-        objectToStroCurrentData =
-                {
-                    indexNumber: incrementCounterForItem,
-                    chartCode: chartId,
-                    lMCode: lMCode,
-                    accCode: accountId,
-                    type: 'dr',
-                    subLedger_id: subLedger,
-                    donar_id: donar,
-                    ledgerType: ledgerType,
-                    description: description,
-                    debitAmount: debitInsertValue,
-                    creditAmount: creditInsertValue,
-                    chequeNo: chequeNo
-                };
-
-        incrementCounterForItem++;
-        if (typeof (index) == 'undefined' || index === null){
-            allInsertItemsinVouture.push(objectToStroCurrentData);
-            viewTheItemsInArray();
-            var msg = '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction Added succesfully</div>';
-            $('#errorMessages').html(msg);
-            hideMessages();
-        } else
-        {
-            allInsertItemsinVouture.splice(index, 1, objectToStroCurrentData);
-            viewTheItemsInArray();
-        }
-       $("#glTrans")[0].reset();
-        objectToStroCurrentData = {};
-    } else
-    {
-        var msg = '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Plese Enter Either Debit Amount OR Credit Amount</div>';
-        $('#errorMessages').html(msg);
-        hideMessages();
-    }
+    }else if(journal() == true && ledMCodef() == true && account() == true)// && subLedgerf() == true && donorListf() == true && ledgerTypef() == true && Descf() == true && drcr() == true)
+       {
+                     
+        alert('here in ');
+//    if ((debitAmount && (creditAmount == null || creditAmount == "")))
+//    {
+//        var debitInsertValue = debitAmount;
+//        creditInsertValue = 0;
+//        objectToStroCurrentData =
+//                {
+//                    indexNumber: incrementCounterForItem,
+//                    chartCode: chartId,
+//                    lMCode: lMCode,
+//                    accCode: accountId,
+//                    type: 'dr',
+//                    subLedger_id: subLedger,
+//                    donar_id: donar,
+//                    ledgerType: ledgerType,
+//                    description: description,
+//                    debitAmount: debitInsertValue,
+//                    creditAmount: creditInsertValue,
+//                    chequeNo: chequeNo
+//                };
+//        incrementCounterForItem++;
+//        if (typeof (index) == 'undefined' || index === null){
+//            allInsertItemsinVouture.push(objectToStroCurrentData);
+//            viewTheItemsInArray();
+//            var msg = '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction Added succesfully</div>';
+//            $('#errorMessages').html(msg);
+//            hideMessages();
+//        } else
+//        {
+//            allInsertItemsinVouture.splice(index, 1, objectToStroCurrentData);
+//            viewTheItemsInArray();
+//        }
+//
+//        $("#glTrans")[0].reset();
+//        objectToStroCurrentData = {};
+//
+//    } else if ((creditAmount && (debitAmount == null || debitAmount == "")))
+//    {
+//        var creditInsertValue = creditAmount;
+//        debitInsertValue = 0;
+//        objectToStroCurrentData =
+//                {
+//                    indexNumber: incrementCounterForItem,
+//                    chartCode: chartId,
+//                    lMCode: lMCode,
+//                    accCode: accountId,
+//                    type: 'dr',
+//                    subLedger_id: subLedger,
+//                    donar_id: donar,
+//                    ledgerType: ledgerType,
+//                    description: description,
+//                    debitAmount: debitInsertValue,
+//                    creditAmount: creditInsertValue,
+//                    chequeNo: chequeNo
+//                };
+//
+//        incrementCounterForItem++;
+//        if (typeof (index) == 'undefined' || index === null){
+//            allInsertItemsinVouture.push(objectToStroCurrentData);
+//            viewTheItemsInArray();
+//            var msg = '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction Added succesfully</div>';
+//            $('#errorMessages').html(msg);
+//            hideMessages();
+//        } else
+//        {
+//            allInsertItemsinVouture.splice(index, 1, objectToStroCurrentData);
+//            viewTheItemsInArray();
+//        }
+//       $("#glTrans")[0].reset();
+//        objectToStroCurrentData = {};
+//    } else
+//    {
+//        var msg = '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Plese Enter Either Debit Amount OR Credit Amount</div>';
+//        $('#errorMessages').html(msg);
+//        hideMessages();
+//    }
+    
+    
+    
+    }else
+            {
+                alert('here in else');
+                $("label#captcha_mistake").show();
+                $("input#captcha").focus();
+            }
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 
