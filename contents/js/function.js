@@ -407,82 +407,42 @@ function  addData()
     }else if(journal() == true && ledMCodef() == true && account() == true)// && subLedgerf() == true && donorListf() == true && ledgerTypef() == true && Descf() == true && drcr() == true)
        {
                      
-        alert('here in ');
-//    if ((debitAmount && (creditAmount == null || creditAmount == "")))
-//    {
-//        var debitInsertValue = debitAmount;
-//        creditInsertValue = 0;
-//        objectToStroCurrentData =
-//                {
-//                    indexNumber: incrementCounterForItem,
-//                    chartCode: chartId,
-//                    lMCode: lMCode,
-//                    accCode: accountId,
-//                    type: 'dr',
-//                    subLedger_id: subLedger,
-//                    donar_id: donar,
-//                    ledgerType: ledgerType,
-//                    description: description,
-//                    debitAmount: debitInsertValue,
-//                    creditAmount: creditInsertValue,
-//                    chequeNo: chequeNo
-//                };
-//        incrementCounterForItem++;
-//        if (typeof (index) == 'undefined' || index === null){
-//            allInsertItemsinVouture.push(objectToStroCurrentData);
-//            viewTheItemsInArray();
-//            var msg = '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction Added succesfully</div>';
-//            $('#errorMessages').html(msg);
-//            hideMessages();
-//        } else
-//        {
-//            allInsertItemsinVouture.splice(index, 1, objectToStroCurrentData);
-//            viewTheItemsInArray();
-//        }
-//
-//        $("#glTrans")[0].reset();
-//        objectToStroCurrentData = {};
-//
-//    } else if ((creditAmount && (debitAmount == null || debitAmount == "")))
-//    {
-//        var creditInsertValue = creditAmount;
-//        debitInsertValue = 0;
-//        objectToStroCurrentData =
-//                {
-//                    indexNumber: incrementCounterForItem,
-//                    chartCode: chartId,
-//                    lMCode: lMCode,
-//                    accCode: accountId,
-//                    type: 'dr',
-//                    subLedger_id: subLedger,
-//                    donar_id: donar,
-//                    ledgerType: ledgerType,
-//                    description: description,
-//                    debitAmount: debitInsertValue,
-//                    creditAmount: creditInsertValue,
-//                    chequeNo: chequeNo
-//                };
-//
-//        incrementCounterForItem++;
-//        if (typeof (index) == 'undefined' || index === null){
-//            allInsertItemsinVouture.push(objectToStroCurrentData);
-//            viewTheItemsInArray();
-//            var msg = '<div class="alert alert-success fade in text-center text-justified"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction Added succesfully</div>';
-//            $('#errorMessages').html(msg);
-//            hideMessages();
-//        } else
-//        {
-//            allInsertItemsinVouture.splice(index, 1, objectToStroCurrentData);
-//            viewTheItemsInArray();
-//        }
-//       $("#glTrans")[0].reset();
-//        objectToStroCurrentData = {};
-//    } else
-//    {
-//        var msg = '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Plese Enter Either Debit Amount OR Credit Amount</div>';
-//        $('#errorMessages').html(msg);
-//        hideMessages();
-//    }
+    if (debitAmount && !creditAmount)
+    {
+        objectToStroCurrentData = {indexNumber: incrementCounterForItem,chartCode: chartId,lMCode: lMCode,accCode: accountId,type: 'dr',subLedger_id: subLedger,donar_id: donar,ledgerType: ledgerType,description: description,debitAmount: debitAmount,creditAmount: '0',chequeNo: chequeNo};
+        incrementCounterForItem++;
+        if (typeof (index) == 'undefined' || index === null){
+            allInsertItemsinVouture.push(objectToStroCurrentData);
+            viewTheItemsInArray();
+        } else
+        {
+            allInsertItemsinVouture.splice(index, 1, objectToStroCurrentData);
+            viewTheItemsInArray();
+        }
+        $("#glTrans")[0].reset();
+        objectToStroCurrentData = {};
+        
+    } else if(creditAmount && !debitAmount )
+    {
+        objectToStroCurrentData ={indexNumber: incrementCounterForItem,chartCode: chartId,lMCode: lMCode,accCode: accountId,type: 'dr',subLedger_id: subLedger,donar_id: donar,ledgerType: ledgerType,description: description,debitAmount: '0',creditAmount: creditAmount,chequeNo: chequeNo};
+        incrementCounterForItem++;
+        if (typeof (index) == 'undefined' || index === null){
+            allInsertItemsinVouture.push(objectToStroCurrentData);
+            viewTheItemsInArray();
+            
+        } else
+        {
+            allInsertItemsinVouture.splice(index, 1, objectToStroCurrentData);
+            viewTheItemsInArray();
+        }
+       $("#glTrans")[0].reset();
+        objectToStroCurrentData = {};
+    } else
+    {
+        var msg = '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Something went wrong. Please refresh page and retry.</div>';
+        $('#errorMessages').html(msg);
+        hideMessages();
+    }
     
     
     
