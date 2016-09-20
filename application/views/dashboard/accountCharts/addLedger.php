@@ -32,13 +32,43 @@
                             
                             
                             <div class="col-sm-8 col-sm-offset-2">
-                                <button class="btn-success btn">Submit</button>
+                                <button class="btn-success btn-lg">Submit</button>
                             </div>
 
                         </form>
                     </div>
                 </div>
-            
+                <br>
+
+ <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+
+                            <th> Ledger Code </th>
+                            <th> Ledger NameList</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="table table-striped  table-bordered table-condensed">
+                                <?php foreach ($ledgerInfo as $ledList){
+                                   
+                                    ?>
+
+                                <tr>
+                                    <td><?php echo $ledList->ledger_code; ?></td>
+                                    <td><?php echo $ledList->ledger_name; ?></td>
+                                   
+                                    
+                                </tr>
+                                <?php  } ?>
+                            </tbody>
+                        </div>
+                        </div>
+
+
+
+
 
 
 
