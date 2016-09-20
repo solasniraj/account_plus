@@ -1,10 +1,5 @@
 <style>
     @media print{@page {size: landscape}
-
-
-    table {
-        background: #ffffff;
-    }
 </style>
 <?php if(!empty($singleGLDetails)){ 
    foreach($singleGLDetails as $glDetails){
