@@ -140,8 +140,12 @@
                                     <td>  <input  class="form-control " type="text" name="description" id="description">
                                     <label class="has-error" for="journalType" id="description_error">This field is required.</label>
                                     </td>
-                                    <td>  <input  class="form-control formatComma" type="text"  id="debitAmount"></td>
-                                    <td>  <input  class="form-control formatComma" type="text"  id="creditAmount"></td>
+                                    <td>  <input  class="form-control formatComma" type="text"  id="debitAmount">
+                                    <label class="has-error" for="debitAmount" id="debitAmount_error">Either Debit or Credit required</label>
+                                    </td>
+                                    <td>  <input  class="form-control formatComma" type="text"  id="creditAmount">
+                                    <label class="has-error" for="creditAmount" id="creditAmount_error">Either Debit or Credit required</label>
+                                    </td>
                                     <td> <input  class="form-control" type="text" name="chequeNo" id="chequeNo"></td>
 
                                 </tr>
