@@ -25,10 +25,11 @@ class chartAccount extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
+          $data['ledgerInfo'] = $this->ledger_model->get_all_ledger();
               $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/accountCharts/addLedger');
+          $this->load->view('dashboard/accountCharts/addLedger',$data);
            $this->load->view('dashboard/templates/footer');
              
     } else {
@@ -110,10 +111,11 @@ Account Ledger created successfully
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
+            $data['subLedgerInfo'] = $this->ledger_model->get_all_subledger();
               $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/accountCharts/addSubLedger');
+          $this->load->view('dashboard/accountCharts/addSubLedger', $data);
            $this->load->view('dashboard/templates/footer');
              
     } else {

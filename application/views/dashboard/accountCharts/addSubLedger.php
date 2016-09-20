@@ -32,12 +32,39 @@
                             
                             
                             <div class="col-sm-8 col-sm-offset-2">
-                                <button class="btn-success btn">Submit</button>
+                                <button class="btn-success btn-lg">Submit</button>
                             </div>
 
                         </form>
                     </div>
                 </div>
+                <br>
+
+              
+                <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+
+                            <th> Subledger Code </th>
+                            <th> SubLedger NameList</th>
+
+                        </tr>
+                    </thead>
+                     <tbody class="table table-striped  table-bordered table-condensed">
+                                <?php foreach ($subLedgerInfo as $subledList){
+                                   
+                                    ?>
+
+                                <tr>
+                                    <td><?php echo $subledList->subledger_code; ?></td>
+                                    <td><?php echo $subledList->subledger_name; ?></td>
+                                   
+                                    
+                                </tr>
+                                <?php  } ?>
+                            </tbody>
+                        </div>
             
 
 

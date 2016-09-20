@@ -29,6 +29,24 @@
         $query = $this->db->get('ledger_master');
         return $query->result(); 
    }
+                 // solas
+     public function get_all_ledger()
+        {
+            $this->db->where('account_ledger_status', '1');
+            $query = $this->db->get('account_ledger_info');
+             return $query->result();
+        }
+
+             
+        public function get_all_subledger()
+        {
+
+          $this->db->where('subledger_status', '1');
+          $query = $this->db->get('subledger_info');
+           return $query->result();
+        }
+
+   
    
    public function search_ledger_master_for_submitted_key_only_in_code($searchKey)
    {
