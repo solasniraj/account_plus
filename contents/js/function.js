@@ -12,6 +12,134 @@ var AddToJournalList = true;
 var edittheJournalItems = false;
 var reqiureTotriggerwhenUpdateisDone = '';
 
+function journalNumber()
+{
+    var chartId = $('#journalNo').val();
+    var f = chartId.length;
+    if (f < 1 || chartId == '' || chartId == null || chartId == '0') {
+        $("#journalNo").focus();
+        $("label#journal_error").show();
+        $("#journalNo").css("border", "1px solid red");
+        return false;
+    } else {
+        $("label#journal_error").hide();
+        $("#journalType").css("border", "1px solid green");
+        return true;
+    }
+}
+
+function dateField()
+{
+    var chartId = $('#datepicker').val();
+    var f = chartId.length;
+    if (f < 1 || chartId == '' || chartId == null || chartId == '0') {
+        $("#datepicker").focus();
+        $("label#date_error").show();
+        $("#datepicker").css("border", "1px solid red");
+        return false;
+    } else {
+        $("label#date_error").hide();
+        $("#datepicker").css("border", "1px solid green");
+        return true;
+    }
+}
+
+function comment()
+{
+    var chartId = $('#comment').val();
+    var f = chartId.length;
+    if (f < 1 || chartId == '' || chartId == null || chartId == '0') {
+        $("#comment").focus();
+        $("label#comment_error").show();
+        $("#comment").css("border", "1px solid red");
+        return false;
+    } else {
+        $("label#comment_error").hide();
+        $("#comment").css("border", "1px solid green");
+        return true;
+    }
+}
+
+function summary()
+{
+    var chartId = $('#summary').val();
+    var f = chartId.length;
+    if (f < 1 || chartId == '' || chartId == null || chartId == '0') {
+        $("#summary").focus();
+        $("label#summary_error").show();
+        $("#summary").css("border", "1px solid red");
+        return false;
+    } else {
+        $("label#summary_error").hide();
+        $("#summary").css("border", "1px solid green");
+        return true;
+    }
+}
+
+$(document).ready(function ()
+{
+    $('#glTrans').submit(function (e) {
+e.preventDefault();
+if (journalNumber() == false)
+    {
+        $("#journalNo").focus();
+    } else if (dateField() == false)
+    {
+        $("#datepicker").focus();
+    } else if (comment() == false)
+    {
+        $("#comment").focus();
+    } else if (summary() == false)
+    {
+        $("#summary").focus();
+    }else if(journalNumber() == true && dateField() == true && comment() == true && summary() == true)
+       {
+           var JSONObject = JSON.stringify(allInsertItemsinVouture);
+            var input = $("<input>")
+                    .attr("type", "hidden")
+                    .attr("name", "mydata").attr("id", "myDataInp").val(JSONObject);
+            $('#glTrans').append($(input));
+            $('#glTrans').submit();           
+       }else{
+           
+       }
+    });
+
+
+    
+    $('input.formatComma').keyup(function (e) {
+        var price = $(this).val();
+        var regex = /^[0-9.,]+$/;
+        if (this.value != '-')
+            while (isNaN(this.value))
+                this.value = this.value.split('').reverse().join('').replace(/[\D]/i, '')
+                        .split('').reverse().join('');
+
+        if (regex.test(price))
+        {
+            $(this).val(function (index, value)
+            {
+                value = value.replace(/,/g, '');
+                return numberWithCommas(value);
+            });
+        }
+    })
+            .on("cut copy paste", function (e) {
+                e.preventDefault();
+            });
+
+});
+
+$(function () {
+    $("#datepicker").datepicker({
+        maxDate: dateToday,
+        dateFormat: 'mm/dd/yy',
+        timeFormat: 'hh:mm tt',
+        dateonly: true
+
+    });
+});
+
 function  getAccountLedger(selectedType)
 {
     reqiureTotriggerwhenUpdateisDone = selectedType;
@@ -155,7 +283,7 @@ function checkDiffernceBetDebitAndCredit()
     if (d == b)
     {
         debitCreditDifference = 0;
-        activateCommentAndSummerField("activate");
+      
         $("#creditGreater").val(0);
         $("#debitGreater").val(0);
     } else if (d > b)
@@ -163,28 +291,13 @@ function checkDiffernceBetDebitAndCredit()
         debitCreditDifference = numberWithCommas(d - b);
         $("#debitGreater").val(debitCreditDifference);
         $("#creditGreater").val(0);
-        activateCommentAndSummerField("notActivate");
+        
     } else
     {
         debitCreditDifference = numberWithCommas(b - d);
         $("#debitGreater").val(0.0);
         $("#creditGreater").val(debitCreditDifference);
-        activateCommentAndSummerField("adctivate");
-    }
-}
-
-function activateCommentAndSummerField(type)
-{
-    if (type == "activate")
-    {
-        $("#comment,#summary").attr("disabled", false);
-        $("#submitTheForm").prop('disabled', false);
-        $("#previewForm").prop('disabled', false);
-    } else
-    {
-        $("#comment,#summary").attr("disabled", true);
-        $("#submitTheForm").prop('disabled', true);
-        $("#previewForm").prop('disabled', true);
+        
     }
 }
 
@@ -202,7 +315,6 @@ function journal()
         $("#journalType").css("border", "1px solid green");
         return true;
     }
-
 }
 
 
@@ -330,7 +442,6 @@ function clearformTable()
     $("#totalDebit").html("0.0");
     $("#totalCredit").html("0.0");
     debitCreditDifference = 0;
-    activateCommentAndSummerField("deactivate");
     $("#creditGreater").val(0);
     $("#debitGreater").val(0);
     objectToStroCurrentData = [];
@@ -441,7 +552,7 @@ function  addData()
     {
         var msg = '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Something went wrong. Please refresh page and retry.</div>';
         $('#errorMessages').html(msg);
-        hideMessages();
+        
     }
     
     
@@ -452,14 +563,7 @@ function  addData()
                 $("label#captcha_mistake").show();
                 $("input#captcha").focus();
             }
-    
-    
-    
-    
-    
-    
-    
-    
+        
 }
 
 
@@ -471,7 +575,6 @@ function viewTheItemsInArray()
         myCustomViewToEnter = "";
         for (var i = 0; i < allInsertItemsinVouture.length; i++)
         {
-
             var objestToLoop = allInsertItemsinVouture[i];
             var lMCode = objestToLoop.lMCode;
             var program = objestToLoop.programName;
@@ -481,23 +584,17 @@ function viewTheItemsInArray()
             {
             } else
             {
-
                 subLedger_id = '';
             }
-
             var donar = objestToLoop.donarName;
             var donar_id = objestToLoop.donar_id;
-
             if (donar_id)
             {
             } else
             {
                 donar_id = '';
             }
-
-
             var ledgerType = objestToLoop.ledgerType;
-
             if (ledgerType)
             {
             } else
@@ -506,13 +603,11 @@ function viewTheItemsInArray()
             }
             var description = objestToLoop.description;
             var chequeNo = objestToLoop.chequeNo;
-
             if (chequeNo)
             {
             } else
             {
                 chequeNo = '';
-
             }
             var debitAmount = objestToLoop.debitAmount;
             if (debitAmount)
@@ -521,16 +616,13 @@ function viewTheItemsInArray()
             {
                 debitAmount = 0;
             }
-
             var creditAmount = objestToLoop.creditAmount;
             if (creditAmount)
             {
             } else
             {
                 creditAmount = 0;
-
             }
-
             myCustomViewToEnter = '<tr>' +
                     '<td>' + lMCode + '</td>' +
                     '<td>' + accCode + '</td>' +
@@ -542,13 +634,10 @@ function viewTheItemsInArray()
                     '<td>' + creditAmount + '</td>' +
                     '<td>' + chequeNo + '</td>' +
                     '<td colspan="2" style="width:200px" ><span type="text" onClick="editItmInTheArray(' + i + ')' + '"' + 'class="btn btn-success btn-sm" style="">Edit</span> / <span type="text" onClick="delteItemFromArray(' + i + ')' + '"' + 'class="btn btn-danger btn-sm">Delete</span></td></tr>';
-
             viewToDisplayInTable = viewToDisplayInTable + myCustomViewToEnter;
             debitTotal = numberWithCommas(numberWithOutCommas(debitTotal) + numberWithOutCommas(debitAmount));
             creditTotal = numberWithCommas(numberWithOutCommas(creditTotal) + numberWithOutCommas(creditAmount));
         }
-
-
         $("#workingWithObjectData").html(viewToDisplayInTable);
         $("#totalDebit").html(debitTotal);
         $("#totalCredit").html(creditTotal);
@@ -557,8 +646,6 @@ function viewTheItemsInArray()
         myCustomViewToEnter = "";
         debitTotal = 0;
         creditTotal = 0;
-
-
     } else
     {
         viewToDisplayInTable = "";
@@ -569,7 +656,6 @@ function viewTheItemsInArray()
         $("#totalDebit").html(debitTotal);
         $("#totalCredit").html(creditTotal);
         debitCreditDifference = 0;
-        activateCommentAndSummerField("activate");
         $("#creditGreater").val(0);
         $("#debitGreater").val(0);
     }
@@ -682,61 +768,3 @@ function updateTheItemInTheArray(index)
 
 }
 
-function hideMessages() {
-
-}
-
-$(document).ready(function ()
-{
-    $('#glTrans').submit(function () {
-
-        if ($.trim($("#journalNo").val()) === "" || $.trim($("#datepicker").val()) === "" || $.trim($("#journalType").val()) === "" || $.trim($("#comment").val()) === "" || $.trim($("#summary").val()) === "") {
-            var msg = '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error !</strong> Plese fill all fields properly</div>';
-            $('#errorMessages').html(msg);
-            hideMessages();
-
-        } else {
-
-            var JSONObject = JSON.stringify(allInsertItemsinVouture);
-            var input = $("<input>")
-                    .attr("type", "hidden")
-                    .attr("name", "mydata").attr("id", "myDataInp").val(JSONObject);
-            $('#glTrans').append($(input));
-            $('#glTrans').submit();
-        }
-    });
-
-
-    activateCommentAndSummerField("deactivate");
-    $('input.formatComma').keyup(function (e) {
-        var price = $(this).val();
-        var regex = /^[0-9.,]+$/;
-        if (this.value != '-')
-            while (isNaN(this.value))
-                this.value = this.value.split('').reverse().join('').replace(/[\D]/i, '')
-                        .split('').reverse().join('');
-
-        if (regex.test(price))
-        {
-            $(this).val(function (index, value)
-            {
-                value = value.replace(/,/g, '');
-                return numberWithCommas(value);
-            });
-        }
-    })
-            .on("cut copy paste", function (e) {
-                e.preventDefault();
-            });
-
-});
-
-$(function () {
-    $("#datepicker").datepicker({
-        maxDate: dateToday,
-        dateFormat: 'mm/dd/yy',
-        timeFormat: 'hh:mm tt',
-        dateonly: true
-
-    });
-});

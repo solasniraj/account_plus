@@ -219,6 +219,7 @@
                             <div class="form-group">
                                 <label for="comment"><b>Detailed Comment</b></label>
                                 <textarea class="form-control" rows="5" style="resize:none" id="comment" name="comment"></textarea>
+                               <label class="has-error" for="comment" id="comment_error">This field is required.</label> 
                             </div>
                         </div>
 
@@ -226,6 +227,7 @@
                             <div class="form-group">
                                 <label for="summary"><b>Summary Comment</b></label>
                                 <textarea class="form-control" rows="5" style="resize:none" id="summary"  name="summary"></textarea>
+                            <label class="has-error" for="summary" id="summary_error">This field is required.</label> 
                             </div>
                         </div>
 
@@ -234,18 +236,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="pwd"><b>Total Cheque Balance</b></label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control1" id="pwd" style="margin-bottom:15px" >
-                                </div>
-                            </div>
-
-                        </div>
-
-
-
+                        
                         <div class="lastButton">
                             <button name="journalEntry" id="submitTheForm" onClick="sendAllJounalTransactionToServer()" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;" value="Submit">Submit</button>
 
