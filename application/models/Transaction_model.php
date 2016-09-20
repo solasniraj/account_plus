@@ -32,7 +32,6 @@ class Transaction_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('gl_trans_info');
 $this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.journal_voucher_no');
-$this->db->join('donar_info', 'donar_info.donar_code = gl_trans_info.donor_code');
 $this->db->join('ledger_master', 'ledger_master.ledger_master_code = gl_trans_info.ledger_master_code');
 $query = $this->db->get();
  return $query->result();   
@@ -81,6 +80,20 @@ $query = $this->db->get();
        $data = array('gl_trans_status' => '2');
     return $this->db->update('gl_trans_info', $data);
     }
+    
+    public function get_donar_name_by_code($donorCode)
+    {
+        $this->db->where('donar_code', $donorCode);
+        $this->db->where('status', '1');
+      $query= $this->db->get("donar_info")->result();
+               if(!empty($query)){
+           return $query[0]->donar_name;
+               }else{
+                   return ' ';
+               }
+    }
+    
+    
     
     
 }

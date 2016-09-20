@@ -68,11 +68,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($singleGLDetails as $gLList){ $type= $gLList->trans_type; ?>
+                        <?php foreach ($singleGLDetails as $gLList){ $type= $gLList->trans_type; 
+                        $donar = $this->transaction_model->get_donar_name_by_code($gLList->donor_code);
+                        ?>
                             <tr>
                                 <td><?php echo $gLList->ledger_master_code; ?></td>
                                 <td><?php echo $gLList->ledger_master_name; ?></td>                           
-                                <td><?php echo $gLList->donar_name; ?></td>
+                                <td><?php echo $donar; ?></td>
                                 <td><?php echo $gLList->memo; ?></td>
                                 
                                 <td><?php if($type =='dr'){ echo abs($gLList->amount);}else{ NULL; } ?></td>

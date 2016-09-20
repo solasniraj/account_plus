@@ -79,21 +79,25 @@ function summary()
 $(document).ready(function ()
 {
     $('#glTrans').submit(function (e) {
-e.preventDefault();
+
 if (journalNumber() == false)
     {
+        e.preventDefault();
         $("#journalNo").focus();
     } else if (dateField() == false)
     {
+        e.preventDefault();
         $("#datepicker").focus();
     } else if (comment() == false)
     {
+        e.preventDefault();
         $("#comment").focus();
     } else if (summary() == false)
     {
+        e.preventDefault();
         $("#summary").focus();
     }else if(journalNumber() == true && dateField() == true && comment() == true && summary() == true)
-       {
+       {   
            var JSONObject = JSON.stringify(allInsertItemsinVouture);
             var input = $("<input>")
                     .attr("type", "hidden")
@@ -101,11 +105,12 @@ if (journalNumber() == false)
             $('#glTrans').append($(input));
             $('#glTrans').submit();           
        }else{
-           
+           alert('else ma gayo');
+           e.preventDefault();
        }
     });
 
-
+ activateCommentAndSummerField("deactivate");
     
     $('input.formatComma').keyup(function (e) {
         var price = $(this).val();
@@ -139,6 +144,8 @@ $(function () {
 
     });
 });
+
+
 
 function  getAccountLedger(selectedType)
 {
@@ -283,7 +290,7 @@ function checkDiffernceBetDebitAndCredit()
     if (d == b)
     {
         debitCreditDifference = 0;
-      
+        activateCommentAndSummerField("activate");
         $("#creditGreater").val(0);
         $("#debitGreater").val(0);
     } else if (d > b)
@@ -291,13 +298,28 @@ function checkDiffernceBetDebitAndCredit()
         debitCreditDifference = numberWithCommas(d - b);
         $("#debitGreater").val(debitCreditDifference);
         $("#creditGreater").val(0);
-        
+        activateCommentAndSummerField("notActivate");
     } else
     {
         debitCreditDifference = numberWithCommas(b - d);
         $("#debitGreater").val(0.0);
         $("#creditGreater").val(debitCreditDifference);
-        
+        activateCommentAndSummerField("adctivate");
+    }
+}
+
+function activateCommentAndSummerField(type)
+{
+    if (type == "activate")
+    {
+        $("#comment,#summary").attr("disabled", false);
+        $("#submitTheForm").prop('disabled', false);
+        $("#previewForm").prop('disabled', false);
+    } else
+    {
+        $("#comment,#summary").attr("disabled", true);
+        $("#submitTheForm").prop('disabled', true);
+        $("#previewForm").prop('disabled', true);
     }
 }
 
@@ -442,6 +464,7 @@ function clearformTable()
     $("#totalDebit").html("0.0");
     $("#totalCredit").html("0.0");
     debitCreditDifference = 0;
+    activateCommentAndSummerField("deactivate");
     $("#creditGreater").val(0);
     $("#debitGreater").val(0);
     objectToStroCurrentData = [];
@@ -552,7 +575,7 @@ function  addData()
     {
         var msg = '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Something went wrong. Please refresh page and retry.</div>';
         $('#errorMessages').html(msg);
-        
+        hideMessages();
     }
     
     
@@ -563,7 +586,14 @@ function  addData()
                 $("label#captcha_mistake").show();
                 $("input#captcha").focus();
             }
-        
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 
@@ -575,6 +605,7 @@ function viewTheItemsInArray()
         myCustomViewToEnter = "";
         for (var i = 0; i < allInsertItemsinVouture.length; i++)
         {
+
             var objestToLoop = allInsertItemsinVouture[i];
             var lMCode = objestToLoop.lMCode;
             var program = objestToLoop.programName;
@@ -584,17 +615,23 @@ function viewTheItemsInArray()
             {
             } else
             {
+
                 subLedger_id = '';
             }
+
             var donar = objestToLoop.donarName;
             var donar_id = objestToLoop.donar_id;
+
             if (donar_id)
             {
             } else
             {
                 donar_id = '';
             }
+
+
             var ledgerType = objestToLoop.ledgerType;
+
             if (ledgerType)
             {
             } else
@@ -603,11 +640,13 @@ function viewTheItemsInArray()
             }
             var description = objestToLoop.description;
             var chequeNo = objestToLoop.chequeNo;
+
             if (chequeNo)
             {
             } else
             {
                 chequeNo = '';
+
             }
             var debitAmount = objestToLoop.debitAmount;
             if (debitAmount)
@@ -616,13 +655,16 @@ function viewTheItemsInArray()
             {
                 debitAmount = 0;
             }
+
             var creditAmount = objestToLoop.creditAmount;
             if (creditAmount)
             {
             } else
             {
                 creditAmount = 0;
+
             }
+
             myCustomViewToEnter = '<tr>' +
                     '<td>' + lMCode + '</td>' +
                     '<td>' + accCode + '</td>' +
@@ -634,10 +676,13 @@ function viewTheItemsInArray()
                     '<td>' + creditAmount + '</td>' +
                     '<td>' + chequeNo + '</td>' +
                     '<td colspan="2" style="width:200px" ><span type="text" onClick="editItmInTheArray(' + i + ')' + '"' + 'class="btn btn-success btn-sm" style="">Edit</span> / <span type="text" onClick="delteItemFromArray(' + i + ')' + '"' + 'class="btn btn-danger btn-sm">Delete</span></td></tr>';
+
             viewToDisplayInTable = viewToDisplayInTable + myCustomViewToEnter;
             debitTotal = numberWithCommas(numberWithOutCommas(debitTotal) + numberWithOutCommas(debitAmount));
             creditTotal = numberWithCommas(numberWithOutCommas(creditTotal) + numberWithOutCommas(creditAmount));
         }
+
+
         $("#workingWithObjectData").html(viewToDisplayInTable);
         $("#totalDebit").html(debitTotal);
         $("#totalCredit").html(creditTotal);
@@ -646,6 +691,8 @@ function viewTheItemsInArray()
         myCustomViewToEnter = "";
         debitTotal = 0;
         creditTotal = 0;
+
+
     } else
     {
         viewToDisplayInTable = "";
@@ -656,6 +703,7 @@ function viewTheItemsInArray()
         $("#totalDebit").html(debitTotal);
         $("#totalCredit").html(creditTotal);
         debitCreditDifference = 0;
+        activateCommentAndSummerField("activate");
         $("#creditGreater").val(0);
         $("#debitGreater").val(0);
     }
@@ -767,4 +815,6 @@ function updateTheItemInTheArray(index)
     whenJournalTypeIsSelected(reqiureTotriggerwhenUpdateisDone);
 
 }
+
+
 
