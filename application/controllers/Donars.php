@@ -33,10 +33,11 @@ class donars extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
+            $data['donarInfo'] = $this->donar_model->get_all_donar();
               $this->load->view('dashboard/templates/header');
               $this->load->view('dashboard/templates/sideNavigation');
               $this->load->view('dashboard/templates/topHead');
-              $this->load->view('dashboard/donars/addDonar');
+              $this->load->view('dashboard/donars/addDonar', $data);
               $this->load->view('dashboard/templates/footer');
              
     } else {

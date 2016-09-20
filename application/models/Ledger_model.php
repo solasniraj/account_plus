@@ -29,7 +29,7 @@
         $query = $this->db->get('ledger_master');
         return $query->result(); 
    }
-                 // solas
+                 
      public function get_all_ledger()
         {
             $this->db->where('account_ledger_status', '1');

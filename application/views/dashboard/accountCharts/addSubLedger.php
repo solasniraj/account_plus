@@ -2,7 +2,7 @@
                 <div class="graphs">
                     <h3 class="blank1">Create Sub Ledger</h3>
                      <style>
-     /*sanoj custom csss */
+     /* custom csss */
                 .form-errors 
                 {
                     font-size: 14px;
@@ -12,7 +12,7 @@
 
 
 
-                /*sanoj custom css ends*/
+                /* custom css ends*/
 
                 </style>
                     <div class="tab-content">

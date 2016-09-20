@@ -132,4 +132,36 @@ foreach ($file_array as $query)
     }
     
     
+    public function companyInfoUpdate()
+    {
+        $url = current_url();
+         if ($this->session->userdata('logged_in') == true) {
+         $this->load->view('dashboard/templates/header');
+          $this->load->view('dashboard/templates/sideNavigation');
+          $this->load->view('dashboard/templates/topHead');
+          $this->load->view('dashboard/setting/committeeUpdate');
+           $this->load->view('dashboard/templates/footer');
+           } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
+    public function yearConfiguration()
+    {
+        $url = current_url();
+         if ($this->session->userdata('logged_in') == true) {
+         $this->load->view('dashboard/templates/header');
+          $this->load->view('dashboard/templates/sideNavigation');
+          $this->load->view('dashboard/templates/topHead');
+          $this->load->view('dashboard/setting/yearConfigure');
+           $this->load->view('dashboard/templates/footer');
+           } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+        
+    }
+    
+    
+    
+    
 }
