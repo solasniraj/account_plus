@@ -75,7 +75,42 @@
                         </form>
                     </div>
                 </div>
-            
+            <br>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+
+                            <th> <b>Donar Name  </b></th>
+                            <th><b>Donar Address </b></th>
+                            <th><b>Donar Contact no</b></th>
+                            <th><b>Donar Donar code </b></th>
+                            <th><b>Donar  Email</b></th>
+                            <th><b>Contact person</b></th>
+                            <th><b>contact cell no  </b></th>
+
+                        </tr>
+                    </thead>
+
+             <tbody class="table table-striped  table-bordered table-condensed">
+                                <?php foreach ($donarInfo as $doList){
+                                   
+                                    ?>
+
+                                <tr>
+                                    <td><h5><?php echo $doList->donar_name; ?></h5></td>
+                                    <td><h5><?php echo $doList->donar_address; ?></h5></td>
+                                     <td><h5><?php echo $doList->donar_contact_no; ?></h5></td>
+                                      <td><h5><?php echo $doList->donar_code; ?></h5></td>
+                                       <td><h5><?php echo $doList->donar_email; ?></h5></td>
+                                        <td><h5><?php echo $doList->contact_person; ?></h5></td>
+                                         <td><h5><?php echo $doList->contact_person_cell_no; ?></h5></td>
+                                   
+                                    
+                                </tr>
+                                <?php  } ?>
+                            </tbody>
 
 
 

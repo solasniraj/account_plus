@@ -6,7 +6,7 @@
             $this->load->database();
         }
 
-        public function get_all_donars()
+        public function get_all_donar()
         {
             $this->db->where('status', '1');
             $query = $this->db->get('donar_info');

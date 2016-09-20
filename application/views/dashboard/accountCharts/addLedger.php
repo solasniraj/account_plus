@@ -12,7 +12,7 @@
 
 
 
-                /*sanoj custom css ends*/
+                /*custom css ends*/
 
                 </style>
                     <div class="tab-content">
@@ -45,8 +45,8 @@
                     <thead>
                         <tr>
 
-                            <th> Ledger Code </th>
-                            <th> Ledger NameList</th>
+                            <th> <b>Ledger Code  </b></th>
+                            <th><b>Ledger NameList </b></th>
 
                         </tr>
                     </thead>
@@ -56,15 +56,16 @@
                                     ?>
 
                                 <tr>
-                                    <td><?php echo $ledList->ledger_code; ?></td>
-                                    <td><?php echo $ledList->ledger_name; ?></td>
+                                    <td><h5><?php echo $ledList->ledger_code; ?></h5></td>
+                                    <td><h5><?php echo $ledList->ledger_name; ?></h5></td>
                                    
                                     
                                 </tr>
                                 <?php  } ?>
                             </tbody>
+                            </table>
                         </div>
-                        </div>
+                       
 
 
 
