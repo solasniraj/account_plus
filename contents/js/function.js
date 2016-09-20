@@ -539,36 +539,22 @@ function  addData()
     {
         $("#debitAmount").focus();
     }else if(journal() == true && ledMCodef() == true && account() == true)// && subLedgerf() == true && donorListf() == true && ledgerTypef() == true && Descf() == true && drcr() == true)
-       {
-                     
+       {                     
     if (debitAmount && !creditAmount)
     {
-        objectToStroCurrentData = {indexNumber: incrementCounterForItem,chartCode: chartId,lMCode: lMCode,accCode: accountId,type: 'dr',subLedger_id: subLedger,donar_id: donar,ledgerType: ledgerType,description: description,debitAmount: debitAmount,creditAmount: '0',chequeNo: chequeNo};
-        incrementCounterForItem++;
-        if (typeof (index) == 'undefined' || index === null){
+        objectToStroCurrentData = {chartCode: chartId,lMCode: lMCode,accCode: accountId,type: 'dr',subLedger_id: subLedger,donar_id: donar,ledgerType: ledgerType,description: description,debitAmount: debitAmount,creditAmount: '0',chequeNo: chequeNo};               
             allInsertItemsinVouture.push(objectToStroCurrentData);
-            viewTheItemsInArray();
-        } else
-        {
-            allInsertItemsinVouture.splice(index, 1, objectToStroCurrentData);
-            viewTheItemsInArray();
-        }
+            viewTheItemsInArray();                              
+       
         $("#glTrans")[0].reset();
         objectToStroCurrentData = {};
         
     } else if(creditAmount && !debitAmount )
     {
-        objectToStroCurrentData ={indexNumber: incrementCounterForItem,chartCode: chartId,lMCode: lMCode,accCode: accountId,type: 'dr',subLedger_id: subLedger,donar_id: donar,ledgerType: ledgerType,description: description,debitAmount: '0',creditAmount: creditAmount,chequeNo: chequeNo};
-        incrementCounterForItem++;
-        if (typeof (index) == 'undefined' || index === null){
+        objectToStroCurrentData ={chartCode: chartId,lMCode: lMCode,accCode: accountId,type: 'dr',subLedger_id: subLedger,donar_id: donar,ledgerType: ledgerType,description: description,debitAmount: '0',creditAmount: creditAmount,chequeNo: chequeNo};             
             allInsertItemsinVouture.push(objectToStroCurrentData);
             viewTheItemsInArray();
-            
-        } else
-        {
-            allInsertItemsinVouture.splice(index, 1, objectToStroCurrentData);
-            viewTheItemsInArray();
-        }
+                   
        $("#glTrans")[0].reset();
         objectToStroCurrentData = {};
     } else
@@ -576,24 +562,13 @@ function  addData()
         var msg = '<div class="alert alert-warning fade in text-center"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong>Something went wrong. Please refresh page and retry.</div>';
         $('#errorMessages').html(msg);
         hideMessages();
-    }
-    
-    
-    
+    }           
     }else
             {
                 alert('here in else');
                 $("label#captcha_mistake").show();
                 $("input#captcha").focus();
-            }
-    
-    
-    
-    
-    
-    
-    
-    
+            }       
 }
 
 
