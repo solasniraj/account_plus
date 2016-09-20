@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>Account :: Login </title>
+	<title>Account :: Registration </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Easy Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -27,21 +27,16 @@
 	<!-- lined-icons -->
 	<link rel="stylesheet" href="<?php echo base_url().'contents/css/icon-font.min.css'; ?>" type='text/css' />
 	<!-- //lined-icons -->
-	<!-- chart -->
-	<script src="<?php echo base_url().'contents/js/Chart.js'; ?>"></script>
-	<!-- //chart -->
+	
 	<!--animate-->
 	<link href="<?php echo base_url().'contents/css/animate.css'; ?>" rel="stylesheet" type="text/css" media="all">
-	<script src="<?php echo base_url().'contents/js/wow.min.js'; ?>"></script>
-	<script>
-		new WOW().init();
-	</script>
+	
 	<!--//end-animate-->
 <!----webfonts--->
 <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 <!---//webfonts---> 
 <!-- Meters graphs -->
-<script src="<?php echo base_url().'contents/js/jquery-1.10.2.min.js'; ?>"></script>
+
 <!-- Placed js at the end of the document so the pages load faster -->
 <style>
 	.form_errors
@@ -93,24 +88,6 @@
 }
 </style>
 
-
-
-<script type="text/javascript">
-$(document).ready(function()
-{	
-$("#createCredentials").click(function()
-{
-
-    $("#openCredentials").toggle();
-  
-});
-
-});
-
-
-
-
-</script>
 </head> 
 
 <body class="sign-in-up">
@@ -200,9 +177,8 @@ $("#createCredentials").click(function()
 	<!-- main content end-->
 </section>
 
-<script src="<?php echo base_url().'contents/js/jquery.nicescroll.js'; ?>"></script>
-<script src="<?php echo base_url().'contents/js/scripts.js'; ?>"></script>
+
 <!-- Bootstrap Core JavaScript -->
-<script src="<?php echo base_url().'contents/js/bootstrap.min.js'; ?>"></script>
+
 </body>
 </html>
