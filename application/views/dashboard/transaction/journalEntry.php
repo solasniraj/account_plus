@@ -219,23 +219,38 @@
                     <!--   working on object is closed      -->
 
                     <div class="row">
+                    
 
-                        <div class="col-md-5 col-md-offset-1" >
+                        <div class="col-md-10 col-md-offset-1" >
                             <div class="form-group">
+                            <div class="table-responsive">
+                        <table class="tablee">
+                            <tr>
+                            <td>
+                            
                                 <label for="comment"><b>Detailed Comment</b></label>
-                                <textarea class="form-control" rows="5" style="resize:none" id="comment" name="comment"></textarea>
+                                <textarea class="form-control" rows="8" cols="43"style="resize:none" id="comment" name="comment"></textarea>
                                <label class="has-error" for="comment" id="comment_error">This field is required.</label> 
-                            </div>
-                        </div>
+                               </td>
+                       <!--      </div>
+                        </div> -->
 
-                        <div class="col-md-5 col-md-offset-1" >
-                            <div class="form-group">
+                       <!--  <div class="col-md-5 col-md-offset-1" >
+                            <div class="form-group"> -->
+                            <td>
                                 <label for="summary"><b>Summary Comment</b></label>
-                                <textarea class="form-control" rows="5" style="resize:none" id="summary"  name="summary"></textarea>
-                            <label class="has-error" for="summary" id="summary_error">This field is required.</label> 
+                                <textarea class="form-control" rows="8" cols="43" style="resize:none" id="summary"  name="summary"></textarea>
+                            <label class="has-error" for="summary" id="summary_error">This field is required.</label>
+                            </td>
+                             </tr>
+                        </table>
                             </div>
                         </div>
-
+                       
+</div>
+</div>
+</div>
+</div>
 
 
                     </div>
