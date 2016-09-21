@@ -88,7 +88,7 @@
 
                     <div class="table-responsive">
                         <table class="tablee">
-                            <tbody>
+                            <thead>
                                 <tr>
                                     <td class="col-md-1"><b>Account Code</b></td>
                                     <td class="col-md-1"><b>A/C Head</b></td>
@@ -102,6 +102,9 @@
                                     <td rowspan="2"  class="b" id="toggleButton">
                                         <span class="btn btn-success " id="submitCurrentData" onClick="addData()" style=" padding:5px;margin:5px;width:70px;font-size:18px;">Add</span></td>
                                 </tr>
+                                </thead>
+
+                                <tbody>
                                 <tr>
 
                                     <td id="ledgerMasterCode">
@@ -169,21 +172,21 @@
                         <table class="tablee" width="100%">
                             <thead>
                                 <tr>
-                                    <td  class="b"><b>A/C Code</b></td>
-                                    <td  class="b"><b>A/C Head</b></td>
-                                    <td  class="b"><b>Sub-Ledger</b></td>
-                                    <td  class="b"><b>Ledger type</b></td>
-                                    <td  class="b"><b>Donar name</b></td>
-                                    <td  class="b" colspan="2" s><b>Descrption</b></td>
-                                    <td  class="b"><b>Debit</b></td>
-                                    <td  class="b"><b>Credit</b></td>
-                                    <td  class="b"><b>Cheque number</b></td>
-                                    <td class="b" colspan="2"><b>Action</b></td>
+                                    <td  class="col-md-1"><b>A/C Code</b></td>
+                                    <td  class="col-md-1"><b>A/C Head</b></td>
+                                    <td  class="col-md-1"><b>Sub-Ledger</b></td>
+                                    <td  class="col-md-1"><b>Ledger type</b></td>
+                                    <td  class="col-md-1"><b>Donar name</b></td>
+                                    <td  class="col-md-1" colspan="2" s><b>Descrption</b></td>
+                                    <td  class="col-md-1"><b>Debit</b></td>
+                                    <td  class="col-md-1"><b>Credit</b></td>
+                                    <td  class="col-md-1"><b>Cheque number</b></td>
+                                    <td class="col-md-1" colspan="2"><b>Action</b></td>
                                 </tr>
                             </thead>
                             <tbody id="workingWithObjectData">
 
-                            </tbody>
+                           
 
                             <tr>
                                 <td colspan="7"><b>Total Amount</b></td>
@@ -204,6 +207,7 @@
                             <tr id="addArrayData">
 
                             </tr>
+                             </tbody>
 
                         </table>
                     </div>
