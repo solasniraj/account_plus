@@ -53,7 +53,7 @@ ul.collection li{
         <div class="xs">
             <div class="col-md-4 email-list1">
                 <div class="activity_box">
-                    <h3>Search Panel</h3>
+                    <h3><center>Search Panel</center></h3>
                     <ul class="collection">
                         <?php echo form_open_multipart('ledger/accountGrSearch'); ?>
                         <li>
