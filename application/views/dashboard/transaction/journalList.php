@@ -18,12 +18,12 @@
                     <table class="table table-bordered">
                        <thead>
                         <tr>
-                            <th>Bhoucher No </th>
-                            <th>Discription</th>
-                            <th>Date</th>
-                            <th>Amount(Rs)</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th><b>Bhoucher No </b></th>
+                            <th><b>Discription</b></th>
+                            <th><b>Date</b></th>
+                            <th><b>Amount(Rs)</b></th>
+                            <th><b>Status</b></th>
+                            <th><b>Action</b></th>
                             
                         </tr>
                         </thead>
