@@ -150,6 +150,7 @@
                                     <label class="has-error" for="creditAmount" id="creditAmount_error">Either Debit or Credit required</label>
                                     </td>
                                     <td> <input  class="form-control" type="text" name="chequeNo" id="chequeNo"></td>
+                                    <td>&nbsp</td>
 
                                 </tr>
                             </tbody>
@@ -169,7 +170,7 @@
 
 
                     <div class="table-responsive">
-                        <table class="tablee" width="100%">
+                        <table class="tablee">
                             <thead>
                                 <tr>
                                     <td  class="col-md-1"><b>A/C Code</b></td>
