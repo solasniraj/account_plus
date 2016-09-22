@@ -141,7 +141,7 @@
 
 </div>
 </div>
-</div>
+
 <?php }else{
     echo "Data not Found";
 } ?>

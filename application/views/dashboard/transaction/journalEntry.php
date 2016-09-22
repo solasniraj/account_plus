@@ -11,10 +11,11 @@
         return false;
     }
 </SCRIPT>   <!--  main script is loaded  -->
-<script type="text/javascript" src="<?php echo base_url('contents/js/function.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo
+base_url('contents/js/function.js'); ?>"></script>
 <style>
     .width25per{width: 25%;}
-    .has-error{color: red;font-size: 0.85em;display: none;} 
+    .has-error{color: red;font-size: 0.85em;display: none;}
 </style>
 
 
@@ -29,41 +30,61 @@
             if (!empty($flashMessage)) {
                 ?>
                 <div class="alert alert-success fade in text-center">
-                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
+                    <p
+style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo
+$flashMessage; ?> </strong></p>
                 </div>
                 <hr>
             <?php }
             ?>
-            <?php echo form_open_multipart('transaction/glTransaction', array('id' => 'glTrans', 'class' => 'form-horizontal', 'novalidate' => 'novalidate')); ?>
+            <?php echo
+form_open_multipart('transaction/glTransaction', array('id' =>
+'glTrans', 'class' => 'form-horizontal', 'novalidate' =>
+'novalidate')); ?>
 
             <div class="form-group" >
                 <div class="row">
                     <div class="col-md-12 col-lg-12 sol-sm-12 ">
                         <table class="table">
                             <tr>
-                                <td for="journalNo" class="text-right width25per"><b>Journal no</b>
-                                    <input  type="text" id="journalNo" name="journalNo" class="form-control" value="<?php echo $journalNumber; ?>" readonly>
-                                    <?php echo form_error('journalNo'); ?><label class="has-error" for="journalNo" id="journal_error">This field is required.</label></td>
+                                <td for="journalNo" class="text-right
+width25per"><b>Journal no</b>
+                                    <input  type="text" id="journalNo"
+name="journalNo" class="form-control" value="<?php echo
+$journalNumber; ?>" readonly>
+                                    <?php echo
+form_error('journalNo'); ?><label class="has-error" for="journalNo"
+id="journal_error">This field is required.</label></td>
 
                                 <td class="text-right width25per"><b>Date</b>
-                                    <input  class="form-control" id="datepicker" name="datepicker" type="text" placeholder="Day/Month/Year">
-                                    <?php echo form_error('datepicker'); ?><label class="has-error" for="datepicker" id="date_error">This field is required.</label></td>
+                                    <input  class="form-control"
+id="datepicker" name="datepicker" type="text"
+placeholder="Day/Month/Year">
+                                    <?php echo
+form_error('datepicker'); ?><label class="has-error" for="datepicker"
+id="date_error">This field is required.</label></td>
 
-                                <td class="text-right width25per"><b>Journal Type</b>
+                                <td class="text-right
+width25per"><b>Journal Type</b>
 
-                                    <select class="form-control" id="journalType" onchange="getAccountLedger(this)" name="journalType">
+                                    <select class="form-control"
+id="journalType" onchange="getAccountLedger(this)" name="journalType">
                                         <option value="0">Select Types</option>
-                                        <?php foreach ($journalTypes as $value) { ?>
-                                            <option value="<?php echo $value->chart_code; ?>"><?php echo $value->chart_class_name; ?></option>
+                                        <?php foreach ($journalTypes
+as $value) { ?>
+                                            <option value="<?php echo
+$value->chart_code; ?>"><?php echo $value->chart_class_name;
+?></option>
                                         <?php } ?>
                                     </select>
                                     <?php echo form_error('journalType'); ?>
-                                    <label class="has-error" for="journalType" id="journalType_error">This field is required.</label>
+                                    <label class="has-error" for="journalType" id="journalType_error">This field is
+required.</label>
                                 </td>
 
 
                                 <td class="text-right width25per"><b>Bank Balance: </b>
-                                    <a href="<?php echo base_url() . 'bank/getBalance' ?>" onClick="return popup(this, 'stevie')"><strong style="color:red;"><?php if (!empty($bankBalance)) {
+                                    <a href="<?php echo base_url() .'bank/getBalance' ?>" onClick="return popup(this, 'stevie')"><strong style="color:red;"><?php if (!empty($bankBalance)) {
                                         echo "Rs. " . $bankBalance;
                                     } ?>    /-</strong></a></td>
 
@@ -84,11 +105,12 @@
                     </div>
 
 
-                    <!-- ************** our main form entry table *************************************************88 -->
+                    <!-- ************** our main form entry table
+************************************************* -->
 
                     <div class="table-responsive">
                         <table class="tablee">
-                            <thead>
+                            <tbody>
                                 <tr>
                                     <td class="col-md-1"><b>Account Code</b></td>
                                     <td class="col-md-1"><b>A/C Head</b></td>
@@ -100,11 +122,8 @@
                                     <td><b>Credit</b></td>
                                     <td><b>Cheque number</b></td>
                                     <td rowspan="2"  class="b" id="toggleButton">
-                                        <span class="btn btn-success " id="submitCurrentData" onClick="addData()" style=" padding:5px;margin:5px;width:70px;font-size:18px;">Add</span></td>
+                                        <span class="btn btn-success" id="submitCurrentData" onClick="addData()" style="padding:5px;margin:5px;width:70px;font-size:18px;">Add</span></td>
                                 </tr>
-                                </thead>
-
-                                <tbody>
                                 <tr>
 
                                     <td id="ledgerMasterCode">
@@ -113,7 +132,7 @@
                                         <label class="has-error" for="journalType" id="accCodeMis_error">Account Code doesn't exist.</label>
                                     </td>
 
-                                    <td>  <select class="form-control" id="accountList" onchange="getSubLedger(this)">
+                                    <td> <select class="form-control" id="accountList" onchange="getSubLedger(this)">
                                             <option value="">Select Account</option>
                                         </select>
                                         <label class="has-error" for="journalType" id="acchead_error">This field is required.</label>
@@ -135,14 +154,15 @@
                             <option value="01">Cash</option>
                             <option value="02">Internal Cash</option>
                             <option value="03">Labour Support</option>
-                                            
+
                                         </select>
 
                                     </td>
 
-                                    <td>  <input  class="form-control " type="text" name="description" id="description">
+                                    <td>  <input  class="form-control" type="text" name="description" id="description">
                                     <label class="has-error" for="journalType" id="description_error">This field is required.</label>
                                     </td>
+
                                     <td>  <input  class="form-control formatComma" type="text"  id="debitAmount">
                                     <label class="has-error" for="debitAmount" id="debitAmount_error">Either Debit or Credit required</label>
                                     </td>
@@ -150,7 +170,6 @@
                                     <label class="has-error" for="creditAmount" id="creditAmount_error">Either Debit or Credit required</label>
                                     </td>
                                     <td> <input  class="form-control" type="text" name="chequeNo" id="chequeNo"></td>
-                                    <td>&nbsp</td>
 
                                 </tr>
                             </tbody>
@@ -159,7 +178,8 @@
 
 
 
-                    <!--********************************our main table closed ************************************** -->
+                    <!--********************************our main table
+closed ************************************** -->
 
                 </div>
                 <br>
@@ -170,24 +190,24 @@
 
 
                     <div class="table-responsive">
-                        <table class="tablee">
+                        <table class="tablee" width="100%">
                             <thead>
                                 <tr>
-                                    <td  class="col-md-1"><b>A/C Code</b></td>
-                                    <td  class="col-md-1"><b>A/C Head</b></td>
-                                    <td  class="col-md-1"><b>Sub-Ledger</b></td>
-                                    <td  class="col-md-1"><b>Ledger type</b></td>
-                                    <td  class="col-md-1"><b>Donar name</b></td>
-                                    <td  class="col-md-1" colspan="2"><b>Description</b></td>
-                                    <td  class="col-md-1"><b>Debit</b></td>
-                                    <td  class="col-md-1"><b>Credit</b></td>
-                                    <td  class="col-md-1"><b>Cheque number</b></td>
-                                    <td class="col-md-1" colspan="2"><b>Action</b></td>
+                                    <td  class="b"><b>A/C Code</b></td>
+                                    <td  class="b"><b>A/C Head</b></td>
+                                    <td  class="b"><b>Sub-Ledger</b></td>
+                                    <td  class="b"><b>Ledger type</b></td>
+                                    <td  class="b"><b>Donar name</b></td>
+                                    <td  class="b" colspan="2"><b>Descrption</b></td>
+                                    <td  class="b"><b>Debit</b></td>
+                                    <td  class="b"><b>Credit</b></td>
+                                    <td  class="b"><b>Cheque number</b></td>
+                                    <td class="b" colspan="2"><b>Action</b></td>
                                 </tr>
                             </thead>
                             <tbody id="workingWithObjectData">
 
-                           
+                            </tbody>
 
                             <tr>
                                 <td colspan="7"><b>Total Amount</b></td>
@@ -199,16 +219,20 @@
                             </tr>
 
                             <tr>
-                                <td colspan="7"><b>Difference in Debit and Credit Amount</b></td>
-                                <td><input  id="debitGreater"  class="form-control text-center" type="text" value="0.0"  readonly /></td>
-                                <td><input  id="creditGreater" class="form-control text-center"  type="text" value="0.0"  readonly /></td>
+                                <td colspan="7"><b>Difference in Debit
+and Credit Amount</b></td>
+                                <td><input  id="debitGreater"
+class="form-control text-center" type="text" value="0.0"  readonly
+/></td>
+                                <td><input  id="creditGreater"
+class="form-control text-center"  type="text" value="0.0"  readonly
+/></td>
                                 <td colspan="2"></td>
 
                             </tr>
                             <tr id="addArrayData">
 
                             </tr>
-                             </tbody>
 
                         </table>
                     </div>
@@ -219,50 +243,48 @@
                     <!--   working on object is closed      -->
 
                     <div class="row">
-                    
 
-                        <div class="col-md-10 col-md-offset-1" >
+                        <div class="col-md-5 col-md-offset-1" >
                             <div class="form-group">
-                            <div class="table-responsive">
-                        <table class="tablee">
-                            <tr>
-                            <td>
-                            
-                                <label for="comment"><b>Detailed Comment</b></label>
-                                <textarea class="form-control" rows="8" cols="43"style="resize:none" id="comment" name="comment"></textarea>
-                               <label class="has-error" for="comment" id="comment_error">This field is required.</label> 
-                               </td>
-                       <!--      </div>
-                        </div> -->
-
-                       <!--  <div class="col-md-5 col-md-offset-1" >
-                            <div class="form-group"> -->
-                            <td>
-                                <label for="summary"><b>Summary Comment</b></label>
-                                <textarea class="form-control" rows="8" cols="43" style="resize:none" id="summary"  name="summary"></textarea>
-                            <label class="has-error" for="summary" id="summary_error">This field is required.</label>
-                            </td>
-                             </tr>
-                        </table>
+                                <label for="comment"><b>Detailed
+Comment</b></label>
+                                <textarea class="form-control"
+rows="5" style="resize:none" id="comment" name="comment"></textarea>
+                               <label class="has-error" for="comment"
+id="comment_error">This field is required.</label>
                             </div>
                         </div>
-                       
-</div>
-</div>
-</div>
-</div>
+
+                        <div class="col-md-5 col-md-offset-1" >
+                            <div class="form-group">
+                                <label for="summary"><b>Summary
+Comment</b></label>
+                                <textarea class="form-control"
+rows="5" style="resize:none" id="summary"  name="summary"></textarea>
+                            <label class="has-error" for="summary"
+id="summary_error">This field is required.</label>
+                            </div>
+                        </div>
+
 
 
                     </div>
 
                     <div class="row">
-                        
-                        <div class="lastButton">
-                            <button name="journalEntry" id="submitTheForm" onClick="sendAllJounalTransactionToServer()" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;" value="Submit">Submit</button>
 
-                            <span onclick="clearformTable()" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;">Reset</span>
-                            
-                            <button name="journalEntry" id="previewForm" class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;" value="Preview">Preview</button>
+                        <div class="lastButton">
+                            <button name="journalEntry"
+id="submitTheForm" onClick="sendAllJounalTransactionToServer()"
+class="btn btn-success btn-lg" style=" margin-left: 3px; width:100px;"
+value="Submit">Submit</button>
+
+                            <span onclick="clearformTable()"
+class="btn btn-success btn-lg" style=" margin-left: 3px;
+width:100px;">Reset</span>
+
+                            <button name="journalEntry"
+id="previewForm" class="btn btn-success btn-lg" style=" margin-left:
+3px; width:100px;" value="Preview">Preview</button>
                         </div>
 
                     </div>
@@ -274,5 +296,6 @@
             </form>
 
             <style>
-                #totalDebit, #totalCredit, #debitGreater, #creditGreater{color: red;}
+                #totalDebit, #totalCredit, #debitGreater,
+#creditGreater{color: red;}
             </style>
