@@ -138,8 +138,10 @@ $('.selectOpt').bind("change", function(){
                                     <?php echo form_error('accDescription'); ?>
                                 </div>
                             </div>
+
+                            <br>
                             
-                            <div class="col-sm-4 col-sm-offset-4">
+                            <div class="col-sm-4 col-sm-offset-2">
                                 <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -10px; width:100px;">Submit</button>
                             </div>
 

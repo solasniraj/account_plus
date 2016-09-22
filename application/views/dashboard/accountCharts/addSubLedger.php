@@ -41,13 +41,14 @@
                 <br>
 
               
-                <div class="table-responsive">
+                <div class="table-responsive" style="width:100%">
+                <div class="modal-dialog" style="width:95%">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
 
-                            <th> Subledger Code </th>
-                            <th> SubLedger NameList</th>
+                            <th><b> Subledger Code </b></th>
+                            <th><b> SubLedger NameList</b></th>
 
                         </tr>
                     </thead>
@@ -57,8 +58,8 @@
                                     ?>
 
                                 <tr>
-                                    <td><?php echo $subledList->subledger_code; ?></td>
-                                    <td><?php echo $subledList->subledger_name; ?></td>
+                                    <td><h5><?php echo $subledList->subledger_code; ?></h5></td>
+                                    <td><h5><?php echo $subledList->subledger_name; ?></h5></td>
                                    
                                     
                                 </tr>

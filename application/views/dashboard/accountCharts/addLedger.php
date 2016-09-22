@@ -9,7 +9,7 @@
                     padding: 10px;
                     color:red;
                 }
-
+            
 
 
                 /*custom css ends*/
@@ -27,6 +27,7 @@
                                     <?php echo form_error('ledgerName'); ?>
                                 </div>
                             </div>
+                            <br>
 
                             
                             
@@ -35,18 +36,19 @@
                                 <button class="btn-success btn-lg">Submit</button>
                             </div>
 
-                        </form>
+                        
                     </div>
                 </div>
-                <br>
+               
 
- <div class="table-responsive">
+ <div class="table-responsive" style="width: 100%">
+ <div class="modal-dialog" style="width:95%">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
 
-                            <th> <b>Ledger Code  </b></th>
-                            <th><b>Ledger NameList </b></th>
+                            <th class="row-1 row-code"> <b>Ledger Code  </b></th>
+                            <th class="row-1 row-name"><b>Ledger NameList </b></th>
 
                         </tr>
                     </thead>
