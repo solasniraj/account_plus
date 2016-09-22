@@ -178,7 +178,7 @@
                                     <td  class="col-md-1"><b>Sub-Ledger</b></td>
                                     <td  class="col-md-1"><b>Ledger type</b></td>
                                     <td  class="col-md-1"><b>Donar name</b></td>
-                                    <td  class="col-md-1" colspan="2" s><b>Descrption</b></td>
+                                    <td  class="col-md-1" colspan="2"><b>Description</b></td>
                                     <td  class="col-md-1"><b>Debit</b></td>
                                     <td  class="col-md-1"><b>Credit</b></td>
                                     <td  class="col-md-1"><b>Cheque number</b></td>
