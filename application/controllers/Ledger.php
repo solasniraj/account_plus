@@ -108,6 +108,9 @@ class ledger extends CI_Controller {
     }
 
     public function index() {
+      //  $this->load->library('Numbertowords');
+      //  $words = $this->numbertowords->convert_number('678245');
+        
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
             $data['ledgerDetails'] = $this->ledger_model->get_ledger_master_listing();
