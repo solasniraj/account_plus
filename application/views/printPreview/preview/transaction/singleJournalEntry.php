@@ -150,19 +150,3 @@ if (!empty($singleGLDetails)) {
 } else {
     echo "Data not Found";
 }
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
