@@ -34,13 +34,13 @@ class preview extends CI_Controller {
       $this->load->view('printPreview/download/templates/footer');
             // Get output html
             $html = $this->output->get_output();
-
             // Load library
             $this->load->library('dompdf_gen');
 
             // Convert to PDF
             $this->dompdf->load_html($html);
             $this->dompdf->set_paper('a4', $orientation);
+//            $this->dompdf->set_option('isHtml5ParserEnabled', true);
             $this->dompdf->render();
             $this->dompdf->stream($id.".pdf");
             die;

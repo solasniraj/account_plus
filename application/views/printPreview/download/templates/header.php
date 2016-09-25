@@ -4,35 +4,68 @@
 	<title>Account :: Home </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="design" />
-	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-	<!-- Bootstrap Core CSS -->
-	<link href="<?php echo base_url().'contents/css/bootstrap.min.css'; ?>" rel='stylesheet' type='text/css' />
-	<!-- Custom CSS -->
-	<link href="<?php echo base_url().'contents/css/style.css'; ?>" rel='stylesheet' type='text/css' />
-	<link href="<?php echo base_url().'contents/css/custom.css'; ?>" rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="<?php echo base_url().'contents/css/jquery-ui-1.12.0/jquery-ui.css'; ?>">
-	<!-- Font Awesome CSS -->
-	<link href="<?php echo base_url().'contents/css/font-awesome-4.6.3/css/font-awesome.min.css'; ?>" rel="stylesheet">
-	<script src="<?php echo base_url().'contents/js/jquery-1.12.4.min.js'; ?>"></script>
-    <script src="<?php echo base_url().'contents/js/jquery-ui-1.12.0.js'; ?>"></script>
-	<link rel="stylesheet" href="<?php echo base_url().'contents/css/icon-font.min.css'; ?>" type='text/css' />
-	<script src="<?php echo base_url().'contents/js/Chart.js'; ?>"></script>
-	<link href="<?php echo base_url().'contents/css/animate.css'; ?>" rel="stylesheet" type="text/css" media="all">
-	<script src="<?php echo base_url().'contents/js/wow.min.js'; ?>"></script>
-	<script>
-		new WOW().init();
-                var baseUrl = "<?php echo base_url(); ?>"; 
-	</script>
-	<!--//end-animate-->
-<!----webfonts--->
-<link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
-<!---//webfonts--->
-<!-- Meters graphs -->
-<script type="text/javascript" src="<?php echo base_url().'contents/js/bootstrap.min.js'; ?>"></script>
-<!-- Bootstrap Core JavaScript -->
+	<link rel="stylesheet" href="<?php echo base_url().'contents/css/pdf.css'; ?>" type='text/css' />
+        <style>
+            h4, h5, h6,
+h1, h2, h3 {margin-top: 0;}
+ul, ol {margin: 0;}
+p {margin: 0;}
+
+html, body{
+  	font-family: 'Cabin', sans-serif;
+    font-size: 100%;
+  	overflow-x: hidden;
+	background: #fff;
+}
+body a{
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+	text-decoration:none;
+}
+a:focus, a:active, a:hover {
+    outline: none;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    color: #353F4F;
+	text-decoration:none;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Cabin', sans-serif;
+}
+.tables {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.tables td, .tables th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.tables tr:nth-child(even){background-color: #f9f9f9;}
+
+.tables tr:hover {background-color: #ddd;}
+
+.tables th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+}
+
+
+
+.text-center{text-align: center;}
+        </style>	
+	
+
+	
 
 </head>
 
-<body class="sticky-header left-side-collapsed">
+<body>
 	<section>

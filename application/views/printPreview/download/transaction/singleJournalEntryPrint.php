@@ -7,7 +7,7 @@
      }
         
     ?>
-<div class="container">
+<div>
         <?php if(!empty($committeeInfo)){ foreach ($committeeInfo as $cLists){ ?>
         <div class="top text-center" style="margin-top:22px;margin-bottom:10px;">
            <!--<img src="" img-align="top" alt="images" style= "">-->
@@ -18,28 +18,22 @@
      </div>
         <?php }} ?>
     </div>
-     <div id="page-wrapper">
-        <div class="graphs">
-            <div class="xs tabls">
-                
-                <div data-example-id="simple-responsive-table" class="bs-example4">
+    
                       
 
                   
                 <!-- second table for singleJournalEntry  -->
                 
-                <div class="table-responsive">
-                    <table class="table table-bordered">
+                <div>
+                    <table class="tables">
                         <thead>
                     <tr>
-
                     <th> A/C Number </th>
                     <th> A/C Description</th>
                     <th> Donar's Name</th>
                     <th>Description</th>
                     <th>Debit Amount</th>
                     <th>Credit Amount</th>
-
                    </tr>
              </thead>
              <tbody>
@@ -50,29 +44,20 @@
                                 <td><?php echo $gLList->ledger_master_code; ?></td>
                                 <td><?php echo $gLList->ledger_master_name; ?></td>                           
                                 <td><?php echo $donar; ?></td>
-                                <td><?php echo $gLList->memo; ?></td>
-                                
+                                <td><?php echo $gLList->memo; ?></td>                                
                                 <td><?php if($type =='dr'){ echo abs($gLList->amount);}else{ NULL; } ?></td>
                                 <td><?php if($type =='cr'){ echo abs($gLList->amount);}else{ NULL; } ?></td>
-                            
-
-
-
                             </tr>
                             <?php } ?>
-
-
-
                     <tr>
                     <td colspan="4">Total</td>
                     <td>&nbsp</td>
                     <td>&nbsp</td>
                     </tr>
                     </tbody>
-                     <!--prepared and approverd by section-->
-                     <div class="form-group">
-                <div class="row">
-
+                    </table>
+                    
+                    
                     <table class="table">
                        <tr>
 
@@ -104,16 +89,7 @@
                     </table>
                 </div>
                  
-            </div>
-                
-                
-
-
-                  
-                
-        </div>
-    </div>
-</div>
+            
 <?php }else{
                     echo "Data not Found";
                 } ?>
