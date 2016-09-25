@@ -53,7 +53,7 @@ class ledger extends CI_Controller {
                 $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
                 $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
                 $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
-                $data['donorInfo'] = $this->donar_model->get_all_donars();
+                $data['donorInfo'] = $this->donar_model->get_all_donar();
                 $this->load->view('dashboard/templates/header');
                 $this->load->view('dashboard/templates/sideNavigation');
                 $this->load->view('dashboard/templates/topHead');
@@ -96,7 +96,7 @@ class ledger extends CI_Controller {
             $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
             $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
             $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
-            $data['donorInfo'] = $this->donar_model->get_all_donars();
+            $data['donorInfo'] = $this->donar_model->get_all_donar();
             $this->load->view('dashboard/templates/header');
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
@@ -114,7 +114,7 @@ class ledger extends CI_Controller {
             $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
             $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
             $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
-            $data['donorInfo'] = $this->donar_model->get_all_donars();
+            $data['donorInfo'] = $this->donar_model->get_all_donar();
             $this->load->view('dashboard/templates/header');
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
@@ -132,7 +132,7 @@ class ledger extends CI_Controller {
             $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
             $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
             $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
-            $data['donorInfo'] = $this->donar_model->get_all_donars();
+            $data['donorInfo'] = $this->donar_model->get_all_donar();
             $this->load->view('dashboard/templates/header');
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
@@ -149,7 +149,7 @@ class ledger extends CI_Controller {
             $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
             $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
             $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
-            $data['donorInfo'] = $this->donar_model->get_all_donars();
+            $data['donorInfo'] = $this->donar_model->get_all_donar();
             $this->load->view('dashboard/templates/header');
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');

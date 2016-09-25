@@ -49,8 +49,9 @@ $('.selectOpt').bind("change", function(){
                             <div class="form-group">
                     <label class="col-sm-2 control-label" for="chartAccType"><h4><b>Account</b></h4></label>
                     <div class="col-sm-8"><select class="form-control1 selectOpt" id="chartAccType" name="chartAccType">
-                            <option value="">Select Account</option4
+                            <option value="">Select Account</option>
                             <?php if (!empty($accountCharts)) {
+     
                                 foreach ($accountCharts as $acharts) {
                                     ?>
                                     <option value="<?php echo $acharts->chart_code; ?>"><?php echo $acharts->chart_class_name; ?></option>
