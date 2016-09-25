@@ -12,6 +12,7 @@
       $this->load->helper('url');
       $this->load->helper(array('form', 'url'));
       $this->load->library('pagination');
+      $this->load->library('Numbertowords');
     }
 
     public function index()
