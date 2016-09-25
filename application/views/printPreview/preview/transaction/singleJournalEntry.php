@@ -35,31 +35,7 @@ if (!empty($singleGLDetails)) {
             <div class="xs tabls">
 
                 <div data-example-id="simple-responsive-table" class="bs-example4">
-                    <!-- priview first table of singleJournla entry -->
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-
-                                    <th>General Ledger Transaction Details</th>
-                                    <th>Date</th>
-                                    <th>Summary of Transaction</th>
-                                    <th>Details of Transaction</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Journal Entry : <?php echo $voucherNo; ?> </td>
-                                    <td><?php echo $gLDate; ?></td>
-                                    <td><?php echo $summary; ?></td>
-                                    <td><?php echo $details; ?></td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                   
                     <!-- second table for singleJournalEntry  -->
 
                     <div class="table-responsive">
@@ -105,11 +81,17 @@ if (!empty($singleGLDetails)) {
                                     <td></td>
                                     <td></td>
                                 </tr>
+
+
+                                <tr>
+
+                                <td clospan="6">Amount in words</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
 
-
+                                   <h4>Narration:</h4>
 
 
                     <div class="table-responsive">
@@ -120,11 +102,11 @@ if (!empty($singleGLDetails)) {
                          <td>
                             <pre text-center>
 
-Designation :-_________________
+Prepared By:
 
-       Name :-_________________
+     .................
 
-       Sign :-_________________
+date:_________________
                             </pre>
 
 
@@ -137,11 +119,11 @@ Designation :-_________________
                         <td>
                             <pre text-center>
 
-Designation :-_________________
+Prepared By:
 
-       Name :-_________________
-
-       Sign :-_________________
+     .................
+     
+date:_________________
                             </pre>
 
 
