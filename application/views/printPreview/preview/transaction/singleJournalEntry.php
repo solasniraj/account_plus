@@ -9,24 +9,44 @@ if (!empty($singleGLDetails)) {
         $details = $glDetails->detailed_comment;
     }
     ?>
-    <div class="container">
+    <div class="form-group" >
+        <div class="row">
+            <div class="container">
+               <table class="table">
+
+                <tr>
+                   <td>
+                    <?php if (!empty($committeeInfo)) {
+                        foreach ($committeeInfo as $cLists) { ?>
+                            <div class="top text-center" style="margin-top:22px;margin-bottom:10px;">
+                               <img src="http://localhost/account_plus/contents/images/watersplash.png" img-align="top" alt="images" style= "width:20px; height:20px">
+                           </div>
+                       </td>
+
+                       <td>
+                           <h2><?php echo $cLists->committee_name; ?></h2>
+                           <h4><?php echo $cLists->address; ?></h4>
+                           <p><strong>Ph : <?php echo $cLists->phone; ?></strong></p>
+                       </td>
 
 
-        <?php if (!empty($committeeInfo)) {
-            foreach ($committeeInfo as $cLists) { ?>
-                <div class="top text-center" style="margin-top:22px;margin-bottom:10px;">
-                 <!--<img src="" img-align="top" alt="images" style= "">-->
+                       <td class="text-right width25per"><b>Journal No:
 
-                 <h2><?php echo $cLists->committee_name; ?></h2>
-                 <h4><?php echo $cLists->address; ?></h4>
-                 <p><strong>Ph : <?php echo $cLists->phone; ?></strong></p>
+                                                                       </b></td>
 
-             </div>
+
+
+                   </tr>
+
+               </table>
+           </div>
+       </div>
+   </div>
              <?php }
          } ?>
          <span class="text-right pull-right">
-            <a href="<?php echo base_url() . 'preview/jounalView/'.$voucherNo; ?>"><button id="btnDownload" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px">Download</button></a>&nbsp;&nbsp;
-            <a href="<?php echo base_url() . 'printview/printJoural/'.$voucherNo; ?>"> <button id="print" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px" >Print</button></a>
+            <a href="<?php echo base_url() . 'preview/jounalView/'.$voucherNo; ?>"><button id="btnDownload" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
+            <a href="<?php echo base_url() . 'printview/printJoural/'.$voucherNo; ?>"> <button id="print" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
         </span>
 
     </div>
