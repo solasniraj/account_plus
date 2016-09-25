@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html moznomarginboxes mozdisallowselectionprint>
 <head>
 	<title>Account :: Home </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,7 +31,25 @@
 <!-- Meters graphs -->
 <script type="text/javascript" src="<?php echo base_url().'contents/js/bootstrap.min.js'; ?>"></script>
 <!-- Bootstrap Core JavaScript -->
+<style type="text/css" media="print">
+    @page 
+    {
+        size:  auto;   /* auto is the initial value */
+        margin: 0mm;  /* this affects the margin in the printer settings */
+    }
 
+    html
+    {
+        background-color: #FFFFFF; 
+        margin: 0px;  /* this affects the margin on the html before sending to printer */
+    }
+
+    body
+    {
+        border: solid 1px blue ;
+        margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */
+    }
+    </style>
 </head>
 
 <body class="sticky-header left-side-collapsed" onload="window.print();   setTimeout(function(){window.close();}, 1000); ">

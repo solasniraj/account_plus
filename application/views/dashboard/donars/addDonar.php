@@ -16,6 +16,16 @@
 
                 </style>
                     <div class="tab-content">
+                         <?php
+            $flashMessage = $this->session->flashdata('flashMessage');
+            if (!empty($flashMessage)) {
+                ?>
+                <div class="alert alert-success fade in">
+                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
+                </div>
+                <hr>
+            <?php }
+            ?>
                     <div class="tab-pane active" id="horizontal-form">
                         <div class="tab-pane active" id="horizontal-form">
                             <?php echo form_open_multipart('donars/addNewDonar', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>

@@ -78,7 +78,7 @@ class donars extends CI_Controller {
         
         $newDonarCode = str_pad($newDCode, 2, "0", STR_PAD_LEFT);
         if($countDonars <  100){
-        $result=$this->donar_model->add_new_donar($newDCode, $donarName,$donarAddress, $emailId, $contactNumber, $contactPerson, $contactPCellNo);
+        $result=$this->donar_model->add_new_donar($newDonarCode, $donarName,$donarAddress, $emailId, $contactNumber, $contactPerson, $contactPCellNo);
         if($result)
         {
             $a = base_url();

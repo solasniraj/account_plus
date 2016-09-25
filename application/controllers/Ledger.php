@@ -53,7 +53,7 @@ class ledger extends CI_Controller {
                 $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
                 $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
                 $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
-                $data['donorInfo'] = $this->donar_model->get_all_donars();
+                $data['donorInfo'] = $this->donar_model->get_all_donar();
                 $this->load->view('dashboard/templates/header');
                 $this->load->view('dashboard/templates/sideNavigation');
                 $this->load->view('dashboard/templates/topHead');
@@ -96,7 +96,7 @@ class ledger extends CI_Controller {
             $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
             $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
             $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
-            $data['donorInfo'] = $this->donar_model->get_all_donars();
+            $data['donorInfo'] = $this->donar_model->get_all_donar();
             $this->load->view('dashboard/templates/header');
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
@@ -108,13 +108,16 @@ class ledger extends CI_Controller {
     }
 
     public function index() {
+      //  $this->load->library('Numbertowords');
+      //  $words = $this->numbertowords->convert_number('678245');
+        
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
             $data['ledgerDetails'] = $this->ledger_model->get_ledger_master_listing();
             $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
             $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
             $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
-            $data['donorInfo'] = $this->donar_model->get_all_donars();
+            $data['donorInfo'] = $this->donar_model->get_all_donar();
             $this->load->view('dashboard/templates/header');
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
@@ -180,15 +183,21 @@ class ledger extends CI_Controller {
                 $codeNo = $this->input->post('codeNo');
                 $accDescription = $this->input->post('accDescription');
 
+                $query = $this->ledger_model->check_for_code_in_existing_ledger($codeNo);
+               if($query){
+                    $this->session->set_flashdata('flashMessage', 'Sorry ! Same account ledger already exists. Please check once.');
+                     $this->createLedger();
+               } else{
+                
                 $result = $this->ledger_model->add_new_ledger_master($chartNo, $accLedger, $accSubLedger, $donorType, $ledgerType, $codeNo, $accDescription);
                 if ($result) {
                     $this->session->set_flashdata('flashMessage', 'Ledger added successfully');
                     return redirect('ledger/index');
                 } else {
                     $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding ledger. Please add again.');
-                    return redirect('bank/addLedger');
+                    $this->createLedger();
                 }
-            }
+            }}
         } else {
             return redirect('login/index/?url=' . $url, 'refresh');
         }

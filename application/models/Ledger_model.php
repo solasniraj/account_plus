@@ -18,6 +18,17 @@
 
         return $query->result(); 
    }
+   
+   public function check_for_code_in_existing_ledger($codeNo)
+   {
+       $this->db->where('ledger_master_code', $codeNo);         
+       $query = $this->db->get('ledger_master');
+            if ($query->num_rows() == 1) {
+              return true;
+          } else {
+            return FALSE;
+        }
+   }
 
    public function search_ledger_master_for_submitted_key($searchKey)
    {
