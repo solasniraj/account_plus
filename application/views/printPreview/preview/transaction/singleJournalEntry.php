@@ -72,6 +72,7 @@ if (!empty($singleGLDetails)) {
                                 <th>Debit Amount</th>
                                 <th>Credit Amount</th>
 
+
                             </tr>
                         </thead>
                         <tbody>
@@ -91,6 +92,7 @@ if (!empty($singleGLDetails)) {
 
 
 
+
                                 </tr>
                                 <?php } ?>
 
@@ -98,7 +100,7 @@ if (!empty($singleGLDetails)) {
 
                                 <tr>
                                     <td colspan="4">Total</td>
-                                    <td></td>
+                                    <td><?php if($type =='total'){ echo abs($gLList->totalDebit);} ?> </td>
                                     <td></td>
                                 </tr>
 
