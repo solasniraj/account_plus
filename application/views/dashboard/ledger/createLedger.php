@@ -41,6 +41,16 @@ $('.selectOpt').bind("change", function(){
 
                 </style>
                     <div class="tab-content">
+                         <?php
+            $flashMessage = $this->session->flashdata('flashMessage');
+            if (!empty($flashMessage)) {
+                ?>
+                <div class="alert alert-success fade in">
+                    <p style="text-align:center;font-size:18px;"><strong><?php echo $flashMessage; ?> </strong></p>
+                </div>
+                <hr>
+            <?php }
+            ?>
                      <div class="bs-example4" data-example-id="simple-responsive-table">
                         <div class="tab-pane active" id="horizontal-form">
                             <?php echo form_open_multipart('ledger/addnewLedger', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
@@ -127,7 +137,7 @@ $('.selectOpt').bind("change", function(){
                             <div class="form-group">
                                 <label for="codeNo" class="col-sm-2 control-label"><h4><b>Account Code</b></h4></label>
                                 <div class="col-sm-8">
-                                    <input type="text" value="<?php echo set_value('codeNo'); ?>" class="form-control1" id="codeNo" name="codeNo" placeholder="">
+                                    <input type="text" value="<?php echo set_value('codeNo'); ?>" class="form-control1" id="codeNo" name="codeNo" placeholder="" readonly="true">
                                     <?php echo form_error('codeNo'); ?>
                                 </div>
                             </div>

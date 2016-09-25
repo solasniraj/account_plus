@@ -51,6 +51,16 @@ ul.collection li{
     <div class="graphs">
         <h3 class="blank1">Ledger Account Details</h3>
         <div class="xs">
+             <?php
+            $flashMessage = $this->session->flashdata('flashMessage');
+            if (!empty($flashMessage)) {
+                ?>
+                <div class="alert alert-success fade in">
+                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
+                </div>
+                <hr>
+            <?php }
+            ?>
             <div class="col-md-4 email-list1">
                 <div class="activity_box">
                     <h3><center>Search Panel</center></h3>

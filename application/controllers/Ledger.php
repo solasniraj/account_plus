@@ -183,15 +183,21 @@ class ledger extends CI_Controller {
                 $codeNo = $this->input->post('codeNo');
                 $accDescription = $this->input->post('accDescription');
 
+                $query = $this->ledger_model->check_for_code_in_existing_ledger($codeNo);
+               if($query){
+                    $this->session->set_flashdata('flashMessage', 'Sorry ! Same account ledger already exists. Please check once.');
+                     $this->createLedger();
+               } else{
+                
                 $result = $this->ledger_model->add_new_ledger_master($chartNo, $accLedger, $accSubLedger, $donorType, $ledgerType, $codeNo, $accDescription);
                 if ($result) {
                     $this->session->set_flashdata('flashMessage', 'Ledger added successfully');
                     return redirect('ledger/index');
                 } else {
                     $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding ledger. Please add again.');
-                    return redirect('bank/addLedger');
+                    $this->createLedger();
                 }
-            }
+            }}
         } else {
             return redirect('login/index/?url=' . $url, 'refresh');
         }
