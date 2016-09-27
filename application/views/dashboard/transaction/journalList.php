@@ -1,3 +1,30 @@
+<link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+var table; 
+$(document).ready(function() { 
+    //datatables
+    table = $('#table').DataTable({ 
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order. 
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": baseUrl + "transaction/getJournalPagination",
+            "type": "POST"
+        }, 
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [ 0 ], //first column / numbering column
+            "orderable": false, //set not orderable
+        },
+        ], 
+    }); 
+});
+</script>
+
 <div id="page-wrapper">
     <div class="graphs">
         <h3 class="blank1">Journal Entries</h3>
@@ -15,37 +42,24 @@
             <div data-example-id="simple-responsive-table" class="bs-example4">
 
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                       <thead>
-                        <tr>
-                            <th><b>Bhoucher No </b></th>
-                            <th><b>Discription</b></th>
-                            <th><b>Date</b></th>
-                            <th><b>Amount(Rs)</b></th>
-                            <th><b>Status</b></th>
-                            <th><b>Action</b></th>
-                            
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        <tr>
-                        <?php
-                        foreach ($transactionDetails as $tGLList) { 
-                            $sum = $this->transaction_model->get_debit_credit_amount($tGLList->journal_voucher_no); ?>  
-                            <td><?php echo $tGLList->journal_voucher_no; ?> </td>
-                            <td><?php echo $tGLList->summary_comment; ?> </td>
-                            <td><?php echo $tGLList->tran_date; ?> </td>
-                            <td><?php echo $sum['0']->sum/'2'; ?> </td>
-                            <td><?php $stat = $tGLList->gl_trans_status; if($stat=='1'){echo "Published";}elseif($stat=='2'){ echo "Draft";}elseif($stat=='3'){"Voided";}else{ echo "Unknown"; } ?></td>
-                            <td><a href="<?php echo base_url() . 'transaction/journalPreview/'.$tGLList->journal_voucher_no; ?>">Preview</a></td>
-                        </tr>
-                        <?php } ?>
-                         
-
-                            
-                        </tbody>
-                        </table>
+                    
+                    <table id="table" class="table table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Bhoucher No</th>
+                            <th>Discription</th>
+                            <th>Date</th>
+                            <th>Amount(Rs)</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+ 
+            
+        </table>
 
                 </div>
             </div>

@@ -145,6 +145,32 @@ class ledger extends CI_Controller {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
+    
+    public function get_account_group()
+    {
+        $list = $this->ledger_model->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $customers) {
+            
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $customers->ledger_master_code;
+            $row[] = $customers->ledger_master_name;
+            $row[] = NULL;
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->ledger_model->count_all(),
+                        "recordsFiltered" => $this->ledger_model->count_filtered(),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+    }
 
     public function createLedger() {
         $url = current_url();

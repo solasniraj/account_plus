@@ -1,3 +1,29 @@
+<link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+var table; 
+$(document).ready(function() { 
+    //datatables
+    table = $('#table').DataTable({ 
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order. 
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": baseUrl + "ledger/get_account_group",
+            "type": "POST"
+        }, 
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [ 0 ], //first column / numbering column
+            "orderable": false, //set not orderable
+        },
+        ], 
+    }); 
+});
+</script>
 <script>
      var typingTimer;
 var doneTypingInterval = 200;
@@ -164,7 +190,19 @@ ul.collection li{
                    <?php echo form_close(); ?>
                 
                 <div class="mailbox-content">
-                    <table class="table table-bordered table-fhr">
+                    <table id="table" class="table table-bordered table-fhr">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Ledger Code</th>
+                                <th>Ledger Account Heading</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            </tbody>
+                    </table>
+                    <table id="table" class="table table-bordered table-fhr">
                         <thead>
                             <tr>
                                 <th>Ledger Code</th>
@@ -172,6 +210,8 @@ ul.collection li{
                                 <th>Action</th>
                             </tr>
                         </thead>
+                        <tbody>
+            </tbody>
                         <tbody id="testSearch">
                             <?php
                             if (!empty($ledgerDetails)) {

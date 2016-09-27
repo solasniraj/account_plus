@@ -35,7 +35,56 @@
     }
   }
   
-  public function getAssociatedLedger()
+  public function journalList()
+  {
+       $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
+
+      $userId = $this->session->userdata("user_id");
+      $data['transactionDetails'] = $this->transaction_model->get_transactions_details();  
+      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/transaction/journalList', $data);
+      $this->load->view('dashboard/templates/footer');   
+       } else {
+      redirect('login/index/?url=' . $url, 'refresh');
+    }
+  }
+  
+  public function getJournalPagination()
+  {
+
+$list = $this->transaction_model->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $customers) {
+            $sum = $this->transaction_model->get_debit_credit_amount($customers->journal_voucher_no);
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $customers->journal_voucher_no;
+            $row[] = $customers->memo;
+            $row[] = $customers->tran_date;
+            $row[] = $sum['0']->sum/'2';
+            $stat = $customers->gl_trans_status;
+            if($stat=='1'){$row[] = "Published";}elseif($stat=='2'){ $row[] = "Draft";}elseif($stat=='3'){$row[] = "Voided";}else{ $row[] = "Unknown"; }
+            $row[] = NULL;
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->transaction_model->count_all(),
+                        "recordsFiltered" => $this->transaction_model->count_filtered(),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+
+  }
+
+    public function getAssociatedLedger()
   {
      $url = current_url();
     if ($this->session->userdata('logged_in') == true) 
@@ -614,22 +663,7 @@ $user_id = $this->session->userdata('user_id');
 
   }
   
-  public function journalList()
-  {
-       $url = current_url();
-    if ($this->session->userdata('logged_in') == true) {
-
-      $userId = $this->session->userdata("user_id");
-      $data['transactionDetails'] = $this->transaction_model->get_transactions_details();  
-      $this->load->view('dashboard/templates/header');
-      $this->load->view('dashboard/templates/sideNavigation');
-      $this->load->view('dashboard/templates/topHead');
-      $this->load->view('dashboard/transaction/journalList', $data);
-      $this->load->view('dashboard/templates/footer');   
-       } else {
-      redirect('login/index/?url=' . $url, 'refresh');
-    }
-  }
+  
   
   public function journalPreview($id= NULL)
   {
