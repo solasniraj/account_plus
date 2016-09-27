@@ -73,11 +73,19 @@
         return $this->db->count_all_results();
     }
    
-   
-   
-   
-   
-   public function search_ledger_by_key_or_description($searchKey)
+    public function get_subledger_details($accSubLedger)
+    {
+        $this->db->where('subledger_code', $accSubLedger);
+        $this->db->where('subledger_status', '1');
+            $query = $this->db->get('subledger_info');
+             return $query->result();
+    }
+
+    
+
+
+
+    public function search_ledger_by_key_or_description($searchKey)
    {
        $this->db->select('id, ledger_master_code, ledger_master_name');
         $this->db->where("status", "1");
@@ -141,7 +149,7 @@
 
    public function get_account_chart_class()
         {
-            $this->db->where('chart_status', 'Active');
+            $this->db->where('chart_status', '1');
             $query = $this->db->get('chart_class');
              return $query->result();
         }

@@ -51,7 +51,27 @@
      return  $insert_id;
         }
         
-        public function add_new_chart_master($bankCode, $bankAccountName, $accountGLCode, $result1)
+        public function add_new_bank_account_from_ledger($subLedId, $name, $code)
+        {
+            $data = Array(
+                'account_code' => NULL,
+                'subledger_code' =>$code,
+                'subledger_id' => $subLedId,
+                'bank_account_name' => $name,               
+                'account_type' => NULL,
+            'bank_name' => null,
+            'bank_address' => NULL,
+                'bank_account_number' => NULL,
+                'bank_phone_no' => NULL,
+                'committee_id' => NULL,
+                'user_id' => NULL,
+                'status' => '1');
+        $this->db->insert('bank_info', $data);
+        $insert_id = $this->db->insert_id();
+     return  $insert_id;
+        }
+
+                public function add_new_chart_master($bankCode, $bankAccountName, $accountGLCode, $result1)
         {
             $data = Array(
             'account_code' => $newCode,

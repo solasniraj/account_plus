@@ -10,6 +10,7 @@ class ledger extends CI_Controller {
         $this->load->library('session');
         $this->load->model('ledger_model');
         $this->load->model('donar_model');
+         $this->load->model('bank_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -216,6 +217,20 @@ class ledger extends CI_Controller {
                } else{
                 
                 $result = $this->ledger_model->add_new_ledger_master($chartNo, $accLedger, $accSubLedger, $donorType, $ledgerType, $codeNo, $accDescription);
+                if((($accLedger <= '09') && ($accLedger >= '00')) && $chartNo =='01')
+                {
+       
+                    $subDetails = $this->ledger_model->get_subledger_details($accSubLedger);
+                    if(!empty($subDetails)){
+                        foreach ($subDetails as $subLedDet){
+                            $subLedId = $subLedDet->id;
+                            $name = $subLedDet->subledger_name;
+                            $code = $subLedDet->subledger_code;
+                        }
+                    }
+               $result1 = $this->bank_model->add_new_bank_account_from_ledger($subLedId, $name, $code);
+                }
+       
                 if ($result) {
                     $this->session->set_flashdata('flashMessage', 'Ledger added successfully');
                     return redirect('ledger/index');
