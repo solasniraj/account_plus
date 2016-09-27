@@ -621,7 +621,7 @@ $user_id = $this->session->userdata('user_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');
      
-     $journalNumber = $this->program_model->getCurrentJournalNumer();
+     $journalNumber = $this->transaction_model->count_all() + 1;
      
   $jnNumber = str_pad($journalNumber, 5, "0", STR_PAD_LEFT);
      $data['journalNumber'] = $committee_code.'-FY'.$fiscal_year.'-'.$jnNumber;
