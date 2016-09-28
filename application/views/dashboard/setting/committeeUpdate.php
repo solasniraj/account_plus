@@ -1,4 +1,4 @@
-            <div id="page-wrapper">
+          <div id="page-wrapper">
                 <div class="graphs">
                     <h3 class="blank1">Company Info</h3>
                      <style>
@@ -18,7 +18,7 @@
                             
                             
                             <div class="form-group">
-                                <label for="committeeName" class="col-sm-1 control-label"><h4>Committee Name</h4></label>
+                                <label for="committeeName" class="col-sm-1 control-label"><b>Committee Name</b></label>
                                 <div class="col-sm-10">
                                     <input type="text" value="<?php echo $comData->committee_name ?>" class="form-control1" id="committeeName" name="committeeName" placeholder="Enter Name">
                                      <?php echo form_error('committeeName'); ?>
@@ -26,7 +26,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="committeeAddress" class="col-sm-1 control-label"><h4>Address</h4></label>
+                                <label for="committeeAddress" class="col-sm-1 control-label"><b>Address</b></label>
                                 <div class="col-sm-10">
                                     <input type="text" value="<?php echo $comData->address; ?>" class="form-control1" id="committeeAddress" name="committeeAddress" placeholder="Enter Address">
                                     <?php echo form_error('committeeAddress'); ?>
@@ -34,7 +34,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="emailId" class="col-sm-1 control-label"><h4>Email ID</h4></label>
+                                <label for="emailId" class="col-sm-1 control-label"><b>Email ID</b></label>
                                 <div class="col-sm-10">
                                     <input type="text" value="<?php echo $comData->email_address; ?>" class="form-control1" id="emailId" name="emailId" placeholder="Enter Email">
                                     <?php echo form_error('emailId'); ?>
@@ -42,7 +42,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="contactNumber" class="col-sm-1 control-label"><h4>Contact Number</h4></label>
+                                <label for="contactNumber" class="col-sm-1 control-label"><b>Contact Number</b></label>
                                 <div class="col-sm-10">
                                     <input type="text" value="<?php echo $comData->phone; ?>" class="form-control1" id="contactNumber" name="contactNumber" placeholder="Enter Contact Number">
                                     <?php echo form_error('contactNumber'); ?>
@@ -52,7 +52,7 @@
                             
                             
                             <div class="form-group">
-                                <label for="committeeCode" class="col-sm-1 control-label"><h4>Committee Code</h4></label>
+                                <label for="committeeCode" class="col-sm-1 control-label"><b>Committee Code</b></label>
                                 <div class="col-sm-10">
                                     <input type="text" value="<?php echo $comData->code; ?>" class="form-control1" id="committeeCode" name="committeeCode" placeholder="Enter code">
                                     <?php echo form_error('committeeCode'); ?>
@@ -60,7 +60,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="committeeLogo" class="col-sm-1 control-label"><h4>Upload Committee Logo</h4></label>
+                                <label for="committeeLogo" class="col-sm-1 control-label"><b>Committee Logo</b></label>
                                 <div class="col-sm-10">
                                     <input type="file" class="form-control1" id="file" name="file" >
                                     <?php echo form_error('committeeLogo'); ?>
@@ -68,7 +68,7 @@
                             </div>
                             
                             <div class="col-sm-4 col-sm-offset-4">
-                                <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -10px; width:100px;">Update</button>
+                                <button class="btn btn-success btn-lg" style=" margin-left: -283px; margin-top: -13px; width:100px;">Update</button>
                             </div>
 
                        

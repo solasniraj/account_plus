@@ -64,7 +64,7 @@
                             
                             
                             <div class="col-sm-4 col-sm-offset-4">
-                                <button class="btn btn-success btn-lg" style=" margin-left: -185px; margin-top: -13px; width:100px;">Update</button>
+                                <button class="btn btn-success btn-lg" style=" margin-left: 438px; margin-top: -16px; width:100px;">Update</button>
                             </div>
 
                         
