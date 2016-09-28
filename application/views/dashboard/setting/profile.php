@@ -24,13 +24,13 @@
                                 </div>
                             </div>
 
-                              <!-- <div class="form-group">
+                               <div class="form-group">
                                 <label for="fullName" class="col-sm-2 control-label"><b>Full Name</b></label>
                                 <div class="col-sm-8">
                     <input type="text" value="<?php echo $uDetails->full_name; ?>" class="form-control1" id="fullName" name="fullName" placeholder="Enter Full Name">
                                     <?php echo form_error('fullName'); ?>
                                 </div>
-                            </div> --> 
+                            </div>  
                             
                             <div class="form-group">
                                 <label for="emailId" class="col-sm-2 control-label"><b>Email ID</b></label>
