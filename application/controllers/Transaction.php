@@ -627,8 +627,8 @@ $user_id = $this->session->userdata('user_id');
      $data['journalNumber'] = $committee_code.'-FY'.$fiscal_year.'-'.$jnNumber;
      $data['journalTypes']=$this->ledger_model->getJournalTypes();
      
-//     $totalTransBalance = $this->bank_model->get_total_balance_of_all_banks_from_trans_info();
-//     $bankAccount = $this->bank_model->view_bank_account_listing();
+     $totalTransBalance = $this->bank_model->get_total_balance_of_all_banks_from_trans_info();
+     $bankAccount = $this->bank_model->view_bank_account_listing();
      if(!empty($bankAccount)){
          $totalEnd = '0';
         foreach($bankAccount as $blist) {
@@ -791,25 +791,25 @@ $user_id = $this->session->userdata('user_id');
      $data['journalTypes']=$this->ledger_model->getJournalTypes();
     
      
-//     $totalTransBalance = $this->bank_model->get_total_balance_of_all_banks_from_trans_info();
-//     $bankAccount = $this->bank_model->view_bank_account_listing();
-//     if(!empty($bankAccount)){
-//         $totalEnd = '0';
-//        foreach($bankAccount as $blist) {
-//            $endingBalance = $blist->ending_reconcile_balance;
-//            $totalEnd += $endingBalance;
-//        }
-//     }
-//     if((!empty($totalTransBalance )) && (!empty($totalEnd))){         
-//         $finalBalance = $totalEnd - $totalTransBalance;
-//     }elseif((empty($totalTransBalance )) && (!empty($totalEnd))){       
-//             $finalBalance = $totalEnd;
-//     }elseif((!empty($totalTransBalance )) && (empty($totalEnd))){        
-//             $finalBalance = $totalTransBalance;
-//         }else{
-//            $finalBalance = '0';
-//        }
-//     
+     $totalTransBalance = $this->bank_model->get_total_balance_of_all_banks_from_trans_info();
+     $bankAccount = $this->bank_model->view_bank_account_listing();
+     if(!empty($bankAccount)){
+         $totalEnd = '0';
+        foreach($bankAccount as $blist) {
+            $endingBalance = $blist->ending_reconcile_balance;
+            $totalEnd += $endingBalance;
+        }
+     }
+     if((!empty($totalTransBalance )) && (!empty($totalEnd))){         
+         $finalBalance = $totalEnd - $totalTransBalance;
+     }elseif((empty($totalTransBalance )) && (!empty($totalEnd))){       
+             $finalBalance = $totalEnd;
+     }elseif((!empty($totalTransBalance )) && (empty($totalEnd))){        
+             $finalBalance = $totalTransBalance;
+         }else{
+            $finalBalance = '0';
+        }
+     
      $data['bankBalance'] = '0';
      
      $this->load->library('form_validation');
@@ -820,14 +820,12 @@ $user_id = $this->session->userdata('user_id');
      $this->form_validation->set_error_delimiters('<div class="form_errors">', '</div>');
 
      if ($this->form_validation->run() == FALSE)
-     {
-       
+     {       
        $this->load->view('dashboard/templates/header');
        $this->load->view('dashboard/templates/sideNavigation');
        $this->load->view('dashboard/templates/topHead');
        $this->load->view('dashboard/transaction/journalEntry', $data);
        $this->load->view('dashboard/templates/footer');   
-
      }
      else 
      {
@@ -835,13 +833,11 @@ $user_id = $this->session->userdata('user_id');
          $datepicker = date('Y-m-d', strtotime($this->input->post('datepicker')));       
          $comment = $this->input->post('comment');     
          $summary = $this->input->post('summary');     
-         $journalNo = $this->input->post('journalNo');     
-         
+         $journalNo = $this->input->post('journalNo');              
         $myData = $_POST['mydata'];
        $drCr = json_decode($myData);
       
-       foreach ($drCr as $transData){
-           
+       foreach ($drCr as $transData){           
            $indexNumber = $transData->indexNumber;
            $chartCode = $transData->chartCode;
            $lmcode = $transData->lMCode;
