@@ -10,8 +10,33 @@ class Transaction_model extends CI_Model {
         $this->load->database();
     }
     
+    public function get_bank_details_by_subledger_id($subLedger_id)
+    {
+        $this->db->where('subledger_code', $subLedger_id);
+        $this->db->where('status', '1');
+            $query = $this->db->get('bank_info')->result();
+               if(!empty($query)){
+           return $query[0]->id;
+               }else{
+                   return ' ';
+               }
+    }
+    
+    public function add_transaction_to_bank_transaction($journalNo, $datepicker, $lmcode, $description, $debitAmount, $bankId, $type)
+    {
+        $data = Array(
+            'trans_no' => $journalNo,  
+            'type' => $type,
+            'trans_date' => $datepicker,
+            'ledger_master_code' => $lmcode,
+            'memo' => $description,
+                'amount' => $debitAmount,
+                'bank_id' => $bankId,
+                'status' => '1');
+       return  $this->db->insert('bank_trans_info', $data);
+    }
 
- 
+    
     private function _get_datatables_query()
     {        
        $this->db->distinct();

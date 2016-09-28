@@ -627,6 +627,10 @@ $user_id = $this->session->userdata('user_id');
               }else{
                   echo "something went wrong";
               }
+              if((($accCode <= '09') && ($accCode >= '00')) && $chartCode =='01'){
+               $bankId = $this->transaction_model->get_bank_details_by_subledger_id($subLedger_id);
+                $this->transaction_model->add_transaction_to_bank_transaction($journalNo, $datepicker, $lmcode, $description, $debitAmount, $bankId, $type);  
+              }else{}
                
            }elseif((!empty ($creditAmount)) && is_numeric( $creditAmount )){
                $type='cr';
@@ -638,6 +642,10 @@ $user_id = $this->session->userdata('user_id');
               }else{
                   echo "something went wrong";
               }
+              if((($accCode <= '09') && ($accCode >= '00')) && $chartCode =='01'){
+                 $bankId = $this->transaction_model->get_bank_details_by_subledger_id($subLedger_id);
+                $this->transaction_model->add_transaction_to_bank_transaction($journalNo, $datepicker, $lmcode, $description, $creditAmount, $bankId, $type);    
+              }else{}
            }else{
                echo 'neither debit nor credit';
            }

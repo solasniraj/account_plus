@@ -83,7 +83,7 @@ required.</label>
                                 </td>
 
 
-                                <td class="text-right width25per"><b>Bank Balance: </b>
+                                <td class="text-right width25per"><b>Bank Balance: </b><br/>
                                     <a href="<?php echo base_url() .'bank/getBalance' ?>" onClick="return popup(this, 'stevie')"><strong style="color:red;"><?php if (!empty($bankBalance)) {
                                         echo "Rs. " . $bankBalance;
                                     } ?>    /-</strong></a></td>

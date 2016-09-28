@@ -5,8 +5,7 @@ class bank extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('bank_model');
-        $this->load->model('program_model');
-        $this->load->model('chartAccount_model');
+        $this->load->model('ledger_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -34,7 +33,7 @@ class bank extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
-            $data['chartMaster'] = $this->program_model->get_chart_class_master();
+            $data['chartMaster'] = $this->ledger_model->get_chart_class_master();
             $data['accountTypes'] = $this->bank_model->get_bank_account_type_details();
             $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
@@ -79,12 +78,11 @@ class bank extends CI_Controller {
         $accountNumber = $this->input->post('accountNumber');
         $address = $this->input->post('address');
         $contactNumber = $this->input->post('contactNumber');
-        $bankCode = $accountGLCode.$newBankCode;
-       $lastId = $this->chartAccount_model->get_last_code_of_related_chart($chartAccType);
-        $newCode = $lastId + '1';
+        $bankCode = $newBankCode;
+      
         $result1 = $this->bank_model->add_new_bank_account($bankCode, $bankAccountName, $accountType, $bankName,$accountNumber, $address, $contactNumber);
-        $result2 = $this->bank_model->add_new_chart_master($newCode, $bankAccountName, $accountGLCode, $result1);
-        if($result1 && $result2)
+       
+        if($result1)
         {
          $this->session->set_flashdata('flashMessage', 'Bank Account added successfully');
          return redirect('bank/index');
