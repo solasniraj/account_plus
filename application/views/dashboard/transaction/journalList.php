@@ -43,7 +43,7 @@ $(document).ready(function() {
 
                 <div class="table-responsive">
                     
-                    <table id="table" class="table table-bordered" cellspacing="0" width="100%">
+                    <table id="table" class="table table-bordered" cellspacing="0" width="99%">
             <thead>
                 <tr>
                     <th>S.No.</th>
