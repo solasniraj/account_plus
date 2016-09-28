@@ -220,6 +220,21 @@ foreach ($file_array as $query)
         }
     }
     
+    public function userInfo()
+    {
+        $url = current_url();
+         if ($this->session->userdata('logged_in') == true) {
+         $this->load->view('dashboard/templates/header');
+          $this->load->view('dashboard/templates/sideNavigation');
+          $this->load->view('dashboard/templates/topHead');
+          $this->load->view('dashboard/login/userInfoUpdate');
+           $this->load->view('dashboard/templates/footer');
+           } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
+
     public function yearConfiguration()
     {
         $url = current_url();
