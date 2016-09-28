@@ -224,17 +224,33 @@ foreach ($file_array as $query)
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
+             $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+              $committee_code = $this->session->userdata('committee_code');
+             $data['userDeatils'] = $this->setting_model->get_user_details($user_id, $username, $committee_code);
+             
          $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/login/userInfoUpdate');
+          $this->load->view('dashboard/setting/profile', $data);
            $this->load->view('dashboard/templates/footer');
            } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
     
+    public function updateUserInfo()
+    {
+        $url = current_url();
+         if ($this->session->userdata('logged_in') == true) {
+             
+             
+         }else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
 
+    
     public function yearConfiguration()
     {
         $url = current_url();
