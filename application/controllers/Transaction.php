@@ -68,7 +68,27 @@ $list = $this->transaction_model->get_datatables();
             $row[] = $customers->tran_date;
             $row[] = $sum['0']->sum/'2';
             $stat = $customers->gl_trans_status;
-            if($stat=='1'){$row[] = "Published";}elseif($stat=='2'){ $row[] = "Draft";}elseif($stat=='3'){$row[] = "Voided";}else{ $row[] = "Unknown"; }
+            if($stat=='1'){
+                $row[] = "<select><option value='1' selected>Publish</option>"
+                        . "<option value='2'>Draft</option>"
+                        . "<option value='3'>Void</option>"
+                        . "</select>";
+                
+            }elseif($stat=='2'){
+                $row[] = "<select><option value='1' >Publish</option>"
+                        . "<option value='2' selected>Draft</option>"
+                        . "<option value='3'>Void</option>"
+                        . "</select>";
+                
+            }elseif($stat=='3'){
+                $row[] = "<select><option value='1' >Publish</option>"
+                        . "<option value='2' >Draft</option>"
+                        . "<option value='3' selected>Void</option>"
+                        . "</select>";
+                
+            }else{
+                $row[] = "<select><option>Unknown</option></select>";
+                }
             $row[] = NULL;
             $data[] = $row;
         }
