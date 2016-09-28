@@ -13,7 +13,7 @@
                         <?php if(!empty($userDeatils))foreach ($userDeatils as $uDetails) ?>
                        <div class="bs-example4" data-example-id="simple-responsive-table">
                           <div class="tab-pane active" id="horizontal-form">
-                            <?php echo form_open_multipart('settings/updateUserInfo', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
+                            <?php echo form_open_multipart('setting/updateUserInfo', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
                             
                             
                             <div class="form-group">
@@ -35,7 +35,7 @@
                             <div class="form-group">
                                 <label for="emailId" class="col-sm-2 control-label"><b>Email ID</b></label>
                                 <div class="col-sm-8">
-                                    <input type="email" value="<?php echo set_value('emailId'); ?>" class="form-control1" id="emailId" name="emailId" placeholder="Enter Email">
+                                    <input type="email" value="<?php echo $uDetails->email_address; ?>" class="form-control1" id="emailId" name="emailId" placeholder="Enter Email">
                                     <?php echo form_error('emailId'); ?>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label for="contactNumber" class="col-sm-2 control-label"><b>Contact Number</b></label>
                                 <div class="col-sm-8">
-                                <input type="text" value="<?php echo set_value('contactNumber'); ?>"
+                                <input type="text" value="<?php echo $uDetails->contact_no; ?>"
                                      class="form-control1" id="contactNumber" name="contactNumber" placeholder="Enter Contact Number">
                                     <?php echo form_error('contactNumber'); ?>
                                 </div>

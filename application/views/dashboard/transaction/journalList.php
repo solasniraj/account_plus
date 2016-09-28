@@ -53,8 +53,8 @@ $(document).ready(function() {
                             <th>Discription</th>
                             <th>Date</th>
                             <th>Amount(Rs)</th>
-                            <th>Status</th>
                             <th>Action</th>
+                           
                 </tr>
             </thead>
             <tbody>

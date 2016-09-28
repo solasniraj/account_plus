@@ -89,7 +89,7 @@ $list = $this->transaction_model->get_datatables();
             }else{
                 $row[] = "<select><option>Unknown</option></select>";
                 }
-            $row[] = NULL;
+            
             $data[] = $row;
         }
  

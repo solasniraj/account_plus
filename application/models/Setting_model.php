@@ -25,6 +25,16 @@
              return $query->result();
         }
         
+        public function update_user_info($user_id, $userName, $fullName, $emailId, $contactNumber)
+        {
+             $data = array(
+            'user_name' => $userName,
+            'full_name' => $fullName,
+            'email_address' => $emailId,
+            'contact_no' => $contactNumber);
+        $this->db->where('id', $user_id);
+        $this->db->update('user_info', $data);
+        }
    
 
 

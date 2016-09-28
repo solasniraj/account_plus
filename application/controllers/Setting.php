@@ -243,7 +243,38 @@ foreach ($file_array as $query)
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
+         
+             $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+              $committee_code = $this->session->userdata('committee_code');
+             $data['userDeatils'] = $this->setting_model->get_user_details($user_id, $username, $committee_code);
              
+           
+            $this->load->view('dashboard/templates/header');
+          $this->load->view('dashboard/templates/sideNavigation');
+          $this->load->view('dashboard/templates/topHead');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('userName', 'User Name', 'required|callback_xss_clean|max_length[200]');
+
+            if (($this->form_validation->run() == TRUE)) {
+                $userName = $this->input->post('userName');
+                $fullName = $this->input->post('fullName');
+                $emailId = $this->input->post('emailId');
+                $contactNumber = $this->input->post('contactNumber');
+                
+                
+                
+
+                $this->setting_model->update_user_info($user_id, $userName, $fullName, $emailId, $contactNumber);
+                $this->session->set_flashdata('message', 'Header setting done sucessfully');
+                redirect('setting/userInfo');
+              
+            } else {
+                $this->load->view('dashboard/setting/profile', $data);
+            }
+
+            $this->load->view('dashboard/templates/footer');
              
          }else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -266,7 +297,18 @@ foreach ($file_array as $query)
         
     }
     
-    
+   public function xss_clean($str)
+  {
+    if ($this->security->xss_clean($str, TRUE) === FALSE)
+    {
+      $this->form_validation->set_message('xss_clean', 'The %s is invalid charactor');
+      return FALSE;
+    }
+    else
+    {
+      return TRUE;
+    }
+  }   
     
     
 }
