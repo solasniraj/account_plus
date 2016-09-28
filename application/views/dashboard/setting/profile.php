@@ -10,31 +10,30 @@
                 }
                 </style>
                     <div class="tab-content">
-                        <?php if(!empty($userDeatils)){
-foreach ($userDeatils as $uDetails){ ?>
+                        <?php if(!empty($userDeatils))foreach ($userDeatils as $uDetails) ?>
                        <div class="bs-example4" data-example-id="simple-responsive-table">
                           <div class="tab-pane active" id="horizontal-form">
                             <?php echo form_open_multipart('settings/updateUserInfo', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
                             
                             
                             <div class="form-group">
-                                <label for="userName" class="col-sm-2 control-label"><h4>Username</h4></label>
+                                <label for="userName" class="col-sm-2 control-label"><b>Username</b></label>
                                 <div class="col-sm-8">
                                     <input type="text" value="<?php echo $uDetails->user_name; ?>" class="form-control1" id="userName" name="userName" placeholder="Enter Name">
                                      <?php echo form_error('userName'); ?>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="fullName" class="col-sm-2 control-label"><h4>Full Name</h4></label>
+                               <div class="form-group">
+                                <label for="fullName" class="col-sm-2 control-label"><b>Full Name</b></label>
                                 <div class="col-sm-8">
-                                    <input type="text" value="<?php echo $uDetails->full_name; ?>" class="form-control1" id="fullName" name="fullName" placeholder="Enter Full Name">
+                    <input type="text" value="<?php echo $uDetails->full_name; ?>" class="form-control1" id="fullName" name="fullName" placeholder="Enter Full Name">
                                     <?php echo form_error('fullName'); ?>
                                 </div>
-                            </div>
+                            </div>  
                             
                             <div class="form-group">
-                                <label for="emailId" class="col-sm-2 control-label"><h4>Email ID</h4></label>
+                                <label for="emailId" class="col-sm-2 control-label"><b>Email ID</b></label>
                                 <div class="col-sm-8">
                                     <input type="email" value="<?php echo set_value('emailId'); ?>" class="form-control1" id="emailId" name="emailId" placeholder="Enter Email">
                                     <?php echo form_error('emailId'); ?>
@@ -42,9 +41,10 @@ foreach ($userDeatils as $uDetails){ ?>
                             </div>
                             
                             <div class="form-group">
-                                <label for="contactNumber" class="col-sm-2 control-label"><h4>Contact Number</h4></label>
+                                <label for="contactNumber" class="col-sm-2 control-label"><b>Contact Number</b></label>
                                 <div class="col-sm-8">
-                                    <input type="text" value="<?php echo set_value('contactNumber'); ?>" class="form-control1" id="contactNumber" name="contactNumber" placeholder="Enter Contact Number">
+                                <input type="text" value="<?php echo set_value('contactNumber'); ?>"
+                                     class="form-control1" id="contactNumber" name="contactNumber" placeholder="Enter Contact Number">
                                     <?php echo form_error('contactNumber'); ?>
                                 </div>
                             </div>
@@ -52,7 +52,8 @@ foreach ($userDeatils as $uDetails){ ?>
                             
                             
                             <div class="form-group">
-                                <label for="contactPerson" class="col-sm-2 control-label"><h4>Password</h4></label>
+                                <label for="contactPerson" class="col-sm-2 control-label"><b>Password</b>
+                                </label>
                                 <div class="col-sm-8">
                                     <input type="text" value="<?php echo '*********'; ?>" class="form-control1" id="contactPerson" name="contactPerson" placeholder="Enter Name">
                                     <?php echo form_error('contactPerson'); ?>
@@ -63,13 +64,13 @@ foreach ($userDeatils as $uDetails){ ?>
                             
                             
                             <div class="col-sm-4 col-sm-offset-4">
-                                <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -10px; width:100px;">Update</button>
+                                <button class="btn btn-success btn-lg" style=" margin-left: -185px; margin-top: -13px; width:100px;">Update</button>
                             </div>
 
                         
                     </div>
                 </div>
-                        <?php } } ?>
+                        <?php  ?>
                         
                 </div>
             
