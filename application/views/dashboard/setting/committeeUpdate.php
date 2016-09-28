@@ -1,46 +1,42 @@
             <div id="page-wrapper">
                 <div class="graphs">
-                    <h3 class="blank1">Add Fund Donor</h3>
+                    <h3 class="blank1">Company Info</h3>
                      <style>
-     /*sanoj custom csss */
                 .form-errors 
                 {
                     font-size: 14px;
                     padding: 10px;
                     color:red;
                 }
-
-
-
-                /*sanoj custom css ends*/
-
                 </style>
                     <div class="tab-content">
+                        <?php if(!empty($committee)){ 
+     foreach ($committee as $comData){ ?>
                      <div class="bs-example4" data-example-id="simple-responsive-table">
                         <div class="tab-pane active" id="horizontal-form">
-                            <?php echo form_open_multipart('donars/addNewDonar', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
+                            <?php echo form_open_multipart('setting/companyInfoUpdate', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
                             
                             
                             <div class="form-group">
-                                <label for="donarName" class="col-sm-1 control-label"><h4>Name</h4></label>
+                                <label for="committeeName" class="col-sm-1 control-label"><h4>Committee Name</h4></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="<?php echo set_value('donarName'); ?>" class="form-control1" id="donarName" name="donarName" placeholder="Enter Name">
-                                     <?php echo form_error('donarName'); ?>
+                                    <input type="text" value="<?php echo $comData->committee_name ?>" class="form-control1" id="committeeName" name="committeeName" placeholder="Enter Name">
+                                     <?php echo form_error('committeeName'); ?>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="donarAddress" class="col-sm-1 control-label"><h4>Address</h4></label>
+                                <label for="committeeAddress" class="col-sm-1 control-label"><h4>Address</h4></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="<?php echo set_value('donarAddress'); ?>" class="form-control1" id="donarAddress" name="donarAddress" placeholder="Enter Address">
-                                    <?php echo form_error('donarAddress'); ?>
+                                    <input type="text" value="<?php echo $comData->address; ?>" class="form-control1" id="committeeAddress" name="committeeAddress" placeholder="Enter Address">
+                                    <?php echo form_error('committeeAddress'); ?>
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="emailId" class="col-sm-1 control-label"><h4>Email ID</h4></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="<?php echo set_value('emailId'); ?>" class="form-control1" id="emailId" name="emailId" placeholder="Enter Email">
+                                    <input type="text" value="<?php echo $comData->email_address; ?>" class="form-control1" id="emailId" name="emailId" placeholder="Enter Email">
                                     <?php echo form_error('emailId'); ?>
                                 </div>
                             </div>
@@ -48,7 +44,7 @@
                             <div class="form-group">
                                 <label for="contactNumber" class="col-sm-1 control-label"><h4>Contact Number</h4></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="<?php echo set_value('contactNumber'); ?>" class="form-control1" id="contactNumber" name="contactNumber" placeholder="Enter Contact Number">
+                                    <input type="text" value="<?php echo $comData->phone; ?>" class="form-control1" id="contactNumber" name="contactNumber" placeholder="Enter Contact Number">
                                     <?php echo form_error('contactNumber'); ?>
                                 </div>
                             </div>
@@ -56,18 +52,18 @@
                             
                             
                             <div class="form-group">
-                                <label for="contactPerson" class="col-sm-1 control-label"><h4>Contact Person</h4></label>
+                                <label for="committeeCode" class="col-sm-1 control-label"><h4>Committee Code</h4></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="<?php echo set_value('contactPerson'); ?>" class="form-control1" id="contactPerson" name="contactPerson" placeholder="Enter Name">
-                                    <?php echo form_error('contactPerson'); ?>
+                                    <input type="text" value="<?php echo $comData->code; ?>" class="form-control1" id="committeeCode" name="committeeCode" placeholder="Enter code">
+                                    <?php echo form_error('committeeCode'); ?>
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="contactPCellNo" class="col-sm-1 control-label"><h4>Contact Person's Mobile</h4></label>
+                                <label for="committeeLogo" class="col-sm-1 control-label"><h4>Upload Committee Logo</h4></label>
                                 <div class="col-sm-10">
-                                    <input type="text" valu10="<?php echo set_value('contactPCellNo'); ?>" class="form-control1" id="contactPCellNo" name="contactPCellNo" placeholder="Enter Contact Number">
-                                    <?php echo form_error('contactPCellNo'); ?>
+                                    <input type="file" class="form-control1" id="file" name="file" >
+                                    <?php echo form_error('committeeLogo'); ?>
                                 </div>
                             </div>
                             
@@ -78,7 +74,7 @@
                        
                     </div>
                 </div>
-            
+     <?php } } ?>
            
         </div>
     </div>

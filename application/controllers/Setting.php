@@ -4,7 +4,7 @@ class setting extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('session');
-        
+        $this->load->model('setting_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -132,16 +132,90 @@ foreach ($file_array as $query)
     }
     
     
-    public function companyInfoUpdate()
+    public function companyInfo()
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
+             $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year'); 
+           
+             $data['committee'] = $this->setting_model->get_committee_detils($committee_id, $committee_code);          
+             
          $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
-          $this->load->view('dashboard/setting/committeeUpdate');
+          $this->load->view('dashboard/setting/committeeUpdate', $data);
            $this->load->view('dashboard/templates/footer');
            } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
+     public function companyInfoUpdate() {
+        $url = current_url();
+         if ($this->session->userdata('logged_in') == true) {
+            $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year'); 
+           
+             $data['committee'] = $this->setting_model->get_committee_detils($committee_id, $committee_code);          
+             
+            $config['upload_path'] = './contents/uploads/images/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['max_size'] = '20000';
+            $config['max_width'] = '10000';
+            $config['max_height'] = '10000';
+
+            $this->load->library('upload', $config);
+           
+            $this->load->view('dashboard/templates/header');
+          $this->load->view('dashboard/templates/sideNavigation');
+          $this->load->view('dashboard/templates/topHead');
+            $this->load->helper('form');
+            $this->load->library(array('form_validation', 'session'));
+            $this->form_validation->set_rules('header_title', 'Title', 'required|callback_xss_clean|max_length[200]');
+
+            if (($this->form_validation->run() == TRUE)) {
+                if ($_FILES && $_FILES['file']['name'] !== "") {
+                    if (!$this->upload->do_upload('file')) {
+                        $data['error'] =  $this->upload->display_errors('');
+                      $this->load->view('dashboard/setting/committeeUpdate', $data);
+                    } else {
+                $headerTitle = $this->input->post('header_title');
+                
+                $this->load->helper('inflector');
+                
+                $data = array('upload_data' => $this->upload->data());
+                $headerLogo = $data['upload_data']['file_name'];
+                
+                $config['file_name'] = $headerLogo;
+                
+                $headerDescription = $this->input->post('header_description');
+                $headerBgColor = null;
+                $this->dbsetting->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
+                $this->session->set_flashdata('message', 'Header setting done sucessfully');
+                redirect('setting/companyInfo');
+                    }
+                } else {
+                     $headerTitle = $this->input->post('header_title');
+                $headerLogo = $this->input->post('existingImg');
+                $headerDescription = $this->input->post('header_description');
+                $headerBgColor = null;
+                $this->dbsetting->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
+                $this->session->set_flashdata('message', 'Header setting done sucessfully');
+                redirect('setting/companyInfo');
+                }
+            } else {
+                $this->load->view('dashboard/setting/committeeUpdate', $data);
+            }
+
+            $this->load->view('dashboard/templates/footer');
+        } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
