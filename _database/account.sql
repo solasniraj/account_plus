@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 28, 2016 at 08:54 पूर्वाह्न
+-- Generation Time: Sep 29, 2016 at 09:18 पूर्वाह्न
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -68,8 +68,6 @@ CREATE TABLE IF NOT EXISTS `bank_info` (
   `bank_phone_no` varchar(20) DEFAULT NULL,
   `last_reconciled_date` timestamp NULL DEFAULT NULL,
   `ending_reconcile_balance` double DEFAULT NULL,
-  `committee_id` varchar(255) DEFAULT NULL,
-  `user_id` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -77,8 +75,8 @@ CREATE TABLE IF NOT EXISTS `bank_info` (
 -- Dumping data for table `bank_info`
 --
 
-INSERT INTO `bank_info` (`id`, `account_code`, `subledger_code`, `subledger_id`, `account_type`, `bank_account_name`, `bank_name`, `bank_address`, `bank_account_number`, `bank_phone_no`, `last_reconciled_date`, `ending_reconcile_balance`, `committee_id`, `user_id`, `status`) VALUES
-(1, NULL, '03', '10', NULL, 'Rastriya Banijya Bank Account', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `bank_info` (`id`, `account_code`, `subledger_code`, `subledger_id`, `account_type`, `bank_account_name`, `bank_name`, `bank_address`, `bank_account_number`, `bank_phone_no`, `last_reconciled_date`, `ending_reconcile_balance`, `status`) VALUES
+(1, NULL, '03', '10', NULL, 'Rastriya Banijya Bank Account', NULL, NULL, NULL, NULL, NULL, NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -88,19 +86,23 @@ INSERT INTO `bank_info` (`id`, `account_code`, `subledger_code`, `subledger_id`,
 
 CREATE TABLE IF NOT EXISTS `bank_trans_info` (
   `id` int(11) NOT NULL,
-  `type` smallint(6) DEFAULT NULL,
-  `trans_no` int(11) DEFAULT NULL,
-  `bank_act` varchar(15) NOT NULL DEFAULT '',
-  `ref` varchar(40) DEFAULT NULL,
-  `trans_date` date NOT NULL DEFAULT '0000-00-00',
-  `amount` double DEFAULT NULL,
-  `dimension_id` int(11) NOT NULL DEFAULT '0',
-  `dimension2_id` int(11) NOT NULL DEFAULT '0',
-  `person_type_id` int(11) NOT NULL DEFAULT '0',
-  `person_id` tinyblob,
-  `reconciled` date DEFAULT NULL,
-  `bank_id` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `type` varchar(50) DEFAULT NULL,
+  `trans_no` varchar(255) DEFAULT NULL,
+  `trans_date` varchar(255) DEFAULT NULL,
+  `ledger_master_code` varchar(50) DEFAULT NULL,
+  `memo` text,
+  `amount` varchar(50) DEFAULT NULL,
+  `reconciled` varchar(255) DEFAULT NULL,
+  `bank_id` varchar(50) DEFAULT NULL,
+  `status` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bank_trans_info`
+--
+
+INSERT INTO `bank_trans_info` (`id`, `type`, `trans_no`, `trans_date`, `ledger_master_code`, `memo`, `amount`, `reconciled`, `bank_id`, `status`) VALUES
+(1, 'dr', '12345', '2016-09-28', '0101030000', 'Bank Deposited Amount', '5000', NULL, '1', '1');
 
 -- --------------------------------------------------------
 
@@ -208,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `gl_trans_comment_details` (
   `trans_no` varchar(255) DEFAULT NULL,
   `detailed_comment` text,
   `summary_comment` text
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `gl_trans_comment_details`
@@ -216,7 +218,8 @@ CREATE TABLE IF NOT EXISTS `gl_trans_comment_details` (
 
 INSERT INTO `gl_trans_comment_details` (`id`, `trans_no`, `detailed_comment`, `summary_comment`) VALUES
 (7, '12345-FY2016-00001', 'Bank Deposited fund amount from WWF for plantation program in area1', 'Bank Deposited fund amount from WWF for plantation program in area1'),
-(8, '12345-FY2016-00002', 'Bank Deposited fund from WWF for plantation in area1', 'Bank Deposited fund from WWF for plantation in area1');
+(8, '12345-FY2016-00002', 'Bank Deposited fund from WWF for plantation in area1', 'Bank Deposited fund from WWF for plantation in area1'),
+(9, '12345-FY2016-00003', 'Bank Deposited fund of Plantation in area1 from WWF cash account', 'Bank Deposited fund of Plantation in area1 from WWF cash account');
 
 -- --------------------------------------------------------
 
@@ -239,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `gl_trans_info` (
   `cheque_no` varchar(255) DEFAULT NULL,
   `trans_type` varchar(25) DEFAULT NULL,
   `gl_trans_status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `gl_trans_info`
@@ -249,7 +252,11 @@ INSERT INTO `gl_trans_info` (`id`, `journal_voucher_no`, `tran_date`, `ledger_ma
 (13, '12345-FY2016-00001', '2016-09-27', '0101010000', NULL, '01', '01', '00', '00', 'Bank Deposition', 500000, '', 'dr', '1'),
 (14, '12345-FY2016-00001', '2016-09-27', '0310020101', NULL, '10', '02', '01', '01', 'Bank Deposition', 500000, '', 'cr', '1'),
 (15, '12345-FY2016-00002', '2016-09-27', '0101030000', NULL, '01', '03', '00', '00', 'Bank Deposition', 500000, '', 'dr', '1'),
-(16, '12345-FY2016-00002', '2016-09-27', '0310020101', NULL, '10', '02', '01', '01', 'Bank Deposition', 500000, '', 'cr', '1');
+(16, '12345-FY2016-00002', '2016-09-27', '0310020101', NULL, '10', '02', '01', '01', 'Bank Deposition', 500000, '', 'cr', '1'),
+(17, '12345-FY2016-00003', '2016-09-28', '0101030000', NULL, '01', '03', '00', '00', 'Bank Deposited Amount', 5000, '', 'dr', '1'),
+(18, '12345-FY2016-00003', '2016-09-28', '0101030000', NULL, '01', '03', '00', '00', 'Bank Deposited Amount', 5000, '', 'dr', '1'),
+(19, '12345-FY2016-00003', '2016-09-28', '0101030000', NULL, '01', '03', '00', '00', 'Bank Deposited Amount', 5000, '', 'dr', '1'),
+(20, '12345-FY2016-00003', '2016-09-28', '0310020101', NULL, '10', '02', '01', '01', 'Plantation Account', 5000, '', 'cr', '1');
 
 -- --------------------------------------------------------
 
@@ -333,6 +340,8 @@ CREATE TABLE IF NOT EXISTS `user_info` (
   `id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `full_name` varchar(100) DEFAULT NULL,
+  `email_address` varchar(255) DEFAULT NULL,
+  `contact_no` varchar(50) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `status` varchar(255) DEFAULT NULL,
   `user_type` varchar(255) DEFAULT NULL,
@@ -344,8 +353,8 @@ CREATE TABLE IF NOT EXISTS `user_info` (
 -- Dumping data for table `user_info`
 --
 
-INSERT INTO `user_info` (`id`, `user_name`, `full_name`, `password`, `status`, `user_type`, `committee_id`, `committee_code`) VALUES
-(2, 'admin', NULL, '21232f297a57a5a743894a0e4a801fc3', '1', 'administrator', '2', '12345');
+INSERT INTO `user_info` (`id`, `user_name`, `full_name`, `email_address`, `contact_no`, `password`, `status`, `user_type`, `committee_id`, `committee_code`) VALUES
+(2, 'admin', 'Hom Nath ', 'bhomnath@salyani.com.np', '9845214140', '21232f297a57a5a743894a0e4a801fc3', '1', 'administrator', '2', '12345');
 
 --
 -- Indexes for dumped tables
@@ -447,7 +456,7 @@ ALTER TABLE `bank_info`
 -- AUTO_INCREMENT for table `bank_trans_info`
 --
 ALTER TABLE `bank_trans_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `chart_class`
 --
@@ -472,12 +481,12 @@ ALTER TABLE `fiscal_year_info`
 -- AUTO_INCREMENT for table `gl_trans_comment_details`
 --
 ALTER TABLE `gl_trans_comment_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `gl_trans_info`
 --
 ALTER TABLE `gl_trans_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `ledger_master`
 --
