@@ -30,8 +30,7 @@ base_url('contents/js/function.js'); ?>"></script>
             if (!empty($flashMessage)) {
                 ?>
                 <div class="alert alert-success fade in text-center">
-                    <p
-style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo
+                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo
 $flashMessage; ?> </strong></p>
                 </div>
                 <hr>

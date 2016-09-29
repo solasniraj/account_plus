@@ -52,7 +52,7 @@
                             
                             
                             <div class="form-group">
-                                <label for="contactPerson" class="col-sm-2 control-label"><b>Password</b>
+                             <label for="contactPerson" class="col-sm-2 control-label"><b>Password</b>
                                 </label>
                                 <div class="col-sm-8">
                                     <input type="text" value="<?php echo '*********'; ?>" class="form-control1" id="contactPerson" name="contactPerson" placeholder="Enter Name">
