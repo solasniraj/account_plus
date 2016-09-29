@@ -102,7 +102,10 @@
 							<div class="log-input-left">
 								<select id="selector1" class="form-control3" name="fiscalYear">
 									<option value="">Select Fiscal Year</option>
-									<option value="2016">2016</option>
+									<?php if (!empty($fiscalYear)) { foreach($fiscalYear as $fYear){ ?>
+                                            <option value="<?php echo $fYear->fiscal_year; ?>"><?php echo $fYear->fiscal_year; ?></option>
+                                                                        <?php }} ?>
+                                    </select>
 								</select>
                                                             <?php echo form_error('fiscalYear'); ?>
 							</div>

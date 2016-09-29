@@ -14,13 +14,13 @@ class login extends CI_Controller {
     
     public function index()
     {
-        date_default_timezone_set('Asia/Kathmandu');
-$currentDate = date('Y-m-d');
+date_default_timezone_set('Asia/Kathmandu');
 $currentYear = date('Y');
 $currentMonth = date('m');
 $currentDay = date('d');
 $this->load->library("nepali_calendar");
 $currentNepaliDay = $this->nepali_calendar->AD_to_BS($currentYear,$currentMonth,$currentDay);
+$nepaliDay = $currentNepaliDay['date'];
 $nepaliMth = $currentNepaliDay['month'];
 $nepaliYr = $currentNepaliDay['year'];
 if($nepaliMth > '3'){
@@ -28,23 +28,27 @@ if($nepaliMth > '3'){
 }else{
     $fiscYr = ($nepaliYr-1).'/'.$nepaliYr; 
 }
-var_dump($fiscYr);
-die;
+$data['fiscalYear'] = $fiscYr;
 
 $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
-         $fiscalEnd = $this->dbmanager_model->get_latest_unlocked_fiscal_year_end_date();
-$startingDate = date('Y-m-d', strtotime($fiscalStart));
-$endingDate = date('Y-m-d', strtotime($fiscalEnd));
-    
+$fiscalEnd = $this->dbmanager_model->get_latest_unlocked_fiscal_year_end_date();
+$todayNep = $nepaliYr.'/'.$nepaliMth.'/'.$nepaliDay;
+
+$fscSt = new DateTime($fiscalStart);
+$fscEnd = new DateTime($fiscalEnd);
+$tday = new DateTime($todayNep);
+$fiscalYrStart = $fscSt->format('Y-m-d');
+$fiscalYrEnd = $fscEnd->format('Y-m-d');
+$dateOfToday = $tday->format('Y-m-d');
+
 if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
-  if (($currentDate > $startingDate) && ($currentDate < $endingDate))
+  if (($dateOfToday > $fiscalYrStart) && ($dateOfToday < $fiscalYrEnd))
     {
-     
       $data = $this->dbmanager_model->check_database_for_first_time();
           if ($data) {
               $this->login();
           }else{
-         $this->load->view('dashboard/login/registration');
+         $this->load->view('dashboard/login/registration', $data);
           }
     }
     else
@@ -52,7 +56,7 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
       echo "Your system date and time is not correct. Please correct system date and time first to login";  
     }
 }else{
-  $this->load->view('dashboard/login/registration');  
+  $this->load->view('dashboard/login/registration', $data);  
 }
  
     }
@@ -72,6 +76,7 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
         $address=$this->input->post('address');
         $phone=$this->input->post('phone');
         $fiscalYear=$this->input->post('fiscalYear');
+        $pieces = explode("/", $fiscalYear);
         
         $dataCommittee = Array(
             'committee_name' => $commiteName,
@@ -82,8 +87,8 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
         
         $dataFiscalYear = Array(
             'fiscal_year' => $fiscalYear,
-                'begin_date' => $fiscalYear . '/01/01',
-            'end_date' => $fiscalYear . '/12/30',
+                'begin_date' => $pieces[0] . '/04/01',
+            'end_date' => $pieces[1] . '/03/30',
                 'status' => '1');
         
         $dataUser = Array(
@@ -109,15 +114,23 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
     }
 
         public function login()
-    {
+    {    
+$data['fiscalYear'] = $this->dbmanager_model->get_fiscal_year();
+ if(!empty($data['fiscalYear'])) {          
+            
         if(isset($_GET['url'])){
         $data['link'] = $_GET['url'];
             }
-            else{
-               
+            else{              
                 $data['link'] = base_url().'dashboard';
             }
          $this->load->view('dashboard/login/login', $data);
+    }else{
+        $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong. Setup your committe first.');
+
+        return redirect('login/index');
+    }
+    
     }
 
         public function validate()
@@ -189,14 +202,6 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
 			return TRUE;
 		}
 	}
-
-
-
-
-    public function registration()
-    {
-      
-    }
     
     
 }

@@ -78,6 +78,11 @@ function summary()
 
 $(document).ready(function ()
 {
+    $('#nepaliDate').nepaliDatePicker({
+			ndpEnglishInput: 'englishDate'
+		});
+    
+    
     $('#glTrans').submit(function (e) {
 
 if (journalNumber() == false)
@@ -134,18 +139,6 @@ if (journalNumber() == false)
             });
 
 });
-
-$(function () {
-    $("#datepicker").datepicker({
-        maxDate: dateToday,
-        dateFormat: 'mm/dd/yy',
-        timeFormat: 'hh:mm tt',
-        dateonly: true
-
-    });
-});
-
-
 
 function  getAccountLedger(selectedType)
 {

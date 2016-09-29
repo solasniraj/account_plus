@@ -58,9 +58,7 @@ else {
         {
             $this->db->where('status', '1');
             $query = $this->db->get('committee_info');
-            if ($query->num_rows() == 1) {
-              $user_id=$query->row()->id;
-             
+            if ($query->num_rows() == 1) {          
               return true;
           } else {
             return FALSE;
@@ -90,7 +88,12 @@ else {
                }
         }
 
-
+        public function get_fiscal_year()
+        {
+            
+               $query= $this->db->get("fiscal_year_info");
+               return $query->result(); 
+        }
 
         
    
