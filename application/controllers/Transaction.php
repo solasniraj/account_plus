@@ -13,6 +13,20 @@
       $this->load->helper(array('form', 'url'));
       $this->load->library('pagination');
       $this->load->library('Numbertowords');
+      
+//      if(isset($_POST['submit_ad'])){
+//	       $date = $_POST['english_date'];
+//           $exp = explode('-',$date);
+//           $year = $exp[0];
+//           $month = $exp[1];
+//           $day = $exp[2];
+//           
+//           $this->load->library("nepali_calendar");
+//           $array = $this->nepali_calendar->AD_to_BS($year,$month,$day);
+//           $this->data['result'] = $array;
+//	   }
+      
+      
     }
 
     public function index()

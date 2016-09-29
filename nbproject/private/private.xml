@@ -4,10 +4,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Transaction.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/ledger/listLedgerMaster.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Setting.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/models/Ledger_model.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/models/Setting_model.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/models/Transaction_model.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/models/Bank_model.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/setting/listUsers.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/models/Donar_model.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/transaction/journalEntry.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/transaction/journalList.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Bank.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/models/Bank_model.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/setting/profile.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Ledger.php</file>
         </group>
     </open-files>
