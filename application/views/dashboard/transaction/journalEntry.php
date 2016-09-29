@@ -57,11 +57,8 @@
                                     <label class="has-error" for="journalNo" id="journal_error">This field is required.</label></td>
 
                                 <td class="text-right width25per"><b>Date</b>
-                                    <input  class=""
-                                            id="datepicker" type="text" >
-                                    
                                     <input type="text" id="nepaliDate" class="form-control nepali-calendar" name="datepicker" value="" placeholder="Day/Month/Year"/>
-                                    <input type="text" id="englishDate"/>
+                                    <input type="hidden" id="englishDate"/>
 <?php echo form_error('datepicker'); ?>
                                     <label class="has-error" for="datepicker" id="date_error">This field is required.</label></td>
 

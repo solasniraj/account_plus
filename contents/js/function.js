@@ -30,16 +30,16 @@ function journalNumber()
 
 function dateField()
 {
-    var chartId = $('#datepicker').val();
+    var chartId = $('#nepaliDate').val();
     var f = chartId.length;
     if (f < 1 || chartId == '' || chartId == null || chartId == '0') {
-        $("#datepicker").focus();
+        $("#nepaliDate").focus();
         $("label#date_error").show();
-        $("#datepicker").css("border", "1px solid red");
+        $("#nepaliDate").css("border", "1px solid red");
         return false;
     } else {
         $("label#date_error").hide();
-        $("#datepicker").css("border", "1px solid green");
+        $("#nepaliDate").css("border", "1px solid green");
         return true;
     }
 }
@@ -92,7 +92,7 @@ if (journalNumber() == false)
     } else if (dateField() == false)
     {
         e.preventDefault();
-        $("#datepicker").focus();
+        $("#nepaliDate").focus();
     } else if (comment() == false)
     {
         e.preventDefault();
