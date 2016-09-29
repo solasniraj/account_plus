@@ -129,18 +129,7 @@
 							</div>
 
 							<div class="clearfix"> </div>
-						</div>
-
-
-<!--						<div class="log-input">
-							<div class="log-input-left">
-								<input type="text"  style="margin-bottom:12px;" name="credintals" value="" placeholder="enter password" />
-								<?php //echo form_error('credintals'); ?>
-							</div>
-
-							<div class="clearfix"> </div>
-						</div>-->
-            
+						</div>            
 						
 						<div class="log-input" style="margin-bottom:10px;">
 							<div class="log-input-left">

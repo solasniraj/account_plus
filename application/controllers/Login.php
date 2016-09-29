@@ -16,29 +16,25 @@ class login extends CI_Controller {
     {
         date_default_timezone_set('Asia/Kathmandu');
 $currentDate = date('Y-m-d');
+$currentYear = date('Y');
+$currentMonth = date('m');
+$currentDay = date('d');
+$this->load->library("nepali_calendar");
+$currentNepaliDay = $this->nepali_calendar->AD_to_BS($currentYear,$currentMonth,$currentDay);
+$nepaliMth = $currentNepaliDay['month'];
+$nepaliYr = $currentNepaliDay['year'];
+if($nepaliMth > '3'){
+ $fiscYr = $nepaliYr.'/'.($nepaliYr+1); 
+}else{
+    $fiscYr = ($nepaliYr-1).'/'.$nepaliYr; 
+}
+var_dump($fiscYr);
+die;
+
 $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
          $fiscalEnd = $this->dbmanager_model->get_latest_unlocked_fiscal_year_end_date();
 $startingDate = date('Y-m-d', strtotime($fiscalStart));
 $endingDate = date('Y-m-d', strtotime($fiscalEnd));
-//   $startYMD = strtr($fiscalStart, '/', ',');
-//   $endYMD = strtr($fiscalEnd, '/', ',');
-//          
-//    $temp1   = array_map('intval', explode(',',$startYMD));
-//$stYr   = array_slice($temp1, 0, 1);
-//$stM = array_slice($temp1, 1, 1);
-//$stD = array_slice($temp1, 2, 1);
-//
-//$temp2   = array_map('intval', explode(',',$endYMD));
-//$enYr   = array_slice($temp2, 0, 1);
-//$enM = array_slice($temp2, 1, 1);
-//$enD = array_slice($temp2, 2, 1);
-//
-//        include_once 'nepali_calendar.php';
-//	$cal = new Nepali_Calendar();
-//	$fiscalYrStart = $cal->nep_to_eng($stYr[0],$stM[0],$stD[0]);
-//        $fiscalYrEnd = $cal->nep_to_eng($enYr[0],$enM[0],$enD[0]);
-// $endingDate = date('Y-m-d', strtotime($fiscalYrEnd['ymd']));    
-// $startingDate = date('Y-m-d', strtotime($fiscalYrStart['ymd']));
     
 if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
   if (($currentDate > $startingDate) && ($currentDate < $endingDate))
