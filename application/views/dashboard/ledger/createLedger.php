@@ -34,9 +34,9 @@ $('.selectOpt').bind("change", function(){
                     padding: 10px;
                     color:red;
                 }
-                .bs-example4{
+               /* .bs-example4{
                     background-color: #8c8c8c;
-                }
+                }*/
     
 
 
@@ -60,8 +60,8 @@ $('.selectOpt').bind("change", function(){
                             
                             
                             <div class="form-group">
-                    <label class="col-sm-3 control-label" for="chartAccType"><h4>Account</h4></label>
-                    <div class="col-sm-5"><select class="form-control1 selectOpt" id="chartAccType" name="chartAccType">
+                    <label class="col-sm-2 control-label" for="chartAccType"><h4>Account</h4></label>
+                    <div class="col-sm-8"><select class="form-control1 selectOpt" id="chartAccType" name="chartAccType">
                             <option value="">Select Account</option>
                             <?php if (!empty($accountCharts)) {
      
@@ -76,8 +76,8 @@ $('.selectOpt').bind("change", function(){
                 </div>
                             
                             <div class="form-group">
-                    <label class="col-sm-3 control-label" for="accLedger"><h4>Account Ledger</h4></label>
-                    <div class="col-sm-5"><select class="form-control1 selectOpt" id="accLedger" name="accLedger">
+                    <label class="col-sm-2 control-label" for="accLedger"><h4>Account Ledger</h4></label>
+                    <div class="col-sm-8"><select class="form-control1 selectOpt" id="accLedger" name="accLedger">
                             <option value="">Select Account Ledger</option>
                             <?php if (!empty($accountLedgers)) {
                                 foreach ($accountLedgers as $aLedgers) {
@@ -88,12 +88,12 @@ $('.selectOpt').bind("change", function(){
                         </select>
                      <?php echo form_error('accLedger'); ?>
                     </div>
-                    <div class="col-sm-3"><a class="btn btn-default" href="<?php echo base_url().'chartAccount/addLedger' ?>" onClick="return popup(this, 'Ledger')"><strong style="color: #00004d;">Create New</strong></a></div>
+                    <div class="col-sm-2"><a class="btn btn-default" href="<?php echo base_url().'chartAccount/addLedger' ?>" onClick="return popup(this, 'Ledger')"><strong style="color:red;">Create New</strong></a></div>
                 </div>
                             
                             <div class="form-group">
-                    <label class="col-sm-3 control-label" for="accSubLedger"><h4>Account Sub Ledger</h4></label>
-                    <div class="col-sm-5"><select class="form-control1 selectOpt" id="accSubLedger" name="accSubLedger">
+                    <label class="col-sm-2 control-label" for="accSubLedger"><h4>Account Sub Ledger</h4></label>
+                    <div class="col-sm-8"><select class="form-control1 selectOpt" id="accSubLedger" name="accSubLedger">
                             <option value="00">Select Account Sub Ledger</option>
                             <?php if (!empty($subLedgers)) {
                                 foreach ($subLedgers as $aSLedgers) {
@@ -104,12 +104,12 @@ $('.selectOpt').bind("change", function(){
                         </select>
                      <?php echo form_error('accSubLedger'); ?>
                     </div>
-                    <div class="col-sm-2"><a class="btn btn-default" href="<?php echo base_url().'chartAccount/addSubLedger' ?>" onClick="return popup(this, 'Sub Ledger')"><strong style="color: #00004d;">Create New</strong></a></div>
+                    <div class="col-sm-2"><a class="btn btn-default" href="<?php echo base_url().'chartAccount/addSubLedger' ?>" onClick="return popup(this, 'Sub Ledger')"><strong style="color: red;">Create New</strong></a></div>
                 </div>
                             
                             <div class="form-group">
-                    <label class="col-sm-3 control-label" for="donorType"><h4>Donor</h4></label>
-                    <div class="col-sm-5"><select class="form-control1 selectOpt" id="donorType" name="donorType">
+                    <label class="col-sm-2 control-label" for="donorType"><h4>Donor</h4></label>
+                    <div class="col-sm-8"><select class="form-control1 selectOpt" id="donorType" name="donorType">
                             <option value="00">Select Donor</option>
                             <?php if (!empty($donorInfo)) {
                                 foreach ($donorInfo as $dInfo) {
@@ -120,12 +120,12 @@ $('.selectOpt').bind("change", function(){
                         </select>
                      <?php echo form_error('donorType'); ?>
                     </div>
-                    <div class="col-sm-2"><a class="btn btn-default" href="<?php echo base_url().'donars/addDonar' ?>" onClick="return popup(this, 'Donor')"><strong style="color: #00004d;">Create New</strong></a></div>
+                    <div class="col-sm-2"><a class="btn btn-default" href="<?php echo base_url().'donars/addDonar' ?>" onClick="return popup(this, 'Donor')"><strong style="color: red;">Create New</strong></a></div>
                 </div>
                             
                             <div class="form-group">
-                    <label class="col-sm-3 control-label" for="ledgerType"><h4>Ledger Type</h4></label>
-                    <div class="col-sm-5"><select class="form-control1 selectOpt" id="ledgerType" name="ledgerType">
+                    <label class="col-sm-2 control-label" for="ledgerType"><h4>Ledger Type</h4></label>
+                    <div class="col-sm-8"><select class="form-control1 selectOpt" id="ledgerType" name="ledgerType">
                             <option value="00">Select Ledger Type</option>
                             <option value="01">Cash</option>
                             <option value="02">Internal Cash</option>
@@ -138,16 +138,16 @@ $('.selectOpt').bind("change", function(){
                                                      
                             
                             <div class="form-group">
-                                <label for="codeNo" class="col-sm-3 control-label"><h4>Account Code</h4></label>
-                                <div class="col-sm-5">
+                                <label for="codeNo" class="col-sm-2 control-label"><h4>Account Code</h4></label>
+                                <div class="col-sm-8">
                                     <input type="text" value="<?php echo set_value('codeNo'); ?>" class="form-control1" id="codeNo" name="codeNo" placeholder="" readonly="true">
                                     <?php echo form_error('codeNo'); ?>
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="accDescription" class="col-sm-3 control-label"><h4>Account Description</h4></label>
-                                <div class="col-sm-5">
+                                <label for="accDescription" class="col-sm-2 control-label"><h4>Account Description</h4></label>
+                                <div class="col-sm-8">
                                     <input type="text" value="<?php echo set_value('accDescription'); ?>" class="form-control1" id="accDescription" name="accDescription" placeholder="Enter Account Description">
                                     <?php echo form_error('accDescription'); ?>
                                 </div>
@@ -156,7 +156,7 @@ $('.selectOpt').bind("change", function(){
                             <br>
                             
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-success btn-lg" style=" margin-left:435px; margin-top: -52px; width:100px;">Submit</button>
+                                <button class="btn btn-success btn-lg" style=" margin-left:628px; margin-top: -39px; width:100px;">Submit</button>
                             </div>
 
                        </div>
