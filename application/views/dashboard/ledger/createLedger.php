@@ -156,7 +156,7 @@ $('.selectOpt').bind("change", function(){
                             <br>
                             
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-success btn-lg" style=" margin-left:439px; margin-top: -16px; width:100px;">Submit</button>
+                                <button class="btn btn-success btn-lg" style=" margin-left:435px; margin-top: -52px; width:100px;">Submit</button>
                             </div>
 
                        </div>
