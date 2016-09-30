@@ -1,5 +1,6 @@
-<link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
 <script type="text/javascript">
 var table; 
@@ -45,16 +46,16 @@ $(document).ready(function() {
 
                 <div class="table-responsive">
                     
-                    <table id="table" class="table table-bordered" cellspacing="0" width="99%">
+                    <table id="table" class="table table-striped table-bordered table-responsive table-condensed" width="100%" cellspacing="0">
             <thead>
                 <tr>
                     <th>S.No.</th>
                     <th>Bhoucher No</th>
-                            <th>Discription</th>
-                            <th>Date</th>
-                            <th>Amount(Rs)</th>
-                           <th>Status</th>
-                            <th>Action</th>
+                    <th>Discription</th>
+                    <th>Date</th>
+                    <th>Amount(Rs)</th>
+                    <th>Status</th>
+                    <th>Action</th>
                            
                 </tr>
             </thead>
