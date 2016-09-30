@@ -160,7 +160,7 @@ $query = $this->db->get();
      		
     }
     
-    public function add_comment_of_transaction($journalNo, $comment, $summary)
+    public function add_comment_of_transaction($journalNo, $comment)
     {
         $data = Array(
             'trans_no' => $journalNo,

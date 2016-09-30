@@ -35,7 +35,7 @@
                                 $endingBalance = $blist->ending_reconcile_balance;
                                 $transTotal = $this->bank_model->get_total_bank_balance_of_related_bank($bankId);
                                 if (!empty($transTotal)) {
-                                    $bankTotal = $endingBalance - $transTotal;
+                                    $bankTotal = $endingBalance + $transTotal;
                                 } else {
                                     $bankTotal = $endingBalance;
                                 }

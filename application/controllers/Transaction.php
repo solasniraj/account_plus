@@ -14,18 +14,6 @@
       $this->load->library('pagination');
       $this->load->library('Numbertowords');
       
-//      if(isset($_POST['submit_ad'])){
-//	       $date = $_POST['english_date'];
-//           $exp = explode('-',$date);
-//           $year = $exp[0];
-//           $month = $exp[1];
-//           $day = $exp[2];
-//           
-//           $this->load->library("nepali_calendar");
-//           $array = $this->nepali_calendar->AD_to_BS($year,$month,$day);
-//           $this->data['result'] = $array;
-//	   }
-      
       
     }
 
@@ -89,19 +77,19 @@ $list = $this->transaction_model->get_datatables();
                         . "</select>";
                 
             }elseif($stat=='2'){
-                $row[] = "<select><option value='1' >Publish</option>"
+                $row[] = "<select onChange='showState(this);'><option value='1' >Publish</option>"
                         . "<option value='2' selected>Draft</option>"
                         . "<option value='3'>Void</option>"
                         . "</select>";
                 
             }elseif($stat=='3'){
-                $row[] = "<select><option value='1' >Publish</option>"
+                $row[] = "<select onChange='showState(this);'><option value='1' >Publish</option>"
                         . "<option value='2' >Draft</option>"
                         . "<option value='3' selected>Void</option>"
                         . "</select>";
                 
             }else{
-                $row[] = "<select><option>Unknown</option></select>";
+                $row[] = "<select class='departments' name='country'><option>Unknown</option></select>";
                 }
                 $row[] = "<a href='#'>Preview</a> / <a href='#'>Edit</a>";
             
@@ -117,6 +105,11 @@ $list = $this->transaction_model->get_datatables();
         //output to json format
         echo json_encode($output);
 
+  }
+  
+  public function changeGlStat()
+  {
+      
   }
 
     public function getAssociatedLedger()

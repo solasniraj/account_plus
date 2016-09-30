@@ -63,8 +63,6 @@
             'bank_address' => NULL,
                 'bank_account_number' => NULL,
                 'bank_phone_no' => NULL,
-                'committee_id' => NULL,
-                'user_id' => NULL,
                 'status' => '1');
         $this->db->insert('bank_info', $data);
         $insert_id = $this->db->insert_id();

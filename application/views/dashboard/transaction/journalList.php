@@ -26,6 +26,63 @@ $(document).ready(function() {
         ], 
     }); 
 });
+
+function showState(sel) {
+	var select_id = sel.options[sel.selectedIndex].value;  
+	if (select_id.length > 0 ) { 
+ 
+	 $.ajax({
+			type: "POST",
+			 url: baseUrl + "transaction/changeGlStat",
+			data: {select: select_id},
+			cache: false,
+			success: function(msg) {    
+                            alert(msg);
+//				var $el = $("#name");
+//                    $el.empty(); // remove old options
+//                    $el.append($("<option></option>")
+//                            .attr("value", '').text('Please Select'));
+//                    $.each(json, function(value, key) {
+//                        $el.append($("<option></option>")
+//                                .attr("value", value).text(key));
+			}
+		});
+	} 
+}
+
+$(document).ready(function ()
+{
+    
+    $(document).on("change", '#department', function(e) {
+            var department = $(this).val();
+            
+
+            $.ajax({
+                type: "POST",
+                data: {department: department},
+                url: 'admin/users/get_name_list.php',
+                dataType: 'json',
+                success: function(json) {
+
+                    var $el = $("#name");
+                    $el.empty(); // remove old options
+                    $el.append($("<option></option>")
+                            .attr("value", '').text('Please Select'));
+                    $.each(json, function(value, key) {
+                        $el.append($("<option></option>")
+                                .attr("value", value).text(key));
+                    });														
+	                
+
+                    
+                    
+                }
+            });
+
+        });
+        
+    });
+
 </script>
 
 <div id="page-wrapper">
