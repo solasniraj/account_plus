@@ -70,6 +70,8 @@ $list = $this->transaction_model->get_datatables();
             $row[] = $customers->tran_date;
             $row[] = $sum['0']->sum/'2';
             $stat = $customers->gl_trans_status;
+            $value = str_replace('/', '&#47;', $customers->journal_voucher_no);
+$NewNo = urlencode($value);
             if($stat=='1'){
                 $row[] = "<select><option value='1' selected>Publish</option>"
                         . "<option value='2'>Draft</option>"
@@ -91,7 +93,7 @@ $list = $this->transaction_model->get_datatables();
             }else{
                 $row[] = "<select class='departments' name='country'><option>Unknown</option></select>";
                 }
-                $row[] = "<a href='#'>Preview</a> / <a href='#'>Edit</a>";
+                $row[] = "<a href='".base_url()."transaction/journalPreview/".$NewNo."'>Preview</a> / <a href='#'>Edit</a>";
             
             $data[] = $row;
         }
@@ -497,6 +499,8 @@ $user_id = $this->session->userdata('user_id');
   {
       $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
+       $glNo = urldecode($id);
+        $glNos = str_replace('&#47;', '/', $glNo);
         
       $user_id = $this->session->userdata('user_id');
              $username = $this->session->userdata('username');
@@ -505,7 +509,7 @@ $user_id = $this->session->userdata('user_id');
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
            
-    $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($id);
+    $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);
     $this->load->view('printPreview/preview/templates/header');
      $this->load->view('printPreview/preview/transaction/singleJournalEntry', $data);
      $this->load->view('printPreview/preview/templates/footer');
@@ -690,7 +694,10 @@ $user_id = $this->session->userdata('user_id');
     case 'Preview': 
         $this->transaction_model->update_transaction_status_to_pending($journalNo);
         $this->session->set_flashdata('message', 'Transaction added successfully with status pending.');
-       redirect('transaction/journalPreview/'.$journalNo);           
+      
+$value = str_replace('/', '&#47;', $journalNo);
+$NewNo = urlencode($value);
+        redirect('transaction/journalPreview/'.$NewNo);           
         break;
 
 }   

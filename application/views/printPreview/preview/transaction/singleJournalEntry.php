@@ -3,7 +3,6 @@ if (!empty($singleGLDetails)) {
     foreach ($singleGLDetails as $glDetails) {
         $gLDate = $glDetails->tran_date;
         $voucherNo = $glDetails->journal_voucher_no;
-        $summary = $glDetails->summary_comment;
         $details = $glDetails->detailed_comment;
     }
     ?>               
@@ -13,14 +12,23 @@ if (!empty($singleGLDetails)) {
                 <?php if (!empty($committeeInfo)) {
                     foreach ($committeeInfo as $cLists) {
                         ?>
-                        <div class="top text-center" style="margin-top:22px;margin-bottom:10px;">
-                            <img src="http://localhost/account_plus/contents/images/watersplash.png" img-align="top" alt="images" style= "width:20px; height:20px">
+                        <div class="top text-center" style="margin-top:2px;margin-bottom:5px;">
+                            <img src="<?php echo base_url().'contents/uploads/images/'.$cLists->logo; ?>" img-align="top" alt="images" style= "width:100px;">
                         </div>
+                <?php }
+    }
+    ?>
                     </td>
                     <td class="text-center">
+                        <?php if (!empty($committeeInfo)) {
+                    foreach ($committeeInfo as $cLists) {
+                        ?>
                         <h2><?php echo $cLists->committee_name; ?></h2>
                         <h4><?php echo $cLists->address; ?></h4>
                         <p><strong>Ph : <?php echo $cLists->phone; ?></strong></p>
+                    <?php }
+    }
+    ?>
                     </td>
 
 
@@ -33,9 +41,7 @@ if (!empty($singleGLDetails)) {
                 </tr>
 
             </table>                
-        <?php }
-    }
-    ?>
+        
     <br/><br/>
     <div class="text-right pull-right">
         <a href="<?php echo base_url() . 'preview/jounalView/' . $voucherNo; ?>"><button id="btnDownload" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
@@ -113,7 +119,7 @@ if (!empty($singleGLDetails)) {
     </table>
 <br/><br/>
 <div style="border: 1px solid #ddd; width: 100%;padding: 15px;">
-<p><strong>Narration : </strong><?php echo $summary ?> </p>
+<p><strong>Narration : </strong><?php echo $details ?> </p>
 </div>
 
 <br/><br/>
