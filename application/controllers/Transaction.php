@@ -103,6 +103,7 @@ $list = $this->transaction_model->get_datatables();
             }else{
                 $row[] = "<select><option>Unknown</option></select>";
                 }
+                $row[] = "<a href='#'>Preview</a> / <a href='#'>Edit</a>";
             
             $data[] = $row;
         }
@@ -623,7 +624,8 @@ $user_id = $this->session->userdata('user_id');
      else 
      {
          $ledgerName = $this->input->post('ledgerName');     
-         $datepicker = date('Y-m-d', strtotime($this->input->post('datepicker')));       
+         $glDate = new DateTime($this->input->post('datepicker'));   
+         $datepicker = $glDate->format('Y-m-d');
          $comment = $this->input->post('comment');     
          $summary = $this->input->post('summary');     
          $journalNo = $this->input->post('journalNo');              
@@ -631,7 +633,7 @@ $user_id = $this->session->userdata('user_id');
        $drCr = json_decode($myData);
       
        foreach ($drCr as $transData){           
-           $indexNumber = $transData->indexNumber;
+           
            $chartCode = $transData->chartCode;
            $lmcode = $transData->lMCode;
            //$accountHd = $transData->programName;

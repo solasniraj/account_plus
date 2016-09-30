@@ -132,7 +132,7 @@ foreach ($file_array as $query)
     }
     
     
-    public function companyInfo()
+    public function committeeInfo()
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
@@ -154,7 +154,7 @@ foreach ($file_array as $query)
         }
     }
     
-     public function companyInfoUpdate() {
+     public function committeeInfoUpdate() {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
             $user_id = $this->session->userdata('user_id');
@@ -178,39 +178,42 @@ foreach ($file_array as $query)
           $this->load->view('dashboard/templates/topHead');
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
-            $this->form_validation->set_rules('header_title', 'Title', 'required|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('committeeName', 'Committee Name', 'required|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('committeeAddress', 'Address', 'required|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('contactNumber', 'Contact Number', 'required|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('committeeCode', 'Committee Code', 'required|callback_xss_clean|max_length[200]');
 
             if (($this->form_validation->run() == TRUE)) {
-                if ($_FILES && $_FILES['file']['name'] !== "") {
-                    if (!$this->upload->do_upload('file')) {
+                if ($_FILES && $_FILES['file_name']['name'] !== "") {
+                    if (!$this->upload->do_upload('file_name')) {
                         $data['error'] =  $this->upload->display_errors('');
                       $this->load->view('dashboard/setting/committeeUpdate', $data);
                     } else {
-                $headerTitle = $this->input->post('header_title');
-                
                 $this->load->helper('inflector');
-                
+                $committeeName = $this->input->post('committeeName');
+                $committeeAddress = $this->input->post('committeeAddress');
+                $emailId = $this->input->post('emailId');
+                $contactNumber = $this->input->post('contactNumber');
                 $data = array('upload_data' => $this->upload->data());
-                $headerLogo = $data['upload_data']['file_name'];
-                
-                $config['file_name'] = $headerLogo;
-                
-                $headerDescription = $this->input->post('header_description');
-                $headerBgColor = null;
-                $this->dbsetting->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
-                $this->session->set_flashdata('message', 'Header setting done sucessfully');
-                redirect('setting/companyInfo');
+                $committeeLogo = $data['upload_data']['file_name']; 
+                $config['file_name'] = $committeeLogo;
+               
+                $this->setting_model->update_committee_info($committee_id, $committee_code, $committeeName, $committeeAddress, $emailId, $contactNumber, $committeeLogo);
+                $this->session->set_flashdata('message', 'Committee Info updated sucessfully');            
+                redirect('setting/committeeInfo');
                     }
                 } else {
-                     $headerTitle = $this->input->post('header_title');
-                $headerLogo = $this->input->post('existingImg');
-                $headerDescription = $this->input->post('header_description');
-                $headerBgColor = null;
-                $this->dbsetting->update_design_header_setup($headerTitle, $headerLogo, $headerDescription, $headerBgColor);
-                $this->session->set_flashdata('message', 'Header setting done sucessfully');
-                redirect('setting/companyInfo');
+                $committeeName = $this->input->post('committeeName');
+                $committeeAddress = $this->input->post('committeeAddress');
+                $emailId = $this->input->post('emailId');
+                $contactNumber = $this->input->post('contactNumber');
+                $committeeLogo = $this->input->post('existingImg');                
+               $this->setting_model->update_committee_info($committee_id, $committee_code, $committeeName, $committeeAddress, $emailId, $contactNumber, $committeeLogo);
+                $this->session->set_flashdata('message', 'Committee Info updated sucessfully');               
+                redirect('setting/committeeInfo');
                 }
             } else {
+                 die('here in validation error');
                 $this->load->view('dashboard/setting/committeeUpdate', $data);
             }
 

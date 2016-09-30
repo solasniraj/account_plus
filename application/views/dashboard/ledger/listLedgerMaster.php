@@ -204,35 +204,8 @@ ul.collection li{
                         <tbody>
             </tbody>
                     </table>
-                    <table id="table" class="table table-bordered table-fhr">
-                        <thead>
-                            <tr>
-                                <th>Ledger Code</th>
-                                <th>Ledger Account Heading</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-            </tbody>
-                        <tbody id="testSearch">
-                            <?php
-                            if (!empty($ledgerDetails)) {
-                                foreach ($ledgerDetails as $lAList) {
-                                    ?>		
-                                    <tr>
-
-
-                                        <td><?php echo $lAList->ledger_master_code; ?></td>
-                                        <td><?php echo $lAList->ledger_master_name; ?></td>
-
-                                        <td><a href="#">Edit</a> / <a href="#">Delete</a></td>
-                                    </tr>
-                                <?php }
-                            }
-                            ?>
-
-                        </tbody>
-                    </table>
+                  
+                  
 
                 </div>
             </div>

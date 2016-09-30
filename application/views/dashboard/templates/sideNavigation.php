@@ -58,7 +58,7 @@
                 <ul class="sub-menu-list">
                     <li><a href="<?php echo base_url() . 'setting/userInfo'; ?>">Update User Info</a></li>
                      <li><a href="<?php echo base_url() . 'setting/yearConfiguration'; ?>">Year Configuration</a></li>
-                    <li><a href="<?php echo base_url() . 'setting/companyInfo' ?>">Update Committee Info</a></li>
+                    <li><a href="<?php echo base_url() . 'setting/committeeInfo' ?>">Update Committee Info</a></li>
                     <li><a href="<?php echo base_url() . 'setting/index'; ?>">Data Backup</a></li>
                     <li><a href="<?php echo base_url() . 'setting/dataRestore' ?>">Data Restore</a></li>
                 </ul>
