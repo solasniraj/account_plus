@@ -626,8 +626,7 @@ $user_id = $this->session->userdata('user_id');
          $ledgerName = $this->input->post('ledgerName');     
          $glDate = new DateTime($this->input->post('datepicker'));   
          $datepicker = $glDate->format('Y-m-d');
-         $comment = $this->input->post('comment');     
-         $summary = $this->input->post('summary');     
+         $comment = $this->input->post('comment');      
          $journalNo = $this->input->post('journalNo');              
         $myData = $_POST['mydata'];
        $drCr = json_decode($myData);
@@ -686,7 +685,7 @@ $user_id = $this->session->userdata('user_id');
                echo 'neither debit nor credit';
            }
        }
-       $this->transaction_model->add_comment_of_transaction($journalNo, $comment, $summary);
+       $this->transaction_model->add_comment_of_transaction($journalNo, $comment);
       //switch cases for preview and submit
            switch($_REQUEST['journalEntry']) {
        case 'Submit':

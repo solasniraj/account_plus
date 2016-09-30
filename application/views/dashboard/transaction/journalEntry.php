@@ -33,22 +33,12 @@
             if (!empty($flashMessage)) {
                 ?>
                 <div class="alert alert-success fade in text-center">
-<<<<<<< HEAD
-                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo
-$flashMessage; ?> </strong></p>
-=======
-                    <p
-                        style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage;
-                ?> </strong></p>
->>>>>>> origin/master
+                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
                 </div>
                 <hr>
             <?php }
             ?>
-            <?php
-            echo
-            form_open_multipart('transaction/glTransaction', array('id' =>'glTrans', 'class' => 'form-horizontal', 'novalidate' =>'novalidate')); ?>
-
+            <?php echo form_open_multipart('transaction/glTransaction', array('id' =>'glTrans', 'class' => 'form-horizontal', 'novalidate' =>'novalidate')); ?>
             <div class="form-group" >
                 <div class="row">
                     <div class="col-md-12 col-lg-12 sol-sm-12 ">
@@ -237,36 +227,19 @@ closed ************************************** -->
                         </table>
                     </div>
                     <br>
-                    <br>
-                    <br>
+                    
 
                     <!--   working on object is closed      -->
 
                     <div class="row">
 
-                        <div class="col-md-5 col-md-offset-1" >
+                        <div class="col-md-10 col-md-offset-1" >
                             <div class="form-group">
-                                <label for="comment"><b>Detailed
-                                        Comment</b></label>
-                                <textarea class="form-control"
-                                          rows="5" style="resize:none" id="comment" name="comment"></textarea>
-                                <label class="has-error" for="comment"
-                                       id="comment_error">This field is required.</label>
+                                <label for="comment"><b>Detailed Comment (Narration)</b></label>
+                                <textarea class="form-control" rows="5" style="resize:none" id="comment" name="comment"></textarea>
+                                <label class="has-error" for="comment" id="comment_error">This field is required.</label>
                             </div>
                         </div>
-
-                        <div class="col-md-5 col-md-offset-1" >
-                            <div class="form-group">
-                                <label for="summary"><b>Summary
-                                        Comment</b></label>
-                                <textarea class="form-control"
-                                          rows="5" style="resize:none" id="summary"  name="summary"></textarea>
-                                <label class="has-error" for="summary"
-                                       id="summary_error">This field is required.</label>
-                            </div>
-                        </div>
-
-
 
                     </div>
 
@@ -299,3 +272,6 @@ closed ************************************** -->
                 #totalDebit, #totalCredit, #debitGreater,
                 #creditGreater{color: red;}
             </style>
+        </div>
+         </div>
+     </div>

@@ -164,8 +164,7 @@ $query = $this->db->get();
     {
         $data = Array(
             'trans_no' => $journalNo,
-                'detailed_comment' => $comment,
-                'summary_comment' => $summary
+                'detailed_comment' => $comment
                 );
        return  $this->db->insert('gl_trans_comment_details', $data);
     }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 19, 2016 at 01:30 अपराह्न
+-- Generation Time: Sep 30, 2016 at 09:28 पूर्वाह्न
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -31,7 +31,44 @@ CREATE TABLE IF NOT EXISTS `account_ledger_info` (
   `ledger_code` varchar(25) DEFAULT NULL,
   `ledger_name` varchar(255) NOT NULL,
   `account_ledger_status` varchar(25) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `account_ledger_info`
+--
+
+INSERT INTO `account_ledger_info` (`id`, `ledger_code`, `ledger_name`, `account_ledger_status`) VALUES
+(1, '01', 'Bank Account', '1'),
+(2, '02', 'Bank Account', '1'),
+(3, '03', 'Bank Account', '1'),
+(4, '04', 'Bank Account', '1'),
+(5, '05', 'Bank Account', '1'),
+(6, '06', 'Bank Account', '1'),
+(7, '07', 'Bank Account', '1'),
+(8, '08', 'Bank Account', '1'),
+(9, '09', 'Bank Account', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bank_info`
+--
+
+CREATE TABLE IF NOT EXISTS `bank_info` (
+  `id` int(11) NOT NULL,
+  `account_code` varchar(20) DEFAULT NULL,
+  `subledger_code` varchar(25) DEFAULT NULL,
+  `subledger_id` varchar(25) DEFAULT NULL,
+  `account_type` varchar(50) DEFAULT NULL,
+  `bank_account_name` varchar(100) DEFAULT NULL,
+  `bank_name` varchar(255) DEFAULT NULL,
+  `bank_address` varchar(255) DEFAULT NULL,
+  `bank_account_number` varchar(50) DEFAULT NULL,
+  `bank_phone_no` varchar(20) DEFAULT NULL,
+  `last_reconciled_date` timestamp NULL DEFAULT NULL,
+  `ending_reconcile_balance` double DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -41,19 +78,16 @@ CREATE TABLE IF NOT EXISTS `account_ledger_info` (
 
 CREATE TABLE IF NOT EXISTS `bank_trans_info` (
   `id` int(11) NOT NULL,
-  `type` smallint(6) DEFAULT NULL,
-  `trans_no` int(11) DEFAULT NULL,
-  `bank_act` varchar(15) NOT NULL DEFAULT '',
-  `ref` varchar(40) DEFAULT NULL,
-  `trans_date` date NOT NULL DEFAULT '0000-00-00',
-  `amount` double DEFAULT NULL,
-  `dimension_id` int(11) NOT NULL DEFAULT '0',
-  `dimension2_id` int(11) NOT NULL DEFAULT '0',
-  `person_type_id` int(11) NOT NULL DEFAULT '0',
-  `person_id` tinyblob,
-  `reconciled` date DEFAULT NULL,
-  `bank_id` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `type` varchar(50) DEFAULT NULL,
+  `trans_no` varchar(255) DEFAULT NULL,
+  `trans_date` varchar(255) DEFAULT NULL,
+  `ledger_master_code` varchar(50) DEFAULT NULL,
+  `memo` text,
+  `amount` varchar(50) DEFAULT NULL,
+  `reconciled` varchar(255) DEFAULT NULL,
+  `bank_id` varchar(50) DEFAULT NULL,
+  `status` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -65,19 +99,18 @@ CREATE TABLE IF NOT EXISTS `chart_class` (
   `id` int(11) NOT NULL,
   `chart_code` varchar(255) DEFAULT NULL,
   `chart_class_name` varchar(255) DEFAULT NULL,
-  `chart_status` varchar(255) DEFAULT NULL,
-  `chart_class_type` varchar(255) DEFAULT NULL
+  `chart_status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `chart_class`
 --
 
-INSERT INTO `chart_class` (`id`, `chart_code`, `chart_class_name`, `chart_status`, `chart_class_type`) VALUES
-(1, '01', 'Assets', 'Active', NULL),
-(2, '02', 'Liabilities', 'Active', NULL),
-(3, '03', 'Income', 'Active', NULL),
-(4, '04', 'Expenses', 'Active', NULL);
+INSERT INTO `chart_class` (`id`, `chart_code`, `chart_class_name`, `chart_status`) VALUES
+(1, '01', 'Assets', '1'),
+(2, '02', 'Liabilities', '1'),
+(3, '03', 'Income', '1'),
+(4, '04', 'Expenses', '1');
 
 -- --------------------------------------------------------
 
@@ -91,8 +124,10 @@ CREATE TABLE IF NOT EXISTS `committee_info` (
   `address` text,
   `phone` varchar(255) DEFAULT NULL,
   `code` varchar(255) DEFAULT NULL,
+  `email_address` varchar(255) DEFAULT NULL,
+  `logo` varchar(1000) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -110,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `donar_info` (
   `contact_person` varchar(100) DEFAULT NULL,
   `contact_person_cell_no` varchar(50) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -126,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `fiscal_year_info` (
   `committee_code` varchar(255) DEFAULT NULL,
   `committee_id` varchar(25) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -137,9 +172,8 @@ CREATE TABLE IF NOT EXISTS `fiscal_year_info` (
 CREATE TABLE IF NOT EXISTS `gl_trans_comment_details` (
   `id` int(11) NOT NULL,
   `trans_no` varchar(255) DEFAULT NULL,
-  `detailed_comment` text,
-  `summary_comment` text
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `detailed_comment` text
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -162,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `gl_trans_info` (
   `cheque_no` varchar(255) DEFAULT NULL,
   `trans_type` varchar(25) DEFAULT NULL,
   `gl_trans_status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -180,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `ledger_master` (
   `donor_code` varchar(25) NOT NULL,
   `ledger_type_code` varchar(25) NOT NULL,
   `status` varchar(25) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -216,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `subledger_info` (
   `subledger_name` varchar(255) DEFAULT NULL,
   `subledger_code` varchar(255) DEFAULT NULL,
   `subledger_status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -227,12 +261,15 @@ CREATE TABLE IF NOT EXISTS `subledger_info` (
 CREATE TABLE IF NOT EXISTS `user_info` (
   `id` int(11) NOT NULL,
   `user_name` varchar(255) NOT NULL,
+  `full_name` varchar(100) DEFAULT NULL,
+  `email_address` varchar(255) DEFAULT NULL,
+  `contact_no` varchar(50) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `status` varchar(255) DEFAULT NULL,
   `user_type` varchar(255) DEFAULT NULL,
   `committee_id` varchar(255) DEFAULT NULL,
   `committee_code` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -242,6 +279,12 @@ CREATE TABLE IF NOT EXISTS `user_info` (
 -- Indexes for table `account_ledger_info`
 --
 ALTER TABLE `account_ledger_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bank_info`
+--
+ALTER TABLE `bank_info`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -318,12 +361,17 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `account_ledger_info`
 --
 ALTER TABLE `account_ledger_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+--
+-- AUTO_INCREMENT for table `bank_info`
+--
+ALTER TABLE `bank_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `bank_trans_info`
 --
 ALTER TABLE `bank_trans_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `chart_class`
 --
@@ -333,32 +381,32 @@ ALTER TABLE `chart_class`
 -- AUTO_INCREMENT for table `committee_info`
 --
 ALTER TABLE `committee_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `donar_info`
 --
 ALTER TABLE `donar_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `fiscal_year_info`
 --
 ALTER TABLE `fiscal_year_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `gl_trans_comment_details`
 --
 ALTER TABLE `gl_trans_comment_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `gl_trans_info`
 --
 ALTER TABLE `gl_trans_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `ledger_master`
 --
 ALTER TABLE `ledger_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `ledger_type_info`
 --
@@ -368,12 +416,12 @@ ALTER TABLE `ledger_type_info`
 -- AUTO_INCREMENT for table `subledger_info`
 --
 ALTER TABLE `subledger_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

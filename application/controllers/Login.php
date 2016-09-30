@@ -63,9 +63,9 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
     
     public function addNewCommittee()
     {
-         $this->form_validation->set_rules('commiteName', 'Name of Committee', 'trim|required|callback_xss_clean');
-        $this->form_validation->set_rules('address', 'Address', 'trim|required|callback_xss_clean');
-        $this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|callback_xss_clean');
+        $this->form_validation->set_rules('commiteName', 'Name of Committee', 'trim|regex_match[/^[a-z,0-9,A-Z_\-., ]{2,200}$/]|required|callback_xss_clean');
+        $this->form_validation->set_rules('address', 'Address', 'trim|regex_match[/^[a-z,0-9,A-Z_\-., ]{2,200}$/]|required|callback_xss_clean');
+        $this->form_validation->set_rules('phone', 'Phone Number', 'trim|regex_match[/^[0-9\+-]{6,20}$/]|required|callback_xss_clean');
         $this->form_validation->set_rules('fiscalYear', 'Fiscal Year', 'trim|required|callback_xss_clean');
         $this->form_validation->set_error_delimiters('<div class="form_errors">', '</div>');
         if ($this->form_validation->run() == FALSE) {

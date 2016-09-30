@@ -60,21 +60,6 @@ function comment()
     }
 }
 
-function summary()
-{
-    var chartId = $('#summary').val();
-    var f = chartId.length;
-    if (f < 1 || chartId == '' || chartId == null || chartId == '0') {
-        $("#summary").focus();
-        $("label#summary_error").show();
-        $("#summary").css("border", "1px solid red");
-        return false;
-    } else {
-        $("label#summary_error").hide();
-        $("#summary").css("border", "1px solid green");
-        return true;
-    }
-}
 
 $(document).ready(function ()
 {
@@ -97,11 +82,7 @@ if (journalNumber() == false)
     {
         e.preventDefault();
         $("#comment").focus();
-    } else if (summary() == false)
-    {
-        e.preventDefault();
-        $("#summary").focus();
-    }else if(journalNumber() == true && dateField() == true && comment() == true && summary() == true)
+    } else if(journalNumber() == true && dateField() == true && comment() == true)
        {   
            var JSONObject = JSON.stringify(allInsertItemsinVouture);
             var input = $("<input>")
