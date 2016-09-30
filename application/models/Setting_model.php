@@ -35,6 +35,19 @@
         $this->db->where('id', $user_id);
         $this->db->update('user_info', $data);
         }
+        
+        public function update_committee_info($committee_id, $committee_code, $committeeName, $committeeAddress, $emailId, $contactNumber, $committeeLogo)
+        {
+            $data = array(
+            'committee_name' => $committeeName,
+            'address' => $committeeAddress,
+            'phone' => $contactNumber,
+            'email_address' => $emailId,
+            'logo' => $committeeLogo);
+        $this->db->where('id', $committee_id);
+        $this->db->where('code', $committee_code);
+        $this->db->update('committee_info', $data);
+        }
    
 
 

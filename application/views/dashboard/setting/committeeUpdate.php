@@ -14,7 +14,7 @@
      foreach ($committee as $comData){ ?>
                      <div class="bs-example4" data-example-id="simple-responsive-table">
                         <div class="tab-pane active" id="horizontal-form">
-                            <?php echo form_open_multipart('setting/companyInfoUpdate', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
+                            <?php echo form_open_multipart('setting/committeeInfoUpdate', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
                             
                             
                             <div class="form-group">
@@ -58,12 +58,24 @@
                                     <?php echo form_error('committeeCode'); ?>
                                 </div>
                             </div>
+                            <?php if(!empty($comData->logo)){ ?>
+  <div class="form-group">
+  <label for="committeeCode" class="col-sm-1 control-label"><b>Existing Logo</b></label>
+  
+  <div class="col-sm-10">
+      <div style="width: 125px; height: 125px;">
+      <img src="<?php echo base_url().'contents/uploads/images/'.$comData->logo; ?>" style="width: 125px; height: 125px;">
+  </div>
+     </div>  
+       </div>      
+ <?php } ?>
                             
                             <div class="form-group">
                                 <label for="committeeLogo" class="col-sm-1 control-label"><b>Committee Logo</b></label>
                                 <div class="col-sm-10">
-                                    <input type="file" class="form-control1" id="file" name="file" >
+                                    <input type="file" class="form-control1" name="file_name" id="file" accept="image/*" >
                                     <?php echo form_error('committeeLogo'); ?>
+                                    <input type="hidden" name="existingImg" value="<?php echo $comData->logo; ?>">
                                 </div>
                             </div>
                             
