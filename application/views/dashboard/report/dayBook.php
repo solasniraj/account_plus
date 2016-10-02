@@ -1,6 +1,6 @@
 <div id="page-wrapper">
     <div class="graphs">
-        <h3 class="blank1">Journal Entries</h3>
+        <h3 class="blank1">Day Book </h3><p><?php echo $day; ?></p>
         <div class="xs tabls">
             <?php
             $flashMessage = $this->session->flashdata('flashMessage');
@@ -20,9 +20,10 @@
             <thead>
                 <tr>
                     
-                    <th style="width: 15%;">Date</th>
+                   
                     <th style="width: 20%;">Journal No</th>
-                    <th style="width: 20%;">Memo</th>
+                    <th style="width: 15%;">Ledger Code</th>
+                    <th style="width: 20%;">A/C Particulars</th>
                     <th style="width: 15%;">Debit (Rs.)</th>
                     <th style="width: 15%;">Credit (Rs.)</th>
                     <th style="width: 15%;">Cheque No.</th>
@@ -42,21 +43,15 @@
                         ?>
           
                 <tr>
-                     <td style="width: 15%;"><?php echo $glDets->tran_date; ?></td>
+                     
                     <td style="width: 20%;"><?php echo $lEntries->journal_voucher_no; ?></td>
-                    <td style="width: 20%;"><?php echo $glDets->memo; ?></td>
+                    <td style="width: 15%;"><?php echo $glDets->ledger_master_code; ?></td>
+                    <td style="width: 20%;"><?php echo $glDets->ledger_master_description; ?></td>
                     <td style="width: 15%;"><?php if($glDets->trans_type=='dr'){echo abs($glDets->amount);} ?></td>
                     <td style="width: 15%;"><?php if($glDets->trans_type=='cr'){echo abs($glDets->amount);} ?></td>
                     <td style="width: 15%;"><?php echo $glDets->cheque_no; ?></td>
                 </tr> 
- <?php $sum += abs($glDets->amount); } ?>
-                <tr>
-                    <td>Amount In words: </td>
-                    <td colspan="5"><?php $words = $this->numbertowords->convert_number($sum);  echo $words.' Rupees only.';
-                ?></td>
-                </tr>
-                <tr><td>Narration : </td>
-                    <td colspan="5"><?php echo $lEntries->detailed_comment; ?></td></tr>
+ <?php $sum += abs($glDets->amount); } ?>                
             </table>                                  
                        <?php  } ?> 
                 </tr> 
