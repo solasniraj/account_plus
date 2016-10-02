@@ -141,13 +141,14 @@ $query = $this->db->get();
  return $query->result();   
     }
 
-    public function add_gl_transaction($journalNo, $datepicker, $englishDate, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $Amount, $chequeNo, $type)
+    public function add_gl_transaction($journalNo, $datepicker, $englishDate, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $Amount, $chequeNo, $type)
     {
         $data = Array(
             'journal_voucher_no' => $journalNo,            
             'tran_date' => $datepicker,
             'tran_date_english' => $englishDate,
                 'ledger_master_code' => $lmcode,
+                'ledger_master_description' => $accountHd,
                 'account_ledger_head_code' => $accCode,
                 'sub_ledger_code' => $subLedger_id,
                 'donor_code' => $donar_id,

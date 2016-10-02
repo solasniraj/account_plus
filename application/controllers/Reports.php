@@ -6,7 +6,7 @@ class reports extends CI_Controller {
         $this->load->library('session');
          $this->load->model('report_model');
          $this->load->model('transaction_model');
-        $this->load->helper('url');
+        $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
         $this->load->library('Numbertowords');
     }
@@ -26,17 +26,19 @@ class reports extends CI_Controller {
     }
 }
 
-public function dayBook($day=null)
+public function dayBook()
         
 {
     $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
+        $day = $this->input->post('englishDate');
+        $nepaliDate = $this->input->post('datepicker');
         if (!$day) {
                 $day = date('Y-m-d');
             }        
-        
         $data['journalEntry'] = $this->report_model->get_journal_entry_for_day($day);
       $data['day']= $day;
+      $data['nepaliDay'] = $nepaliDate;
         $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');

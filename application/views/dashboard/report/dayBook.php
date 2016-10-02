@@ -1,6 +1,22 @@
+<script type="text/javascript" src="<?php echo base_url('contents/js/nepali.datepicker.v2.1.min.js'); ?>"></script>
+	
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('contents/css/nepali.datepicker.v2.1.min.css'); ?>" />
+<script type="text/javascript" src="<?php echo base_url('contents/js/function.js'); ?>"></script>
 <div id="page-wrapper">
     <div class="graphs">
         <h3 class="blank1">Day Book </h3><p><?php echo $day; ?></p>
+                    <div class="col-md-12">
+                <?php echo form_open_multipart('reports/dayBook'); ?>
+                    <div class="input-group input-group-ind">
+                        <input type="text" id="nepaliDate" class="form-control1 input-search form-control nepali-calendar" name="datepicker" value="" placeholder="YYYY-MM-DD"/>
+        <input type="hidden" id="englishDate" name="englishDate"/>
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-search icon-ser"></i></button>
+                        </span>
+                    </div><!-- Input Group -->
+                   <?php echo form_close(); ?>
+                    </div>
+        <div class="clearfix"></div>
         <div class="xs tabls">
             <?php
             $flashMessage = $this->session->flashdata('flashMessage');
@@ -56,7 +72,7 @@
                        <?php  } ?> 
                 </tr> 
                     <?php } ?>
-                <?php } else{ echo "no journal entries are found for".$day ;} ?>
+                <?php } else{ echo "<tr><td colspan='6'><strong>No journal entries are found for ".$day ."</strong><td></tr>";} ?>
             </tbody>
  
             
