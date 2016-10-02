@@ -4,10 +4,11 @@ class reports extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('session');
-        
+         $this->load->model('report_model');
+         $this->load->model('transaction_model');
         $this->load->helper('url');
-        $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
+        $this->load->library('Numbertowords');
     }
     
     public function index()
@@ -24,6 +25,31 @@ class reports extends CI_Controller {
         redirect('login/index/?url=' . $url, 'refresh');
     }
 }
+
+public function dayBook($day=null)
+        
+{
+    $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
+        if (!$day) {
+                $day = date('Y-m-d');
+            }        
+        
+        $data['journalEntry'] = $this->report_model->get_journal_entry_for_day($day);
+      $data['day']= $day;
+        $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/report/dayBook', $data);
+      $this->load->view('dashboard/templates/footer');
+      
+  } else {
+    redirect('login/index/?url=' . $url, 'refresh');
+}
+}
+
+
+
 
 public function bankCashBook()
 {
@@ -97,21 +123,7 @@ public function monthlyStatement()
 }
 }
 
-public function dayBook()
-{
-    $url = current_url();
-    if ($this->session->userdata('logged_in') == true) {
 
-      $this->load->view('dashboard/templates/header');
-      $this->load->view('dashboard/templates/sideNavigation');
-      $this->load->view('dashboard/templates/topHead');
-      $this->load->view('dashboard/program/addProgram');
-      $this->load->view('dashboard/templates/footer');
-      
-  } else {
-    redirect('login/index/?url=' . $url, 'refresh');
-}
-}
 
 
 
