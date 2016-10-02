@@ -73,10 +73,7 @@ $list = $this->transaction_model->get_datatables();
             $value = str_replace('/', '&#47;', $customers->journal_voucher_no);
 $NewNo = urlencode($value);
             if($stat=='1'){
-                $row[] = "<select><option value='1' selected>Publish</option>"
-                        . "<option value='2'>Draft</option>"
-                        . "<option value='3'>Void</option>"
-                        . "</select>";
+                $row[] = "<select><option value='1' selected>Publish</option></select>";
                 
             }elseif($stat=='2'){
                 $row[] = "<select onChange='showState(this);'><option value='1' >Publish</option>"
@@ -85,16 +82,16 @@ $NewNo = urlencode($value);
                         . "</select>";
                 
             }elseif($stat=='3'){
-                $row[] = "<select onChange='showState(this);'><option value='1' >Publish</option>"
-                        . "<option value='2' >Draft</option>"
-                        . "<option value='3' selected>Void</option>"
-                        . "</select>";
+                $row[] = "<select><option value='3' selected>Void</option></select>";
                 
             }else{
                 $row[] = "<select class='departments' name='country'><option>Unknown</option></select>";
                 }
+                if($stat=='2'){
                 $row[] = "<a href='".base_url()."transaction/journalPreview/".$NewNo."'>Preview</a> / <a href='#'>Edit</a>";
-            
+                }else{
+                   $row[] = "<a href='".base_url()."transaction/journalPreview/".$NewNo."'>Preview</a>"; 
+                }
             $data[] = $row;
         }
  
