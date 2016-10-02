@@ -67,6 +67,7 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
         $this->form_validation->set_rules('address', 'Address', 'trim|regex_match[/^[a-z,0-9,A-Z_\-., ]{2,200}$/]|required|callback_xss_clean');
         $this->form_validation->set_rules('phone', 'Phone Number', 'trim|regex_match[/^[0-9\+-]{6,20}$/]|required|callback_xss_clean');
         $this->form_validation->set_rules('fiscalYear', 'Fiscal Year', 'trim|required|callback_xss_clean');
+        $this->form_validation->set_rules('code', 'Committee Code', 'trim|required|callback_xss_clean');
         $this->form_validation->set_error_delimiters('<div class="form_errors">', '</div>');
         if ($this->form_validation->run() == FALSE) {
             $this->index();
@@ -75,6 +76,7 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
         $commiteName=$this->input->post('commiteName');
         $address=$this->input->post('address');
         $phone=$this->input->post('phone');
+        $code = $this->input->post('code');
         $fiscalYear=$this->input->post('fiscalYear');
         $pieces = explode("/", $fiscalYear);
         
@@ -82,7 +84,7 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
             'committee_name' => $commiteName,
             'address' => $address,
                 'phone' => $phone,
-                'code' => '12345',
+                'code' => $code,
                 'status' => '1');
         
         $dataFiscalYear = Array(

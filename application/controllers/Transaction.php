@@ -621,7 +621,8 @@ $user_id = $this->session->userdata('user_id');
      else 
      {
          $ledgerName = $this->input->post('ledgerName');     
-         $glDate = new DateTime($this->input->post('datepicker'));   
+         $glDate = new DateTime($this->input->post('datepicker'));  
+         $englishDate = $this->input->post('englishDate');
          $datepicker = $glDate->format('Y-m-d');
          $comment = $this->input->post('comment');      
          $journalNo = $this->input->post('journalNo');              
@@ -652,31 +653,31 @@ $user_id = $this->session->userdata('user_id');
            if((!empty($debitAmount)) && is_numeric( $debitAmount )){
                $type='dr';
               if($chartCode == '1' || $chartCode == '4'){
-                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type);
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type);
               }elseif($chartCode == '2' || $chartCode == '3'){
                   $debitAmount = ('-1') * $debitAmount;
-                          $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type);
+                          $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type);
               }else{
                   echo "something went wrong";
               }
               if((($accCode <= '09') && ($accCode >= '00')) && $chartCode =='01'){
                $bankId = $this->transaction_model->get_bank_details_by_subledger_id($subLedger_id);
-                $this->transaction_model->add_transaction_to_bank_transaction($journalNo, $datepicker, $lmcode, $description, $debitAmount, $bankId, $type);  
+                $this->transaction_model->add_transaction_to_bank_transaction($journalNo, $datepicker, $englishDate, $lmcode, $description, $debitAmount, $bankId, $type);  
               }else{}
                
            }elseif((!empty ($creditAmount)) && is_numeric( $creditAmount )){
                $type='cr';
                if($chartCode == '1' || $chartCode == '4'){
                   $creditAmount = ('-1') * $creditAmount;
-                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type);
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type);
               }elseif($chartCode == '2' || $chartCode == '3'){
-                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type);
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type);
               }else{
                   echo "something went wrong";
               }
               if((($accCode <= '09') && ($accCode >= '00')) && $chartCode =='01'){
                  $bankId = $this->transaction_model->get_bank_details_by_subledger_id($subLedger_id);
-                $this->transaction_model->add_transaction_to_bank_transaction($journalNo, $datepicker, $lmcode, $description, $creditAmount, $bankId, $type);    
+                $this->transaction_model->add_transaction_to_bank_transaction($journalNo, $datepicker, $englishDate, $lmcode, $description, $creditAmount, $bankId, $type);    
               }else{}
            }else{
                echo 'neither debit nor credit';

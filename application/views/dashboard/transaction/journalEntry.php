@@ -53,7 +53,7 @@
 
                                 <td class="text-right width25per"><b>Date</b>
                                     <input type="text" id="nepaliDate" class="form-control nepali-calendar" name="datepicker" value="" placeholder="YYYY-MM-DD"/>
-                                    <input type="hidden" id="englishDate"/>
+                                    <input type="hidden" id="englishDate" name="englishDate"/>
 <?php echo form_error('datepicker'); ?>
                                     <label class="has-error" for="datepicker" id="date_error">This field is required.</label></td>
 

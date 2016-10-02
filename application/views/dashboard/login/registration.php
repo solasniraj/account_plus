@@ -109,7 +109,7 @@
 
                             <div class="log-input">
                                 <div class="log-input-left">
-                                    <input type="text" class="user" name="commiteName" value="" placeholder="Name of Committee" />
+                                    <input type="text" class="user" name="commiteName" value="<?php echo set_value('commiteName'); ?>" placeholder="Name of Committee" />
 <?php echo form_error('commiteName'); ?>
                                 </div>
 
@@ -117,7 +117,7 @@
                             </div>
                             <div class="log-input">
                                 <div class="log-input-left">
-                                    <input type="text" class="address" name="address" value="" placeholder="Enter Address" />
+                                    <input type="text" class="address" name="address" value="<?php echo set_value('address'); ?>" placeholder="Enter Address" />
 <?php echo form_error('address'); ?>
                                 </div>
 
@@ -126,12 +126,21 @@
 
                             <div class="log-input">
                                 <div class="log-input-left">
-                                    <input type="text" class="phone" style="margin-bottom:5px;" name="phone" value="" placeholder="Enter Phone Number" />
+                                    <input type="text" class="phone" style="margin-bottom:5px;" name="phone" value="<?php echo set_value('phone'); ?>" placeholder="Enter Phone Number" />
 <?php echo form_error('phone'); ?>
                                 </div>
 
                                 <div class="clearfix"> </div>
-                            </div>            
+                            </div>
+                            
+                            <div class="log-input">
+                                <div class="log-input-left">
+                                    <input type="text" class="code" style="margin-bottom:5px;" name="code" value="<?php echo set_value('code'); ?>" placeholder="Enter Committee Code" />
+<?php echo form_error('code'); ?>
+                                </div>
+
+                                <div class="clearfix"> </div>
+                            </div>
 
                             <div class="log-input" style="margin-bottom:10px;">
                                 <div class="log-input-left">

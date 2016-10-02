@@ -22,12 +22,13 @@ class Transaction_model extends CI_Model {
                }
     }
     
-    public function add_transaction_to_bank_transaction($journalNo, $datepicker, $lmcode, $description, $debitAmount, $bankId, $type)
+    public function add_transaction_to_bank_transaction($journalNo, $datepicker, $englishDate, $lmcode, $description, $debitAmount, $bankId, $type)
     {
         $data = Array(
             'trans_no' => $journalNo,  
             'type' => $type,
             'trans_date' => $datepicker,
+            'tran_date_english' => $englishDate,
             'ledger_master_code' => $lmcode,
             'memo' => $description,
                 'amount' => $debitAmount,
@@ -140,11 +141,12 @@ $query = $this->db->get();
  return $query->result();   
     }
 
-    public function add_gl_transaction($journalNo, $datepicker, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $Amount, $chequeNo, $type)
+    public function add_gl_transaction($journalNo, $datepicker, $englishDate, $lmcode, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $Amount, $chequeNo, $type)
     {
         $data = Array(
             'journal_voucher_no' => $journalNo,            
             'tran_date' => $datepicker,
+            'tran_date_english' => $englishDate,
                 'ledger_master_code' => $lmcode,
                 'account_ledger_head_code' => $accCode,
                 'sub_ledger_code' => $subLedger_id,

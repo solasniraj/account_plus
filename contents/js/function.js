@@ -31,8 +31,10 @@ function journalNumber()
 function dateField()
 {
     var chartId = $('#nepaliDate').val();
+    var engDate = $('#englishDate').val();
     var f = chartId.length;
-    if (f < 1 || chartId == '' || chartId == null || chartId == '0') {
+    var d = engDate.length;
+    if (f < 1 || chartId == '' || chartId == null || chartId == '0' || d < 1 || engDate == '' || engDate == null || engDate == '0') {
         $("#nepaliDate").focus();
         $("label#date_error").show();
         $("#nepaliDate").css("border", "1px solid red");
