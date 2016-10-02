@@ -4,6 +4,8 @@ if (!empty($singleGLDetails)) {
         $gLDate = $glDetails->tran_date;
         $voucherNo = $glDetails->journal_voucher_no;
         $details = $glDetails->detailed_comment;
+                    $value = str_replace('/', '&#47;', $voucherNo);
+$NewNo = urlencode($value);
     }
     ?>               
     <table width="100%">
@@ -44,8 +46,8 @@ if (!empty($singleGLDetails)) {
         
     <br/><br/>
     <div class="text-right pull-right">
-        <a href="<?php echo base_url() . 'preview/jounalView/' . $voucherNo; ?>"><button id="btnDownload" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
-        <a href="<?php echo base_url() . 'printview/printJoural/' . $voucherNo; ?>"> <button id="print" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
+        <a href="<?php echo base_url() . 'preview/jounalView/' . $NewNo; ?>"><button id="btnDownload" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
+        <a href="<?php echo base_url() . 'printview/printJoural/' . $NewNo; ?>"> <button id="print" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
     </div>
     <br/><br/>
 

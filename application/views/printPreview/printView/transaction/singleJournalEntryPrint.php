@@ -1,38 +1,61 @@
 <style>
   @media print{@page {size: landscape}
 </style>
-<?php if(!empty($singleGLDetails)){ 
- foreach($singleGLDetails as $glDetails){
-  $gLDate = $glDetails->tran_date;
-  $voucherNo = $glDetails->journal_voucher_no;
-  $summary = $glDetails->summary_comment;
-  $details = $glDetails->detailed_comment;
-}
+<?php
+if (!empty($singleGLDetails)) {
+    foreach ($singleGLDetails as $glDetails) {
+        $gLDate = $glDetails->tran_date;
+        $voucherNo = $glDetails->journal_voucher_no;
+        $details = $glDetails->detailed_comment;
+                    $value = str_replace('/', '&#47;', $voucherNo);
+$NewNo = urlencode($value);
+    }
+    ?>               
+    <table width="100%">
+        <tr>
+            <td>
+                <?php if (!empty($committeeInfo)) {
+                    foreach ($committeeInfo as $cLists) {
+                        ?>
+                        <div class="top text-center" style="margin-top:2px;margin-bottom:5px;">
+                            <img src="<?php echo base_url().'contents/uploads/images/'.$cLists->logo; ?>" img-align="top" alt="images" style= "width:100px;">
+                        </div>
+                <?php }
+    }
+    ?>
+                    </td>
+                    <td class="text-center">
+                        <?php if (!empty($committeeInfo)) {
+                    foreach ($committeeInfo as $cLists) {
+                        ?>
+                        <h2><?php echo $cLists->committee_name; ?></h2>
+                        <h4><?php echo $cLists->address; ?></h4>
+                        <p><strong>Ph : <?php echo $cLists->phone; ?></strong></p>
+                    <?php }
+    }
+    ?>
+                    </td>
 
-?>
-<div class="container">
-  <?php if(!empty($committeeInfo)){ foreach ($committeeInfo as $cLists){ ?>
-    <div class="top text-center" style="margin-top:22px;margin-bottom:10px;">
-     <!--<img src="" img-align="top" alt="images" style= "">-->
 
-     <h2><?php echo $cLists->committee_name; ?></h2>
-     <h4><?php echo $cLists->address; ?></h4>
-     <p><strong>Ph : <?php echo $cLists->phone; ?></strong></p>
-   </div>
-   <?php }} ?>
- </div>
- <div id="page-wrapper">
-  <div class="graphs">
-    <div class="xs tabls">
+                    <td class="text-left width25per"><b>Journal No : <?php echo $voucherNo; ?></b><br/><br/>
+                    <b>Date : <?php echo $gLDate; ?></b>
+                    </td>
 
-      <div data-example-id="simple-responsive-table" class="bs-example4">
+
+
+                </tr>
+
+            </table>                
         
-        <!-- second table for singleJournalEntry  -->
+    <br/><br/>
 
-        <div class="table-responsive">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
+
+    <!-- second table for singleJournalEntry  -->
+
+
+    <table class="tables ">
+        <thead>
+            <tr>
 
                 <th> A/C Number </th>
                 <th> A/C Description</th>
@@ -41,84 +64,95 @@
                 <th>Debit Amount</th>
                 <th>Credit Amount</th>
 
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($singleGLDetails as $gLList){ $type= $gLList->trans_type; 
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($singleGLDetails as $gLList) {
+                $type = $gLList->trans_type;
                 $donar = $this->transaction_model->get_donar_name_by_code($gLList->donor_code);
+               $sum = 0;
                 ?>
                 <tr>
-                  <td><?php echo $gLList->ledger_master_code; ?></td>
-                  <td><?php echo $gLList->ledger_master_name; ?></td>                           
-                  <td><?php echo $donar; ?></td>
-                  <td><?php echo $gLList->memo; ?></td>
-                  
-                  <td><?php if($type =='dr'){ echo abs($gLList->amount);}else{ NULL; } ?></td>
-                  <td><?php if($type =='cr'){ echo abs($gLList->amount);}else{ NULL; } ?></td>
+                    <td><?php echo $gLList->ledger_master_code; ?></td>
+                    <td><?php echo $gLList->ledger_master_name; ?></td>                           
+                    <td><?php echo $donar; ?></td>
+                    <td><?php echo $gLList->memo; ?></td>
+
+                    <td><?php if ($type == 'dr') {
+                        
+                    echo abs($gLList->amount);
+                } else {
+                    echo '0';
+                } ?></td>
+                    <td><?php if ($type == 'cr') {
+                        
+            echo abs($gLList->amount);
+        } else {
+            echo '0';
+        } ?></td>
 
 
 
 
                 </tr>
-                <?php } ?>
+    <?php $sum += abs($gLList->amount); } ?>
 
 
 
-                <tr>
-                  <td colspan="4">Total</td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
-              
-            </table>
-          </div>
-
-        </div>
-        <br>
-        <br>
-        <!--prepared and approverd by section-->
-
-
-        <div class="form-group" style="text-align: center;">
-          <div class="row">
-
-            <table class="table">
-             <tr>
-
-              <td>
-               
-                Designation :-_________________ <br><br>
-
-                Name :-_________________ <br><br> 
-
-                Sign :-_________________ 
-                
-                
-              </td>
-
-
-
-              <td>
-               
-                Designation :-_________________<br><br>
-
-                Name :-_________________<br><br>
-                
-                Sign :-_________________
-
-              </td>
+            <tr>
+                <td colspan="4">Total</td>
+                <td><Strong><?php echo 'Rs. '.$sum; ?></strong></td>
+                <td><Strong><?php echo 'Rs. '.$sum; ?></strong></td>
             </tr>
-          </table>
-        </div>
 
-      </div>
-    </div>
 
-  </div>
+            <tr>
+
+                <td>Amount in words</td>
+                <td colspan="5"><?php 
+                $words = $this->numbertowords->convert_number($sum);
+                echo $words.' Rupees only.';
+                ?></td>
+            </tr>
+        </tbody>
+    </table>
+<br/><br/>
+<div style="border: 1px solid #ddd; width: 100%;padding: 15px;">
+<p><strong>Narration : </strong><?php echo $details ?> </p>
 </div>
 
-<?php }else{
-  echo "Data not Found";
-} ?>
+<br/><br/>
+    <table width="100%">
 
+        <tr>
+            <td>
+                <pre text-center>
+
+    Prepared By:
+
+
+
+    .................
+
+    Date : <?php echo $gLDate; ?>
+                </pre>
+            </td>
+            <td>
+                <pre text-center>
+
+    Approved By:
+
+
+
+    .................
+         
+    Date:_________________
+                </pre>
+            </td>
+        </tr>
+    </table>
+    <?php
+} else {
+    echo "Data not Found";
+}

@@ -11,7 +11,7 @@ $(document).ready(function() {
         "serverSide": true, //Feature control DataTables' server-side processing mode.
         "order": [], //Initial no order. 
         "iDisplayLength": 50,
-        "aLengthMenu": [[10, 25, 50, 100], ["10 Per Page", "25 Per Page", "50 Per Page", "100 Per Page"]],
+        "aLengthMenu": [[10, 25, 50, 100], ["10", "25", "50", "100"]],
         // Load data for the table's content from an Ajax source
         "ajax": {
             "url": baseUrl + "ledger/get_account_group",

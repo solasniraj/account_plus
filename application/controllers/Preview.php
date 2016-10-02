@@ -16,6 +16,7 @@ class preview extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
         $this->load->helper('csv');
+        $this->load->library('Numbertowords');
     }
 
     public function jounalView($id=null) {
@@ -23,12 +24,13 @@ class preview extends CI_Controller {
         
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
-
+$glNo = urldecode($id);
+        $glNos = str_replace('&#47;', '/', $glNo);
             $orientation = 'landscape';
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
         $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-        $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($id);     
+        $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);     
             $this->load->view('printPreview/download/templates/header');
       $this->load->view('printPreview/download/transaction/singleJournalEntryPrint', $data);
       $this->load->view('printPreview/download/templates/footer');
@@ -42,7 +44,7 @@ class preview extends CI_Controller {
             $this->dompdf->set_paper('a4', $orientation);
 //            $this->dompdf->set_option('isHtml5ParserEnabled', true);
             $this->dompdf->render();
-            $this->dompdf->stream($id.".pdf");
+            $this->dompdf->stream($glNos.".pdf");
             die;
         } else {
             redirect('login/index/?url=' . $url, 'refresh');

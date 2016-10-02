@@ -11,6 +11,7 @@
       $this->load->helper('url');
       $this->load->helper(array('form', 'url'));
       $this->load->library('pagination');
+       $this->load->library('Numbertowords');
     }
 
     public function printJoural($id= NULL )
@@ -22,7 +23,8 @@
          {
           return redirect('dashboard', 'refresh');
          }
-      
+      $glNo = urldecode($id);
+        $glNos = str_replace('&#47;', '/', $glNo);
      $user_id = $this->session->userdata('user_id');
              $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
@@ -30,7 +32,7 @@
              $fiscal_year = $this->session->userdata('fiscal_year'); 
              
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-        $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($id);     
+        $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);     
       
       $this->load->view('printPreview/printView/templates/header');
       $this->load->view('printPreview/printView/transaction/singleJournalEntryPrint', $data);

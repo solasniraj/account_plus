@@ -2,25 +2,22 @@
      foreach($singleGLDetails as $glDetails){
       $gLDate = $glDetails->tran_date;
       $voucherNo = $glDetails->journal_voucher_no;
-      $summary = $glDetails->summary_comment;
       $details = $glDetails->detailed_comment;
      }
         
     ?>
-<div>
+<div style="margin-bottom: 15px;">
         <?php if(!empty($committeeInfo)){ foreach ($committeeInfo as $cLists){ ?>
         <div class="top text-center" style="margin-top:22px;margin-bottom:10px;">
-           <!--<img src="" img-align="top" alt="images" style= "">-->
            
            <h2><?php echo $cLists->committee_name; ?></h2>
-           <h4><?php echo $cLists->address; ?></h4>
+           <h4 style="margin: 5px;"><?php echo $cLists->address; ?></h4>
+           <h4 style="margin: 5px;"><?php echo $cLists->email_address ?></h4>
            <p><strong>Ph : <?php echo $cLists->phone; ?></strong></p>
      </div>
         <?php }} ?>
     </div>
     
-                      
-
                   
                 <!-- second table for singleJournalEntry  -->
                 
@@ -39,6 +36,7 @@
              <tbody>
                     <?php foreach ($singleGLDetails as $gLList){ $type= $gLList->trans_type;
                     $donar = $this->transaction_model->get_donar_name_by_code($gLList->donor_code);
+                    $sum = 0;
                     ?>
                             <tr>
                                 <td><?php echo $gLList->ledger_master_code; ?></td>
@@ -48,45 +46,53 @@
                                 <td><?php if($type =='dr'){ echo abs($gLList->amount);}else{ NULL; } ?></td>
                                 <td><?php if($type =='cr'){ echo abs($gLList->amount);}else{ NULL; } ?></td>
                             </tr>
-                            <?php } ?>
+                            <?php $sum += abs($gLList->amount); } ?>
                     <tr>
                     <td colspan="4">Total</td>
-                    <td>&nbsp</td>
-                    <td>&nbsp</td>
+                    <td><?php echo 'Rs. '.$sum; ?></td>
+                    <td><?php echo 'Rs. '.$sum; ?></td>
                     </tr>
+                    <tr>
+
+                <td>Amount in words</td>
+                <td colspan="5"><?php 
+                $words = $this->numbertowords->convert_number($sum);
+                echo $words.' Rupees only.';
+                ?></td>
+            </tr>
                     </tbody>
                     </table>
                     
                     
-                    <table class="table">
-                       <tr>
+                   <table class="tables" width="100%" >
 
-                        <td>
-                            Designation :-_________________ <br><br>
+        <tr style="padding-top: 50px;">
+            <td>
+                <pre text-center>
 
-                                   Name :-_________________  <br><br>
-
-                                   Sign :-_________________ 
-
-                        </td>
+    Prepared By:
 
 
 
-                        <td>
-                       
+    .................
 
-                                Designation :- _________________<br><br>
+    Date : <?php echo $gLDate; ?>
+                </pre>
+            </td>
+            <td>
+                <pre text-center>
 
-                                       Name :- _________________<br><br>
-
-                                       Sign :- _________________
-
-                              
-                        </td>
+    Approved By:
 
 
-            </tr>
-                    </table>
+
+    .................
+         
+    Date:_________________
+                </pre>
+            </td>
+        </tr>
+    </table>
                 </div>
                  
             
