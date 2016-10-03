@@ -28,23 +28,28 @@ $(document).ready(function() {
 });
 
 function showState(sel) {
+    
 	var select_id = sel.options[sel.selectedIndex].value;  
-	if (select_id.length > 0 ) { 
+        var jlId = $(sel).closest('td').prev('td').prev().prev().prev().text();
+       var select = $(sel).closest('td').html();
+        
+        if (select_id.length > 0 ) { 
  
 	 $.ajax({
 			type: "POST",
 			 url: baseUrl + "transaction/changeGlStat",
-			data: {select: select_id},
+			data: {select: select_id, jnNo: jlId},
 			cache: false,
-			success: function(msg) {    
-                            alert(msg);
-//				var $el = $("#name");
-//                    $el.empty(); // remove old options
-//                    $el.append($("<option></option>")
-//                            .attr("value", '').text('Please Select'));
-//                    $.each(json, function(value, key) {
-//                        $el.append($("<option></option>")
-//                                .attr("value", value).text(key));
+			success: function(msg) {  
+                            if(msg==1){
+                            $(sel).closest('td').replaceWith("<td><select><option value='1' selected>Publish</option></select><br/><strong>Status Updated</strong></td>");
+			
+}else if(msg==3){
+                                    $(sel).closest('td').replaceWith("<td><select><option value='3' selected>Void</option></select><br/><strong>Status Updated</strong></td>");
+                       
+}else{
+                                 
+                                    }
 			}
 		});
 	} 

@@ -108,7 +108,18 @@ $NewNo = urlencode($value);
   
   public function changeGlStat()
   {
-      
+      if(isset($_POST['select']) && (!empty($_POST['select'])) && (isset($_POST['jnNo'])) && (!empty($_POST['jnNo']))){
+         $glNo = $_POST['jnNo'];
+          $val = $_POST['select'];
+         $this->transaction_model->update_transaction_status_in_gl_trans_info($glNo, $val);
+         $query = $this->transaction_model->check_journal_entry_in_bank_trans_info($glNo);
+     if(!empty($query) && $query != NULL)
+     {         
+         $this->transaction_model->update_transaction_status_in_bank_trans_info($glNo, $val);
+     }
+     echo $val;
+      }else{
+      }
   }
 
     public function getAssociatedLedger()

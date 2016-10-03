@@ -68,6 +68,14 @@ $(document).ready(function ()
     $('#nepaliDate').nepaliDatePicker({
 			ndpEnglishInput: 'englishDate'
 		});
+                
+                $('#nepaliDateF').nepaliDatePicker({
+			ndpEnglishInput: 'englishDateF'
+		});
+                
+                $('#nepaliDateT').nepaliDatePicker({
+			ndpEnglishInput: 'englishDateT'
+		});
     
     
     $('#glTrans').submit(function (e) {

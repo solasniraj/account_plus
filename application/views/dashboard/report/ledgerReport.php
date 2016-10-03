@@ -1,10 +1,11 @@
 <script type="text/javascript" src="<?php echo base_url('contents/js/nepali.datepicker.v2.1.min.js'); ?>"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('contents/css/nepali.datepicker.v2.1.min.css'); ?>" />
+	
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('contents/css/nepali.datepicker.v2.1.min.css'); ?>" />
 <script type="text/javascript" src="<?php echo base_url('contents/js/function.js'); ?>"></script>
 <div id="page-wrapper">
     <div class="graphs">
         
-         <table width="100%">
+              <table width="100%">
         <tr>
             <td>
                 <?php if (!empty($committeeInfo)) {
@@ -32,16 +33,16 @@
 
                     <td class="text-left width25per"><b>Date : <?php echo $day; ?></b>
                     </td>
-
-
-
+                </tr>
+                <tr>
+                    <td>Ledger Code : </td>
+                    <td>Ledger Description : </td>
+                    <td>Ledger Balance</td>
                 </tr>
 
             </table> 
         
-        
-        
-        <h3 class="blank1">Day Book </h3>
+        <h3 class="blank1">Day Book </h3><p></p>
                     <div class="col-md-12">
                 <?php echo form_open_multipart('reports/dayBook'); ?>
                     <div class="input-group input-group-ind">

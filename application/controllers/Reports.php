@@ -6,6 +6,8 @@ class reports extends CI_Controller {
         $this->load->library('session');
          $this->load->model('report_model');
          $this->load->model('transaction_model');
+         $this->load->model('dbmanager_model');
+         $this->load->model('ledger_model');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
         $this->load->library('Numbertowords');
@@ -26,11 +28,18 @@ class reports extends CI_Controller {
     }
 }
 
-public function dayBook()
-        
+public function dayBook()       
 {
     $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
+        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+      
+        
         $day = $this->input->post('englishDate');
         $nepaliDate = $this->input->post('datepicker');
         if (!$day) {
@@ -50,8 +59,50 @@ public function dayBook()
 }
 }
 
+public function lReport()
+{
+     $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
+        $data['ledgerDetails'] = $this->ledger_model->get_ledger_master_listing();
+      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/report/ledgerQueryForm', $data);
+      $this->load->view('dashboard/templates/footer');
+      
+  } else {
+    redirect('login/index/?url=' . $url, 'refresh');
+}
+}
 
-
+public function ledgerReport()
+{
+    $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
+        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+      
+        $ledger = $this->input->post('ledgerCode');
+        $fromN = $this->input->post('nepaliDateF');
+        $fromE = $this->input->post('englishDateF');
+        $toN = $this->input->post('nepaliDateT');
+        $toE = $this->input->post('englishDateT');
+        
+        
+      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/report/ledgerReport', $data);
+      $this->load->view('dashboard/templates/footer');
+      
+  } else {
+    redirect('login/index/?url=' . $url, 'refresh');
+}
+}
 
 public function bankCashBook()
 {

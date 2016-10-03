@@ -186,6 +186,31 @@ $query = $this->db->get();
     return $this->db->update('gl_trans_info', $data);
     }
     
+    public function update_transaction_status_in_gl_trans_info($glNo, $val)
+    {
+        $this->db->where('journal_voucher_no', $glNo);
+       $data = array('gl_trans_status' => $val);
+    return $this->db->update('gl_trans_info', $data);
+    }
+    
+    public function check_journal_entry_in_bank_trans_info($glNo)
+    {      
+       $this->db->where('trans_no', $glNo);
+      $query= $this->db->get("bank_trans_info")->result();
+               if(!empty($query)){
+           return $query[0]->trans_no;
+               }else{
+                   return NULL;
+               }            
+    }
+    
+    public function update_transaction_status_in_bank_trans_info($glNo, $val)
+    {
+        $this->db->where('trans_no', $glNo);
+       $data = array('status' => $val);
+    return $this->db->update('bank_trans_info', $data);
+    }
+
     public function get_donar_name_by_code($donorCode)
     {
         $this->db->where('donar_code', $donorCode);
