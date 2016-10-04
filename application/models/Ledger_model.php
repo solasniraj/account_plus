@@ -351,6 +351,14 @@ $query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledge
              
              
    }
+   
+   public function get_ledger_details_by_ledger_code($ledger)
+   {
+             $this->db->where('status', '1');
+             $this->db->where('ledger_master_code', $ledger);
+               $query= $this->db->get("ledger_master");
+                return $query->result();
+   }
 
    
 

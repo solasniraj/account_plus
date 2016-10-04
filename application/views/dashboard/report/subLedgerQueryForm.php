@@ -4,7 +4,7 @@
 <div id="page-wrapper">
     <div class="graphs">
         <br>
-        <h3 class="blank1">Ledger Report Query</h3>
+        <h3 class="blank1">Sub-ledger Report Query</h3>
         <div class="xs tabls">
             <?php
             $flashMessage = $this->session->flashdata('flashMessage');
@@ -41,7 +41,7 @@
 
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
-                                <?php echo form_open_multipart('reports/ledgerReport', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
+                                <?php echo form_open_multipart('reports/subLedgerReport', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
                                     <?php if(!empty($ledgerDetails)){ ?>
                                     <div class="form-group">
                                         <label class="control-label col-sm-3" for="email"><b>Ledger</b></label>

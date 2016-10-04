@@ -43,7 +43,7 @@
                         <p>Printed on : </p>
                  
         
-        <h3 class="blank1">Ledger Account Statement </h3><p></p>
+        <h3 class="blank1">Sub-ledger Account Statement </h3><p></p>
                     
         <div class="clearfix"></div>
         <div class="xs tabls">
