@@ -27,11 +27,11 @@
                     </td>
                 </tr>
               </table>
-                <?php if(!empty($ledgerDetails)){ ?>
+                <?php if(!empty($subLedgerDetails)){ ?>
 
-                    <?php foreach($ledgerDetails as $lDets){ ?>
-        <p>Ledger Code : <?php echo $lDets->ledger_master_code; ?></p>
-        <p>Ledger Description : <?php echo $lDets->ledger_master_name; ?></p>
+                    <?php foreach($subLedgerDetails as $slDets){ ?>
+        <p>Sub Ledger Code : <?php echo $slDets->subledger_code; ?></p>
+        <p>Sub Ledger Description : <?php echo $slDets->subledger_name; ?></p>
                     
                     <?php } ?>
                
@@ -99,7 +99,7 @@
                       
                 </tr> 
                     <?php } ?>
-                <?php } else{ echo "<tr><td colspan='6'><strong>No journal entries are found for ".$day ."</strong><td></tr>";} ?>
+                <?php } else{ echo "<tr><td colspan='6'><strong>No entries are found</td></tr>";} ?>
             </tbody>
  
             

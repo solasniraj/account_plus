@@ -42,13 +42,13 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
                                 <?php echo form_open_multipart('reports/subLedgerReport', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
-                                    <?php if(!empty($ledgerDetails)){ ?>
+                                    <?php if(!empty($subLedgerDetails)){ ?>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3" for="email"><b>Ledger</b></label>
+                                        <label class="control-label col-sm-3" for="email"><b>Sub Ledger</b></label>
                                         <div class="col-sm-9">
                                             <select class="form-control1" id="sel1" name="ledgerCode">
-                                                <?php foreach ($ledgerDetails as $lDetails){ ?>
-                                                <option value="<?php echo $lDetails->ledger_master_code; ?>"><?php echo $lDetails->ledger_master_name; ?></option>
+                                                <?php foreach ($subLedgerDetails as $slDetails){ ?>
+                                                <option value="<?php echo $slDetails->subledger_code; ?>"><?php echo $slDetails->subledger_name; ?></option>
                                                 <?php } ?>
                                             </select>
 

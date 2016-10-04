@@ -114,7 +114,7 @@ public function slReport()
 {
      $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
-        $data['ledgerDetails'] = $this->ledger_model->get_ledger_master_listing();
+        $data['subLedgerDetails'] = $this->ledger_model->get_sub_ledger_info();
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
@@ -137,14 +137,14 @@ public function subLedgerReport()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
-        $ledger = $this->input->post('ledgerCode');
+        $subledger = $this->input->post('ledgerCode');
         $fromN = $this->input->post('nepaliDateF');
         $fromE = $this->input->post('englishDateF');
         $toN = $this->input->post('nepaliDateT');
         $toE = $this->input->post('englishDateT');
-        $data['ledgerDetails'] = $this->ledger_model->get_ledger_details_by_ledger_code($ledger);
+        $data['subLedgerDetails'] = $this->ledger_model->get_sub_ledger_info_by_code($subledger);
        
-        $data['ledgerRep'] = $this->report_model->get_transaction_details_of_ledger_with_in_dates($ledger, $fromE, $toE);
+        $data['ledgerRep'] = $this->report_model->get_transaction_details_of_sub_ledger_with_in_dates($subledger, $fromE, $toE);
         
       $data['fromN'] = $fromN;
       $data['toN'] = $toN;
