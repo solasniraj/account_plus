@@ -79,7 +79,7 @@
                     <li><a href="<?php echo base_url() . 'reports/balanceSheet' ?>">Balance Sheet</a></li>
                     <li><a href="<?php echo base_url() . 'reports/monthlyStatement' ?>">Monthly Statement</a></li>
                     <li><a href="<?php echo base_url() . 'reports/dayBook' ?>">Day Book</a></li>
-                    <li><a href="<?php echo base_url() . 'reports/trialBalance' ?>">Donor Report</a></li>
+                    <li><a href="<?php echo base_url() . 'reports/dReport' ?>">Donor Report</a></li>
                     <li><a href="<?php echo base_url() . 'reports/trialBalance' ?>">Activity Report</a></li>
                     <li><a href="<?php echo base_url() . 'reports/slReport' ?>">Sub Ledger Report</a></li>
                     <li><a href="<?php echo base_url() . 'reports/lReport' ?>">Ledger Report</a></li>
