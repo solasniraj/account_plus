@@ -27,11 +27,12 @@
                     </td>
                 </tr>
               </table>
-                <?php if(!empty($subLedgerDetails)){ ?>
+                <?php if(!empty($donarDetails)){ ?>
 
-                    <?php foreach($subLedgerDetails as $slDets){ ?>
-        <p>Sub Ledger Code : <?php echo $slDets->subledger_code; ?></p>
-        <p>Sub Ledger Description : <?php echo $slDets->subledger_name; ?></p>
+                    <?php foreach($donarDetails as $dDets){ ?>
+        <p>Donor Code : <?php echo $dDets->donar_code; ?></p>
+        <p>Donor Name : <?php echo $dDets->donar_name; ?></p>
+        
                     
                     <?php } ?>
                
@@ -66,20 +67,27 @@
                 <tr>
                     
                    
-                    <th style="width: 20%;">Date</th>
-                    <th style="width: 15%;">Journal No.</th>
-                    <th style="width: 20%;">A/C Particulars</th>
-                    <th style="width: 15%;">Debit (Rs.)</th>
-                    <th style="width: 15%;">Credit (Rs.)</th>
-                    <th style="width: 15%;">Balance</th>
+                    <th style="width: 10%;">A/C Code</th>
+                    <th style="width: 15%;">Ledger Name</th>
+                    <th style="width: 15%;">Program Name</th>
+                    <th style="width: 10%;">Fund Amt.</th>
+                    <th style="width: 10%;">Expenditure till last report date</th>
+                    <th style="width: 10%;">Added expenditure</th>
+                    <th style="width: 10%;">Total Expenditure</th>
+                    <th style="width: 10%;">Remaining Budget</th>
+                    <th style="width: 10%;">Remarks</th>
                            
                 </tr>
             </thead>
             <tbody>
-                <?php if(!empty($ledgerRep)){
-                    foreach($ledgerRep as $lEntries){
-                       
-                        ?>
+                <?php if(!empty($donarLed)){
+                    foreach($donarLed as $dEntries){
+                      $chartId = $dEntries->account_code;
+                      $program = $this->ledger_model->get_account_ledger_info_by_account_code($dEntries->ledger_code);
+                      
+                      
+                      
+                      ?>
                 <tr>
                
   <table class="table table-striped table-bordered table-responsive table-condensed" width="100%" cellspacing="0">
@@ -87,12 +95,16 @@
           
                 <tr>
                      
-                    <td style="width: 20%;"><?php echo $lEntries->tran_date; ?></td>
-                    <td style="width: 15%;"><?php echo $lEntries->journal_voucher_no; ?></td>
-                    <td style="width: 20%;"><?php echo $lEntries->memo; ?></td>
-                     <td style="width: 15%;"><?php if($lEntries->trans_type=='dr'){echo abs($lEntries->amount);} ?></td>
-                    <td style="width: 15%;"><?php if($lEntries->trans_type=='cr'){echo abs($lEntries->amount);} ?></td>
-                    <td style="width: 15%;"><?php ?></td>
+                    <td style="width: 10%;"><?php echo $dEntries->ledger_master_code; ?></td>
+                    <td style="width: 15%;"><?php echo $dEntries->ledger_master_name; ?></td>
+                    <td style="width: 15%;"><?php echo $program; ?></td>
+                    <td style="width: 10%;"><?php echo "Rs. 500" ?></td>
+                    <td style="width: 10%;"></td>
+                    <td style="width: 10%;"></td>
+                    <td style="width: 10%;"></td>
+                    <td style="width: 10%;"></td>
+                    <td style="width: 10%;"></td>
+                    
                 </tr> 
                
             </table>                                  

@@ -189,14 +189,14 @@ public function donorReport()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
-        $subledger = $this->input->post('ledgerCode');
+        $donar = $this->input->post('ledgerCode');
         $fromN = $this->input->post('nepaliDateF');
         $fromE = $this->input->post('englishDateF');
         $toN = $this->input->post('nepaliDateT');
         $toE = $this->input->post('englishDateT');
-        $data['subLedgerDetails'] = $this->ledger_model->get_sub_ledger_info_by_code($subledger);
+        $data['donarDetails'] = $this->ledger_model->get_donor_info_by_code($donar);
        
-        $data['ledgerRep'] = $this->report_model->get_transaction_details_of_sub_ledger_with_in_dates($subledger, $fromE, $toE);
+        $data['donarLed'] = $this->ledger_model->get_ledger_master_associated_to_donar($donar);
         
       $data['fromN'] = $fromN;
       $data['toN'] = $toN;

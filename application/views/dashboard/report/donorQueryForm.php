@@ -57,7 +57,7 @@
                                     <?php } ?>
 
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3" for="pwd"><b>From Date </b> </label>
+                                        <label class="control-label col-sm-3" for="pwd"><b>Last Report Date </b> </label>
                                         <div class="col-sm-9">
                                             <input type="text" id="nepaliDateF" class="form-control1 nepali-calendar" name="nepaliDateF" value="" placeholder="YYYY-MM-DD"/>
         <input type="hidden" id="englishDateF" name="englishDateF"/>

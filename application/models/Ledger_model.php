@@ -375,7 +375,37 @@ $query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledge
              return $query->result();
         }
 
-   
+    public function get_ledger_master_associated_to_donar($donar)
+    {
+        $this->db->where('status', '1');
+             $this->db->where('donor_code', $donar);
+               $query= $this->db->get("ledger_master");
+                return $query->result();
+    }
+
+    public function get_donor_info_by_code($donar)
+    {
+        $this->db->where('status', '1');
+        $this->db->where('donar_code', $donar);
+            $query = $this->db->get('donar_info');
+             return $query->result();
+    }
+
+    public function get_account_ledger_info_by_account_code($accCode)
+    {
+         $this->db->select('ledger_name');
+        $this->db->where('account_ledger_status', '1');
+        $this->db->where('ledger_code', $accCode);
+            $query = $this->db->get('account_ledger_info')->result();
+             if(!empty($query)){
+           return $query[0]->ledger_name;
+               }else{
+                   return NULL;
+               }
+             
+    }
+
+    
 
 
 
@@ -385,14 +415,7 @@ $query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledge
 
 
 
-
-
-
-
-
-
-
-   public function get_last_code_of_program()
+    public function get_last_code_of_program()
    {
               $this->db->select_max('program_code');
                $query= $this->db->get("programs_list")->result();
