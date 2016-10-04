@@ -367,6 +367,13 @@ $query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledge
                $query= $this->db->get("subledger_info");
                 return $query->result();
    }
+   
+   public function get_all_donar()
+        {
+            $this->db->where('status', '1');
+            $query = $this->db->get('donar_info');
+             return $query->result();
+        }
 
    
 
