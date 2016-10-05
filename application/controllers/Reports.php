@@ -202,6 +202,7 @@ public function donorReport()
       $data['toN'] = $toN;
       $data['fromE'] = $fromE;
       $data['toE'] = $toE;
+      $data['donorCode'] = $donar;
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');

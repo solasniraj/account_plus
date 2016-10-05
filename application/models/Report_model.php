@@ -42,7 +42,90 @@ $query = $this->db->get();
  return $query->result();  
     }
     
-   
+    public function get_sum_of_amount_for_donar_by_code($chartId, $donorCode)
+    {
+        $this->db->where('gl_trans_status', '1');
+        $this->db->where('gl_code', $chartId);
+        $this->db->where('donor_code', $donorCode);
+        $this->db->where('ledger_type_code', '01');
+        if($chartId ==1 || $chartId ==4)
+        {
+            $this->db->select('SUM(amount) AS amount', FALSE);
+$this->db->where('trans_type', 'dr');
+        }elseif ($chartId ==2 || $chartId ==3) {
+            $this->db->select('SUM(amount) AS amount', FALSE);
+$this->db->where('trans_type', 'dr');
+        }else{
+            
+        }
+      $query =  $this->db->get('gl_trans_info');
+      echo $this->db->last_query();
+      return $query->result(); 
+    }
+    
+    public function get_sum_of_expenditure_to_last_date($chartId, $donorCode)
+    {
+        $this->db->where('gl_trans_status', '1');
+        $this->db->where('gl_code', $chartId);
+        $this->db->where('donor_code', $donorCode);
+        $this->db->where('ledger_type_code', '01');
+        if($chartId ==1 || $chartId ==4)
+        {
+            $this->db->select('SUM(amount) AS amount', FALSE);
+$this->db->where('trans_type', 'dr');
+        }elseif ($chartId ==2 || $chartId ==3) {
+            $this->db->select('SUM(amount) AS amount', FALSE);
+$this->db->where('trans_type', 'dr');
+        }else{
+            
+        }
+      $query =  $this->db->get('gl_trans_info');
+      echo $this->db->last_query();
+      return $query->result(); 
+    }
+    
+    public function get_sum_of_expenditure_from_last_report_to_now($chartId, $donorCode)
+    {
+        $this->db->where('gl_trans_status', '1');
+        $this->db->where('gl_code', $chartId);
+        $this->db->where('donor_code', $donorCode);
+        $this->db->where('ledger_type_code', '01');
+        if($chartId ==1 || $chartId ==4)
+        {
+            $this->db->select('SUM(amount) AS amount', FALSE);
+$this->db->where('trans_type', 'dr');
+        }elseif ($chartId ==2 || $chartId ==3) {
+            $this->db->select('SUM(amount) AS amount', FALSE);
+$this->db->where('trans_type', 'dr');
+        }else{
+            
+        }
+      $query =  $this->db->get('gl_trans_info');
+      echo $this->db->last_query();
+      return $query->result(); 
+    }
+    
+    public function get_sum_of_expenditure_of_internal_and_labour_from_last_report_to_now($chartId, $donorCode)
+    {
+        $this->db->where('gl_trans_status', '1');
+        $this->db->where('gl_code', $chartId);
+        $this->db->where('donor_code', $donorCode);
+        $this->db->where('ledger_type_code !=', '01');
+        if($chartId ==1 || $chartId ==4)
+        {
+            $this->db->select('SUM(amount) AS amount', FALSE);
+$this->db->where('trans_type', 'dr');
+        }elseif ($chartId ==2 || $chartId ==3) {
+            $this->db->select('SUM(amount) AS amount', FALSE);
+$this->db->where('trans_type', 'dr');
+        }else{
+            
+        }
+      $query =  $this->db->get('gl_trans_info');
+      echo $this->db->last_query();
+      return $query->result(); 
+    }
+    
     
     
 }
