@@ -85,10 +85,10 @@
                       $chartId = $dEntries->account_code;
                       $sumFund = $this->report_model->get_sum_of_amount_for_donar_by_code($donorCode);
                      $sumExpn = $this->report_model->get_sum_of_expenditure_to_last_date($chartId, $donorCode);
-                     $sumExpnNow = $this->report_model->get_sum_of_expenditure_from_last_report_to_now($chartId, $donorCode);
+                   //  $sumExpnNow = $this->report_model->get_sum_of_expenditure_from_last_report_to_now($chartId, $donorCode);
                      var_dump($sumFund);
                      var_dump($sumExpn);
-                      var_dump($sumExpnNow);
+                  //    var_dump($sumExpnNow);
 
 // $totalExpn = $sumExpn + $sumExpnNow;
                     // $amtRemain = $sumFund - $totalExpn;
