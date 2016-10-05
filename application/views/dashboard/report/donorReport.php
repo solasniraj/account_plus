@@ -83,11 +83,15 @@
                 <?php if(!empty($donarLed)){
                     foreach($donarLed as $dEntries){
                       $chartId = $dEntries->account_code;
-                      $sumFund = $this->report_model->get_sum_of_amount_for_donar_by_code($chartId, $donorCode);
+                      $sumFund = $this->report_model->get_sum_of_amount_for_donar_by_code($donorCode);
                      $sumExpn = $this->report_model->get_sum_of_expenditure_to_last_date($chartId, $donorCode);
                      $sumExpnNow = $this->report_model->get_sum_of_expenditure_from_last_report_to_now($chartId, $donorCode);
-                     $totalExpn = $sumExpn + $sumExpnNow;
-                     $amtRemain = $sumFund - $totalExpn;
+                     var_dump($sumFund);
+                     var_dump($sumExpn);
+                      var_dump($sumExpnNow);
+
+// $totalExpn = $sumExpn + $sumExpnNow;
+                    // $amtRemain = $sumFund - $totalExpn;
                      $otherExpn = $this->report_model->get_sum_of_expenditure_of_internal_and_labour_from_last_report_to_now($chartId, $donorCode);
                      $program = $this->ledger_model->get_account_ledger_info_by_account_code($dEntries->ledger_code);
                       
@@ -104,7 +108,7 @@
                     <td style="width: 10%;"><?php echo $dEntries->ledger_master_code; ?></td>
                     <td style="width: 15%;"><?php echo $dEntries->ledger_master_name; ?></td>
                     <td style="width: 15%;"><?php echo $program; ?></td>
-                    <td style="width: 10%;"><?php echo "Rs. 500" ?></td>
+                    <td style="width: 10%;"><?php echo "Rs. "; var_dump($sumFund); ?></td>
                     <td style="width: 10%;"></td>
                     <td style="width: 10%;"></td>
                     <td style="width: 10%;"></td>
