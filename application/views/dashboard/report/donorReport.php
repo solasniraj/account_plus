@@ -68,13 +68,14 @@
                     
                    
                     <th style="width: 10%;">A/C Code</th>
-                    <th style="width: 15%;">Ledger Name</th>
-                    <th style="width: 15%;">Program Name</th>
+                    <th style="width: 10%;">Ledger Name</th>
+                    <th style="width: 10%;">Program Name</th>
                     <th style="width: 10%;">Fund Amt.</th>
                     <th style="width: 10%;">Expenditure till last report date</th>
                     <th style="width: 10%;">Added expenditure</th>
                     <th style="width: 10%;">Total Expenditure</th>
                     <th style="width: 10%;">Remaining Budget</th>
+                    <th style="width: 10%;">Other Expenditure</th>
                     <th style="width: 10%;">Remarks</th>
                            
                 </tr>
@@ -84,14 +85,11 @@
                     foreach($donarLed as $dEntries){
                       $chartId = $dEntries->account_code;
                       $sumFund = $this->report_model->get_sum_of_amount_for_donar_by_code($donorCode);
-                     $sumExpn = $this->report_model->get_sum_of_expenditure_to_last_date($chartId, $donorCode);
+                     $sumExpn = $this->report_model->get_sum_of_expenditure_to_last_date($donorCode);
                    //  $sumExpnNow = $this->report_model->get_sum_of_expenditure_from_last_report_to_now($chartId, $donorCode);
-                     var_dump($sumFund);
-                     var_dump($sumExpn);
-                  //    var_dump($sumExpnNow);
 
 // $totalExpn = $sumExpn + $sumExpnNow;
-                    // $amtRemain = $sumFund - $totalExpn;
+                     $amtRemain = $sumFund - $sumExpn;
                      $otherExpn = $this->report_model->get_sum_of_expenditure_of_internal_and_labour_from_last_report_to_now($chartId, $donorCode);
                      $program = $this->ledger_model->get_account_ledger_info_by_account_code($dEntries->ledger_code);
                       
@@ -106,11 +104,12 @@
                 <tr>
                      
                     <td style="width: 10%;"><?php echo $dEntries->ledger_master_code; ?></td>
-                    <td style="width: 15%;"><?php echo $dEntries->ledger_master_name; ?></td>
-                    <td style="width: 15%;"><?php echo $program; ?></td>
-                    <td style="width: 10%;"><?php echo "Rs. "; var_dump($sumFund); ?></td>
+                    <td style="width: 10%;"><?php echo $dEntries->ledger_master_name; ?></td>
+                    <td style="width: 10%;"><?php echo $program; ?></td>
+                    <td style="width: 10%;"><?php echo "Rs. ".$sumFund; ?></td>
+                    <td style="width: 10%;"><?php echo "Rs. ".$sumExpn; ?></td>
                     <td style="width: 10%;"></td>
-                    <td style="width: 10%;"></td>
+                    <td style="width: 10%;"><?php echo "Rs. ".$amtRemain; ?></td>
                     <td style="width: 10%;"></td>
                     <td style="width: 10%;"></td>
                     <td style="width: 10%;"></td>

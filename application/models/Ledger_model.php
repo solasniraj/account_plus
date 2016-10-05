@@ -379,6 +379,7 @@ $query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledge
     {
         $this->db->where('status', '1');
              $this->db->where('donor_code', $donar);
+             $this->db->where('ledger_type_code', '01');
                $query= $this->db->get("ledger_master");
                 return $query->result();
     }
