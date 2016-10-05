@@ -7,8 +7,12 @@
             <file>file:/opt/lampp/htdocs/account_plus/application/models/Report_model.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/models/Ledger_model.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Reports.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/report/dayBook.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/report/ledgerQueryForm.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/report/subLedgerQueryForm.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/report/subLedgerReport.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/models/Donar_model.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/report/donorQueryForm.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/report/donorReport.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/templates/sideNavigation.php</file>
         </group>
     </open-files>
 </project-private>

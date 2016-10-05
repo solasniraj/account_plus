@@ -44,7 +44,7 @@
                         <p>Printed on : </p>
                  
         
-        <h3 class="blank1">Sub-ledger Account Statement </h3><p></p>
+        <h3 class="blank1">Donor Report Statement </h3><p></p>
                     
         <div class="clearfix"></div>
         <div class="xs tabls">
@@ -83,6 +83,7 @@
                 <?php if(!empty($donarLed)){
                     foreach($donarLed as $dEntries){
                       $chartId = $dEntries->account_code;
+                      var_dump($chartId);
                       $program = $this->ledger_model->get_account_ledger_info_by_account_code($dEntries->ledger_code);
                       
                       
