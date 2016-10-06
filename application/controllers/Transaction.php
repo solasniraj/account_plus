@@ -21,6 +21,11 @@
     {
       $url = current_url();
       if ($this->session->userdata('logged_in') == true) {
+          if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        {
+          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
+         redirect('transaction/journalList', 'refresh');
+        }else{
           $user_id = $this->session->userdata('user_id');
              $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
@@ -32,7 +37,7 @@
        $this->load->view('dashboard/templates/topHead');
        $this->load->view('dashboard/dashboard/dashboardPanel');
        $this->load->view('dashboard/templates/footer');
-     } else {
+      } }else {
       redirect('login/index/?url=' . $url, 'refresh');
     }
   }
@@ -49,7 +54,7 @@
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/transaction/journalList', $data);
       $this->load->view('dashboard/templates/footer');   
-       } else {
+      } else {
       redirect('login/index/?url=' . $url, 'refresh');
     }
   }
@@ -127,6 +132,11 @@ $NewNo = urlencode($value);
      $url = current_url();
     if ($this->session->userdata('logged_in') == true) 
     {
+        if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        {
+          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
+         redirect('transaction/journalList', 'refresh');
+        }else{
         if (isset($_POST['charClassId'])) 
      {
            
@@ -209,7 +219,7 @@ echo json_encode($response);
       echo "Unauthorized access";
 
     }
-    }else
+        } }else
   {
 
    redirect('login/index/?url=' . $url, 'refresh');
@@ -222,7 +232,11 @@ echo json_encode($response);
        {
    $url = current_url();
    if ($this->session->userdata('logged_in') == true) 
-   {   
+   {  if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        {
+          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
+         redirect('transaction/journalList', 'refresh');
+        }else{ 
      if (isset($_POST['chartId']) && isset($_POST['programmId'])) 
      {
        if(!empty($_POST['programmId'])){
@@ -291,7 +305,7 @@ echo json_encode($response);
       echo "Unauthorized access";
 
     }
-  }
+   }}
   else
   {
 
@@ -306,7 +320,11 @@ echo json_encode($response);
        {
    $url = current_url();
    if ($this->session->userdata('logged_in') == true) 
-   {   
+   {  if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        {
+          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
+         redirect('transaction/journalList', 'refresh');
+        }else{ 
      if (isset($_POST['chartId']) && isset($_POST['programmId']) && isset($_POST['subLedger'])) 
      {
        $accountId= $_POST['programmId'];
@@ -356,7 +374,7 @@ echo json_encode($response);
       echo "Unauthorized access";
 
     }
-  }
+   }}
   else
   {
 
@@ -372,7 +390,11 @@ echo json_encode($response);
        {
    $url = current_url();
    if ($this->session->userdata('logged_in') == true) 
-   {   
+   {  if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        {
+          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
+         redirect('transaction/journalList', 'refresh');
+        }else{ 
      if (isset($_POST['chartId']) && isset($_POST['programmId']) && isset($_POST['subLedger'])) 
      {
        $accountId= $_POST['programmId'];
@@ -407,7 +429,7 @@ echo json_encode($response);
       echo "Unauthorized access";
 
     }
-  }
+   }}
   else
   {
 
@@ -422,7 +444,11 @@ echo json_encode($response);
       
       $url = current_url();
    if ($this->session->userdata('logged_in') == true) 
-   {   
+   {  if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        {
+          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
+         redirect('transaction/journalList', 'refresh');
+        }else{ 
         $mCode = $_POST['lmCode'];
         
      if (isset($_POST['lmCode'])) 
@@ -438,7 +464,7 @@ echo json_encode($response);
        $response['code'] = $codeS;
        echo json_encode($response);  
      }
-     }
+   }}
      else
   {
 
@@ -453,6 +479,11 @@ echo json_encode($response);
   {
    $url = current_url();
    if ($this->session->userdata('logged_in') == true) {
+       if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        {
+          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
+         redirect('transaction/journalList', 'refresh');
+        }else{
 $user_id = $this->session->userdata('user_id');
              $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
@@ -491,7 +522,7 @@ $user_id = $this->session->userdata('user_id');
      $this->load->view('dashboard/templates/topHead');
      $this->load->view('dashboard/transaction/journalEntry', $data);
      $this->load->view('dashboard/templates/footer');   
-   } 
+   }} 
    else
    {
 
@@ -507,6 +538,11 @@ $user_id = $this->session->userdata('user_id');
   {
       $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
+        if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        {
+          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
+         redirect('transaction/journalList', 'refresh');
+        }else{
        $glNo = urldecode($id);
         $glNos = str_replace('&#47;', '/', $glNo);
         
@@ -523,7 +559,7 @@ $user_id = $this->session->userdata('user_id');
      $this->load->view('printPreview/preview/templates/footer');
     
     
-       } else {
+    }} else {
       redirect('login/index/?url=' . $url, 'refresh');
     }
   }
@@ -533,7 +569,11 @@ $user_id = $this->session->userdata('user_id');
   {
     $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
-
+if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        {
+          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
+         redirect('transaction/journalList', 'refresh');
+        }else{
       $userId = $this->session->userdata("user_id");
 
       if (isset($_POST['pId'])) {
@@ -549,7 +589,7 @@ $user_id = $this->session->userdata('user_id');
         echo $a;
 
       }
-    } else {
+    }} else {
       redirect('login/index/?url=' . $url, 'refresh');
     }
 
@@ -577,6 +617,11 @@ $user_id = $this->session->userdata('user_id');
   {      
     $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
+        if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        {
+          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
+         redirect('transaction/journalList', 'refresh');
+        }else{
         $user_id = $this->session->userdata('user_id');
              $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
@@ -714,7 +759,7 @@ $NewNo = urlencode($value);
     }
 
   } 
-
+    }
   else 
   {
 

@@ -8,6 +8,11 @@ class chartAccount extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
+        if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        {
+          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
+         redirect('transaction/journalList', 'refresh');
+        }
     }
     
     public function index()

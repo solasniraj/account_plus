@@ -17,6 +17,11 @@ class preview extends CI_Controller {
         $this->load->library('pagination');
         $this->load->helper('csv');
         $this->load->library('Numbertowords');
+        if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        {
+          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
+         redirect('transaction/journalList', 'refresh');
+        }
     }
 
     public function jounalView($id=null) {
