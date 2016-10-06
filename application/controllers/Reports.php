@@ -149,7 +149,7 @@ public function subLedgerReport()
         $toE = $this->input->post('englishDateT');
         $data['subLedgerDetails'] = $this->ledger_model->get_sub_ledger_info_by_code($subledger);
        
-        $data['ledgerRep'] = $this->report_model->get_transaction_details_of_sub_ledger_with_in_dates($subledger, $fromE, $toE);
+        $data['ledgerRep'] = $this->report_model->get_transaction_details_of_sub_ledger_with_in_dates($subledger, $fromN, $fromE, $toN, $toE);
         
       $data['fromN'] = $fromN;
       $data['toN'] = $toN;

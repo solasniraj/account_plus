@@ -38,10 +38,18 @@ $query = $this->db->get();
  return $query->result();  
     }
     
-    public function get_transaction_details_of_sub_ledger_with_in_dates($ledger, $fromE, $toE)
+    public function get_transaction_details_of_sub_ledger_with_in_dates($subledger, $fromN, $fromE, $toN, $toE)
     {
-        $this->db->where('sub_ledger_code', $ledger);
+        $this->db->where('sub_ledger_code', $subledger);
         $this->db->where('gl_trans_status', '1');
+        if(!empty($fromN) && (!empty($fromE))){ 
+        $this->db->where('tran_date >=', $fromN);
+        $this->db->where('tran_date_english >=', $fromE);
+        }
+         if(!empty($toN) && (!empty($toE))){
+        $this->db->where('tran_date <=', $toN);
+        $this->db->where('tran_date_english <=', $toE);
+         }
         $this->db->select('*');
         $this->db->from('gl_trans_info');
 $this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.journal_voucher_no');
