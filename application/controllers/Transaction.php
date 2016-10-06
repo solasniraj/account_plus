@@ -21,7 +21,7 @@
     {
       $url = current_url();
       if ($this->session->userdata('logged_in') == true) {
-          if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+          if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
         {
           $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
          redirect('transaction/journalList', 'refresh');
@@ -132,7 +132,7 @@ $NewNo = urlencode($value);
      $url = current_url();
     if ($this->session->userdata('logged_in') == true) 
     {
-        if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
         {
           $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
          redirect('transaction/journalList', 'refresh');
@@ -232,7 +232,7 @@ echo json_encode($response);
        {
    $url = current_url();
    if ($this->session->userdata('logged_in') == true) 
-   {  if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+   {  if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
         {
           $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
          redirect('transaction/journalList', 'refresh');
@@ -320,7 +320,7 @@ echo json_encode($response);
        {
    $url = current_url();
    if ($this->session->userdata('logged_in') == true) 
-   {  if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+   {  if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
         {
           $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
          redirect('transaction/journalList', 'refresh');
@@ -390,7 +390,7 @@ echo json_encode($response);
        {
    $url = current_url();
    if ($this->session->userdata('logged_in') == true) 
-   {  if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+   {  if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
         {
           $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
          redirect('transaction/journalList', 'refresh');
@@ -444,7 +444,7 @@ echo json_encode($response);
       
       $url = current_url();
    if ($this->session->userdata('logged_in') == true) 
-   {  if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+   {  if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
         {
           $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
          redirect('transaction/journalList', 'refresh');
@@ -479,7 +479,7 @@ echo json_encode($response);
   {
    $url = current_url();
    if ($this->session->userdata('logged_in') == true) {
-       if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+       if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
         {
           $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
          redirect('transaction/journalList', 'refresh');
@@ -538,7 +538,7 @@ $user_id = $this->session->userdata('user_id');
   {
       $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
-        if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
         {
           $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
          redirect('transaction/journalList', 'refresh');
@@ -569,7 +569,7 @@ $user_id = $this->session->userdata('user_id');
   {
     $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
-if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
         {
           $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
          redirect('transaction/journalList', 'refresh');
@@ -617,7 +617,7 @@ if(!is_logged_in())  // if you add in constructor no need write each function in
   {      
     $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
-        if(!is_logged_in())  // if you add in constructor no need write each function in above controller. 
+        if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
         {
           $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
          redirect('transaction/journalList', 'refresh');

@@ -1,14 +1,17 @@
 <?php
 
-function is_logged_in() {
-    $CI =& get_instance();
-    
-  $user = $CI->session->userdata('user_data');
-  if (!isset($user)) { 
-   return false; 
+function is_trans_pending() {
+   $ci=& get_instance();
+    $ci->load->database();
+   $ci->load->model('transaction_model');
+   $day = date("Y-m-d");
+   $trans = $ci->transaction_model->check_status_of_transaction($day);
+  
+  if (isset($trans) && (!empty($trans))) { 
+   return true; 
   } 
  else { 
-   return true;
+   return false;
  }
 }
 

@@ -224,6 +224,14 @@ $query = $this->db->get();
                }
     }
     
+    public function check_status_of_transaction($day)
+    {
+        $this->db->where('tran_date_english < ', $day);
+        $this->db->where('gl_trans_status', '2');
+      $query= $this->db->get("gl_trans_info");
+      
+        return $query->result();
+    }    
     
     
     

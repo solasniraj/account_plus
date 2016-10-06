@@ -13,7 +13,7 @@
     <div class="left-side-inner">
 
         <!--sidebar nav start-->
-        <?php ?>
+        
         <ul class="nav nav-pills nav-stacked custom-nav">
             <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i><span>Account</span></a>
                 <ul class="sub-menu-list">
