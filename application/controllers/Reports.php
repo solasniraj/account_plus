@@ -98,7 +98,7 @@ public function ledgerReport()
         $toE = $this->input->post('englishDateT');
         $data['ledgerDetails'] = $this->ledger_model->get_ledger_details_by_ledger_code($ledger);
        
-        $data['ledgerRep'] = $this->report_model->get_transaction_details_of_ledger_with_in_dates($ledger, $fromE, $toE);
+        $data['ledgerRep'] = $this->report_model->get_transaction_details_of_ledger_with_in_dates($ledger, $fromN, $fromE, $toN, $toE);
         
       $data['fromN'] = $fromN;
       $data['toN'] = $toN;
