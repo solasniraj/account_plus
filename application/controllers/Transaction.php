@@ -673,6 +673,7 @@ if(is_trans_pending())  // if you add in constructor no need write each function
      }
      else 
      {
+         $today = date("Y-m-d");
          $ledgerName = $this->input->post('ledgerName');     
          $glDate = new DateTime($this->input->post('datepicker'));  
          $englishDate = $this->input->post('englishDate');
@@ -681,7 +682,7 @@ if(is_trans_pending())  // if you add in constructor no need write each function
          $journalNo = $this->input->post('journalNo');              
         $myData = $_POST['mydata'];
        $drCr = json_decode($myData);
-      
+      if($today == $englishDate){
        foreach ($drCr as $transData){           
            
            $chartCode = $transData->chartCode;
@@ -755,7 +756,11 @@ $NewNo = urlencode($value);
         break;
 
 }   
+     }else{
+         $this->session->set_flashdata('message', 'Transaction added successfully with status pending.');
+     redirect('transaction/journalEntry', 'refresh'); 
      
+     }    
     }
 
   } 
