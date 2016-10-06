@@ -99,7 +99,7 @@
                       
                 </tr> 
                     <?php } ?>
-                <?php } else{ echo "<tr><td colspan='6'><strong>No journal entries are found for ".$day ."</strong><td></tr>";} ?>
+                <?php } else{ echo "<tr><td colspan='6'><strong>No journal entries are found for </strong><td></tr>";} ?>
             </tbody>
  
             
