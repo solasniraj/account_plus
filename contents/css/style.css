@@ -2673,7 +2673,7 @@ i.dollar1{
   -o-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 -5px 14px 0px rgba(0, 0, 0, 0.2);
 }
 .com-mail input[type="submit"]{
 	border: none;
@@ -2823,7 +2823,7 @@ canvas#doughnut, canvas#line, canvas#polarArea, #bar, #pie, #radar{
   border-color:rgb(201, 247, 232);
 }
 .bs-example4 {
-  background: #fff;
+  background:	#ffffff;
   padding: 2em;
 }
 button.note-color-btn {
