@@ -25,7 +25,7 @@ $('.selectOpt').bind("change", function(){
 </SCRIPT>   <!--  main script is loaded  -->
 <div id="page-wrapper">
                 <div class="graphs">
-                    <h3 class="blank1"><b>Create Ledger</b></h3>
+                    <h3 class="blank1">Create Ledger</h3>
                      <style>
      /*custom csss */
                 .form-errors 
@@ -60,7 +60,7 @@ $('.selectOpt').bind("change", function(){
                             
                             
                             <div class="form-group">
-                    <label class="col-sm-2 control-label" for="chartAccType"><h4>Account</h4></label>
+                    <label class="col-sm-2 control-label" for="chartAccType"><b>Account</b></label>
                     <div class="col-sm-8"><select class="form-control1 selectOpt" id="chartAccType" name="chartAccType">
                             <option value="">Select Account</option>
                             <?php if (!empty($accountCharts)) {
@@ -76,7 +76,7 @@ $('.selectOpt').bind("change", function(){
                 </div>
                             
                             <div class="form-group">
-                    <label class="col-sm-2 control-label" for="accLedger"><h4>Account Ledger</h4></label>
+                    <label class="col-sm-2 control-label" for="accLedger"><i>Account Ledger</i></label>
                     <div class="col-sm-8"><select class="form-control1 selectOpt" id="accLedger" name="accLedger">
                             <option value="">Select Account Ledger</option>
                             <?php if (!empty($accountLedgers)) {
@@ -92,7 +92,7 @@ $('.selectOpt').bind("change", function(){
                 </div>
                             
                             <div class="form-group">
-                    <label class="col-sm-2 control-label" for="accSubLedger"><h4>Account Sub Ledger</h4></label>
+                    <label class="col-sm-2 control-label" for="accSubLedger"><h4><i>Account Sub Ledger</i></h4></label>
                     <div class="col-sm-8"><select class="form-control1 selectOpt" id="accSubLedger" name="accSubLedger">
                             <option value="00">Select Account Sub Ledger</option>
                             <?php if (!empty($subLedgers)) {
@@ -108,7 +108,7 @@ $('.selectOpt').bind("change", function(){
                 </div>
                             
                             <div class="form-group">
-                    <label class="col-sm-2 control-label" for="donorType"><h4>Donor</h4></label>
+                    <label class="col-sm-2 control-label" for="donorType"><h4><i>Donor</i></h4></label>
                     <div class="col-sm-8"><select class="form-control1 selectOpt" id="donorType" name="donorType">
                             <option value="00">Select Donor</option>
                             <?php if (!empty($donorInfo)) {
@@ -124,7 +124,7 @@ $('.selectOpt').bind("change", function(){
                 </div>
                             
                             <div class="form-group">
-                    <label class="col-sm-2 control-label" for="ledgerType"><h4>Ledger Type</h4></label>
+                    <label class="col-sm-2 control-label" for="ledgerType"><h4><i>Ledger Type</i></h4></label>
                     <div class="col-sm-8"><select class="form-control1 selectOpt" id="ledgerType" name="ledgerType">
                             <option value="00">Select Ledger Type</option>
                             <option value="01">Cash</option>
@@ -138,7 +138,7 @@ $('.selectOpt').bind("change", function(){
                                                      
                             
                             <div class="form-group">
-                                <label for="codeNo" class="col-sm-2 control-label"><h4>Account Code</h4></label>
+                                <label for="codeNo" class="col-sm-2 control-label"><i>Account Code</i></label>
                                 <div class="col-sm-8">
                                     <input type="text" value="<?php echo set_value('codeNo'); ?>" class="form-control1" id="codeNo" name="codeNo" placeholder="" readonly="true">
                                     <?php echo form_error('codeNo'); ?>
