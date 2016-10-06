@@ -51,13 +51,12 @@
      return  $insert_id;
         }
         
-        public function add_new_bank_account_from_ledger($subLedId, $name, $code)
+        public function add_new_bank_account_from_ledger($accDescription, $accLedger)
         {
             $data = Array(
-                'account_code' => NULL,
-                'subledger_code' =>$code,
-                'subledger_id' => $subLedId,
-                'bank_account_name' => $name,               
+                'bank_account_code' => NULL,
+                'ledger_code' =>$accLedger,
+                'bank_account_name' => $accDescription,               
                 'account_type' => NULL,
             'bank_name' => null,
             'bank_address' => NULL,

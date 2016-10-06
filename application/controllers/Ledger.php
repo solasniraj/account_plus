@@ -220,15 +220,8 @@ class ledger extends CI_Controller {
                 if((($accLedger <= '09') && ($accLedger >= '00')) && $chartNo =='01')
                 {
        
-                    $subDetails = $this->ledger_model->get_subledger_details($accSubLedger);
-                    if(!empty($subDetails)){
-                        foreach ($subDetails as $subLedDet){
-                            $subLedId = $subLedDet->id;
-                            $name = $subLedDet->subledger_name;
-                            $code = $subLedDet->subledger_code;
-                        }
-                    }
-               $result1 = $this->bank_model->add_new_bank_account_from_ledger($subLedId, $name, $code);
+                   
+               $result1 = $this->bank_model->add_new_bank_account_from_ledger($accDescription, $accLedger);
                 }
        
                 if ($result) {

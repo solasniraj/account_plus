@@ -660,11 +660,11 @@ $user_id = $this->session->userdata('user_id');
            
            if((!empty($debitAmount)) && is_numeric( $debitAmount )){
                $type='dr';
-              if($chartCode == '1' || $chartCode == '4'){
-                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type);
-              }elseif($chartCode == '2' || $chartCode == '3'){
+              if($chartCode == '01' || $chartCode == '04'){
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type);
+              }elseif($chartCode == '02' || $chartCode == '03'){
                   $debitAmount = ('-1') * $debitAmount;
-                          $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type);
+                          $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate,$chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type);
               }else{
                   echo "something went wrong";
               }
@@ -675,11 +675,11 @@ $user_id = $this->session->userdata('user_id');
                
            }elseif((!empty ($creditAmount)) && is_numeric( $creditAmount )){
                $type='cr';
-               if($chartCode == '1' || $chartCode == '4'){
+               if($chartCode == '01' || $chartCode == '04'){
                   $creditAmount = ('-1') * $creditAmount;
-                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type);
-              }elseif($chartCode == '2' || $chartCode == '3'){
-                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type);
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type);
+              }elseif($chartCode == '02' || $chartCode == '03'){
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type);
               }else{
                   echo "something went wrong";
               }
