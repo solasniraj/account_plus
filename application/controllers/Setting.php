@@ -183,10 +183,11 @@ foreach ($file_array as $query)
           $this->load->view('dashboard/templates/topHead');
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
-            $this->form_validation->set_rules('committeeName', 'Committee Name', 'required|callback_xss_clean|max_length[200]');
-            $this->form_validation->set_rules('committeeAddress', 'Address', 'required|callback_xss_clean|max_length[200]');
-            $this->form_validation->set_rules('contactNumber', 'Contact Number', 'required|callback_xss_clean|max_length[200]');
-            $this->form_validation->set_rules('committeeCode', 'Committee Code', 'required|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('committeeName', 'Committee Name', 'trim|regex_match[/^[a-z,0-9,A-Z_\-., ]{2,200}$/]|required|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('committeeAddress', 'Address', 'trim|regex_match[/^[a-z,0-9,A-Z_\-., ]{2,200}$/]|required|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('emailId', 'Email', 'trim|regex_match[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/]|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('contactNumber', 'Contact Number', 'trim|regex_match[/^[0-9\+-]{6,20}$/]|required|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('committeeCode', 'Committee Code', 'trim|required|callback_xss_clean|max_length[200]');
 
             if (($this->form_validation->run() == TRUE)) {
                 if ($_FILES && $_FILES['file_name']['name'] !== "") {

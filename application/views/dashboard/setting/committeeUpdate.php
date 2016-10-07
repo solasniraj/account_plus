@@ -36,7 +36,7 @@
                             <div class="form-group">
                                 <label for="emailId" class="col-sm-1 control-label"><b>Email ID</b></label>
                                 <div class="col-sm-10">
-                                    <input type="text" value="<?php echo $comData->email_address; ?>" class="form-control1" id="emailId" name="emailId" placeholder="Enter Email">
+                                    <input type="email" value="<?php echo $comData->email_address; ?>" class="form-control1" id="emailId" name="emailId" placeholder="Enter Email">
                                     <?php echo form_error('emailId'); ?>
                                 </div>
                             </div>
