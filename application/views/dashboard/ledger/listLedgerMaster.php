@@ -80,7 +80,7 @@ ul.collection li{
     <div class="graphs">
         <h3 class="blank1">Ledger Account Details</h3>
         <div class="xs">
-             <?php
+              <?php
             $flashMessage = $this->session->flashdata('flashMessage');
             if (!empty($flashMessage)) {
                 ?>
@@ -88,7 +88,12 @@ ul.collection li{
                     <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
                 </div>
                 <hr>
-            <?php }
+            <?php
+            }
+          
+            if (isset($error)) {
+                echo $error;
+            }
             ?>
             <div class="col-md-4 email-list1">
                 <div class="activity_box">

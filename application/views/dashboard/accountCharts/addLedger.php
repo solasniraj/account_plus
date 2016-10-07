@@ -1,6 +1,21 @@
             <div id="page-wrapper">
                 <div class="graphs">
                     <h3 class="blank1">Create Account Ledger</h3>
+                    <?php
+            $flashMessage = $this->session->flashdata('flashMessage');
+            if (!empty($flashMessage)) {
+                ?>
+                <div class="alert alert-success fade in">
+                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
+                </div>
+                <hr>
+            <?php
+            }
+          
+            if (isset($error)) {
+                echo $error;
+            }
+            ?>
                      <style>
      /*sanoj custom csss */
                 .form-errors 

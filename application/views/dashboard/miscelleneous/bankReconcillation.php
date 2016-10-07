@@ -9,7 +9,12 @@
                     <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
                 </div>
                 <hr>
-            <?php }
+            <?php
+            }
+          
+            if (isset($error)) {
+                echo $error;
+            }
             ?>
 
             <!-- CSSS AND JS FOR JQUERY DATEPICKER IMPLEMENTATION  -->

@@ -4,15 +4,21 @@
 		<h3 class="blank1">Bajet hisab</h3>
 
 		<div class="xs tabls">
-			<?php  $flashMessage=$this->session->flashdata('flashMessage'); 
-			if(!empty($flashMessage))
-				{  ?>
-			<div class="alert alert-success fade in">
-				<p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
-			</div>
-			<hr>
-			<?php }
-			?>
+			<?php
+            $flashMessage = $this->session->flashdata('flashMessage');
+            if (!empty($flashMessage)) {
+                ?>
+                <div class="alert alert-success fade in">
+                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
+                </div>
+                <hr>
+            <?php
+            }
+          
+            if (isset($error)) {
+                echo $error;
+            }
+            ?>
 
 			<style>
 

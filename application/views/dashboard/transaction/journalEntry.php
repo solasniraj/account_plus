@@ -32,11 +32,16 @@
             $flashMessage = $this->session->flashdata('flashMessage');
             if (!empty($flashMessage)) {
                 ?>
-                <div class="alert alert-success fade in text-center">
+                <div class="alert alert-success fade in">
                     <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
                 </div>
                 <hr>
-            <?php }
+            <?php
+            }
+          
+            if (isset($error)) {
+                echo $error;
+            }
             ?>
             <?php echo form_open_multipart('transaction/glTransaction', array('id' =>'glTrans', 'class' => 'form-horizontal', 'novalidate' =>'novalidate')); ?>
             <div class="form-group" >

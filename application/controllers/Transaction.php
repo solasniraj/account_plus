@@ -715,7 +715,7 @@ if(is_trans_pending())  // if you add in constructor no need write each function
                   echo "something went wrong";
               }
               if((($accCode <= '09') && ($accCode >= '00')) && $chartCode =='01'){
-               $bankId = $this->transaction_model->get_bank_details_by_subledger_id($subLedger_id);
+               $bankId = $this->transaction_model->get_bank_details_by_ledger_id($accCode);
                 $this->transaction_model->add_transaction_to_bank_transaction($journalNo, $datepicker, $englishDate, $lmcode, $description, $debitAmount, $bankId, $type);  
               }else{}
                
@@ -742,13 +742,13 @@ if(is_trans_pending())  // if you add in constructor no need write each function
            switch($_REQUEST['journalEntry']) {
        case 'Submit':
            $this->transaction_model->update_transaction_status_to_approved($journalNo);
-           $this->session->set_flashdata('message', 'Transaction added successfully with active status.');
+           $this->session->set_flashdata('flashMessage', 'Transaction added successfully with active status.');
        redirect('transaction/journalList');            
            break;
 
     case 'Preview': 
         $this->transaction_model->update_transaction_status_to_pending($journalNo);
-        $this->session->set_flashdata('message', 'Transaction added successfully with status pending.');
+        $this->session->set_flashdata('flashMessage', 'Transaction added successfully with status pending.');
       
 $value = str_replace('/', '&#47;', $journalNo);
 $NewNo = urlencode($value);
@@ -757,7 +757,7 @@ $NewNo = urlencode($value);
 
 }   
      }else{
-         $this->session->set_flashdata('message', 'Transaction added successfully with status pending.');
+         $this->session->set_flashdata('flashMessage', 'Transaction added successfully with status pending.');
      redirect('transaction/journalEntry', 'refresh'); 
      
      }    

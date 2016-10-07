@@ -100,10 +100,21 @@
                         </div>
                         <div class="signin">
                             <div class="invalid">
-                                <?php if ($this->session->flashdata('message')) {
-                                    echo $this->session->flashdata('message');
-                                }
-                                ?>
+                                <?php
+            $flashMessage = $this->session->flashdata('flashMessage');
+            if (!empty($flashMessage)) {
+                ?>
+                <div class="alert alert-success fade in">
+                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
+                </div>
+                <hr>
+            <?php
+            }
+          
+            if (isset($error)) {
+                echo $error;
+            }
+            ?>
                             </div>
 <?php echo form_open('login/addNewCommittee'); ?>
 

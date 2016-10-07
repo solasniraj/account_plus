@@ -1,6 +1,21 @@
 <div id="page-wrapper">
     <div class="graphs">
         <h3 class="blank1">Data restore</h3>
+        <?php
+            $flashMessage = $this->session->flashdata('flashMessage');
+            if (!empty($flashMessage)) {
+                ?>
+                <div class="alert alert-success fade in">
+                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
+                </div>
+                <hr>
+            <?php
+            }
+          
+            if (isset($error)) {
+                echo $error;
+            }
+            ?>
         <div class="tab-content">
             <div class="tab-pane active" id="horizontal-form">
                 <?php echo form_open_multipart('setting/restore', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>

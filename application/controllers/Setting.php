@@ -60,7 +60,7 @@ $pass = $CI->db->password;
          $this->load->helper('download'); 
          force_download('dbbackup_'.date('d_m_Y_H_i_s').'.zip', $backup);
          
- $this->session->set_flashdata('message', 'Data backuped sucessfully');                    
+ $this->session->set_flashdata('flashMessage', 'Data backuped sucessfully');                    
                         redirect('setting/index', 'refresh');          
                         
     } else {
@@ -205,7 +205,7 @@ foreach ($file_array as $query)
                 $config['file_name'] = $committeeLogo;
                
                 $this->setting_model->update_committee_info($committee_id, $committee_code, $committeeName, $committeeAddress, $emailId, $contactNumber, $committeeLogo);
-                $this->session->set_flashdata('message', 'Committee Info updated sucessfully');            
+                $this->session->set_flashdata('flashMessage', 'Committee Info updated sucessfully');            
                 redirect('setting/committeeInfo');
                     }
                 } else {
@@ -215,7 +215,7 @@ foreach ($file_array as $query)
                 $contactNumber = $this->input->post('contactNumber');
                 $committeeLogo = $this->input->post('existingImg');                
                $this->setting_model->update_committee_info($committee_id, $committee_code, $committeeName, $committeeAddress, $emailId, $contactNumber, $committeeLogo);
-                $this->session->set_flashdata('message', 'Committee Info updated sucessfully');               
+                $this->session->set_flashdata('flashMessage', 'Committee Info updated sucessfully');               
                 redirect('setting/committeeInfo');
                 }
             } else {
@@ -279,7 +279,7 @@ foreach ($file_array as $query)
                 
 
                 $this->setting_model->update_user_info($user_id, $userName, $fullName, $emailId, $contactNumber);
-                $this->session->set_flashdata('message', 'Header setting done sucessfully');
+                $this->session->set_flashdata('flashMessage', 'Header setting done sucessfully');
                 redirect('setting/userInfo');
               
             } else {

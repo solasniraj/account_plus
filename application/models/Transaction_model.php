@@ -10,9 +10,9 @@ class Transaction_model extends CI_Model {
         $this->load->database();
     }
     
-    public function get_bank_details_by_subledger_id($subLedger_id)
+    public function get_bank_details_by_ledger_id($accCode)
     {
-        $this->db->where('subledger_code', $subLedger_id);
+        $this->db->where('account_ledger_head_code', $accCode);
         $this->db->where('status', '1');
             $query = $this->db->get('bank_info')->result();
                if(!empty($query)){

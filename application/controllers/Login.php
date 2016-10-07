@@ -163,7 +163,7 @@ $data['fiscalYear'] = $this->dbmanager_model->get_fiscal_year();
              }
             } else { // incorrect username or password
                 
-                $this->session->set_flashdata('message', 'Username or password incorrect');
+                $this->session->set_flashdata('flashMessage', 'Username or password incorrect');
 
                redirect('login/index/?url=' . $link, 'refresh');
             }

@@ -102,7 +102,12 @@ $(document).ready(function ()
                     <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
                 </div>
                 <hr>
-            <?php }
+            <?php
+            }
+          
+            if (isset($error)) {
+                echo $error;
+            }
             ?>
             <div data-example-id="simple-responsive-table" class="bs-example4">
 

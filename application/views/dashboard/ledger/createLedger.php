@@ -44,15 +44,20 @@ $('.selectOpt').bind("change", function(){
 
                 </style>
                     <div class="tab-content">
-                         <?php
+                          <?php
             $flashMessage = $this->session->flashdata('flashMessage');
             if (!empty($flashMessage)) {
                 ?>
                 <div class="alert alert-success fade in">
-                    <p style="text-align:center;font-size:18px;"><strong><?php echo $flashMessage; ?> </strong></p>
+                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
                 </div>
                 <hr>
-            <?php }
+            <?php
+            }
+          
+            if (isset($error)) {
+                echo $error;
+            }
             ?>
                      <div class="bs-example4" data-example-id="simple-responsive-table">
                         <div class="tab-pane active" id="horizontal-form">
