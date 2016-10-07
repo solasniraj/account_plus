@@ -67,7 +67,7 @@ $('.selectOpt').bind("change", function(){
      
                                 foreach ($accountCharts as $acharts) {
                                     ?>
-                                    <option value="<?php echo $acharts->chart_code; ?>"><?php echo $acharts->chart_class_name; ?></option>
+                                    <option value="<?php echo $acharts->chart_code; ?>" <?php echo set_select('chartAccType',  $acharts->chart_code); ?> ><?php echo $acharts->chart_class_name; ?></option>
     <?php }
 } ?>
                         </select>
@@ -82,7 +82,7 @@ $('.selectOpt').bind("change", function(){
                             <?php if (!empty($accountLedgers)) {
                                 foreach ($accountLedgers as $aLedgers) {
                                     ?>
-                                    <option value="<?php echo $aLedgers->ledger_code; ?>"><?php echo $aLedgers->ledger_code.'&nbsp;&nbsp;&nbsp;'.$aLedgers->ledger_name; ?></option>
+                                    <option value="<?php echo $aLedgers->ledger_code; ?>" <?php echo set_select('accLedger',  $aLedgers->ledger_code); ?> ><?php echo $aLedgers->ledger_code.'&nbsp;&nbsp;&nbsp;'.$aLedgers->ledger_name; ?></option>
     <?php }
 } ?>
                         </select>
@@ -98,7 +98,7 @@ $('.selectOpt').bind("change", function(){
                             <?php if (!empty($subLedgers)) {
                                 foreach ($subLedgers as $aSLedgers) {
                                     ?>
-                                    <option value="<?php echo $aSLedgers->subledger_code; ?>"><?php echo $aSLedgers->subledger_code.'&nbsp;&nbsp;&nbsp;'.$aSLedgers->subledger_name; ?></option>
+                                    <option value="<?php echo $aSLedgers->subledger_code; ?>" <?php echo set_select('accSubLedger',  $aSLedgers->subledger_code); ?> ><?php echo $aSLedgers->subledger_code.'&nbsp;&nbsp;&nbsp;'.$aSLedgers->subledger_name; ?></option>
     <?php }
 } ?>
                         </select>
