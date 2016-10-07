@@ -8,6 +8,7 @@ class Report_model extends CI_Model {
 
     
     public function get_journal_entry_for_day($day) {
+        $this->db->where('gl_trans_status', '1');
         $this->db->where('tran_date_english', $day);
         $this->db->group_by('journal_voucher_no');
         $this->db->select('*');

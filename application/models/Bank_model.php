@@ -91,6 +91,7 @@
 
         public function get_total_bank_balance_of_related_bank($bankId)
         {
+            $this->db->where('status', '1');
             $this->db->select_sum('amount');
     $this->db->from('bank_trans_info');
     $this->db->where('bank_id', $bankId);
@@ -100,6 +101,7 @@
         
         public function get_total_balance_of_all_banks_from_trans_info()
         {
+             $this->db->where('status', '1');
             $this->db->select_sum('amount');
     $this->db->from('bank_trans_info');
      $this->db->where('bank_id!=', NULL);
