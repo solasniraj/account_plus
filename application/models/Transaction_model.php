@@ -12,7 +12,7 @@ class Transaction_model extends CI_Model {
     
     public function get_bank_details_by_ledger_id($accCode)
     {
-        $this->db->where('account_ledger_head_code', $accCode);
+        $this->db->where('ledger_code', $accCode);
         $this->db->where('status', '1');
             $query = $this->db->get('bank_info')->result();
                if(!empty($query)){

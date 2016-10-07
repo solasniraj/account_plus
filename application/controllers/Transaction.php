@@ -730,7 +730,7 @@ if(is_trans_pending())  // if you add in constructor no need write each function
                   echo "something went wrong";
               }
               if((($accCode <= '09') && ($accCode >= '00')) && $chartCode =='01'){
-                 $bankId = $this->transaction_model->get_bank_details_by_subledger_id($subLedger_id);
+                 $bankId = $this->transaction_model->get_bank_details_by_ledger_id($accCode);
                 $this->transaction_model->add_transaction_to_bank_transaction($journalNo, $datepicker, $englishDate, $lmcode, $description, $creditAmount, $bankId, $type);    
               }else{}
            }else{
