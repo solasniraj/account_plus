@@ -114,7 +114,7 @@ $('.selectOpt').bind("change", function(){
                             <?php if (!empty($donorInfo)) {
                                 foreach ($donorInfo as $dInfo) {
                                     ?>
-                                    <option value="<?php echo $dInfo->donar_code; ?>"><?php echo $dInfo->donar_code.'&nbsp;&nbsp;&nbsp;'.$dInfo->donar_name; ?></option>
+                                    <option value="<?php echo $dInfo->donar_code; ?>" <?php echo set_select('donorType',  $dInfo->donar_code); ?> ><?php echo $dInfo->donar_code.'&nbsp;&nbsp;&nbsp;'.$dInfo->donar_name; ?></option>
     <?php }
 } ?>
                         </select>
@@ -126,10 +126,10 @@ $('.selectOpt').bind("change", function(){
                             <div class="form-group">
                     <label class="col-sm-2 control-label" for="ledgerType"><h4>Ledger Type</h4></label>
                     <div class="col-sm-8"><select class="form-control1 selectOpt" id="ledgerType" name="ledgerType">
-                            <option value="00">Select Ledger Type</option>
-                            <option value="01">Cash</option>
-                            <option value="02">Internal Cash</option>
-                            <option value="03">Labour Support</option>
+                            <option value="00" <?php echo set_select('ledgerType',  '00'); ?> >Select Ledger Type</option>
+                            <option value="01" <?php echo set_select('ledgerType',  '01'); ?> >Cash</option>
+                            <option value="02" <?php echo set_select('ledgerType',  '02'); ?> >Internal Cash</option>
+                            <option value="03" <?php echo set_select('ledgerType',  '03'); ?> >Labour Support</option>
                         </select>
                      <?php echo form_error('ledgerType'); ?>
                     </div>
