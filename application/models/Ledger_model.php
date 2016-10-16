@@ -345,8 +345,17 @@ $query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledge
             $query = $this->db->get('ledger_master');
              return $query->result();
    }
+   
+   public function get_ledger_master_listing_of_assets_and_liability()
+   {
+       $this->db->where('status', '1');
+       $this->db->where('account_code', '01');
+       $this->db->or_where('account_code', '02');
+            $query = $this->db->get('ledger_master');
+             return $query->result();
+   }
 
-      public function get_ledger_master_name_by_code($lmCode)
+   public function get_ledger_master_name_by_code($lmCode)
    {
              $this->db->select('ledger_master_name');
              $this->db->where('status', '1');
