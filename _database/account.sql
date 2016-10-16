@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 06, 2016 at 07:38 पूर्वाह्न
+-- Generation Time: Oct 07, 2016 at 11:32 पूर्वाह्न
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `bank_trans_info` (
   `reconciled` varchar(255) DEFAULT NULL,
   `bank_id` varchar(50) DEFAULT NULL,
   `status` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `bank_trans_info`
@@ -105,7 +105,12 @@ CREATE TABLE IF NOT EXISTS `bank_trans_info` (
 
 INSERT INTO `bank_trans_info` (`id`, `type`, `trans_no`, `trans_date`, `tran_date_english`, `ledger_master_code`, `memo`, `amount`, `reconciled`, `bank_id`, `status`) VALUES
 (14, 'dr', '12345-FY2073/2074-00001', '2073-06-19', '2016-10-05', '0101010000', 'Bank Deposited Amount', '500000', NULL, '2', '1'),
-(15, 'cr', '12345-FY2073/2074-00002', '2073-06-19', '2016-10-05', '0101010000', 'By Bank', '-60000', NULL, '2', '1');
+(15, 'cr', '12345-FY2073/2074-00002', '2073-06-19', '2016-10-05', '0101010000', 'By Bank', '-60000', NULL, '2', '1'),
+(16, 'dr', '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'hjghjg', '5000', NULL, '2', '1'),
+(17, 'dr', '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'hjghjg', '5000', NULL, '2', '1'),
+(18, 'cr', '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'fhgfhjghj', '-5000', NULL, '2', '1'),
+(19, 'dr', '12345-FY2073/2074-00004', '2073-06-21', '2016-10-07', '0101010000', 'jkhxkjchadkj5', '5000', NULL, '2', '1'),
+(20, 'dr', '12345-FY2073/2074-00005', '2073-06-21', '2016-10-07', '0101010000', 'gkuj bkj bk', '50000', NULL, '2', '1');
 
 -- --------------------------------------------------------
 
@@ -152,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `committee_info` (
 --
 
 INSERT INTO `committee_info` (`id`, `committee_name`, `address`, `phone`, `code`, `email_address`, `logo`, `status`) VALUES
-(10, 'Bardiya Natural Conservation Committee', 'Narayangarh, Chitwan', '9845214140', '12345', 'bhomnath@salyani.com.np', 'cctv_camera3.jpg', '1');
+(10, 'Bardiya Natural', 'Narayangarh', '9845214140', '12345', 'niraj@gmail.com', 'chitwan_national_park_logo.gif', '1');
 
 -- --------------------------------------------------------
 
@@ -212,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `gl_trans_comment_details` (
   `id` int(11) NOT NULL,
   `trans_no` varchar(255) DEFAULT NULL,
   `detailed_comment` text
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `gl_trans_comment_details`
@@ -220,7 +225,10 @@ CREATE TABLE IF NOT EXISTS `gl_trans_comment_details` (
 
 INSERT INTO `gl_trans_comment_details` (`id`, `trans_no`, `detailed_comment`) VALUES
 (25, '12345-FY2073/2074-00001', 'Being Cash Deposit Into Bank By WWF Nepal'),
-(26, '12345-FY2073/2074-00002', 'sd,sncmsa,c z,mxc skad');
+(26, '12345-FY2073/2074-00002', 'sd,sncmsa,c z,mxc skad'),
+(27, '12345-FY2073/2074-00003', 'jkdsf sndbjfs djfbsd fsd'),
+(28, '12345-FY2073/2074-00004', 'GFSDU FSDBJFSD NBJSDFjdkshf fsnmdbkjfsd'),
+(29, '12345-FY2073/2074-00005', 'hk jbkj n jkb jkbkj jkkj');
 
 -- --------------------------------------------------------
 
@@ -245,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `gl_trans_info` (
   `cheque_no` varchar(255) DEFAULT NULL,
   `trans_type` varchar(25) DEFAULT NULL,
   `gl_trans_status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `gl_trans_info`
@@ -257,7 +265,16 @@ INSERT INTO `gl_trans_info` (`id`, `journal_voucher_no`, `tran_date`, `tran_date
 (48, '12345-FY2073/2074-00002', '2073-06-19', '2016-10-05', '0411000000', 'Plantation Area 1 WWF Expenses Account', '11', '04', '00', '01', '01', 'Wirig', 50000, '', 'dr', '1'),
 (49, '12345-FY2073/2074-00002', '2073-06-19', '2016-10-05', '0411000000', 'Plantation Area 1 WWF Expenses Account', '11', '04', '00', '01', '01', 'wiring', 5000, '', 'dr', '1'),
 (50, '12345-FY2073/2074-00002', '2073-06-19', '2016-10-05', '0411000000', 'Plantation Area 1 WWF Expenses Account', '11', '04', '00', '01', '01', 'tiffin', 5000, '', 'dr', '1'),
-(51, '12345-FY2073/2074-00002', '2073-06-19', '2016-10-05', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'By Bank', -60000, '', 'cr', '1');
+(51, '12345-FY2073/2074-00002', '2073-06-19', '2016-10-05', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'By Bank', -60000, '', 'cr', '1'),
+(52, '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'hjghjg', 5000, '', 'dr', '2'),
+(53, '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'hjghjg', 5000, '', 'dr', '2'),
+(54, '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'fhgfhjghj', -5000, '', 'cr', '2'),
+(55, '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'hjghjg', 5000, '', 'dr', '2'),
+(56, '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'fhgfhjghj', -5000, '', 'cr', '2'),
+(57, '12345-FY2073/2074-00004', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'jkhxkjchadkj5', 5000, '', 'dr', '2'),
+(58, '12345-FY2073/2074-00004', '2073-06-21', '2016-10-07', '0310000101', 'Plantation Area 1 WWF Cash Account', '10', '03', '00', '01', '01', 'BDSJBFKJ', 5000, '', 'cr', '2'),
+(59, '12345-FY2073/2074-00005', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'gkuj bkj bk', 50000, '', 'dr', '1'),
+(60, '12345-FY2073/2074-00005', '2073-06-21', '2016-10-07', '0310000101', 'Plantation Area 1 WWF Cash Account', '10', '03', '00', '01', '01', 'jlk nknkl ', 50000, '', 'cr', '1');
 
 -- --------------------------------------------------------
 
@@ -275,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `ledger_master` (
   `donor_code` varchar(25) NOT NULL,
   `ledger_type_code` varchar(25) NOT NULL,
   `status` varchar(25) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ledger_master`
@@ -286,7 +303,8 @@ INSERT INTO `ledger_master` (`id`, `ledger_master_code`, `ledger_master_name`, `
 (27, '0310000101', 'Plantation Area 1 WWF Cash Account', '03', '10', '00', '01', '01', '1'),
 (28, '0310000103', 'Plantation Area 1 WWF Labour Account', '03', '10', '00', '01', '03', '1'),
 (29, '0411000000', 'Plantation Area 1 WWF Expenses Account', '04', '11', '00', '00', '00', '1'),
-(31, '0101000000', 'Rastriya Banijya Bank Account', '01', '01', '00', '00', '00', '1');
+(31, '0101000000', 'Rastriya Banijya Bank Account', '01', '01', '00', '00', '00', '1'),
+(32, '01000000', 'Plantation Area 1 WWF Expenses Account', '01', '', '00', '00', '00', '1');
 
 -- --------------------------------------------------------
 
@@ -457,7 +475,7 @@ ALTER TABLE `bank_info`
 -- AUTO_INCREMENT for table `bank_trans_info`
 --
 ALTER TABLE `bank_trans_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `chart_class`
 --
@@ -482,17 +500,17 @@ ALTER TABLE `fiscal_year_info`
 -- AUTO_INCREMENT for table `gl_trans_comment_details`
 --
 ALTER TABLE `gl_trans_comment_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `gl_trans_info`
 --
 ALTER TABLE `gl_trans_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `ledger_master`
 --
 ALTER TABLE `ledger_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `ledger_type_info`
 --
