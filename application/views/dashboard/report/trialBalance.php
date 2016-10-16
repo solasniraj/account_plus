@@ -78,10 +78,14 @@
             </thead>
             <tbody>
                 <?php if(!empty($allLedger)){
+                    $sumDr = '0';
+                    $sumCr = '0';
                     foreach($allLedger as $ledgers){
                       $code = $ledgers->ledger_master_code;
                       $drAmount = $this->report_model->get_sum_of_amounts_for_dr_of_ledger_master_from_journal_entry($code);
                       $crAmount =  $this->report_model->get_sum_of_amounts_for_cr_of_ledger_master_from_journal_entry($code);
+                     $sumDr += abs($drAmount);
+                     $sumCr += abs($crAmount)
                       ?>
                 <tr>
                     <td><?php echo $ledgers->ledger_master_name; ?></td>
@@ -89,7 +93,13 @@
                     <td><?php echo abs($crAmount); ?></td>
     
                 </tr> 
+                
                     <?php } ?>
+                <tr>
+                    <td><strong>Total</strong></td>
+                   <td><strong><?php echo abs($sumDr);  ?></strong></td>
+                   <td><strong><?php echo abs($sumCr);  ?></strong></td>
+                </tr>
                 <?php } else{ echo "<tr><td colspan='6'><strong>No entries are found</td></tr>";} ?>
             </tbody>
  
