@@ -236,15 +236,56 @@ public function bankCashBook()
 }
 }
 
+public function tBalance()
+{
+   $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
+        $data['fiscalYear'] = $this->dbmanager_model->get_fiscal_year();
+      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/report/tBalanceQuery', $data);
+      $this->load->view('dashboard/templates/footer');
+      
+  } else {
+    redirect('login/index/?url=' . $url, 'refresh');
+} 
+}
+
 public function trialBalance()
 {
     $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
+    $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+      
+        $fiscalData = $this->input->post('fiscalYear');
+        $fromN = $this->input->post('nepaliDateF');
+        $fromE = $this->input->post('englishDateF');
+        $toN = $this->input->post('nepaliDateT');
+        $toE = $this->input->post('englishDateT');
+         $data['fromN'] = $fromN;
+      $data['toN'] = $toN;
+      $data['fromE'] = $fromE;
+      $data['toE'] = $toE; 
+      
+      $data['allLedger'] = $this->ledger_model->get_ledger_master_listing();
+      
+      
+      if($fiscalData == $fiscal_year)  {        
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
-      $this->load->view('dashboard/report/trialBalance');
+      $this->load->view('dashboard/report/trialBalance', $data);
       $this->load->view('dashboard/templates/footer');
+      }else{
+          $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
+         redirect('report/tBalance', 'refresh');
+      }
       
   } else {
     redirect('login/index/?url=' . $url, 'refresh');

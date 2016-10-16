@@ -146,6 +146,40 @@ $this->db->where('trans_type', 'dr');
       return $query->result(); 
     }
     
+    public function get_sum_of_amounts_for_dr_of_ledger_master_from_journal_entry($code)
+    {
+        $this->db->where('gl_trans_status', '1');
+        $this->db->where('ledger_master_code', $code);    
+        $this->db->select_sum('amount');
+        $this->db->where('trans_type', 'dr');        
+      $query =  $this->db->get('gl_trans_info')->result();    
+     if(!empty($query)){
+                return $query[0]->amount;
+               }else{
+                   return '0';
+               }
+    
+    }
+    
+    public function get_sum_of_amounts_for_cr_of_ledger_master_from_journal_entry($code)
+    {
+        $this->db->where('gl_trans_status', '1');
+        $this->db->where('ledger_master_code', $code);    
+         $this->db->select_sum('amount');
+        $this->db->where('trans_type', 'cr');        
+      $query =  $this->db->get('gl_trans_info')->result();    
+      if(!empty($query)){
+           return $query[0]->amount;
+               }else{
+                   return '0';
+               }
+    
+    }
+    
+    
+    
+    
+    
     
     
 }
