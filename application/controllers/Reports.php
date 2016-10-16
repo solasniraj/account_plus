@@ -292,15 +292,56 @@ public function trialBalance()
 }
 }
 
-public function pLAccount()
+public function ieAccounts()
 {
     $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
+        $data['fiscalYear'] = $this->dbmanager_model->get_fiscal_year();
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
-      $this->load->view('dashboard/program/addProgram');
+      $this->load->view('dashboard/report/ieReportForm', $data);
       $this->load->view('dashboard/templates/footer');
+      
+  } else {
+    redirect('login/index/?url=' . $url, 'refresh');
+}
+}
+
+public function incomeExpnReport()
+{
+    $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
+    $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+      
+        $fiscalData = $this->input->post('fiscalYear');
+        $fromN = $this->input->post('nepaliDateF');
+        $fromE = $this->input->post('englishDateF');
+        $toN = $this->input->post('nepaliDateT');
+        $toE = $this->input->post('englishDateT');
+         $data['fromN'] = $fromN;
+      $data['toN'] = $toN;
+      $data['fromE'] = $fromE;
+      $data['toE'] = $toE; 
+      
+      $data['allLedger'] = $this->ledger_model->get_ledger_master_listing_of_income_and_expn();
+      
+      
+      if($fiscalData == $fiscal_year)  {        
+      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/report/incomeExpnReport', $data);
+      $this->load->view('dashboard/templates/footer');
+      }else{
+          $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
+         redirect('report/ieAccounts', 'refresh');
+      }
       
   } else {
     redirect('login/index/?url=' . $url, 'refresh');

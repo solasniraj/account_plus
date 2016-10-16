@@ -75,8 +75,8 @@
                 <ul class="sub-menu-list">
                     <li><a href="<?php echo base_url() . 'reports/index' ?>">Summary</a> </li>
                     <li><a href="<?php echo base_url() . 'reports/bankCashBook' ?>">Bank Cash Book</a></li>
-                    <li><a href="<?php echo base_url() . 'reports/trialBalance' ?>">Trial Balance</a></li>
-                    <li><a href="<?php echo base_url() . 'reports/pLAccount' ?>">Income and Expenditure Account</a></li>
+                    <li><a href="<?php echo base_url() . 'reports/tBalance' ?>">Trial Balance</a></li>
+                    <li><a href="<?php echo base_url() . 'reports/ieAccounts' ?>">Income and Expenditure Account</a></li>
                     <li><a href="<?php echo base_url() . 'reports/balanceSheet' ?>">Balance Sheet</a></li>
                     <li><a href="<?php echo base_url() . 'reports/monthlyStatement' ?>">Monthly Statement</a></li>
                     <li><a href="<?php echo base_url() . 'reports/dayBook' ?>">Day Book</a></li>

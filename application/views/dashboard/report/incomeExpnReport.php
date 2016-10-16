@@ -17,7 +17,7 @@
                         <h3><?php echo $cLists->committee_name; ?></h3>
                         <h5><?php echo $cLists->address; ?></h5>
                         <p><strong>Ph : <?php echo $cLists->phone; ?></strong></p>
-                        <h3>Trial Balance </h3>
+                        <h3>Income Expenditure Report</h3>
                         <p><?php echo $toN. ' ('. $toE .')'; ?></p>
                     <?php }
     }
@@ -68,11 +68,11 @@
                 <tr>
                     
                    
-                    <th>Account Code</th>
+                   
                     <th>Account Name / Particulars</th>
                     <th>Debit (Rs.)</th>
                     <th>Credit (Rs.)</th>
-                    <th>Balance</th>
+                  
                            
                 </tr>
             </thead>
@@ -88,18 +88,35 @@
                      $sumCr += abs($crAmount)
                       ?>
                 <tr>
-                    <td><?php echo $ledgers->ledger_master_code; ?></td>
                     <td><?php echo $ledgers->ledger_master_name; ?></td>
                     <td><?php echo abs($drAmount);  ?></td>                  
                     <td><?php echo abs($crAmount); ?></td>
-                    <td></td>
+    
                 </tr> 
                 
                     <?php } ?>
                 <tr>
-                    <td colspan="2"><strong>Total</strong></td>
-                   <td><strong><?php echo abs($sumDr);  ?></strong></td>
-                   <td><strong><?php echo abs($sumCr);  ?></strong></td>
+                    <?php if(abs($sumCr) > abs($sumDr)){
+                        $diffd = abs(abs($sumCr) - abs($sumDr));
+                        $diffc = '0';
+                        ?>
+                       <td><strong>Surplus</strong></td>
+                      <td><strong><?php echo $diffd; ?></strong></td>                  
+                    <td><strong><?php echo $diffc; ?></strong></td>  
+                   <?php }else{ 
+                        $diffc = abs(abs($sumCr) - abs($sumDr));
+                        $diffd = '0';
+                       ?>
+                       <td><strong>Defisit</strong></td>
+                       <td><strong><?php echo $diffd; ?></strong></td>                  
+                    <td><strong><?php echo $diffc; ?></strong></td>
+                   
+                 <?php   } ?>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                   <td><strong><?php echo abs(abs($sumDr) + abs($diffd));  ?></strong></td>
+                   <td><strong><?php echo abs(abs($sumCr) + abs($diffc));  ?></strong></td>
                 </tr>
                 <?php } else{ echo "<tr><td colspan='6'><strong>No entries are found</td></tr>";} ?>
             </tbody>
