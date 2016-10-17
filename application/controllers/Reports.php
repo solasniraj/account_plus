@@ -219,6 +219,8 @@ public function donorReport()
       $data['fromE'] = $fromE;
       $data['toE'] = $toE;
       $data['donorCode'] = $donar;
+      $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
