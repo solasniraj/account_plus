@@ -1,32 +1,4 @@
-<Style>
-main {
-  margin: 0px;
-  padding: 0px;
-/*  border-top: 1px solid #999;
-  border-left: 1px solid #999;
-  border-right: 1px solid #999;*/
-}
 
-main div {
-  padding: 10px;
-  margin: 0px;
-}
-main div h5, main div h4{
-    margin: 0px;
-}
-.inline-block-center {
-  text-align: center;
-}
-.inline-block-center div {
-  display: inline-block;
-  text-align: left;
-}
-
-.flex-center {
-  display: flex;
-  justify-content: center;
-}
-</style>
 <script type="text/javascript" src="<?php echo base_url('contents/js/nepali.datepicker.v2.1.min.js'); ?>"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('contents/css/nepali.datepicker.v2.1.min.css'); ?>" />
 <script type="text/javascript" src="<?php echo base_url('contents/js/function.js'); ?>"></script>

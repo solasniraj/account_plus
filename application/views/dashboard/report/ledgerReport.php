@@ -5,46 +5,45 @@
 <div id="page-wrapper">
     <div class="graphs">
         
-              <table width="100%">
-        <tr>
-                    <td class="text-center">
-                        <?php if (!empty($committeeInfo)) {
+             <?php if (!empty($committeeInfo)) {
                     foreach ($committeeInfo as $cLists) {
                         ?>
-                         <div class="top text-center" style="margin-top:2px;margin-bottom:5px;">
-                            <img src="<?php echo base_url().'contents/uploads/images/'.$cLists->logo; ?>" img-align="top" alt="images" style= "width:100px; float: left;">
-                        </div>
-                        <h3><?php echo $cLists->committee_name; ?></h3>
-                        <h5><?php echo $cLists->address; ?></h5>
-                        <p><strong>Ph : <?php echo $cLists->phone; ?></strong></p>
-                    <?php }
-    }
-    ?>
-                    </td>
 
+<main class="flex-center">
+  <div>
+      <img src="<?php echo base_url().'contents/uploads/images/'.$cLists->logo; ?>" height="60"/>
+  </div>
+  <div>
+    <h4><?php echo $cLists->committee_name; ?></h4>
+                        <p><?php echo $cLists->address; ?></p>
+                        <h5>Phone : <?php echo $cLists->phone; ?></h5>
+                         
+  </div>
+</main>    
+                    <?php }    }   ?>
+                
+        <div class="text-center" style="padding: 5px 0px 5px 0px;margin-bottom: 15px;">
 
-                    <td class="text-left width25per" style="text-align:right;"><b>Date : </b>
-                    </td>
-                </tr>
-              </table>
-                <?php if(!empty($ledgerDetails)){ ?>
-
+<table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
+    <tr>
+        <td colspan="3"><h3>Account Ledger Report </h3> </td>
+    </tr>
+    <tr>
+         <?php if(!empty($ledgerDetails)){ ?>
                     <?php foreach($ledgerDetails as $lDets){ ?>
-        <p>Ledger Code : <?php echo $lDets->ledger_master_code; ?></p>
-        <p>Ledger Description : <?php echo $lDets->ledger_master_name; ?></p>
-                    
-                    <?php } ?>
-               
-                <?php } ?>
-               <b> From <?php echo $fromN. ' (' .$fromE. ') '; ?></b><br/>
-                        <b>To <?php echo $toN. ' ('. $toE .')'; ?></b>
-                    
-                        <P>Balance : <strong>Rs. </strong></p>
-                        <p>Printed on : </p>
-                 
-        
-        <h3 class="blank1">Ledger Account Statement </h3><p></p>
-                    
+        <td>Ledger Code : <?php echo $lDets->ledger_master_code; ?></td>
+        <td>Ledger Description : <?php echo $lDets->ledger_master_name; ?></td>
+        <?php } }?>
+        <td><P>Balance : <strong>Rs. </strong></p></td>
+    </tr>
+    <tr>
+        <td>From : <?php echo $fromN. ' (' .$fromE. ') '; ?></td>      
+        <td>To : <?php echo $toN. ' ('. $toE .')'; ?></td>
+        <td>Printed on : <?php echo $todayN. ' (' .$todayE. ') '; ?></td>
+    </tr>
+   
+</table>
+        </div>        
         <div class="clearfix"></div>
         <div class="xs tabls">
             <?php

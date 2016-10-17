@@ -31,7 +31,30 @@
 <!-- Meters graphs -->
 <script type="text/javascript" src="<?php echo base_url().'contents/js/bootstrap.min.js'; ?>"></script>
 <!-- Bootstrap Core JavaScript -->
-
+<Style>
+main {
+  margin: 0px;
+  padding: 0px;
+}
+main div {
+  padding: 10px;
+  margin: 0px;
+}
+main div h5, main div h4{
+    margin: 0px;
+}
+.inline-block-center {
+  text-align: center;
+}
+.inline-block-center div {
+  display: inline-block;
+  text-align: left;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+</style>
 </head>
 
 <body class="sticky-header left-side-collapsed">

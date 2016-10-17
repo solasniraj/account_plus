@@ -111,6 +111,8 @@ public function ledgerReport()
       $data['toN'] = $toN;
       $data['fromE'] = $fromE;
       $data['toE'] = $toE;
+      $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
@@ -162,6 +164,8 @@ public function subLedgerReport()
       $data['toN'] = $toN;
       $data['fromE'] = $fromE;
       $data['toE'] = $toE;
+       $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
