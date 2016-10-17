@@ -1,48 +1,73 @@
+<Style>
+main {
+  margin: 0px;
+  padding: 0px;
+/*  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;*/
+}
+
+main div {
+  padding: 10px;
+  margin: 0px;
+}
+main div h5, main div h4{
+    margin: 0px;
+}
+.inline-block-center {
+  text-align: center;
+}
+.inline-block-center div {
+  display: inline-block;
+  text-align: left;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+</style>
 <script type="text/javascript" src="<?php echo base_url('contents/js/nepali.datepicker.v2.1.min.js'); ?>"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('contents/css/nepali.datepicker.v2.1.min.css'); ?>" />
 <script type="text/javascript" src="<?php echo base_url('contents/js/function.js'); ?>"></script>
 <div id="page-wrapper">
     <div class="graphs">
         
-         <table width="100%">
-        <tr>
-            <td>
-                <?php if (!empty($committeeInfo)) {
-                    foreach ($committeeInfo as $cLists) {
-                        ?>
-                        <div class="top text-center" style="margin-top:2px;margin-bottom:5px;">
-                            <img src="<?php echo base_url().'contents/uploads/images/'.$cLists->logo; ?>" img-align="top" alt="images" style= "width:100px;">
-                        </div>
-                <?php }
-    }
-    ?>
-                    </td>
-                    <td class="text-center">
                         <?php if (!empty($committeeInfo)) {
                     foreach ($committeeInfo as $cLists) {
                         ?>
-                        <h2><?php echo $cLists->committee_name; ?></h2>
-                        <h4><?php echo $cLists->address; ?></h4>
-                        <p><strong>Ph : <?php echo $cLists->phone; ?></strong></p>
-                    <?php }
-    }
-    ?>
-                    </td>
+
+<main class="flex-center">
+  <div>
+      <img src="<?php echo base_url().'contents/uploads/images/'.$cLists->logo; ?>" height="60"/>
+  </div>
+  <div>
+    <h4><?php echo $cLists->committee_name; ?></h4>
+                        <p><?php echo $cLists->address; ?></p>
+                        <h5>Phone : <?php echo $cLists->phone; ?></h5>
+                         
+  </div>
+</main>    
+                    <?php }    }   ?>
+        <div class="text-center" style="padding: 5px 0px 5px 0px;border: 1px solid #999;margin-bottom: 15px;">
+            <h3>Day Book </h3>
+            <p><strong><?php echo "Date : ". $dayN. ' (' .$dayE. ') '; ?></strong></p>
+                        <p><?php echo "Printed On : ". $todayN. ' (' .$todayE. ') '; ?></p>
+        </div>
+                       
+                   
 
 
-                    <td class="text-left width25per"><b>Date : <?php echo $day; ?></b>
-                    </td>
+                   
 
 
 
-                </tr>
-
-            </table> 
+               
         
         
         
-        <h3 class="blank1">Day Book </h3>
-                    <div class="col-md-12">
+       
+        <div class="col-md-12" style="padding:0px;margin-bottom: 10px;">
                 <?php echo form_open_multipart('reports/dayBook'); ?>
                     <div class="input-group input-group-ind">
                         <input type="text" id="nepaliDate" class="form-control1 input-search form-control nepali-calendar" name="datepicker" value="" placeholder="YYYY-MM-DD"/>

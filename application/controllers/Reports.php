@@ -49,10 +49,17 @@ public function dayBook()
         $nepaliDate = $this->input->post('datepicker');
         if (!$day) {
                 $day = date('Y-m-d');
+                $data['dayN'] = $this->dayFunctN();
+      $data['dayE'] = $this->dayFunctE();
+            }else{
+                $data['dayN'] = $nepaliDate;
+      $data['dayE'] = $day;
             }        
         $data['journalEntry'] = $this->report_model->get_journal_entry_for_day($day);
       $data['day']= $day;
       $data['nepaliDay'] = $nepaliDate;
+      $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
         $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
@@ -272,7 +279,9 @@ public function trialBalance()
       $data['toN'] = $toN;
       $data['fromE'] = $fromE;
       $data['toE'] = $toE; 
-      
+      $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
+
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing();
       
       
@@ -284,7 +293,7 @@ public function trialBalance()
       $this->load->view('dashboard/templates/footer');
       }else{
           $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
-         redirect('report/tBalance', 'refresh');
+         redirect('reports/tBalance', 'refresh');
       }
       
   } else {
@@ -417,8 +426,31 @@ public function monthlyStatement()
 }
 }
 
+public function dayFunctN()
+{
+    date_default_timezone_set('Asia/Kathmandu');
+$currentYear = date('Y');
+$currentMonth = date('m');
+$currentDay = date('d');
+$this->load->library("nepali_calendar");
+$currentNepaliDay = $this->nepali_calendar->AD_to_BS($currentYear,$currentMonth,$currentDay);
+$nepaliDay = $currentNepaliDay['date'];
+$nepaliMth = $currentNepaliDay['month'];
+$nepaliYr = $currentNepaliDay['year'];
+$todayNep = $nepaliYr.'/'.$nepaliMth.'/'.$nepaliDay;
 
+$tday = new DateTime($todayNep);
 
+$dateOfToday = $tday->format('Y-m-d');
+return $dateOfToday;
+}
+
+public function dayFunctE()
+{
+    date_default_timezone_set('Asia/Kathmandu');
+    $today = date('Y-m-d');
+    return $today;
+}
 
 
 

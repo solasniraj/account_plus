@@ -42,7 +42,7 @@
                         <b>To <?php echo $toN. ' ('. $toE .')'; ?></b>
                     
                         <P>Balance : <strong>Rs. </strong></p>
-                        <p>Printed on : </p>
+                        <p>Printed on : <?php echo $todayN. ' (' .$todayE. ') '; ?></p>
                  
         
         
@@ -82,8 +82,8 @@
                     $sumCr = '0';
                     foreach($allLedger as $ledgers){
                       $code = $ledgers->ledger_master_code;
-                      $drAmount = $this->report_model->get_sum_of_amounts_for_dr_of_ledger_master_from_journal_entry($code);
-                      $crAmount =  $this->report_model->get_sum_of_amounts_for_cr_of_ledger_master_from_journal_entry($code);
+                      $drAmount = $this->report_model->get_sum_of_amounts_for_dr_of_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
+                      $crAmount =  $this->report_model->get_sum_of_amounts_for_cr_of_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
                      $sumDr += abs($drAmount);
                      $sumCr += abs($crAmount)
                       ?>
