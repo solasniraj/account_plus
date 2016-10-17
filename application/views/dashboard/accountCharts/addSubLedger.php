@@ -36,7 +36,7 @@
                             
 
                             <div class="form-group">
-                                <label for="subledgerName" class="col-sm-2 control-label">Ledger Name</label>
+                                <label for="subledgerName" class="col-sm-2 control-label">Sub-Ledger Name</label>
                                 <div class="col-sm-8">
                                     <input type="text" value="<?php echo set_value('subledgerName'); ?>" class="form-control1" id="subledgerName" name="subledgerName" placeholder="Enter sub ledger name">
                                     <?php echo form_error('subledgerName'); ?>
