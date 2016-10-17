@@ -343,7 +343,8 @@ public function incomeExpnReport()
       $data['toN'] = $toN;
       $data['fromE'] = $fromE;
       $data['toE'] = $toE; 
-      
+      $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing_of_income_and_expn();
       
       
@@ -400,7 +401,8 @@ public function balanceSheet()
       $data['toN'] = $toN;
       $data['fromE'] = $fromE;
       $data['toE'] = $toE; 
-      
+      $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
       $data['incExpnLed'] = $this->ledger_model->get_ledger_master_listing_of_income_and_expn();
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing_of_assets_and_liability();
       
