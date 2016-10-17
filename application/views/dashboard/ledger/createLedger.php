@@ -26,23 +26,7 @@ $('.selectOpt').bind("change", function(){
 <div id="page-wrapper">
                 <div class="graphs">
                     <h3 class="blank1">Create Ledger</h3>
-                     <style>
-     /*custom csss */
-                .form-errors 
-                {
-                    font-size: 14px;
-                    padding: 10px;
-                    color:red;
-                }
-               /* .bs-example4{
-                    background-color: #8c8c8c;
-                }*/
-    
 
-
-                /* custom css ends*/
-
-                </style>
                     <div class="tab-content">
                           <?php
             $flashMessage = $this->session->flashdata('flashMessage');
@@ -145,7 +129,7 @@ $('.selectOpt').bind("change", function(){
                             <div class="form-group">
                                 <label for="codeNo" class="col-sm-2 control-label"><h4>Account Code</h4></label>
                                 <div class="col-sm-8">
-                                    <input type="text" value="<?php echo set_value('codeNo'); ?>" class="form-control1" id="codeNo" name="codeNo" placeholder="" readonly="true" disabled="true">
+                                    <input type="text" value="<?php echo set_value('codeNo'); ?>" class="form-control1" id="codeNo" name="codeNo" placeholder="" readonly="true">
                                     <?php echo form_error('codeNo'); ?>
                                 </div>
                             </div>

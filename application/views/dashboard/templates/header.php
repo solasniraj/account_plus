@@ -54,6 +54,18 @@ main div h5, main div h4{
   display: flex;
   justify-content: center;
 }
+.form-errors 
+                {
+                    font-size: 14px;
+                    padding: 10px;
+                    color:red;
+                }
+                .form_errors 
+                {
+                    font-size: 14px;
+                    padding: 10px;
+                    color:red;
+                }
 </style>
 </head>
 

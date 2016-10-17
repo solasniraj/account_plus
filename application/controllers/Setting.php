@@ -265,9 +265,9 @@ foreach ($file_array as $query)
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('userName', 'User Name', 'trim|required|callback_xss_clean|max_length[200]');
-            $this->form_validation->set_rules('fullName', 'Full Name', 'trim|regex_match[/^[a-z,0-9,A-Z ]{2,200}$/]|required|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('fullName', 'Full Name', 'trim|regex_match[/^[a-z,0-9,A-Z ]{2,200}$/]|callback_xss_clean|max_length[200]');
             $this->form_validation->set_rules('emailId', 'Email', 'trim|regex_match[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/]|callback_xss_clean|max_length[200]');
-            $this->form_validation->set_rules('contactNumber', 'Contact Number', 'trim|regex_match[/^[0-9\+-]{6,20}$/]|required|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('contactNumber', 'Contact Number', 'trim|regex_match[/^[0-9\+-]{6,20}$/]|callback_xss_clean|max_length[200]');
             $this->form_validation->set_error_delimiters('<div class="form_errors">', '</div>');
             if (($this->form_validation->run() == TRUE)) {
                 $userName = $this->input->post('userName');
