@@ -5,13 +5,9 @@
         <group>
             <file>file:/opt/lampp/htdocs/account_plus/application/models/Report_model.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/report/trialBalance.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/models/Ledger_model.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Reports.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/report/balanceSheet.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/report/ieReportForm.php</file>
             <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/report/incomeExpnReport.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/report/bSheetQueryForm.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/templates/sideNavigation.php</file>
         </group>
     </open-files>
 </project-private>
