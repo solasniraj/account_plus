@@ -21,6 +21,13 @@
   </div>
 </main>    
                     <?php }    }   ?>
+
+
+    <div class="text-right pull-right">
+        <a href="#"><button id="btnDownload" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
+        <a href="#"> <button id="print" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
+    </div>
+
         
         <div class="text-center" style="padding: 5px 0px 5px 0px;margin-bottom: 15px;">
 
