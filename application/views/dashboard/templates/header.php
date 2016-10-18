@@ -66,6 +66,13 @@ main div h5, main div h4{
                     padding: 10px;
                     color:red;
                 }
+                
+.btns-primary {
+    background-color: #00aced !important;
+    border-color: #00aced !important;
+    color: #fff;
+    padding: 6px 10px;
+}
 </style>
 </head>
 

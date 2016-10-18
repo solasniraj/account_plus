@@ -50,6 +50,30 @@
         margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */
     }
     </style>
+    <style>
+    main {
+  margin: 0px;
+  padding: 0px;
+}
+main div {
+  padding: 10px;
+  margin: 0px;
+}
+main div h5, main div h4{
+    margin: 0px;
+}
+.inline-block-center {
+  text-align: center;
+}
+.inline-block-center div {
+  display: inline-block;
+  text-align: left;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+    </style>
 </head>
 
 <body class="sticky-header left-side-collapsed" onload="window.print();   setTimeout(function(){window.close();}, 1000); ">

@@ -149,6 +149,27 @@ $glNo = urldecode($id);
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
             
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+       
+      
+      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/ledgerReport', $data);
+      $this->load->view('printPreview/download/templates/footer');
+    
+         
+            // Get output html
+            $html = $this->output->get_output();
+
+            // Load library
+            $this->load->library('dompdf_gen');
+
+            // Convert to PDF
+            $this->dompdf->load_html($html);
+            $this->dompdf->set_paper('a4', $orientation);
+            $this->dompdf->render();
+            $this->dompdf->stream("Journal.pdf");
+            die;
+            
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -163,6 +184,27 @@ $glNo = urldecode($id);
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
+            
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+       
+      
+      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/subLedgerReport', $data);
+      $this->load->view('printPreview/download/templates/footer');
+    
+         
+            // Get output html
+            $html = $this->output->get_output();
+
+            // Load library
+            $this->load->library('dompdf_gen');
+
+            // Convert to PDF
+            $this->dompdf->load_html($html);
+            $this->dompdf->set_paper('a4', $orientation);
+            $this->dompdf->render();
+            $this->dompdf->stream("Journal.pdf");
+            die;
             
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -179,6 +221,27 @@ $glNo = urldecode($id);
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
             
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+       
+      
+      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/donorReport', $data);
+      $this->load->view('printPreview/download/templates/footer');
+    
+         
+            // Get output html
+            $html = $this->output->get_output();
+
+            // Load library
+            $this->load->library('dompdf_gen');
+
+            // Convert to PDF
+            $this->dompdf->load_html($html);
+            $this->dompdf->set_paper('a4', $orientation);
+            $this->dompdf->render();
+            $this->dompdf->stream("Journal.pdf");
+            die;
+            
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -193,6 +256,27 @@ $glNo = urldecode($id);
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
+            
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+       
+      
+      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/dayBook', $data);
+      $this->load->view('printPreview/download/templates/footer');
+    
+         
+            // Get output html
+            $html = $this->output->get_output();
+
+            // Load library
+            $this->load->library('dompdf_gen');
+
+            // Convert to PDF
+            $this->dompdf->load_html($html);
+            $this->dompdf->set_paper('a4', $orientation);
+            $this->dompdf->render();
+            $this->dompdf->stream("Journal.pdf");
+            die;
             
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -209,6 +293,27 @@ $glNo = urldecode($id);
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
             
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+       
+      
+      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/iEReport', $data);
+      $this->load->view('printPreview/download/templates/footer');
+    
+         
+            // Get output html
+            $html = $this->output->get_output();
+
+            // Load library
+            $this->load->library('dompdf_gen');
+
+            // Convert to PDF
+            $this->dompdf->load_html($html);
+            $this->dompdf->set_paper('a4', $orientation);
+            $this->dompdf->render();
+            $this->dompdf->stream("Journal.pdf");
+            die;
+            
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -224,6 +329,27 @@ $glNo = urldecode($id);
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
             
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+       
+      
+      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/balanceSheet', $data);
+      $this->load->view('printPreview/download/templates/footer');
+    
+         
+            // Get output html
+            $html = $this->output->get_output();
+
+            // Load library
+            $this->load->library('dompdf_gen');
+
+            // Convert to PDF
+            $this->dompdf->load_html($html);
+            $this->dompdf->set_paper('a4', $orientation);
+            $this->dompdf->render();
+            $this->dompdf->stream("Journal.pdf");
+            die;
+            
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -238,6 +364,27 @@ $glNo = urldecode($id);
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
+            
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+       
+      
+      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/trialBalance', $data);
+      $this->load->view('printPreview/download/templates/footer');
+    
+         
+            // Get output html
+            $html = $this->output->get_output();
+
+            // Load library
+            $this->load->library('dompdf_gen');
+
+            // Convert to PDF
+            $this->dompdf->load_html($html);
+            $this->dompdf->set_paper('a4', $orientation);
+            $this->dompdf->render();
+            $this->dompdf->stream("Journal.pdf");
+            die;
             
      } else {
             redirect('login/index/?url=' . $url, 'refresh');

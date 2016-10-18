@@ -59,6 +59,12 @@
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
             
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
+       
+             $this->load->view('printPreview/printView/templates/header');
+      $this->load->view('printPreview/printView/report/trialBalance', $data);
+      $this->load->view('printPreview/printView/templates/footer');
+      
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -74,6 +80,12 @@
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
             
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
+       
+             $this->load->view('printPreview/printView/templates/header');
+      $this->load->view('printPreview/printView/report/trialBalance', $data);
+      $this->load->view('printPreview/printView/templates/footer');
+      
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -89,6 +101,12 @@
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
             
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
+       
+             $this->load->view('printPreview/printView/templates/header');
+      $this->load->view('printPreview/printView/report/trialBalance', $data);
+      $this->load->view('printPreview/printView/templates/footer');
+      
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -104,6 +122,12 @@
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
             
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
+       
+             $this->load->view('printPreview/printView/templates/header');
+      $this->load->view('printPreview/printView/report/trialBalance', $data);
+      $this->load->view('printPreview/printView/templates/footer');
+      
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -119,6 +143,12 @@
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
             
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
+       
+             $this->load->view('printPreview/printView/templates/header');
+      $this->load->view('printPreview/printView/report/trialBalance', $data);
+      $this->load->view('printPreview/printView/templates/footer');
+      
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -134,6 +164,12 @@
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
             
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
+       
+             $this->load->view('printPreview/printView/templates/header');
+      $this->load->view('printPreview/printView/report/trialBalance', $data);
+      $this->load->view('printPreview/printView/templates/footer');
+      
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -148,7 +184,13 @@
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
-            
+    $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
+       
+             $this->load->view('printPreview/printView/templates/header');
+      $this->load->view('printPreview/printView/report/trialBalance', $data);
+      $this->load->view('printPreview/printView/templates/footer');
+             
+             
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
