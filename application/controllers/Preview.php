@@ -138,5 +138,115 @@ $glNo = urldecode($id);
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
+    
+    public function ledgerReport()
+    {
+       $url = current_url();
+        if ($this->session->userdata('logged_in') == true) { 
+      $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');      
+            
+     } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
+    public function subLedgerReport()
+    {
+        $url = current_url();
+        if ($this->session->userdata('logged_in') == true) { 
+      $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');      
+            
+     } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
+    public function donorReport()
+    {
+        $url = current_url();
+        if ($this->session->userdata('logged_in') == true) { 
+      $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');      
+            
+     } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
+    public function dayBook()
+    {
+        $url = current_url();
+        if ($this->session->userdata('logged_in') == true) { 
+      $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');      
+            
+     } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
+    public function iEReport()
+    {
+        $url = current_url();
+        if ($this->session->userdata('logged_in') == true) { 
+      $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');      
+            
+     } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
+    public function balanceSheet()
+    {
+        $url = current_url();
+        if ($this->session->userdata('logged_in') == true) { 
+      $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');      
+            
+     } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
+    public function trialBalance()
+    {
+        $url = current_url();
+        if ($this->session->userdata('logged_in') == true) { 
+      $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');      
+            
+     } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
+    
+    
+    
+    
 
 }
