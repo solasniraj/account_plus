@@ -289,17 +289,16 @@ $glNo = urldecode($id);
       $this->load->view('printPreview/download/report/dayBook', $data);
       $this->load->view('printPreview/download/templates/footer');
     
-         
-//            $html = $this->output->get_output();
+                     $html = $this->output->get_output();
             // Load library
-//            $this->load->library('dompdf_gen');
+            $this->load->library('dompdf_gen');
 
             // Convert to PDF
-//            $this->dompdf->load_html($html);
+            $this->dompdf->load_html($html);
 //            $this->dompdf->set_paper('a4', $orientation);
-//            $this->dompdf->set_option('isHtml5ParserEnabled', true);
-//            $this->dompdf->render();
-//            $this->dompdf->stream("Day_Book_".$data['dayN']."(".$data['dayE'].").pdf");
+            //$this->dompdf->set_option('isHtml5ParserEnabled', true);
+            $this->dompdf->render();
+            $this->dompdf->stream("Day_Book_".$data['dayN']."(".$data['dayE'].").pdf");
             
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
