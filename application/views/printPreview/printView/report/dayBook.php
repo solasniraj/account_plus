@@ -1,18 +1,21 @@
-<div style="margin-bottom: 15px;">
-        <?php if(!empty($committeeInfo)){ foreach ($committeeInfo as $cLists){ ?>
-        <div class="top text-center" style="margin-top:22px;margin-bottom:10px;">
-           <?php if(!empty($cLists->logo)){ ?>
+<?php if (!empty($committeeInfo)) {
+                    foreach ($committeeInfo as $cLists) {
+                        ?>
+
+<main class="flex-center">
+    <?php if(!empty($cLists->logo)){ ?>
   <div>
       <img src="<?php echo base_url().'contents/uploads/images/'.$cLists->logo; ?>" height="60"/>
   </div>
     <?php } ?>
-           <h2><?php echo $cLists->committee_name; ?></h2>
-           <h4 style="margin: 5px;"><?php echo $cLists->address; ?></h4>
-           <h4 style="margin: 5px;"><?php echo $cLists->email_address ?></h4>
-           <p><strong>Ph : <?php echo $cLists->phone; ?></strong></p>
-     </div>
-        <?php }} ?>
-    </div>
+  <div>
+    <h4><?php echo $cLists->committee_name; ?></h4>
+                        <p><?php echo $cLists->address; ?></p>
+                        <h5>Phone : <?php echo $cLists->phone; ?></h5>
+                         
+  </div>
+</main>    
+                    <?php }    }   ?>
         
         
         

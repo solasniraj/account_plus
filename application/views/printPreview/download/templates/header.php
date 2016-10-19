@@ -59,6 +59,29 @@ h1, h2, h3, h4, h5 {
 .text-center{text-align: center;}
         </style>	
 	
+<Style>
+main {
+  margin: 0px;
+  padding: 0px;
+}
+main div {
+  padding: 10px;
+  margin: 0px;
+}
+main div h5, main div h4{
+    margin: 0px;
+}
+.inline-block-center {
+  text-align: center;
+}
+.inline-block-center div {
+  display: inline-block;
+  text-align: left;
+}
+.flex-center {
+  justify-content: center;
+}
+</style>
 
 	
 
