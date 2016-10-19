@@ -23,6 +23,16 @@ class preview extends CI_Controller {
          redirect('transaction/journalList', 'refresh');
         }
     }
+    
+    public function index()
+    {
+         $url = current_url();
+        if ($this->session->userdata('logged_in') == true) {
+            
+       } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
 
     public function jounalView($id=null) {
         

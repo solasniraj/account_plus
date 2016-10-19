@@ -19,6 +19,16 @@
         }
     }
 
+    public function index()
+    {
+         $url = current_url();
+        if ($this->session->userdata('logged_in') == true) {
+            
+       } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
     public function printJoural($id= NULL )
     {
      if ($this->session->userdata('logged_in') == true)

@@ -10,9 +10,11 @@
                         ?>
 
 <main class="flex-center">
+    <?php if(!empty($cLists->logo)){ ?>
   <div>
       <img src="<?php echo base_url().'contents/uploads/images/'.$cLists->logo; ?>" height="60"/>
   </div>
+    <?php } ?>
   <div>
     <h4><?php echo $cLists->committee_name; ?></h4>
                         <p><?php echo $cLists->address; ?></p>
