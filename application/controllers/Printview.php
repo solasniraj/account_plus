@@ -4,10 +4,10 @@
     function __construct() {
       parent::__construct();
       $this->load->library('session');
-      $this->load->model('program_model');
-       $this->load->model('bank_model');
-        $this->load->model('transaction_model');
-        $this->load->model('dbmanager_model');
+       $this->load->model('report_model');
+         $this->load->model('transaction_model');
+         $this->load->model('dbmanager_model');
+         $this->load->model('ledger_model');
       $this->load->helper('url');
       $this->load->helper(array('form', 'url'));
       $this->load->library('pagination');
@@ -19,6 +19,16 @@
         }
     }
 
+    public function index()
+    {
+         $url = current_url();
+        if ($this->session->userdata('logged_in') == true) {
+            
+       } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+    
     public function printJoural($id= NULL )
     {
      if ($this->session->userdata('logged_in') == true)
@@ -199,7 +209,31 @@
   
   
   
-  
+  public function dayFunctN()
+{
+    date_default_timezone_set('Asia/Kathmandu');
+$currentYear = date('Y');
+$currentMonth = date('m');
+$currentDay = date('d');
+$this->load->library("nepali_calendar");
+$currentNepaliDay = $this->nepali_calendar->AD_to_BS($currentYear,$currentMonth,$currentDay);
+$nepaliDay = $currentNepaliDay['date'];
+$nepaliMth = $currentNepaliDay['month'];
+$nepaliYr = $currentNepaliDay['year'];
+$todayNep = $nepaliYr.'/'.$nepaliMth.'/'.$nepaliDay;
+
+$tday = new DateTime($todayNep);
+
+$dateOfToday = $tday->format('Y-m-d');
+return $dateOfToday;
+}
+
+public function dayFunctE()
+{
+    date_default_timezone_set('Asia/Kathmandu');
+    $today = date('Y-m-d');
+    return $today;
+}
   
   
   

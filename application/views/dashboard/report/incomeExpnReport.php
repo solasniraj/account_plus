@@ -10,9 +10,11 @@
                         ?>
 
 <main class="flex-center">
+    <?php if(!empty($cLists->logo)){ ?>
   <div>
       <img src="<?php echo base_url().'contents/uploads/images/'.$cLists->logo; ?>" height="60"/>
   </div>
+    <?php } ?>
   <div>
     <h4><?php echo $cLists->committee_name; ?></h4>
                         <p><?php echo $cLists->address; ?></p>
@@ -24,8 +26,8 @@
 
 
     <div class="text-right pull-right">
-        <a href="#"><button id="btnDownload" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
-        <a href="#"> <button id="print" class="btn btn-primary btn-lg" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
+        <a href="<?php echo base_url().'preview/iEReport'; ?>"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
+        <a href="<?php echo base_url().'printview/iEReport'; ?>"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
     </div>
         
         
