@@ -70,10 +70,12 @@ $NewNo = urlencode($value);
         </thead>
         <tbody>
             <?php
+             $sumD = 0;
+             $sumC = 0;
             foreach ($singleGLDetails as $gLList) {
                 $type = $gLList->trans_type;
                 $donar = $this->transaction_model->get_donar_name_by_code($gLList->donor_code);
-               $sum = 0;
+              
                 ?>
                 <tr>
                     <td><?php echo $gLList->ledger_master_code; ?></td>
@@ -82,13 +84,13 @@ $NewNo = urlencode($value);
                     <td><?php echo $gLList->memo; ?></td>
 
                     <td><?php if ($type == 'dr') {
-                        
+                      $sumD += abs($gLList->amount);  
                     echo abs($gLList->amount);
                 } else {
                     echo '0';
                 } ?></td>
                     <td><?php if ($type == 'cr') {
-                        
+                    $sumC += abs($gLList->amount);    
             echo abs($gLList->amount);
         } else {
             echo '0';
@@ -98,14 +100,14 @@ $NewNo = urlencode($value);
 
 
                 </tr>
-    <?php $sum += abs($gLList->amount); } ?>
+    <?php  } ?>
 
 
 
             <tr>
                 <td colspan="4">Total</td>
-                <td><Strong><?php echo 'Rs. '.$sum; ?></strong></td>
-                <td><Strong><?php echo 'Rs. '.$sum; ?></strong></td>
+                <td><Strong><?php echo 'Rs. '.$sumD; ?></strong></td>
+                <td><Strong><?php echo 'Rs. '.$sumC; ?></strong></td>
             </tr>
 
 
@@ -113,7 +115,7 @@ $NewNo = urlencode($value);
 
                 <td>Amount in words</td>
                 <td colspan="5"><?php 
-                $words = $this->numbertowords->convert_number($sum);
+                $words = $this->numbertowords->convert_number($sumD);
                 echo $words.' Rupees only.';
                 ?></td>
             </tr>

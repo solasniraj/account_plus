@@ -34,40 +34,40 @@
                     <table class="tables">
             <thead>
                 <tr>
-                    <th>Journal No</th>
-                    <th>Ledger Code</th>
-                    <th>A/C Particulars</th>
-                    <th>Debit (Rs.)</th>
-                    <th>Credit (Rs.)</th>
-                    <th>Cheque No.</th>
+                    <th style="width: 25%;">Journal No</th>
+                    <th style="width: 15%;">Ledger Code</th>
+                    <th style="width: 25%;">A/C Particulars</th>
+                    <th style="width: 10%;">Debit (Rs.)</th>
+                    <th style="width: 10%;">Credit (Rs.)</th>
+                    <th style="width: 15%;">Cheque No.</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if(!empty($journalEntry)){
                     foreach($journalEntry as $lEntries){ ?>
                 <tr>
-                    <td>
+                    
                 <?php 
                         $singleGLDetails = $this->transaction_model->get_single_transaction_details($lEntries->journal_voucher_no);
                    if(!empty($singleGLDetails)){ ?>
-  <table>
+  <table class="tables">
  <?php foreach ($singleGLDetails as $glDets){   
       $sum = 0;
                         ?>
           
                 <tr>
                      
-                    <td><?php echo $lEntries->journal_voucher_no; ?></td>
-                    <td><?php echo $glDets->ledger_master_code; ?></td>
-                    <td><?php echo $glDets->ledger_master_description; ?></td>
-                    <td><?php if($glDets->trans_type=='dr'){echo abs($glDets->amount);} ?></td>
-                    <td><?php if($glDets->trans_type=='cr'){echo abs($glDets->amount);} ?></td>
-                    <td><?php echo $glDets->cheque_no; ?></td>
+                    <td style="width: 25%;"><?php echo $lEntries->journal_voucher_no; ?></td>
+                    <td style="width: 15%;"><?php echo $glDets->ledger_master_code; ?></td>
+                    <td style="width: 25%;"><?php echo $glDets->ledger_master_description; ?></td>
+                    <td style="width: 10%;"><?php if($glDets->trans_type=='dr'){echo abs($glDets->amount);} ?></td>
+                    <td style="width: 10%;"><?php if($glDets->trans_type=='cr'){echo abs($glDets->amount);} ?></td>
+                    <td style="width: 15%;"><?php echo $glDets->cheque_no; ?></td>
                 </tr> 
  <?php $sum += abs($glDets->amount); } ?>                
             </table>                                  
                        <?php  } ?> 
-                    </td>
+                   
                 </tr> 
                     <?php } ?>
                 <?php } else{ echo "<tr><td colspan='6'><strong>No journal entries are found for ".$day ."</strong></td></tr>";} ?>

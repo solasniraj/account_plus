@@ -82,7 +82,7 @@
                 <?php if(!empty($journalEntry)){
                     foreach($journalEntry as $lEntries){ ?>
                 <tr>
-                    <td>
+                   
                 <?php 
                         $singleGLDetails = $this->transaction_model->get_single_transaction_details($lEntries->journal_voucher_no);
                    if(!empty($singleGLDetails)){ ?>
@@ -103,7 +103,7 @@
  <?php $sum += abs($glDets->amount); } ?>                
             </table>                                  
                        <?php  } ?> 
-                    </td>
+                    
                 </tr> 
                     <?php } ?>
                 <?php } else{ echo "<tr><td colspan='6'><strong>No journal entries are found for ".$day ."</strong></td></tr>";} ?>
