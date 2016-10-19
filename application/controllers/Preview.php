@@ -8,10 +8,10 @@ class preview extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('session');
-        $this->load->model('program_model');
-       $this->load->model('bank_model');
-        $this->load->model('transaction_model');
-        $this->load->model('dbmanager_model');
+         $this->load->model('report_model');
+         $this->load->model('transaction_model');
+         $this->load->model('dbmanager_model');
+         $this->load->model('ledger_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -257,7 +257,7 @@ $glNo = urldecode($id);
         }
     }
     
-    public function dayBook()
+    public function dayBook($dayE)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -268,25 +268,38 @@ $glNo = urldecode($id);
              $fiscal_year = $this->session->userdata('fiscal_year');      
             
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-       
+    
+        if (!$dayE) {
+                $day = date('Y-m-d');
+                $data['dayN'] = $this->dayFunctN();
+      $data['dayE'] = $this->dayFunctE();
+            }else{
+                $day = $dayE;
+        $nepaliDate = $this->convertToBs($dayE);
+                $data['dayN'] = $nepaliDate;
+      $data['dayE'] = $day;
+            }        
+        $data['journalEntry'] = $this->report_model->get_journal_entry_for_day($day);
+      $data['day']= $day;
+      $data['nepaliDay'] = $nepaliDate;
+      $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();   
       
       $this->load->view('printPreview/download/templates/header');
       $this->load->view('printPreview/download/report/dayBook', $data);
       $this->load->view('printPreview/download/templates/footer');
     
          
-            // Get output html
-            $html = $this->output->get_output();
-
+//            $html = $this->output->get_output();
             // Load library
-            $this->load->library('dompdf_gen');
+//            $this->load->library('dompdf_gen');
 
             // Convert to PDF
-            $this->dompdf->load_html($html);
-            $this->dompdf->set_paper('a4', $orientation);
-            $this->dompdf->render();
-            $this->dompdf->stream("Journal.pdf");
-            die;
+//            $this->dompdf->load_html($html);
+//            $this->dompdf->set_paper('a4', $orientation);
+//            $this->dompdf->set_option('isHtml5ParserEnabled', true);
+//            $this->dompdf->render();
+//            $this->dompdf->stream("Day_Book_".$data['dayN']."(".$data['dayE'].").pdf");
             
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -402,7 +415,55 @@ $glNo = urldecode($id);
     }
     
     
-    
+ public function dayFunctN()
+{
+    date_default_timezone_set('Asia/Kathmandu');
+$currentYear = date('Y');
+$currentMonth = date('m');
+$currentDay = date('d');
+$this->load->library("nepali_calendar");
+$currentNepaliDay = $this->nepali_calendar->AD_to_BS($currentYear,$currentMonth,$currentDay);
+$nepaliDay = $currentNepaliDay['date'];
+$nepaliMth = $currentNepaliDay['month'];
+$nepaliYr = $currentNepaliDay['year'];
+$todayNep = $nepaliYr.'/'.$nepaliMth.'/'.$nepaliDay;
+
+$tday = new DateTime($todayNep);
+
+$dateOfToday = $tday->format('Y-m-d');
+return $dateOfToday;
+}
+
+public function dayFunctE()
+{
+    date_default_timezone_set('Asia/Kathmandu');
+    $today = date('Y-m-d');
+    return $today;
+} 
+
+public function convertToBs($day)
+{
+    $tday = new DateTime($day);
+$date = $tday->format('Y-m-d');
+
+$year = date('Y', strtotime($date));
+$month = date('m', strtotime($date));
+$days = date('d', strtotime($date));
+
+$this->load->library("nepali_calendar");
+$currentNepaliDay = $this->nepali_calendar->AD_to_BS($year,$month,$days);
+$nepaliDay = $currentNepaliDay['date'];
+$nepaliMth = $currentNepaliDay['month'];
+$nepaliYr = $currentNepaliDay['year'];
+$todayNep = $nepaliYr.'/'.$nepaliMth.'/'.$nepaliDay;
+
+$tday = new DateTime($todayNep);
+
+$dateOfToday = $tday->format('Y-m-d');
+return $dateOfToday;
+
+
+}
     
     
 

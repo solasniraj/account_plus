@@ -24,8 +24,8 @@
 </main>    
                     <?php }    }   ?>
         
-        <div class="text-right pull-right">
-        <a href="<?php echo base_url().'preview/dayBook'; ?>"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
+        <div class="text-right">
+        <a href="<?php echo base_url().'preview/dayBook/'.$dayE; ?>"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
         <a href="<?php echo base_url().'printview/dayBook'; ?>"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
     </div>
         
@@ -36,16 +36,6 @@
         </div>
                        
                    
-
-
-                   
-
-
-
-               
-        
-        
-        
        
         <div class="col-md-12" style="padding:0px;margin-bottom: 10px;">
                 <?php echo form_open_multipart('reports/dayBook'); ?>
@@ -92,6 +82,7 @@
                 <?php if(!empty($journalEntry)){
                     foreach($journalEntry as $lEntries){ ?>
                 <tr>
+                    <td>
                 <?php 
                         $singleGLDetails = $this->transaction_model->get_single_transaction_details($lEntries->journal_voucher_no);
                    if(!empty($singleGLDetails)){ ?>
@@ -112,9 +103,10 @@
  <?php $sum += abs($glDets->amount); } ?>                
             </table>                                  
                        <?php  } ?> 
+                    </td>
                 </tr> 
                     <?php } ?>
-                <?php } else{ echo "<tr><td colspan='6'><strong>No journal entries are found for ".$day ."</strong><td></tr>";} ?>
+                <?php } else{ echo "<tr><td colspan='6'><strong>No journal entries are found for ".$day ."</strong></td></tr>";} ?>
             </tbody>
  
             
