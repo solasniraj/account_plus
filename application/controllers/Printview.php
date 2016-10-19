@@ -122,7 +122,7 @@
         }
     }
     
-    public function dayBook()
+    public function dayBook($dayE)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -134,8 +134,26 @@
             
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
        
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+    
+        if (!$dayE) {
+                $day = date('Y-m-d');
+                $data['dayN'] = $this->dayFunctN();
+      $data['dayE'] = $this->dayFunctE();
+            }else{
+                $day = $dayE;
+        $nepaliDate = $this->convertToBs($dayE);
+                $data['dayN'] = $nepaliDate;
+      $data['dayE'] = $day;
+            }        
+        $data['journalEntry'] = $this->report_model->get_journal_entry_for_day($day);
+      $data['day']= $day;
+      $data['nepaliDay'] = $nepaliDate;
+      $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
+             
              $this->load->view('printPreview/printView/templates/header');
-      $this->load->view('printPreview/printView/report/trialBalance', $data);
+      $this->load->view('printPreview/printView/report/dayBook', $data);
       $this->load->view('printPreview/printView/templates/footer');
       
      } else {
@@ -236,7 +254,30 @@ public function dayFunctE()
 }
   
   
-  
+  public function convertToBs($day)
+{
+    $tday = new DateTime($day);
+$date = $tday->format('Y-m-d');
+
+$year = date('Y', strtotime($date));
+$month = date('m', strtotime($date));
+$days = date('d', strtotime($date));
+
+$this->load->library("nepali_calendar");
+$currentNepaliDay = $this->nepali_calendar->AD_to_BS($year,$month,$days);
+$nepaliDay = $currentNepaliDay['date'];
+$nepaliMth = $currentNepaliDay['month'];
+$nepaliYr = $currentNepaliDay['year'];
+$todayNep = $nepaliYr.'/'.$nepaliMth.'/'.$nepaliDay;
+
+$tday = new DateTime($todayNep);
+
+$dateOfToday = $tday->format('Y-m-d');
+return $dateOfToday;
+
+
+}
+    
   
   
   
