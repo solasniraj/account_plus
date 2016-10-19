@@ -46,10 +46,8 @@
                     
                 <?php 
                         $singleGLDetails = $this->transaction_model->get_single_transaction_details($lEntries->journal_voucher_no);
-                   if(!empty($singleGLDetails)){ ?>
-  
- <?php foreach ($singleGLDetails as $glDets){   
-      $sum = 0;
+                   if(!empty($singleGLDetails)){ 
+ foreach ($singleGLDetails as $glDets){   
                         ?>
           
                 <tr>
@@ -61,9 +59,7 @@
                     <td><?php if($glDets->trans_type=='cr'){echo abs($glDets->amount);} ?></td>
                     <td><?php echo $glDets->cheque_no; ?></td>
                 </tr> 
- <?php $sum += abs($glDets->amount); } ?>                
-                                             
-                       <?php  } ?> 
+ <?php  }   } ?> 
                     
                
                     <?php } ?>
