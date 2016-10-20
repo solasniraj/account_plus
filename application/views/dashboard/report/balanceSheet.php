@@ -68,14 +68,11 @@
                     
                     <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
             <thead>
-                <tr>
-                    
-                   
-                   
-                    <th>Account Name / Particulars</th>
-                    <th>Debit (Rs.)</th>
-                    <th>Credit (Rs.)</th>
-                  
+                <tr>  
+                    <th>Capital &amp; Liabilities</th>
+                    <th>Amount (Rs.)</th>
+                    <th>Assets And Income</th>
+                    <th>Amount (Rs.)</th>
                            
                 </tr>
             </thead>
@@ -85,15 +82,28 @@
                     $sumCr = '0';
                     foreach($allLedger as $ledgers){
                       $code = $ledgers->ledger_master_code;
+                      $gl = mb_substr($code, 0, 2);
                       $drAmount = $this->report_model->get_sum_of_amounts_for_dr_of_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
                       $crAmount =  $this->report_model->get_sum_of_amounts_for_cr_of_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
                      $sumDr += abs($drAmount);
                      $sumCr += abs($crAmount)
                       ?>
                 <tr>
+                    <?php if($gl == '02'){ ?>
                     <td><?php echo $ledgers->ledger_master_name; ?></td>
-                    <td><?php echo abs($drAmount);  ?></td>                  
+                    <td><?php echo abs($drAmount);  ?></td> 
+                    <td></td>
+                    <td></td>
+                    <?php } elseif($gl == '01'){ ?>
+                     <td></td>
+                    <td></td>
+                    <td><?php echo $ledgers->ledger_master_name; ?></td>
                     <td><?php echo abs($crAmount); ?></td>
+                    <?php } else{ ?>
+                         <td></td>
+                    <td></td> <td></td>
+                    <td></td>
+                    <?php } ?>
     
                 </tr> 
                 
