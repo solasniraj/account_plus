@@ -1,20 +1,22 @@
-<div style="margin-bottom: 15px;">
+<div style="margin-bottom: 15px;float: left;width: 100%;">
         <?php if(!empty($committeeInfo)){ foreach ($committeeInfo as $cLists){ ?>
-        <main class="flex-center" style="margin-top:22px;margin-bottom:10px;">
+        <main class="flex-center" style="margin-top:22px;margin-bottom:10px;width: 100%;float: left;">
            <?php if(!empty($cLists->logo)){ ?>
-  <div>
-      <img src="<?php echo base_url().'contents/uploads/images/'.$cLists->logo; ?>" height="60"/>
+            <div style="width:6.5%;float:left;">
+      <img src="<?php echo $_SERVER["DOCUMENT_ROOT"].'/account_plus/contents/uploads/images/'.$cLists->logo; ?>" style="float: left;width: 100%;"/>
   </div>
     <?php } ?>
-           <h2><?php echo $cLists->committee_name; ?></h2>
-           <h4 style="margin: 5px;"><?php echo $cLists->address; ?></h4>
-           <h4 style="margin: 5px;"><?php echo $cLists->email_address ?></h4>
-           <p><strong>Ph : <?php echo $cLists->phone; ?></strong></p>
+           <div style="float: left;width: 80%;">
+    <h3><?php echo $cLists->committee_name; ?></h3>
+                        <p><?php echo $cLists->address; ?></p>
+                        <h5>Phone : <?php echo $cLists->phone; ?></h5>
+                         
+  </div>
      </main>
         <?php }} ?>
     </div>
-        
-        
+<div class="clear"></div>
+    
         
         <div class="text-center" style="padding: 5px 0px 5px 0px;border: 1px solid #999;margin-bottom: 15px;">
             <h3>Day Book </h3>

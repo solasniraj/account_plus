@@ -4,7 +4,8 @@
 	<title>Account :: Home </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" href="<?php echo base_url().'contents/css/pdf.css'; ?>" type='text/css' />
+        <link rel="stylesheet" href="<?php echo base_url().'contents/css/pdf.css'; ?>" type='text/css' />
+     
         <style>
             h4, h5, h6,
 h1, h2, h3 {margin-top: 0;}
@@ -42,6 +43,10 @@ h1, h2, h3, h4, h5 {
     border-collapse: collapse;
     width: 100%;
 }
+table
+{
+   border-collapse:unset;   
+}
 .tables td, .tables th {
     border: 1px solid #ddd;
     padding: 8px;
@@ -59,17 +64,17 @@ h1, h2, h3, h4, h5 {
 .text-center{text-align: center;}
         </style>	
 	
-<Style>
+<style>
 main {
   margin: 0px;
   padding: 0px;
 }
 main div {
-  padding: 10px;
+  padding: 0px 10px 0px 10px;
   margin: 0px;
 }
-main div h5, main div h4{
-    margin: 0px;
+main div h5, main div h4, main div h3{
+    margin: 5px 0px;
 }
 .inline-block-center {
   text-align: center;
@@ -78,9 +83,8 @@ main div h5, main div h4{
   display: inline-block;
   text-align: left;
 }
-.flex-center {
-  justify-content: center;
-}
+.clear{clear: both;}
+
 </style>
 
 	
