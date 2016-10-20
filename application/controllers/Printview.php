@@ -59,7 +59,7 @@
     }
   }
   
-  public function ledgerReport()
+  public function ledgerReport($fromEng=NULL, $toEng=NULL, $ledCode=NULL)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -67,12 +67,26 @@
              $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
-             $fiscal_year = $this->session->userdata('fiscal_year');      
-            
-             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+      
+        $fromE = $fromEng;
+        $fromN = $this->convertToBs($fromE);
+        $toE = $toEng;
+        $toN = $this->convertToBs($toE);
+        $ledger = $ledCode;
+         $data['fromN'] = $fromN;
+      $data['toN'] = $toN;
+      $data['fromE'] = $fromE;
+      $data['toE'] = $toE; 
+      $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
+      $data['ledgerDetails'] = $this->ledger_model->get_ledger_details_by_ledger_code($ledger);
        
+        $data['ledgerRep'] = $this->report_model->get_transaction_details_of_ledger_with_in_dates($ledger, $fromN, $fromE, $toN, $toE);
+         
              $this->load->view('printPreview/printView/templates/header');
-      $this->load->view('printPreview/printView/report/trialBalance', $data);
+      $this->load->view('printPreview/printView/report/ledgerReport', $data);
       $this->load->view('printPreview/printView/templates/footer');
       
      } else {

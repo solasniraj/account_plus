@@ -71,7 +71,7 @@
                 <tr>  
                     <th>Capital &amp; Liabilities</th>
                     <th>Amount (Rs.)</th>
-                    <th>Assets And Income</th>
+                    <th>Assets &amp; Properties</th>
                     <th>Amount (Rs.)</th>
                            
                 </tr>
