@@ -308,7 +308,7 @@ $glNo = urldecode($id);
         }
     }
     
-    public function iEReport()
+   public function iEReport($fiscal=NULL, $fromEng=NULL, $toEng=NULL)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -316,29 +316,49 @@ $glNo = urldecode($id);
              $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
-             $fiscal_year = $this->session->userdata('fiscal_year');      
-            
+             $fiscal_year = $this->session->userdata('fiscal_year');              
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-       
       
-      $this->load->view('printPreview/download/templates/header');
+        $FisYr = urldecode($fiscal);
+        $fiscalData = str_replace('&#47;', '/', $FisYr);
+        
+        $fromE = $fromEng;
+        $fromN = $this->convertToBs($fromE);
+        $toE = $toEng;
+        $toN = $this->convertToBs($toE);
+         $data['fromN'] = $fromN;
+      $data['toN'] = $toN;
+      $data['fromE'] = $fromE;
+      $data['toE'] = $toE; 
+      $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
+      $data['allLedger'] = $this->ledger_model->get_ledger_master_listing_of_income_and_expn();
+      
+      
+      if($fiscalData == $fiscal_year)  { 
+             $this->load->view('printPreview/download/templates/header');
       $this->load->view('printPreview/download/report/iEReport', $data);
       $this->load->view('printPreview/download/templates/footer');
-    
-         
-            // Get output html
-            $html = $this->output->get_output();
-
+    // var_dump($_SERVER["DOCUMENT_ROOT"]);
+                     $html = $this->output->get_output();
             // Load library
             $this->load->library('dompdf_gen');
 
             // Convert to PDF
             $this->dompdf->load_html($html);
-            $this->dompdf->set_paper('a4', $orientation);
+            $paper_orientation = 'landscape';
+            $customPaper = array(0,0,950,950);
+            $this->dompdf->set_paper($customPaper,$paper_orientation);
+//            $this->dompdf->set_paper('a4', $orientation);
+            //$this->dompdf->set_option('isHtml5ParserEnabled', true);
             $this->dompdf->render();
-            $this->dompdf->stream("Journal.pdf");
-            die;
-            
+            $this->dompdf->stream("Income_expenditure_".$fromN."_".$toN.".pdf");
+      
+      
+      }else{
+          $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
+         redirect('reports/tBalance', 'refresh');
+      } 
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }

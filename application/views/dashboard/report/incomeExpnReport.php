@@ -5,7 +5,10 @@
 <div id="page-wrapper">
     <div class="graphs">
         
-              <?php if (!empty($committeeInfo)) {
+              <?php $fiscal_year = $this->session->userdata('fiscal_year');
+               $value = str_replace('/', '&#47;', $fiscal_year);
+$fy = urlencode($value);
+if (!empty($committeeInfo)) {
                     foreach ($committeeInfo as $cLists) {
                         ?>
 
@@ -26,8 +29,8 @@
 
 
     <div class="text-right pull-right">
-        <a href="<?php echo base_url().'preview/iEReport'; ?>"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
-        <a href="<?php echo base_url().'printview/iEReport'; ?>"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
+        <a href="<?php echo base_url().'preview/iEReport/'.$fy.'/'.$fromE.'/'.$toE; ?>" target="_blank"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
+        <a href="<?php echo base_url().'printview/iEReport/'.$fy.'/'.$fromE.'/'.$toE; ?>" target="_blank"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
     </div>
         
         
@@ -35,7 +38,7 @@
 
 <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
     <tr>
-        <td colspan="3"><h3>Income Expenditure Account Statement Report</h3> </td>
+        <td colspan="2"><h3>Income Expenditure Account Statement Report</h3> </td>
     </tr>
     <tr>
         <td>From : <?php echo $fromN. ' (' .$fromE. ') '; ?></td>  
@@ -120,7 +123,7 @@
                    <td><strong><?php echo abs(abs($sumDr) + abs($diffd));  ?></strong></td>
                    <td><strong><?php echo abs(abs($sumCr) + abs($diffc));  ?></strong></td>
                 </tr>
-                <?php } else{ echo "<tr><td colspan='6'><strong>No entries are found</td></tr>";} ?>
+                <?php } else{ echo "<tr><td colspan='3'><strong>No entries are found</td></tr>";} ?>
             </tbody>
  
             
