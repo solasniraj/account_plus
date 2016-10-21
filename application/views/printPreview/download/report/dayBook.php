@@ -38,7 +38,7 @@
                     <th>A/C Particulars</th>
                     <th>Debit (Rs.)</th>
                     <th>Credit (Rs.)</th>
-                    <th>Cheque No.</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -59,7 +59,7 @@
                     <td><?php echo $glDets->ledger_master_description; ?></td>
                     <td><?php if($glDets->trans_type=='dr'){echo abs($glDets->amount);} ?></td>
                     <td><?php if($glDets->trans_type=='cr'){echo abs($glDets->amount);} ?></td>
-                    <td><?php echo $glDets->cheque_no; ?></td>
+                   
                 </tr> 
  <?php  }   } ?> 
                     

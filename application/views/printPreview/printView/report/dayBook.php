@@ -39,7 +39,7 @@
                     <th style="width: 25%;">A/C Particulars</th>
                     <th style="width: 10%;">Debit (Rs.)</th>
                     <th style="width: 10%;">Credit (Rs.)</th>
-                    <th style="width: 15%;">Cheque No.</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -62,7 +62,7 @@
                     <td style="width: 25%;"><?php echo $glDets->ledger_master_description; ?></td>
                     <td style="width: 10%;"><?php if($glDets->trans_type=='dr'){echo abs($glDets->amount);} ?></td>
                     <td style="width: 10%;"><?php if($glDets->trans_type=='cr'){echo abs($glDets->amount);} ?></td>
-                    <td style="width: 15%;"><?php echo $glDets->cheque_no; ?></td>
+                   
                 </tr> 
  <?php $sum += abs($glDets->amount); } ?>                
             </table>                                  

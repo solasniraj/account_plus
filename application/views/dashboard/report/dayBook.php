@@ -70,11 +70,11 @@
                     
                    
                     <th style="width: 20%;">Journal No</th>
-                    <th style="width: 15%;">Ledger Code</th>
-                    <th style="width: 20%;">A/C Particulars</th>
+                    <th style="width: 20%;">Ledger Code</th>
+                    <th style="width: 30%;">A/C Particulars</th>
                     <th style="width: 15%;">Debit (Rs.)</th>
                     <th style="width: 15%;">Credit (Rs.)</th>
-                    <th style="width: 15%;">Cheque No.</th>
+                    
                            
                 </tr>
             </thead>
@@ -94,11 +94,11 @@
                 <tr>
                      
                     <td style="width: 20%;"><?php echo $lEntries->journal_voucher_no; ?></td>
-                    <td style="width: 15%;"><?php echo $glDets->ledger_master_code; ?></td>
-                    <td style="width: 20%;"><?php echo $glDets->ledger_master_description; ?></td>
+                    <td style="width: 20%;"><?php echo $glDets->ledger_master_code; ?></td>
+                    <td style="width: 30%;"><?php echo $glDets->ledger_master_description; ?></td>
                     <td style="width: 15%;"><?php if($glDets->trans_type=='dr'){echo abs($glDets->amount);} ?></td>
                     <td style="width: 15%;"><?php if($glDets->trans_type=='cr'){echo abs($glDets->amount);} ?></td>
-                    <td style="width: 15%;"><?php echo $glDets->cheque_no; ?></td>
+                    
                 </tr> 
  <?php $sum += abs($glDets->amount); } ?>                
             </table>                                  

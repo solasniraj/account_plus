@@ -43,11 +43,11 @@
                 <tr>
                     
                    
-                    <th style="width: 20%;">Date</th>
-                    <th style="width: 15%;">Journal No.</th>
-                    <th style="width: 20%;">A/C Particulars</th>
-                    <th style="width: 15%;">Debit (Rs.)</th>
-                    <th style="width: 15%;">Credit (Rs.)</th>
+                    <th style="width: 15%;">Date</th>
+                    <th style="width: 25%;">Journal No.</th>
+                    <th style="width: 25%;">A/C Particulars</th>
+                    <th style="width: 10%;">Debit (Rs.)</th>
+                    <th style="width: 10%;">Credit (Rs.)</th>
                     <th style="width: 15%;">Balance</th>
                            
                 </tr>
@@ -59,23 +59,17 @@
                        
                         ?>
                 <tr>
-                    <td>
-  <table class="tables">
- 
-          
-                <tr>
+
                      
-                    <td style="width: 20%;"><?php echo $lEntries->tran_date; ?></td>
-                    <td style="width: 15%;"><?php echo $lEntries->journal_voucher_no; ?></td>
-                    <td style="width: 20%;"><?php echo $lEntries->memo; ?></td>
-                     <td style="width: 15%;"><?php if($lEntries->trans_type=='dr'){echo abs($lEntries->amount); $sum += abs($lEntries->amount);} ?></td>
-                    <td style="width: 15%;"><?php if($lEntries->trans_type=='cr'){echo abs($lEntries->amount); $sum -= abs($lEntries->amount);} ?></td>
+                    <td style="width: 15%;"><?php echo $lEntries->tran_date; ?></td>
+                    <td style="width: 25%;"><?php echo $lEntries->journal_voucher_no; ?></td>
+                    <td style="width: 25%;"><?php echo $lEntries->memo; ?></td>
+                    <td style="width: 10%;"><?php if($lEntries->trans_type=='dr'){echo abs($lEntries->amount); $sum += abs($lEntries->amount);} ?></td>
+                    <td style="width: 10%;"><?php if($lEntries->trans_type=='cr'){echo abs($lEntries->amount); $sum -= abs($lEntries->amount);} ?></td>
                     <td style="width: 15%;"><?php echo $sum; ?></td>
                 </tr> 
                
-            </table>                                  
-                    </td>    
-                </tr> 
+
                     <?php  } ?>
                 <?php } else{ echo "<tr><td colspan='6'><strong>No journal entries are found for </strong><td></tr>";} ?>
             </tbody>
