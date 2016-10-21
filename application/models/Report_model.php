@@ -192,7 +192,26 @@ $this->db->where('trans_type', 'dr');
     
     }
     
-    
+    public function get_sum_of_amounts_for_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN)
+    {
+        if(!empty($fromN) && (!empty($fromE))){ 
+        $this->db->where('tran_date >=', $fromN);
+        $this->db->where('tran_date_english >=', $fromE);
+        }
+         if(!empty($toN) && (!empty($toE))){
+        $this->db->where('tran_date <=', $toN);
+        $this->db->where('tran_date_english <=', $toE);
+         }
+        $this->db->where('gl_trans_status', '1');
+        $this->db->where('ledger_master_code', $code);    
+         $this->db->select_sum('amount');    
+      $query =  $this->db->get('gl_trans_info')->result();    
+      if(!empty($query)){
+           return $query[0]->amount;
+               }else{
+                   return '0';
+               }
+    }
     
     
     

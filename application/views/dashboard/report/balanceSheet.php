@@ -5,7 +5,10 @@
 <div id="page-wrapper">
     <div class="graphs">
         
-              <?php if (!empty($committeeInfo)) {
+              <?php $fiscal_year = $this->session->userdata('fiscal_year');
+               $value = str_replace('/', '&#47;', $fiscal_year);
+$fy = urlencode($value);
+if (!empty($committeeInfo)) {
                     foreach ($committeeInfo as $cLists) {
                         ?>
 
@@ -25,8 +28,8 @@
                     <?php }    }   ?>
         
         <div class="text-right pull-right">
-        <a href="<?php echo base_url().'preview/balanceSheet'; ?>"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
-        <a href="<?php echo base_url().'printview/balanceSheet'; ?>"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
+            <a href="<?php echo base_url().'preview/balanceSheet/'.$fy.'/'.$fromE.'/'.$toE; ?>" target="_blank"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
+        <a href="<?php echo base_url().'printview/balanceSheet/'.$fy.'/'.$fromE.'/'.$toE; ?>" target="_blank"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
     </div>
                 
            <div class="text-center" style="padding: 5px 0px 5px 0px;margin-bottom: 15px;">
@@ -66,75 +69,127 @@
 
                 <div class="table-responsive">
                     
-                    <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
+                    <table class="table-striped table-bordered table-condensed" width="50%" cellspacing="0" style="float: left;">
             <thead>
                 <tr>  
-                    <th>Capital &amp; Liabilities</th>
-                    <th>Amount (Rs.)</th>
-                    <th>Assets &amp; Properties</th>
-                    <th>Amount (Rs.)</th>
+                    <th style="width: 75%">Capital &amp; Liabilities</th>
+                    <th style="width: 25%">Amount (Rs.)</th>
+                  
                            
                 </tr>
             </thead>
             <tbody>
                 <?php if(!empty($allLedger)){
-                    $sumDr = '0';
-                    $sumCr = '0';
+                    $sum1 = '0';
+                    $sum2 = '0';
                     foreach($allLedger as $ledgers){
                       $code = $ledgers->ledger_master_code;
                       $gl = mb_substr($code, 0, 2);
-                      $drAmount = $this->report_model->get_sum_of_amounts_for_dr_of_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
-                      $crAmount =  $this->report_model->get_sum_of_amounts_for_cr_of_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
-                     $sumDr += abs($drAmount);
-                     $sumCr += abs($crAmount)
+                      if($gl == '02'){
+                      $amount1 = $this->report_model->get_sum_of_amounts_for_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
+                    $sum1 += abs($amount1);
+                      }elseif($gl == '01'){
+                      $amount2 = $this->report_model->get_sum_of_amounts_for_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
+                    $sum2 += abs($amount2);
+                      }
+                     
+                    
                       ?>
                 <tr>
                     <?php if($gl == '02'){ ?>
-                    <td><?php echo $ledgers->ledger_master_name; ?></td>
-                    <td><?php echo abs($drAmount);  ?></td> 
-                    <td></td>
-                    <td></td>
-                    <?php } elseif($gl == '01'){ ?>
-                     <td></td>
-                    <td></td>
-                    <td><?php echo $ledgers->ledger_master_name; ?></td>
-                    <td><?php echo abs($crAmount); ?></td>
-                    <?php } else{ ?>
-                         <td></td>
-                    <td></td> <td></td>
-                    <td></td>
+                    <td style="width: 75%"><?php echo $ledgers->ledger_master_name; ?></td>
+                    <td style="width: 25%"><?php echo abs($amount1);  ?></td> 
                     <?php } ?>
     
                 </tr> 
                 
                     <?php } ?>
-                <tr>
-                    <?php if(abs($sumCr) > abs($sumDr)){
-                        $diffd = abs(abs($sumCr) - abs($sumDr));
-                        $diffc = '0';
+               
+                    <?php if(abs($sum2) > abs($sum1)){
+                        $diff = abs(abs($sum2) - abs($sum1));
+                  
                         ?>
-                       <td><strong>Surplus</strong></td>
-                      <td><strong><?php echo $diffd; ?></strong></td>                  
-                    <td><strong><?php echo $diffc; ?></strong></td>  
-                   <?php }else{ 
-                        $diffc = abs(abs($sumCr) - abs($sumDr));
-                        $diffd = '0';
-                       ?>
-                       <td><strong>Defisit</strong></td>
-                       <td><strong><?php echo $diffd; ?></strong></td>                  
-                    <td><strong><?php echo $diffc; ?></strong></td>
-                   
-                 <?php   } ?>
-                </tr>
-                <tr>
-                    <td><strong>Total</strong></td>
-                   <td><strong><?php echo abs(abs($sumDr) + abs($diffd));  ?></strong></td>
-                   <td><strong><?php echo abs(abs($sumCr) + abs($diffc));  ?></strong></td>
-                </tr>
-                <?php } else{ echo "<tr><td colspan='6'><strong>No entries are found</td></tr>";} ?>
+                 <tr>
+                       <td style="width: 75%"><strong>Surplus</strong></td>
+                      <td style="width: 25%"><strong><?php echo $diff; ?></strong></td>                  
+                 </tr>
+                 <?php   }else{
+                     $diff ='0';
+                 }  $total1= $sum1+$diff; ?>
+                
+                
+                <?php } else{ } ?>
             </tbody>
  
             
+        </table>
+                    
+                     <table class="table-striped table-bordered table-condensed" width="50%" cellspacing="0" style="float: left;">
+            <thead>
+                <tr>  
+                    
+                    <th style="width: 75%">Assets &amp; Properties</th>
+                    <th style="width: 25%">Amount (Rs.)</th>
+                           
+                </tr>
+            </thead>
+            <tbody>
+                <?php if(!empty($allLedger)){
+                    $sum1 = '0';
+                    $sum2 = '0';
+                    foreach($allLedger as $ledgers){
+                      $code = $ledgers->ledger_master_code;
+                      $gl = mb_substr($code, 0, 2);
+                      if($gl == '02'){
+                      $amount1 = $this->report_model->get_sum_of_amounts_for_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
+                    $sum1 += abs($amount1);
+                      }elseif($gl == '01'){
+                      $amount2 = $this->report_model->get_sum_of_amounts_for_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
+                    $sum2 += abs($amount2);
+                      }
+                     
+                      ?>
+                <tr>
+                    <?php if($gl == '01'){ ?>
+                    <td style="width: 75%"><?php echo $ledgers->ledger_master_name; ?></td>
+                    <td style="width: 25%"><?php echo abs($amount2);  ?></td> 
+                    <?php } ?>
+    
+                </tr> 
+                
+                    <?php } ?>
+                
+                    <?php if(abs($sum1) > abs($sum2)){
+                        $diff = abs(abs($sum2) - abs($sum1));
+                        
+                        ?>
+                <tr>
+                       <td style="width: 75%"><strong>Defisit</strong></td>
+                                     
+                    <td style="width: 25%"><strong><?php echo $diff; ?></strong></td>  
+                 
+                    </tr>
+                 <?php   }else{
+                     $diff= '0';
+                 }  $total2= $sum2+$diff; ?>
+               
+               
+                <?php } else{ } ?>
+            </tbody>
+ 
+            
+        </table>
+                     <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0" style="float: left;">
+            
+                
+                <tr>
+                        <td style="width: 37.5%">Total</td>
+                       <td style="width: 12.5%"><?php echo $total1; ?></td>
+                        <td style="width: 37.5%">Total</td>
+                       <td style="width: 12.5%"><?php echo $total2; ?></td>
+    
+                </tr> 
+    
         </table>
 
                 </div>

@@ -230,7 +230,7 @@
         }
     }
     
-    public function balanceSheet()
+    public function balanceSheet($fiscal=NULL, $fromEng=NULL, $toEng=NULL)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -238,14 +238,33 @@
              $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
-             $fiscal_year = $this->session->userdata('fiscal_year');      
-            
-             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
-       
-             $this->load->view('printPreview/printView/templates/header');
-      $this->load->view('printPreview/printView/report/trialBalance', $data);
-      $this->load->view('printPreview/printView/templates/footer');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
+        $FisYr = urldecode($fiscal);
+        $fiscalData = str_replace('&#47;', '/', $FisYr);
+        
+        $fromE = $fromEng;
+        $fromN = $this->convertToBs($fromE);
+        $toE = $toEng;
+        $toN = $this->convertToBs($toE);
+         $data['fromN'] = $fromN;
+      $data['toN'] = $toN;
+      $data['fromE'] = $fromE;
+      $data['toE'] = $toE; 
+      $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
+      $data['incExpnLed'] = $this->ledger_model->get_ledger_master_listing_of_income_and_expn();
+      $data['allLedger'] = $this->ledger_model->get_ledger_master_listing_of_assets_and_liability();
+      
+      if($fiscalData == $fiscal_year)  {  
+             $this->load->view('printPreview/printView/templates/header');
+      $this->load->view('printPreview/printView/report/balanceSheet', $data);
+      $this->load->view('printPreview/printView/templates/footer');
+      }else{
+          $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
+         redirect('report/bSheet', 'refresh');
+      }
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
