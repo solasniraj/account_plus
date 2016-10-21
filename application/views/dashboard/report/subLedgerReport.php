@@ -5,7 +5,10 @@
 <div id="page-wrapper">
     <div class="graphs">
         
-              <?php if (!empty($committeeInfo)) {
+              <?php $fiscal_year = $this->session->userdata('fiscal_year');
+               $value = str_replace('/', '&#47;', $fiscal_year);
+$fy = urlencode($value);
+if (!empty($committeeInfo)) {
                     foreach ($committeeInfo as $cLists) {
                         ?>
 
@@ -24,10 +27,14 @@
 </main>    
                     <?php }    }   ?>
 
-
+  <?php if(!empty($subLedgerDetails)){ 
+      foreach($subLedgerDetails as $slDets){ 
+ $ledCode = $slDets->subledger_code; ?>
+        
+        <?php } }?>
     <div class="text-right pull-right">
-        <a href="<?php echo base_url().'preview/subLedgerReport'; ?>"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
-        <a href="<?php echo base_url().'printview/subLedgerReport'; ?>"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
+        <a href="<?php echo base_url().'preview/subLedgerReport/'.$fromE.'/'.$toE.'/'.$ledCode; ?>" target="_blank"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
+        <a href="<?php echo base_url().'printview/subLedgerReport/'.$fromE.'/'.$toE.'/'.$ledCode; ?>" target="_blank"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
     </div>
 
         
@@ -87,7 +94,9 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if(!empty($ledgerRep)){
+                <?php 
+                 $sum ='0';             
+                if(!empty($ledgerRep)){
                     foreach($ledgerRep as $lEntries){
                        
                         ?>
@@ -101,9 +110,9 @@
                     <td style="width: 20%;"><?php echo $lEntries->tran_date; ?></td>
                     <td style="width: 15%;"><?php echo $lEntries->journal_voucher_no; ?></td>
                     <td style="width: 20%;"><?php echo $lEntries->memo; ?></td>
-                     <td style="width: 15%;"><?php if($lEntries->trans_type=='dr'){echo abs($lEntries->amount);} ?></td>
-                    <td style="width: 15%;"><?php if($lEntries->trans_type=='cr'){echo abs($lEntries->amount);} ?></td>
-                    <td style="width: 15%;"><?php ?></td>
+                     <td style="width: 15%;"><?php if($lEntries->trans_type=='dr'){echo abs($lEntries->amount); $sum += abs($lEntries->amount);} ?></td>
+                    <td style="width: 15%;"><?php if($lEntries->trans_type=='cr'){echo abs($lEntries->amount); $sum -= abs($lEntries->amount);} ?></td>
+                    <td style="width: 15%;"><?php echo $sum; ?></td>
                 </tr> 
                
             </table>                                  

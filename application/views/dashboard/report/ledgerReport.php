@@ -89,8 +89,8 @@ if (!empty($committeeInfo)) {
                 </tr>
             </thead>
             <tbody>
-                <?php if(!empty($ledgerRep)){
-                    $sum ='0';
+                <?php  $sum ='0'; 
+                if(!empty($ledgerRep)){                  
                     foreach($ledgerRep as $lEntries){
                        
                         ?>

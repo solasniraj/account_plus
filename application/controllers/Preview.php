@@ -198,7 +198,7 @@ $glNo = urldecode($id);
         }
     }
     
-    public function subLedgerReport()
+     public function subLedgerReport($fromEng=NULL, $toEng=NULL, $sledCode=NULL)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -206,29 +206,42 @@ $glNo = urldecode($id);
              $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
-             $fiscal_year = $this->session->userdata('fiscal_year');      
-            
+             $fiscal_year = $this->session->userdata('fiscal_year');              
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-       
       
+       $fromE = $fromEng;
+        $fromN = $this->convertToBs($fromE);
+        $toE = $toEng;
+        $toN = $this->convertToBs($toE);
+        $subledger = $sledCode;
+        $data['subLedgerDetails'] = $this->ledger_model->get_sub_ledger_info_by_code($subledger);
+       
+        $data['ledgerRep'] = $this->report_model->get_transaction_details_of_sub_ledger_with_in_dates($subledger, $fromN, $fromE, $toN, $toE);
+        
+      $data['fromN'] = $fromN;
+      $data['toN'] = $toN;
+      $data['fromE'] = $fromE;
+      $data['toE'] = $toE;
+       $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
+       
       $this->load->view('printPreview/download/templates/header');
       $this->load->view('printPreview/download/report/subLedgerReport', $data);
       $this->load->view('printPreview/download/templates/footer');
-    
-         
-            // Get output html
-            $html = $this->output->get_output();
-
+       // var_dump($_SERVER["DOCUMENT_ROOT"]);
+                     $html = $this->output->get_output();
             // Load library
             $this->load->library('dompdf_gen');
 
             // Convert to PDF
             $this->dompdf->load_html($html);
-            $this->dompdf->set_paper('a4', $orientation);
+            $paper_orientation = 'landscape';
+            $customPaper = array(0,0,950,950);
+            $this->dompdf->set_paper($customPaper,$paper_orientation);
+//            $this->dompdf->set_paper('a4', $orientation);
+            //$this->dompdf->set_option('isHtml5ParserEnabled', true);
             $this->dompdf->render();
-            $this->dompdf->stream("Journal.pdf");
-            die;
-            
+            $this->dompdf->stream("Sub_ledger_report_".$subledger.'_'.$fromN."_".$toN.".pdf");
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
