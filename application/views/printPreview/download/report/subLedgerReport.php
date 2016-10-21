@@ -36,21 +36,17 @@
         <td>Printed on : <?php echo $todayN. ' (' .$todayE. ') '; ?></td>
     </tr>
    
-</table>
-        
-                    
+</table>                           
                     <table class="tables">
             <thead>
                 <tr>
-                    
-                   
+                                       
                     <th style="width: 15%;">Date</th>
                     <th style="width: 25%;">Journal No.</th>
                     <th style="width: 25%;">A/C Particulars</th>
                     <th style="width: 10%;">Debit (Rs.)</th>
                     <th style="width: 10%;">Credit (Rs.)</th>
-                    <th style="width: 15%;">Balance</th>
-                           
+                    <th style="width: 15%;">Balance</th>                           
                 </tr>
             </thead>
             <tbody>
