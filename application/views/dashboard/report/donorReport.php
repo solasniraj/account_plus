@@ -105,11 +105,6 @@
                       
                       ?>
                 <tr>
-               
-  <table class="table table-striped table-bordered table-responsive table-condensed" width="100%" cellspacing="0">
- 
-          
-                <tr>
                      
                     <td style="width: 10%;"><?php echo $dEntries->ledger_master_code; ?></td>
                     <td style="width: 10%;"><?php echo $dEntries->ledger_master_name; ?></td>
@@ -122,10 +117,6 @@
                     <td style="width: 10%;"></td>
                     <td style="width: 10%;"></td>
                     
-                </tr> 
-               
-            </table>                                  
-                      
                 </tr> 
                     <?php } ?>
                 <?php } else{ echo "<tr><td colspan='6'><strong>No entries are found</td></tr>";} ?>
