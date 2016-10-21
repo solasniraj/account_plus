@@ -280,3 +280,88 @@ closed ************************************** -->
         </div>
          </div>
      </div>
+
+<script>
+    (function($) {
+    $.postconfirm = {};
+    $.postconfirm.locales = {};
+    $.postconfirm.locales.ptBR = {
+        title: 'Esta certo disto?',
+        text: 'Esta certo que quer realmente ?',
+        button: ['Cancela', 'Confirma'],
+        closeText: 'fecha'
+    };
+    $.fn.postconfirm = function(options) {
+        var options = jQuery.extend({
+            eventType: 'click',
+            icon: 'help'
+        }, options);
+        var locale = jQuery.extend({}, $.postconfirm.locales.ptBR, options.locale);
+        var type = options.eventType;
+        return this.each(function() {
+            var target = this;
+            var $target = jQuery(target);
+            var getDlgDv = function() {
+                var dlger = (options.dialog === undefined || typeof(options.dialog) != 'object');
+                var dlgdv = $('<div class="dialog confirm">' + locale.text + '</div>');         
+                return dlger ? dlgdv : options.dialog;          
+            }           
+            var dialog = getDlgDv();
+            var handler = function(event) {
+                    $(dialog).dialog('open');
+                    event.stopImmediatePropagation();
+                    event.preventDefault();
+                    return false;
+            };
+            var init = function() 
+            {
+                $target.bind(type, handler); 
+            };
+            var buttons = {};
+            buttons[locale.button[0]] = function() { $(dialog).dialog("close"); };
+            buttons[locale.button[1]] = function() {
+                $(dialog).dialog("close");
+                alert('1');
+                $target.unbind(type, handler);
+                $target.click();
+                $target.attr("disabled", true);
+            };            
+            $(dialog).dialog({
+                autoOpen: false,
+                resizable: false,
+                draggable: true,
+                closeOnEscape: true,
+                width: 'auto',
+                minHeight: 120,
+                maxHeight: 200,
+                buttons: buttons,
+                title: locale.title,
+                closeText: locale.closeText,
+                modal: true
+            });
+            init();
+        });
+        var _attr = $.fn.attr;
+        $.fn.attr = function(attr, value) {
+            var returned = _attr.apply(this, arguments);
+            if (attr == 'title' && returned === undefined) 
+            {
+                returned = '';
+            }
+            return returned;
+        };
+    };
+})(jQuery);
+    </script>
+    
+    <script type="text/javascript">     
+        $(document).ready(function () {
+            $("#previewForm").postconfirm({ locale: {
+                        title: 'Critical Action',
+                        text: 'Are you sure to submit and publish journal entry',
+                        button: ['Cancel', 'Confirm'],
+                        closeText: 'X'
+                    }
+                });
+        });
+    </script>

@@ -3,15 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/printPreview/printView/report/ledgerReport.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/printPreview/printView/report/trialBalance.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/report/ledgerReport.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/printPreview/download/report/ledgerReport.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/report/trialBalance.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Printview.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/views/printPreview/download/report/trialBalance.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Reports.php</file>
-            <file>file:/opt/lampp/htdocs/account_plus/application/controllers/Preview.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/transaction/journalEntry.php</file>
+            <file>file:/opt/lampp/htdocs/account_plus/application/views/dashboard/transaction/journalList.php</file>
         </group>
     </open-files>
 </project-private>
