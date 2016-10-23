@@ -92,20 +92,19 @@ Account Ledger created successfully
             }
             else
             {
-              $this->session->set_flashdata('flashMessage', 'error occur while creating ledger');
-
+              $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>Something went wrong during ledger addition. Please add again.</div>');
               //return redirect('programs/programListing');
             }
           }else{
-            $this->session->set_flashdata('flashMessage', 'You have reached the limit of ledgers. New ledger can not be created');
-
+              $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>You have reached the limit of ledgers. New ledger can not be created.</div>');
            // return redirect('programs/programListing');
           }
        }
       }
        else 
        {
-        $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding ledger. Please add again.');
+           $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>something went wrong while adding ledger. Please add again.</div>');
+       
        // return redirect('bank/addLedger');
       }
 
@@ -178,29 +177,25 @@ Account Ledger created successfully
             }
             else
             {
-              $this->session->set_flashdata('flashMessage', 'error occur while creating ledger');
-
+              $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>Something went wrong during sub ledger addition. Please add again.</div>');
               //return redirect('programs/programListing');
             }
           }else{
-            $this->session->set_flashdata('flashMessage', 'You have reached the limit of ledgers. New ledger can not be created');
-
+              $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>You have reached the limit of ledgers. New ledger can not be created.</div>');
            // return redirect('programs/programListing');
           }
        }
       }
        else 
        {
-        $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding ledger. Please add again.');
+           $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>something went wrong while adding ledger. Please add again.</div>');
+       
        // return redirect('bank/addLedger');
       }
 
 
     }
-    public function addLedgerProgram($id)
-    {
-        
-    }
+   
 
     
 
