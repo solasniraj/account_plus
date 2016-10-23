@@ -30,12 +30,12 @@ if (!empty($committeeInfo)) {
   <?php if(!empty($subLedgerDetails)){ 
       foreach($subLedgerDetails as $slDets){ 
  $ledCode = $slDets->subledger_code; ?>
-        
-        <?php } }?>
-    <div class="text-right pull-right">
+      <div class="text-right pull-right">
         <a href="<?php echo base_url().'preview/subLedgerReport/'.$fromE.'/'.$toE.'/'.$ledCode; ?>" target="_blank"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
         <a href="<?php echo base_url().'printview/subLedgerReport/'.$fromE.'/'.$toE.'/'.$ledCode; ?>" target="_blank"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
-    </div>
+    </div>  
+        <?php } }?>
+    
 
         
         <div class="text-center" style="padding: 5px 0px 5px 0px;margin-bottom: 15px;">

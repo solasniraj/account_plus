@@ -118,7 +118,7 @@ if (!empty($committeeInfo)) {
                  }  $total1= $sum1+$diff; ?>
                 
                 
-                <?php } else{ } ?>
+                <?php } else{ $total1 ='0'; } ?>
             </tbody>
  
             
@@ -174,7 +174,7 @@ if (!empty($committeeInfo)) {
                  }  $total2= $sum2+$diff; ?>
                
                
-                <?php } else{ } ?>
+                <?php } else{ $total2 = '0';} ?>
             </tbody>
  
             
