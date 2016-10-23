@@ -105,11 +105,11 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
        
         if($result1)
         {
-        $this->session->set_flashdata('flashMessage', 'Committee added successfully');
+             $this->session->set_flashdata("flashMessage", '<div class="alert alert-success" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Thank you! </strong><br/>Committee added successfully. Please Login to continue with default user and password. </div>');
          return redirect('login/login');
         }else{
-            $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong during registration. Please try again.');
-
+             $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>Something went wrong during registration. Please try again.</div>');
+         
         return redirect('login/index');
         }
     }
@@ -128,8 +128,7 @@ $data['fiscalYear'] = $this->dbmanager_model->get_fiscal_year();
             }
          $this->load->view('dashboard/login/login', $data);
     }else{
-        $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong. Setup your committe first.');
-
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>Something went wrong. Setup your user committe first.</div>');
         return redirect('login/index');
     }
     
@@ -163,7 +162,7 @@ $data['fiscalYear'] = $this->dbmanager_model->get_fiscal_year();
              }
             } else { // incorrect username or password
                 
-                $this->session->set_flashdata('flashMessage', 'Username or password incorrect');
+                $this->session->set_flashdata("flashMessage", '<div class="alert alert-danger" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Username or password is incorrect. Please review and login with correct username and password.</div>');
 
                redirect('login/index/?url=' . $link, 'refresh');
             }
