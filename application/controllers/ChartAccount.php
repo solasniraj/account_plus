@@ -44,6 +44,7 @@ class chartAccount extends CI_Controller {
 
     public function addnewLedger()
     {
+         $url = current_url();
         if ($this->session->userdata('logged_in') == true) 
       {
         $user_id=$this->session->userdata('user_id');
@@ -103,9 +104,7 @@ Account Ledger created successfully
       }
        else 
        {
-           $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>something went wrong while adding ledger. Please add again.</div>');
-       
-       // return redirect('bank/addLedger');
+           redirect('login/index/?url=' . $url, 'refresh');
       }
 
 
@@ -129,6 +128,7 @@ Account Ledger created successfully
 
     public function addnewSubLedger()
     {
+         $url = current_url();
         if ($this->session->userdata('logged_in') == true) 
       {
         $user_id=$this->session->userdata('user_id');
@@ -188,9 +188,7 @@ Account Ledger created successfully
       }
        else 
        {
-           $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>something went wrong while adding ledger. Please add again.</div>');
-       
-       // return redirect('bank/addLedger');
+             redirect('login/index/?url=' . $url, 'refresh');
       }
 
 

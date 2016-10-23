@@ -21,10 +21,10 @@
     {
       $url = current_url();
       if ($this->session->userdata('logged_in') == true) {
-          if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+          if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }else{
           $user_id = $this->session->userdata('user_id');
              $username = $this->session->userdata('username');
@@ -132,10 +132,10 @@ $NewNo = urlencode($value);
      $url = current_url();
     if ($this->session->userdata('logged_in') == true) 
     {
-        if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+        if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }else{
         if (isset($_POST['charClassId'])) 
      {
@@ -232,10 +232,10 @@ echo json_encode($response);
        {
    $url = current_url();
    if ($this->session->userdata('logged_in') == true) 
-   {  if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+   {  if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }else{ 
      if (isset($_POST['chartId']) && isset($_POST['programmId'])) 
      {
@@ -320,10 +320,10 @@ echo json_encode($response);
        {
    $url = current_url();
    if ($this->session->userdata('logged_in') == true) 
-   {  if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+   {  if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }else{ 
      if (isset($_POST['chartId']) && isset($_POST['programmId']) && isset($_POST['subLedger'])) 
      {
@@ -390,10 +390,10 @@ echo json_encode($response);
        {
    $url = current_url();
    if ($this->session->userdata('logged_in') == true) 
-   {  if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+   {  if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }else{ 
      if (isset($_POST['chartId']) && isset($_POST['programmId']) && isset($_POST['subLedger'])) 
      {
@@ -444,10 +444,10 @@ echo json_encode($response);
       
       $url = current_url();
    if ($this->session->userdata('logged_in') == true) 
-   {  if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+   {  if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }else{ 
         $mCode = $_POST['lmCode'];
         
@@ -479,10 +479,10 @@ echo json_encode($response);
   {
    $url = current_url();
    if ($this->session->userdata('logged_in') == true) {
-       if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+       if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }else{
 $user_id = $this->session->userdata('user_id');
              $username = $this->session->userdata('username');
@@ -538,10 +538,10 @@ $user_id = $this->session->userdata('user_id');
   {
       $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
-        if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+        if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }else{
        $glNo = urldecode($id);
         $glNos = str_replace('&#47;', '/', $glNo);
@@ -569,10 +569,10 @@ $user_id = $this->session->userdata('user_id');
   {
     $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
-if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }else{
       $userId = $this->session->userdata("user_id");
 
@@ -617,10 +617,10 @@ if(is_trans_pending())  // if you add in constructor no need write each function
   {      
     $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
-        if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+        if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }else{
         $user_id = $this->session->userdata('user_id');
              $username = $this->session->userdata('username');
@@ -742,13 +742,15 @@ if(is_trans_pending())  // if you add in constructor no need write each function
            switch($_REQUEST['journalEntry']) {
        case 'Submit':
            $this->transaction_model->update_transaction_status_to_approved($journalNo);
-           $this->session->set_flashdata('flashMessage', 'Transaction added successfully with active status.');
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-success" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction added successfully with active status.</div>');
+          
        redirect('transaction/journalList');            
            break;
 
     case 'Preview': 
         $this->transaction_model->update_transaction_status_to_pending($journalNo);
-        $this->session->set_flashdata('flashMessage', 'Transaction added successfully with status pending.');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-success" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction added successfully with pending status.</div>');
+        
       
 $value = str_replace('/', '&#47;', $journalNo);
 $NewNo = urlencode($value);
@@ -757,7 +759,8 @@ $NewNo = urlencode($value);
 
 }   
      }else{
-         $this->session->set_flashdata('flashMessage', 'Transaction added successfully with status pending.');
+         $this->session->set_flashdata("flashMessage", '<div class="alert alert-success" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction added successfully with pending status.</div>');
+        
      redirect('transaction/journalEntry', 'refresh'); 
      
      }    

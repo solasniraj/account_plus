@@ -89,12 +89,14 @@ class bank extends CI_Controller {
        
         if($result1)
         {
-         $this->session->set_flashdata('flashMessage', 'Bank Account added successfully');
+         $this->session->set_flashdata("flashMessage", '<div class="alert alert-success" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Bank Account added successfully</div>');
+         
          return redirect('bank/index');
        }
        else 
        {
-        $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding account. Please add again.');
+           
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>Something went wrong during account addition. Please try again.</div>');
         return redirect('bank/addAccount');
       }
 

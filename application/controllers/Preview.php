@@ -382,7 +382,8 @@ $glNo = urldecode($id);
       
       
       }else{
-          $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
+         
          redirect('reports/tBalance', 'refresh');
       } 
      } else {
@@ -439,7 +440,7 @@ $glNo = urldecode($id);
       
       
       }else{
-          $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
          redirect('report/bSheet', 'refresh');
       }
      } else {
@@ -491,7 +492,7 @@ $glNo = urldecode($id);
             $this->dompdf->render();
             $this->dompdf->stream("Trial_balance_".$fromN."_".$toN.".pdf");
          }else{
-          $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
+         $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
          redirect('reports/tBalance', 'refresh');
       } 
             
