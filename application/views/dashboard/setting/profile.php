@@ -1,6 +1,6 @@
             <div id="page-wrapper">
                 <div class="graphs">
-                    <h3 class="blank1">User Deatils</h3>
+                    <h3 class="blank1">User Details</h3>
                     <?php
             $flashMessage = $this->session->flashdata('flashMessage');
             if (!empty($flashMessage)) {

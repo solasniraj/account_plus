@@ -8,12 +8,12 @@ class setting extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
-        if(is_trans_pending())
+        if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
         {
-        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
-        redirect('transaction/journalList', 'refresh');
+          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
+         redirect('transaction/journalList', 'refresh');
         }
-    }
+  }
     
     public function index()
     {
@@ -59,8 +59,8 @@ $pass = $CI->db->password;
          // Load the download helper and send the file to your desktop 
          $this->load->helper('download'); 
          force_download('dbbackup_'.date('d_m_Y_H_i_s').'.zip', $backup);
-   $this->session->set_flashdata("flashMessage", '<div class="alert alert-success" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Data backuped sucessfully</div>');      
-                   
+         
+ $this->session->set_flashdata('flashMessage', 'Data backuped sucessfully');                    
                         redirect('setting/index', 'refresh');          
                         
     } else {
@@ -205,8 +205,7 @@ foreach ($file_array as $query)
                 $config['file_name'] = $committeeLogo;
                
                 $this->setting_model->update_committee_info($committee_id, $committee_code, $committeeName, $committeeAddress, $emailId, $contactNumber, $committeeLogo);
-                $this->session->set_flashdata("flashMessage", '<div class="alert alert-success" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Committee info updated sucessfully</div>');
-                       
+                $this->session->set_flashdata('flashMessage', 'Committee Info updated sucessfully');            
                 redirect('setting/committeeInfo');
                     }
                 } else {
@@ -216,11 +215,11 @@ foreach ($file_array as $query)
                 $contactNumber = $this->input->post('contactNumber');
                 $committeeLogo = $this->input->post('existingImg');                
                $this->setting_model->update_committee_info($committee_id, $committee_code, $committeeName, $committeeAddress, $emailId, $contactNumber, $committeeLogo);
-               $this->session->set_flashdata("flashMessage", '<div class="alert alert-success" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Committee info updated sucessfully</div>');
+                $this->session->set_flashdata('flashMessage', 'Committee Info updated sucessfully');               
                 redirect('setting/committeeInfo');
                 }
             } else {
-                 
+                 die('here in validation error');
                 $this->load->view('dashboard/setting/committeeUpdate', $data);
             }
 
@@ -266,9 +265,9 @@ foreach ($file_array as $query)
             $this->load->helper('form');
             $this->load->library(array('form_validation', 'session'));
             $this->form_validation->set_rules('userName', 'User Name', 'trim|required|callback_xss_clean|max_length[200]');
-            $this->form_validation->set_rules('fullName', 'Full Name', 'trim|regex_match[/^[a-z,0-9,A-Z ]{2,200}$/]|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('fullName', 'Full Name', 'trim|regex_match[/^[a-z,0-9,A-Z ]{2,200}$/]|required|callback_xss_clean|max_length[200]');
             $this->form_validation->set_rules('emailId', 'Email', 'trim|regex_match[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/]|callback_xss_clean|max_length[200]');
-            $this->form_validation->set_rules('contactNumber', 'Contact Number', 'trim|regex_match[/^[0-9\+-]{6,20}$/]|callback_xss_clean|max_length[200]');
+            $this->form_validation->set_rules('contactNumber', 'Contact Number', 'trim|regex_match[/^[0-9\+-]{6,20}$/]|required|callback_xss_clean|max_length[200]');
             $this->form_validation->set_error_delimiters('<div class="form_errors">', '</div>');
             if (($this->form_validation->run() == TRUE)) {
                 $userName = $this->input->post('userName');
@@ -280,7 +279,7 @@ foreach ($file_array as $query)
                 
 
                 $this->setting_model->update_user_info($user_id, $userName, $fullName, $emailId, $contactNumber);
-                $this->session->set_flashdata("flashMessage", '<div class="alert alert-success" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>User info updated sucessfully</div>');
+                $this->session->set_flashdata('flashMessage', 'Header setting done sucessfully');
                 redirect('setting/userInfo');
               
             } else {
