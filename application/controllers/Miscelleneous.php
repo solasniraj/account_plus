@@ -36,8 +36,8 @@ class Miscelleneous extends CI_Controller {
             $url = current_url();
 		if ($this->session->userdata('logged_in') == true) {
          $this->load->library('form_validation');
-       $this->form_validation->set_rules('formDate', 'Date (From)', 'trim|required|callback_xss_clean');
-       $this->form_validation->set_rules('toDate', 'Date (To)', 'trim|required|callback_xss_clean');
+       $this->form_validation->set_rules('nepaliDateF', 'Date (From)', 'trim|required|callback_xss_clean');
+       $this->form_validation->set_rules('nepaliDateT', 'Date (To)', 'trim|required|callback_xss_clean');
        $this->form_validation->set_rules('bankName', 'Bank Account', 'trim|required|callback_xss_clean');
        $this->form_validation->set_rules('amount', 'Bank balance based on statement', 'trim|required|callback_xss_clean');
        $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>');            

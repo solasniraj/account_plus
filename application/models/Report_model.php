@@ -64,7 +64,7 @@ $query = $this->db->get();
 
      $query = $this->db->query("SELECT SUM(CASE WHEN gl_code = '01' OR gl_code = '04' THEN amount END) AS t_amount,
        SUM(CASE WHEN gl_code = '02' OR gl_code = '03' THEN amount END) AS t_amount
-  FROM gl_trans_info where (donor_code=$donorCode AND ledger_type_code = '01' AND gl_trans_status ='1')")->result();;
+  FROM gl_trans_info where (ledger_master_code=$donorCode AND gl_trans_status ='1')")->result();;
         
       if(!empty($query)){
            return $query[0]->t_amount;
@@ -90,39 +90,31 @@ $query = $this->db->get();
      
     }
     
-    public function get_sum_of_expenditure_to_last_date($donorCode)
+    public function get_sum_of_expenditure_to_last_date($donorCode, $fromN, $fromE)
     {
 
      $query = $this->db->query("SELECT SUM(CASE WHEN gl_code = '02' OR gl_code = '03' THEN amount END) AS t_amount,
        SUM(CASE WHEN gl_code = '01' OR gl_code = '04' THEN amount END) AS t_amount
-  FROM gl_trans_info where (donor_code=$donorCode AND ledger_type_code = '01' AND gl_trans_status ='1')")->result();
-      
+  FROM gl_trans_info where (donor_code=$donorCode  AND gl_trans_status ='1')")->result();
+   
    if(!empty($query)){
            return $query[0]->t_amount;
                }else{
                    return '0';
                }
     }
-    
-    public function get_sum_of_expenditure_from_last_report_to_now($chartId, $donorCode)
+    //AND tran_date <= $fromN AND tran_date_english <= $fromE
+    public function get_sum_of_expenditure_from_last_report_to_now($donorCode, $fromN, $fromE, $toN, $toE)
     {
-        $this->db->where('gl_trans_status', '1');
-        $this->db->where('gl_code', $chartId);
-        $this->db->where('donor_code', $donorCode);
-        $this->db->where('ledger_type_code', '01');
-        if($chartId ==1 || $chartId ==4)
-        {
-            $this->db->select('SUM(amount) AS amount', FALSE);
-$this->db->where('trans_type', 'cr');
-        }elseif ($chartId ==2 || $chartId ==3) {
-            $this->db->select('SUM(amount) AS amount', FALSE);
-$this->db->where('trans_type', 'dr');
-        }else{
-            
-        }
-      $query =  $this->db->get('gl_trans_info');
+        $query = $this->db->query("SELECT SUM(CASE WHEN gl_code = '02' OR gl_code = '03' THEN amount END) AS t_amount,
+       SUM(CASE WHEN gl_code = '01' OR gl_code = '04' THEN amount END) AS t_amount
+  FROM gl_trans_info where (donor_code=$donorCode AND tran_date > $fromN AND tran_date_english > $fromE AND tran_date <= $toN AND tran_date_english <= $toE AND gl_trans_status ='1')")->result();
       
-      return $query->result(); 
+   if(!empty($query)){
+           return $query[0]->t_amount;
+               }else{
+                   return '0';
+               }
     }
     
     public function get_sum_of_expenditure_of_internal_and_labour_from_last_report_to_now($chartId, $donorCode)

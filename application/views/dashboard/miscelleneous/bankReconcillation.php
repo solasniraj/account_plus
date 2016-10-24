@@ -1,3 +1,6 @@
+<script type="text/javascript" src="<?php echo base_url('contents/js/nepali.datepicker.v2.1.min.js'); ?>"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('contents/css/nepali.datepicker.v2.1.min.css'); ?>" />
+<script type="text/javascript" src="<?php echo base_url('contents/js/function.js'); ?>"></script>
 <div id="page-wrapper">
     <div class="graphs">
         <div class="xs tabls">
@@ -13,24 +16,7 @@
             ?>
 						</div>
 
-            <!-- CSSS AND JS FOR JQUERY DATEPICKER IMPLEMENTATION  -->
 
-            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-            
-            <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-            <script>
-                $(function () {
-                    $(".datepicker").datepicker();
-                });
-            </script>
-
-
-
-
-
-            <!-- END OF LOADED CSSS AND JAVASCITP -->
-            <br>
-            <br>
             <h3 class="blank1 text-center"> Bank Reconcillation Entry</h3>
 
             <div data-example-id="simple-responsive-table" class="bs-example4">
@@ -51,11 +37,13 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input class="form-control datepicker" type="text" name="formDate" value="<?php echo set_value('fromDate'); ?>">
-                                <?php echo form_error('formDate'); ?>
+                                <td><input type="text" id="nepaliDateF" class="form-control1 nepali-calendar" name="nepaliDateF" value="" placeholder="YYYY-MM-DD"/>
+        <input type="hidden" id="englishDateF" name="englishDateF"/>
+                                <?php echo form_error('nepaliDateF'); ?>
                                 </td>
-                                <td><input class="form-control datepicker" type="text" name="toDate" value="<?php echo set_value('toDate'); ?>">
-                                <?php echo form_error('toDate'); ?>
+                                <td><input type="text" id="nepaliDateT" class="form-control1 nepali-calendar" name="nepaliDateT" value="" placeholder="YYYY-MM-DD"/>
+        <input type="hidden" id="englishDateT" name="englishDateT"/>
+                                <?php echo form_error('nepaliDateT'); ?>
                                 </td>
 
                                 <td>
@@ -64,7 +52,7 @@
                                         <?php 
                                         if (!empty($bankAccount)) {
                                             foreach ($bankAccount as $bAccount) { ?>
-                                        <option value="<?php echo $bAccount->id; ?>"><?php echo $bAccount->bank_name; ?></option>      
+                                        <option value="<?php echo $bAccount->id; ?>"><?php echo $bAccount->id.' '.$bAccount->bank_name; ?></option>      
                                         <?php    } 
                                       }
                                         ?>
