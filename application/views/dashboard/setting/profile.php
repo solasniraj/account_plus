@@ -1,10 +1,15 @@
             <div id="page-wrapper">
                 <div class="graphs">
+<<<<<<< HEAD
                     <h3 class="blank1">User Deatils</h3>
                     
                     <div class="tab-content">
                         <div class="invalid">
 							 <?php
+=======
+                    <h3 class="blank1">User Details</h3>
+                    <?php
+>>>>>>> origin/master
             $flashMessage = $this->session->flashdata('flashMessage');
             if (!empty($flashMessage)) {               
                  echo $flashMessage;
