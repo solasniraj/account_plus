@@ -384,7 +384,7 @@ $glNo = urldecode($id);
       }else{
           $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
          
-         redirect('reports/tBalance', 'refresh');
+         redirect('reports/ieAccounts', 'refresh');
       } 
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -441,7 +441,7 @@ $glNo = urldecode($id);
       
       }else{
           $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
-         redirect('report/bSheet', 'refresh');
+         redirect('reports/bSheet', 'refresh');
       }
      } else {
             redirect('login/index/?url=' . $url, 'refresh');

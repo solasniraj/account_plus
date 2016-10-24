@@ -7,21 +7,19 @@
     echo $name;
     }
 ?></h3>
-        <style>
-            /*sanoj custom csss */
-            .form-errors 
-            {
-                font-size: 14px;
-                padding: 10px;
-                color:red;
-            }
-
-
-
-            /*sanoj custom css ends*/
-
-        </style>
+        
         <div class="tab-content">
+            <div class="invalid">
+							 <?php
+            $flashMessage = $this->session->flashdata('flashMessage');
+            if (!empty($flashMessage)) {               
+                 echo $flashMessage;
+            }          
+            if (isset($error)) {
+                echo $error;
+            }
+            ?>
+						</div>
             <?php if(!empty($programDetails)){
     foreach($programDetails as $pdetails){
         $id = $pdetails->id;

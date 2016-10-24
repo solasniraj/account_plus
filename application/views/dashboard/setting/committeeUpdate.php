@@ -1,30 +1,19 @@
           <div id="page-wrapper">
                 <div class="graphs">
                     <h3 class="blank1">Company Info</h3>
-                    <?php
+                    
+                    <div class="tab-content">
+                        <div class="invalid">
+							 <?php
             $flashMessage = $this->session->flashdata('flashMessage');
-            if (!empty($flashMessage)) {
-                ?>
-                <div class="alert alert-success fade in">
-                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
-                </div>
-                <hr>
-            <?php
-            }
-          
+            if (!empty($flashMessage)) {               
+                 echo $flashMessage;
+            }          
             if (isset($error)) {
                 echo $error;
             }
             ?>
-                     <style>
-                .form-errors 
-                {
-                    font-size: 14px;
-                    padding: 10px;
-                    color:red;
-                }
-                </style>
-                    <div class="tab-content">
+						</div>
                         <?php if(!empty($committee)){ 
      foreach ($committee as $comData){ ?>
                      <div class="bs-example4" data-example-id="simple-responsive-table">

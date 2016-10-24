@@ -1,24 +1,18 @@
             <div id="page-wrapper">
                 <div class="graphs">
                     <h3 class="blank1">Add Fund Donor</h3>
-                     <?php
+                     <div class="tab-content">
+                     <div class="invalid">
+							 <?php
             $flashMessage = $this->session->flashdata('flashMessage');
-            if (!empty($flashMessage)) {
-                ?>
-                <div class="alert alert-success fade in">
-                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
-                </div>
-                <hr>
-            <?php
-            }
-          
+            if (!empty($flashMessage)) {               
+                 echo $flashMessage;
+            }          
             if (isset($error)) {
                 echo $error;
             }
             ?>
-
-                    <div class="tab-content">
-                         
+						</div>    
                     <div class="tab-pane active" id="horizontal-form">
                         <div class="tab-pane active" id="horizontal-form">
                             <?php echo form_open_multipart('donars/addNewDonar', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>

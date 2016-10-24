@@ -28,21 +28,17 @@
     <div class="graphs">
         <h3 class="blank1">Journal Entry Form</h3>
         <div class="xs tabls">
-            <?php
+           <div class="invalid">
+							 <?php
             $flashMessage = $this->session->flashdata('flashMessage');
-            if (!empty($flashMessage)) {
-                ?>
-                <div class="alert alert-success fade in">
-                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
-                </div>
-                <hr>
-            <?php
-            }
-          
+            if (!empty($flashMessage)) {               
+                 echo $flashMessage;
+            }          
             if (isset($error)) {
                 echo $error;
             }
             ?>
+						</div>
             <?php echo form_open_multipart('transaction/glTransaction', array('id' =>'glTrans', 'class' => 'form-horizontal', 'novalidate' =>'novalidate')); ?>
             <div class="form-group" >
                 <div class="row">

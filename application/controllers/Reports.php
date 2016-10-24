@@ -356,7 +356,7 @@ public function incomeExpnReport()
       $this->load->view('dashboard/templates/footer');
       }else{
           $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
-         redirect('report/ieAccounts', 'refresh');
+         redirect('reports/ieAccounts', 'refresh');
       }
       
   } else {
@@ -414,7 +414,7 @@ public function balanceSheet()
       $this->load->view('dashboard/templates/footer');
       }else{
          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
-         redirect('report/ieAccounts', 'refresh');
+         redirect('reports/bSheet', 'refresh');
       }
       
   } else {

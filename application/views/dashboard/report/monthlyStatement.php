@@ -2,15 +2,17 @@
 				<div class="graphs">
 					<h3 class="blank1">bank hisab milan faram</h3>
 					<div class="xs tabls">
-						<?php  $flashMessage=$this->session->flashdata('flashMessage'); 
-						if(!empty($flashMessage))
-							{  ?>
-						<div class="alert alert-success fade in">
-							<p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
+						<div class="invalid">
+							 <?php
+            $flashMessage = $this->session->flashdata('flashMessage');
+            if (!empty($flashMessage)) {               
+                 echo $flashMessage;
+            }          
+            if (isset($error)) {
+                echo $error;
+            }
+            ?>
 						</div>
-						<hr>
-						<?php }
-						?>
 						<style>
 							.table td, .table th{
 								border: 1px solid black;
