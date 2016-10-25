@@ -260,7 +260,7 @@ public function tBalance()
       $this->load->view('dashboard/report/tBalanceQuery', $data);
       $this->load->view('dashboard/templates/footer');
       
-  } else {
+} else {
     redirect('login/index/?url=' . $url, 'refresh');
 } 
 }

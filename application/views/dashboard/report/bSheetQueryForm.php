@@ -4,7 +4,7 @@
 <div id="page-wrapper">
     <div class="graphs">
         <br>
-        <h3 class="blank1">Balance Shet Report Query</h3>
+        <h3 class="blank1">Balance Sheet Report Query</h3>
         <div class="xs tabls">
            <div class="invalid">
 							 <?php
