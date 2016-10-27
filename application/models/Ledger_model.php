@@ -506,16 +506,6 @@ $query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledge
 
   
   
-  public function get_chart_class_master()
-  {
-    $this->db->order_by('account_code', 'ASC');
-   // $this->db->group_by('chart_class_id');
-    $query = $this->db->get("chart_master");
-    return $query->result();
-  
-
-  }
-
   public function updateProgrammSublederIds($subLegId, $prgmUpdateId)
 
   {
