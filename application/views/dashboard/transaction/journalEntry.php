@@ -102,19 +102,30 @@
                     <div class="table-responsive">
                         <table class="tablee">
                             <tbody>
-                                <tr>
+                                <tr style="background:#ebebe0;">
                                     <td class="col-md-1"><b>Account Code</b></td>
                                     <td class="col-md-1"><b>A/C Head</b></td>
                                     <td class="col-md-1"><b>Sub-Ledger</b></td>
                                     <td class="col-md-1"><b>Donar-list</b></td>
                                     <td class="col-md-1"><b>Ledger type</b></td>
-                                    <td><b>Description</b></td>
-                                    <td><b>Debit</b></td>
-                                    <td><b>Credit</b></td>
-                                    <td><b>Cheque number</b></td>
-                                    <td rowspan="2"  class="b" id="toggleButton">
-                                        <span class="btn btn-success" id="submitCurrentData" onClick="addData()" style="padding:5px;margin:5px;width:70px;font-size:18px;">Add</span></td>
+                                    <td class="col-md-1"><b>Description</b></td>
+                                    <td class="col-md-1"><b>Debit</b></td>
+                                    <td class="col-md-1"><b>Credit</b></td>
+                                    <td class="col-md-1"><b>Cheque number</b></td>
+                                    <td class="col-md-1"><b>Action</b></td>
+                                    
                                 </tr>
+                                 <!--  working on the object starts -->
+
+                                <tbody id="workingWithObjectData">
+
+                            <tr id="addArrayData">
+
+                            </tr>
+                            </tbody>
+                            
+                                <!--   working on object is closed      -->
+                            
                                 <tr>
 
                                     <td id="ledgerMasterCode">
@@ -162,7 +173,46 @@
                                     </td>
                                     <td> <input  class="form-control" type="text" name="chequeNo" id="chequeNo"></td>
 
+                                    <td rowspan="2"  class="b" id="toggleButton">
+                                        <span class="btn btn-success" id="submitCurrentData" onClick="addData()" style="padding:5px;margin:5px;width:70px;font-size:18px;">Add</span></td>
+
                                 </tr>
+
+                                </tbody>
+                                </table>
+                                <br/>
+                                <br/>
+
+                                <div class="table-responsive">
+                        <table class="tablee" width="100%">
+                        
+                             <tr>
+                                <td colspan="7"><b>Total Amount</b></td>
+                                <td id="totalDebit" class="b">0</td>
+                                <td id="totalCredit" class="b">0</td>
+
+                                
+
+                            </tr>
+
+                            <tr>
+                                <td colspan="7"><b>Difference in Debit
+                                        and Credit Amount</b></td>
+                                <td><input  id="debitGreater"
+                                            class="form-control text-center" type="text" value="0.0"  readonly
+                                            /></td>
+                                <td><input  id="creditGreater"
+                                            class="form-control text-center"  type="text" value="0.0"  readonly
+                                            /></td>
+                               
+
+                            </tr>
+                            <tr id="addArrayData">
+
+                            </tr>
+
+                        </table>
+                    
                             </tbody>
                         </table>
                     </div>
@@ -180,53 +230,7 @@ closed ************************************** -->
                     <!--  working on the object starts -->
 
 
-                    <div class="table-responsive">
-                        <table class="tablee" width="100%">
-                            <thead>
-                                <tr>
-                                    <td  class="b"><b>A/C Code</b></td>
-                                    <td  class="b"><b>A/C Head</b></td>
-                                    <td  class="b"><b>Sub-Ledger</b></td>
-                                    <td  class="b"><b>Ledger type</b></td>
-                                    <td  class="b"><b>Donar name</b></td>
-                                    <td  class="b" colspan="2"><b>Descrption</b></td>
-                                    <td  class="b"><b>Debit</b></td>
-                                    <td  class="b"><b>Credit</b></td>
-                                    <td  class="b"><b>Cheque number</b></td>
-                                    <td class="b" colspan="2"><b>Action</b></td>
-                                </tr>
-                            </thead>
-                            <tbody id="workingWithObjectData">
-
-                            </tbody>
-
-                            <tr>
-                                <td colspan="7"><b>Total Amount</b></td>
-                                <td id="totalDebit" class="b">0</td>
-                                <td id="totalCredit" class="b">0</td>
-
-                                <td colspan="2"></td>
-
-                            </tr>
-
-                            <tr>
-                                <td colspan="7"><b>Difference in Debit
-                                        and Credit Amount</b></td>
-                                <td><input  id="debitGreater"
-                                            class="form-control text-center" type="text" value="0.0"  readonly
-                                            /></td>
-                                <td><input  id="creditGreater"
-                                            class="form-control text-center"  type="text" value="0.0"  readonly
-                                            /></td>
-                                <td colspan="2"></td>
-
-                            </tr>
-                            <tr id="addArrayData">
-
-                            </tr>
-
-                        </table>
-                    </div>
+                    
                     <br>
                     
 

@@ -60,7 +60,11 @@
                             </div>
                             
                             <div class="form-group">
+<<<<<<< HEAD
                                 <label for="contactPCellNo" class="col-sm-2 control-label"><b>Contact Person Contact No.</b></label>
+=======
+                                <label for="contactPCellNo" class="col-sm-2 control-label"><b>Contact Number</b></label>
+>>>>>>> origin/master
                                 <div class="col-sm-8">
                                     <input type="text" value="<?php echo set_value('contactPCellNo'); ?>" class="form-control1" id="contactPCellNo" name="contactPCellNo" placeholder="Enter Contact Person's Mobile Number">
                                     <?php echo form_error('contactPCellNo'); ?>
