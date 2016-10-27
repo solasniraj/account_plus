@@ -99,11 +99,11 @@ if (!empty($committeeInfo)) {
                 if(!empty($donarLed)){
                     foreach($donarLed as $dEntries){
                       $chartId = $dEntries->account_code;
-                      $sumFund = $this->report_model->get_sum_of_amount_for_donar_by_code($dEntries->ledger_master_code);
-                     $sumExpn = $this->report_model->get_sum_of_expenditure_to_last_date($dEntries->ledger_master_code, $fromN, $fromE);
+                      $sumFund = $this->report_model->get_sum_of_amount_for_donar_by_code($donorCode, $dEntries->ledger_master_code);
+                     $sumExpn = $this->report_model->get_sum_of_expenditure_to_last_date($donorCode, $dEntries->ledger_master_code, $fromN, $fromE);
 $sumFunds += abs($sumFund);
 $sumExpnLast += abs($sumExpn);
-  $sumExpnNow = $this->report_model->get_sum_of_expenditure_from_last_report_to_now($dEntries->ledger_master_code, $fromN, $fromE, $toN, $toE);
+  $sumExpnNow = $this->report_model->get_sum_of_expenditure_from_last_report_to_now($donorCode, $dEntries->ledger_master_code,$fromN, $fromE, $toN, $toE);
 
  $totalExpn = abs($sumExpn) + abs($sumExpnNow);
                      $amtRemain = $sumFund - $totalExpn;
@@ -121,8 +121,8 @@ $sumExpnLast += abs($sumExpn);
                     <td style="width: 10%;"><?php if(!empty($sumFund)) { echo "Rs. ".$sumFund;}else{} ?></td>
                     <td style="width: 10%;"><?php if(!empty($sumExpn)) { echo "Rs. ".$sumExpn;}else{} ?></td>
                     <td style="width: 10%;"><?php if(!empty($sumExpnNow)) { echo "Rs. ".$sumExpnNow;}else{} ?></td>
+                    <td style="width: 10%;"><?php echo "Rs. ".abs($totalExpn); ?></td>
                     <td style="width: 10%;"><?php echo "Rs. ".abs($amtRemain); ?></td>
-                    <td style="width: 10%;"></td>
                     <td style="width: 10%;"></td>
                     <td style="width: 10%;"></td>
                     

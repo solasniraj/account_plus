@@ -59,12 +59,12 @@ $query = $this->db->get();
  return $query->result();  
     }
     
-    public function get_sum_of_amount_for_donar_by_code($donorCode)
+    public function get_sum_of_amount_for_donar_by_code($donorCode, $led_mas_code)
     {
 
-     $query = $this->db->query("SELECT SUM(CASE WHEN gl_code = '01' OR gl_code = '04' THEN amount END) AS t_amount,
-       SUM(CASE WHEN gl_code = '02' OR gl_code = '03' THEN amount END) AS t_amount
-  FROM gl_trans_info where (ledger_master_code=$donorCode AND gl_trans_status ='1')")->result();;
+     $query = $this->db->query("SELECT SUM(CASE WHEN gl_code = '01' OR gl_code = '04' AND trans_type='dr' THEN amount END) AS t_amount,
+       SUM(CASE WHEN gl_code = '02' OR gl_code = '03' AND trans_type='cr' THEN amount END) AS t_amount
+  FROM gl_trans_info where (donor_code=$donorCode AND ledger_master_code=$led_mas_code AND gl_trans_status ='1')")->result();;
         
       if(!empty($query)){
            return $query[0]->t_amount;
@@ -90,13 +90,13 @@ $query = $this->db->get();
      
     }
     
-    public function get_sum_of_expenditure_to_last_date($donorCode, $fromN, $fromE)
+    public function get_sum_of_expenditure_to_last_date($donorCode, $led_mas_code, $fromN, $fromE)
     {
 
-     $query = $this->db->query("SELECT SUM(CASE WHEN gl_code = '02' OR gl_code = '03' THEN amount END) AS t_amount,
-       SUM(CASE WHEN gl_code = '01' OR gl_code = '04' THEN amount END) AS t_amount
-  FROM gl_trans_info where (donor_code=$donorCode  AND gl_trans_status ='1')")->result();
-   
+     $query = $this->db->query("SELECT SUM(CASE WHEN gl_code = '02' OR gl_code = '03' AND trans_type='cr' THEN amount END) AS t_amount,
+       SUM(CASE WHEN gl_code = '01' OR gl_code = '04' AND trans_type='dr' THEN amount END) AS t_amount
+  FROM gl_trans_info where (donor_code=$donorCode AND ledger_master_code=$led_mas_code AND tran_date <= '$fromN' AND tran_date_english <= '$fromE'  AND gl_trans_status ='1')")->result();
+
    if(!empty($query)){
            return $query[0]->t_amount;
                }else{
@@ -104,11 +104,11 @@ $query = $this->db->get();
                }
     }
     //AND tran_date <= $fromN AND tran_date_english <= $fromE
-    public function get_sum_of_expenditure_from_last_report_to_now($donorCode, $fromN, $fromE, $toN, $toE)
+    public function get_sum_of_expenditure_from_last_report_to_now($donorCode, $led_mas_code, $fromN, $fromE, $toN, $toE)
     {
         $query = $this->db->query("SELECT SUM(CASE WHEN gl_code = '02' OR gl_code = '03' THEN amount END) AS t_amount,
        SUM(CASE WHEN gl_code = '01' OR gl_code = '04' THEN amount END) AS t_amount
-  FROM gl_trans_info where (donor_code=$donorCode AND tran_date > $fromN AND tran_date_english > $fromE AND tran_date <= $toN AND tran_date_english <= $toE AND gl_trans_status ='1')")->result();
+  FROM gl_trans_info where (donor_code=$donorCode AND ledger_master_code=$led_mas_code AND tran_date > '$fromN' AND tran_date_english > '$fromE' AND tran_date <= '$toN' AND tran_date_english <= '$toE' AND gl_trans_status ='1')")->result();
       
    if(!empty($query)){
            return $query[0]->t_amount;
