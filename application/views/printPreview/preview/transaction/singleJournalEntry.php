@@ -133,21 +133,25 @@ $NewNo = urlencode($value);
             <td>
                 <pre text-center>
 
-                           Prepared By:
+    Prepared By:
 
-                           .................
-                     
-                     Date : <?php echo $gLDate; ?>
+
+
+    .................
+
+    Date : <?php echo $gLDate; ?>
                 </pre>
             </td>
             <td>
                 <pre text-center>
-                          
-                           Approved By:
 
-                           .................
+    Approved By:
+
+
+
+    .................
          
-                      Date: _________________
+    Date:_________________
                 </pre>
             </td>
         </tr>

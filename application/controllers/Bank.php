@@ -38,7 +38,7 @@ class bank extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
-            
+            $data['chartMaster'] = $this->ledger_model->get_chart_class_master();
             $data['accountTypes'] = $this->bank_model->get_bank_account_type_details();
             $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
@@ -50,29 +50,9 @@ class bank extends CI_Controller {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-   
-    
-    public function getBalance()
-    {
-        $url = current_url();
-         if ($this->session->userdata('logged_in') == true) { 
-             
-             $data['bankAccount']=$this->bank_model->view_bank_account_listing();
-             
-              $this->load->view('dashboard/templates/header');
-          $this->load->view('dashboard/bank/showBalance', $data);
-           $this->load->view('dashboard/templates/footer');
-             
-    } else {
-            redirect('login/index/?url=' . $url, 'refresh');
-        }
-    }
 
-    
-
-    public function editAccount($id=null)
+    public function addnewAccount()
     {
-         {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) 
       {
@@ -127,6 +107,28 @@ class bank extends CI_Controller {
    return   redirect('login/index/?url=' . $url, 'refresh');
  }
     }
+    
+    public function getBalance()
+    {
+        $url = current_url();
+         if ($this->session->userdata('logged_in') == true) { 
+             
+             $data['bankAccount']=$this->bank_model->view_bank_account_listing();
+             
+              $this->load->view('dashboard/templates/header');
+          $this->load->view('dashboard/bank/showBalance', $data);
+           $this->load->view('dashboard/templates/footer');
+             
+    } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
+    }
+
+    
+
+    public function editAccount($id=null)
+    {
+        
     }
     
     public function deleteAccount($id=NULL)
@@ -136,7 +138,7 @@ class bank extends CI_Controller {
     
     
     
-    public function xss_clean($str=NULL)
+    public function xss_clean($str)
 {
   if ($this->security->xss_clean($str, TRUE) === FALSE)
   {
