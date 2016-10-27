@@ -225,6 +225,8 @@ class ledger extends CI_Controller {
                 $result = $this->ledger_model->add_new_ledger_master($chartNo, $accLedger, $accSubLedger, $donorType, $ledgerType, $codeNo, $accDescription);
                 if((($accLedger <= '09') && ($accLedger >= '00')) && $chartNo =='01')
                 {
+       
+                   
                $result1 = $this->bank_model->add_new_bank_account_from_ledger($accDescription, $accLedger);
                 }
        
@@ -255,7 +257,7 @@ class ledger extends CI_Controller {
         
     }
 
-    public function xss_clean($str=NULL) {
+    public function xss_clean($str) {
         if ($this->security->xss_clean($str, TRUE) === FALSE) {
             $this->form_validation->set_message('xss_clean', 'The %s is invalid charactor');
             return FALSE;
