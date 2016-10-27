@@ -137,3 +137,32 @@ $(document).ready(function ()
         </div>
    </div>
 </div>
+<link rel="stylesheet" href="<?php echo base_url().'contents/css/jquery-confirm.css'; ?>" >
+<script src="<?php echo base_url().'contents/js/confirm.js'; ?>" ></script>       
+<script>
+  $(document).ready(function(){
+   $(document).on("click", "#previewForm", function(e){
+    e.preventDefault();
+    var thiss = $(this); 
+
+    $.confirm({
+      title: 'A critical action',
+      content: 'Do you really want to submit and publish this ?',
+      confirmButton: 'Proceed',
+      cancelButton: 'Cancel',
+      animation: 'scale',
+      animationSpeed: '400',
+      animationBounce: '',
+      confirm: function(){
+       var hr = thiss.attr('href');
+       window.location= hr;
+
+     },
+     cancel: function(){
+       // do something when No is clicked.
+     }
+   });
+
+  });
+ }); 
+</script>   

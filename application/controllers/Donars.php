@@ -9,10 +9,10 @@ class donars extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
         $this->load->library('form_validation');
-        if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+        if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }
     }
     
@@ -110,12 +110,12 @@ Donor created successfully
        }
        else 
        {
-        $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding donar. Please add again.');
+         $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>Something went wrong while adding donor. Please add again.</div>');
         return redirect('donars/addDonar');
       }
         }else{
             
-            $this->session->set_flashdata('flashMessage', 'You have reached the limit of donors');
+            $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>You have reached the limit of donors. New donor can not be added.</div>');
         return redirect('donars/addDonar');
         }
 

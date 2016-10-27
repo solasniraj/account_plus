@@ -11,10 +11,10 @@ class reports extends CI_Controller {
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
         $this->load->library('Numbertowords');
-        if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+        if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }
     }
     
@@ -260,7 +260,7 @@ public function tBalance()
       $this->load->view('dashboard/report/tBalanceQuery', $data);
       $this->load->view('dashboard/templates/footer');
       
-  } else {
+} else {
     redirect('login/index/?url=' . $url, 'refresh');
 } 
 }
@@ -298,7 +298,7 @@ public function trialBalance()
       $this->load->view('dashboard/report/trialBalance', $data);
       $this->load->view('dashboard/templates/footer');
       }else{
-          $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
          redirect('reports/tBalance', 'refresh');
       }
       
@@ -355,8 +355,8 @@ public function incomeExpnReport()
       $this->load->view('dashboard/report/incomeExpnReport', $data);
       $this->load->view('dashboard/templates/footer');
       }else{
-          $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
-         redirect('report/ieAccounts', 'refresh');
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
+         redirect('reports/ieAccounts', 'refresh');
       }
       
   } else {
@@ -413,8 +413,8 @@ public function balanceSheet()
       $this->load->view('dashboard/report/balanceSheet', $data);
       $this->load->view('dashboard/templates/footer');
       }else{
-          $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
-         redirect('report/ieAccounts', 'refresh');
+         $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
+         redirect('reports/bSheet', 'refresh');
       }
       
   } else {

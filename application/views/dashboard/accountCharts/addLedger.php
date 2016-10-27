@@ -1,36 +1,19 @@
             <div id="page-wrapper">
                 <div class="graphs">
                     <h3 class="blank1">Create Account Ledger</h3>
-                    <?php
+
+                    <div class="tab-content">
+                        <div class="invalid">
+							 <?php
             $flashMessage = $this->session->flashdata('flashMessage');
-            if (!empty($flashMessage)) {
-                ?>
-                <div class="alert alert-success fade in">
-                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
-                </div>
-                <hr>
-            <?php
-            }
-          
+            if (!empty($flashMessage)) {               
+                 echo $flashMessage;
+            }          
             if (isset($error)) {
                 echo $error;
             }
             ?>
-                     <style>
-     /*sanoj custom csss */
-                .form-errors 
-                {
-                    font-size: 14px;
-                    padding: 10px;
-                    color:red;
-                }
-            
-
-
-                /*custom css ends*/
-
-                </style>
-                    <div class="tab-content">
+						</div>
                         <div class="tab-pane active" id="horizontal-form">
                             <?php echo form_open_multipart('chartAccount/addnewLedger', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
                             

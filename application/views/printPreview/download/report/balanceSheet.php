@@ -89,7 +89,7 @@
     
                 </tr> 
                 
-                <?php } else{ } ?>
+                <?php } else{ $total1 ='0'; } ?>
            
  
             
@@ -152,7 +152,7 @@
     
                 </tr> 
                
-                <?php } else{ } ?>
+                <?php } else{ $total2 ='0'; } ?>
            
  
             

@@ -2,21 +2,17 @@
 					<div class="graphs">
 						<h3 class="blank1">Programs</h3>
 						<div class="xs tabls">
+							 <div class="invalid">
 							 <?php
             $flashMessage = $this->session->flashdata('flashMessage');
-            if (!empty($flashMessage)) {
-                ?>
-                <div class="alert alert-success fade in">
-                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
-                </div>
-                <hr>
-            <?php
-            }
-          
+            if (!empty($flashMessage)) {               
+                 echo $flashMessage;
+            }          
             if (isset($error)) {
                 echo $error;
             }
             ?>
+						</div>
 							<div data-example-id="simple-responsive-table" class="bs-example4">
 
 								<div class="table-responsive">

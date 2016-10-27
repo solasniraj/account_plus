@@ -5,7 +5,10 @@
 <div id="page-wrapper">
     <div class="graphs">
         
-               <?php if (!empty($committeeInfo)) {
+               <?php $fiscal_year = $this->session->userdata('fiscal_year');
+               $value = str_replace('/', '&#47;', $fiscal_year);
+$fy = urlencode($value);
+if (!empty($committeeInfo)) {
                     foreach ($committeeInfo as $cLists) {
                         ?>
 
@@ -25,8 +28,8 @@
                     <?php }    }   ?>
      
         <div class="text-right pull-right">
-        <a href="<?php echo base_url().'preview/donorReport'; ?>"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
-        <a href="<?php echo base_url().'printview/donorReport'; ?>"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
+        <a href="<?php echo base_url().'preview/donorReport/'.$fy.'/'.$fromE.'/'.$toE; ?>"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
+        <a href="<?php echo base_url().'printview/donorReport/'.$fy.'/'.$fromE.'/'.$toE; ?>"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
     </div>
         
             <div class="text-center" style="padding: 5px 0px 5px 0px;margin-bottom: 15px;">
@@ -89,15 +92,21 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if(!empty($donarLed)){
+                <?php
+                $sumFunds = '0';
+                $sumExpnLast = '0';
+                $sumExpnMore = '0';
+                if(!empty($donarLed)){
                     foreach($donarLed as $dEntries){
                       $chartId = $dEntries->account_code;
-                      $sumFund = $this->report_model->get_sum_of_amount_for_donar_by_code($donorCode);
-                     $sumExpn = $this->report_model->get_sum_of_expenditure_to_last_date($donorCode);
-                   //  $sumExpnNow = $this->report_model->get_sum_of_expenditure_from_last_report_to_now($chartId, $donorCode);
+                      $sumFund = $this->report_model->get_sum_of_amount_for_donar_by_code($dEntries->ledger_master_code);
+                     $sumExpn = $this->report_model->get_sum_of_expenditure_to_last_date($dEntries->ledger_master_code, $fromN, $fromE);
+$sumFunds += abs($sumFund);
+$sumExpnLast += abs($sumExpn);
+  $sumExpnNow = $this->report_model->get_sum_of_expenditure_from_last_report_to_now($dEntries->ledger_master_code, $fromN, $fromE, $toN, $toE);
 
-// $totalExpn = $sumExpn + $sumExpnNow;
-                     $amtRemain = $sumFund - $sumExpn;
+ $totalExpn = abs($sumExpn) + abs($sumExpnNow);
+                     $amtRemain = $sumFund - $totalExpn;
                      $otherExpn = $this->report_model->get_sum_of_expenditure_of_internal_and_labour_from_last_report_to_now($chartId, $donorCode);
                      $program = $this->ledger_model->get_account_ledger_info_by_account_code($dEntries->ledger_code);
                       
@@ -109,16 +118,25 @@
                     <td style="width: 10%;"><?php echo $dEntries->ledger_master_code; ?></td>
                     <td style="width: 10%;"><?php echo $dEntries->ledger_master_name; ?></td>
                     <td style="width: 10%;"><?php echo $program; ?></td>
-                    <td style="width: 10%;"><?php echo "Rs. ".$sumFund; ?></td>
-                    <td style="width: 10%;"><?php echo "Rs. ".$sumExpn; ?></td>
-                    <td style="width: 10%;"></td>
-                    <td style="width: 10%;"><?php echo "Rs. ".$amtRemain; ?></td>
+                    <td style="width: 10%;"><?php if(!empty($sumFund)) { echo "Rs. ".$sumFund;}else{} ?></td>
+                    <td style="width: 10%;"><?php if(!empty($sumExpn)) { echo "Rs. ".$sumExpn;}else{} ?></td>
+                    <td style="width: 10%;"><?php if(!empty($sumExpnNow)) { echo "Rs. ".$sumExpnNow;}else{} ?></td>
+                    <td style="width: 10%;"><?php echo "Rs. ".abs($amtRemain); ?></td>
                     <td style="width: 10%;"></td>
                     <td style="width: 10%;"></td>
                     <td style="width: 10%;"></td>
                     
                 </tr> 
+                
                     <?php } ?>
+                <tr>
+                    <td colspan="3"><strong>Total</strong></td>
+                    <td><?php echo "Rs.".$sumFunds; ?></td>
+                    <td><?php echo "Rs.".$sumExpnLast; ?></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
                 <?php } else{ echo "<tr><td colspan='6'><strong>No entries are found</td></tr>";} ?>
             </tbody>
  

@@ -14,10 +14,10 @@ class ledger extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
-        if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+        if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }
     }
 
@@ -217,7 +217,8 @@ class ledger extends CI_Controller {
 
                 $query = $this->ledger_model->check_for_code_in_existing_ledger($codeNo);
                if($query){
-                    $this->session->set_flashdata('flashMessage', 'Sorry ! Same account ledger already exists. Please check once.');
+                   $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Same account ledger already exists. Please check ledger once.</div>');
+                    
                      $this->createLedger();
                } else{
                 
@@ -230,10 +231,12 @@ class ledger extends CI_Controller {
                 }
        
                 if ($result) {
-                    $this->session->set_flashdata('flashMessage', 'Ledger added successfully');
+                     $this->session->set_flashdata("flashMessage", '<div class="alert alert-success" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Ledger added successfully</div>');
+                   
                     return redirect('ledger/index');
                 } else {
-                    $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while adding ledger. Please add again.');
+                    $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Sorry ! </strong><br/>Something went wrong during ledger addition. Please try again.</div>');
+                    
                     $this->createLedger();
                 }
             }}

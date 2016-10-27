@@ -12,10 +12,10 @@
       $this->load->helper(array('form', 'url'));
       $this->load->library('pagination');
        $this->load->library('Numbertowords');
-       if(is_trans_pending())  // if you add in constructor no need write each function in above controller. 
+       if(is_trans_pending())
         {
-          $this->session->set_flashdata('flashMessage', 'Please take action on draft journals first to make journal entry.');
-         redirect('transaction/journalList', 'refresh');
+        $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
+        redirect('transaction/journalList', 'refresh');
         }
     }
 
@@ -222,8 +222,8 @@
       $this->load->view('printPreview/printView/report/iEReport', $data);
       $this->load->view('printPreview/printView/templates/footer');
       }else{
-          $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
-         redirect('reports/tBalance', 'refresh');
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
+         redirect('reports/ieAccounts', 'refresh');
       } 
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -262,8 +262,8 @@
       $this->load->view('printPreview/printView/report/balanceSheet', $data);
       $this->load->view('printPreview/printView/templates/footer');
       }else{
-          $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
-         redirect('report/bSheet', 'refresh');
+         $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
+         redirect('reports/bSheet', 'refresh');
       }
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -300,7 +300,7 @@
       $this->load->view('printPreview/printView/report/trialBalance', $data);
       $this->load->view('printPreview/printView/templates/footer');
        }else{
-          $this->session->set_flashdata('flashMessage', 'Please choose proper fiscal year.');
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
          redirect('reports/tBalance', 'refresh');
       }      
              

@@ -28,21 +28,17 @@ $('.selectOpt').bind("change", function(){
                     <h3 class="blank1">Create Ledger</h3>
 
                     <div class="tab-content">
-                          <?php
+                         <div class="invalid">
+							 <?php
             $flashMessage = $this->session->flashdata('flashMessage');
-            if (!empty($flashMessage)) {
-                ?>
-                <div class="alert alert-success fade in">
-                    <p style="text-align:center;font-size:18px;"><strong>!!&nbsp;<?php echo $flashMessage; ?> </strong></p>
-                </div>
-                <hr>
-            <?php
-            }
-          
+            if (!empty($flashMessage)) {               
+                 echo $flashMessage;
+            }          
             if (isset($error)) {
                 echo $error;
             }
             ?>
+						</div>
                      <div class="bs-example4" data-example-id="simple-responsive-table">
                         <div class="tab-pane active" id="horizontal-form">
                             <?php echo form_open_multipart('ledger/addnewLedger', array('id' => '','class'=>'form-horizontal', 'novalidate'=>'novalidate'));?>
