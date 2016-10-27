@@ -209,7 +209,7 @@ Account Ledger created successfully
     
     
     
-    public function xss_clean($str)
+    public function xss_clean($str=NULL)
 {
   if ($this->security->xss_clean($str, TRUE) === FALSE)
   {
