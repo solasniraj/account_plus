@@ -78,7 +78,7 @@ class Miscelleneous extends CI_Controller {
         }
         
         
-   public function xss_clean($str=NULL)
+   public function xss_clean($str)
 {
   if ($this->security->xss_clean($str, TRUE) === FALSE)
   {
