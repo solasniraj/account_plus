@@ -191,7 +191,7 @@ $data['fiscalYear'] = $this->dbmanager_model->get_fiscal_year();
     
     
     
-    public function xss_clean($str)
+    public function xss_clean($str=NULL)
 	{
 		if ($this->security->xss_clean($str, TRUE) === FALSE)
 		{
