@@ -37,10 +37,10 @@
                     </div>
                 </div>
                 <br>
-
+<br><br>
               
                 <div class="table-responsive" style="width:100%">
-                <div class="modal-dialog" style="width:95%">
+                <div class="" style="width:95%">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
