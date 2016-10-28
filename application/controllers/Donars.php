@@ -61,7 +61,7 @@ class donars extends CI_Controller {
        $this->form_validation->set_rules('donarAddress', 'Donar Address', 'trim|regex_match[/^[a-z,0-9,A-Z_\-., ]{2,200}$/]|callback_xss_clean|max_length[1000]');
        $this->form_validation->set_rules('emailId', 'Donar Email ID', 'trim|regex_match[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/]|callback_xss_clean|max_length[100]');
        $this->form_validation->set_rules('contactNumber', 'Contact Number', 'trim|regex_match[/^[0-9\+-]{6,20}$/]|callback_xss_clean|max_length[50]');
-       $this->form_validation->set_rules('contactPerson', 'Contact Person', 'trim|regex_match[/^[a-z,0-9,A-Z_\-., ]{2,200}$/]|callback_xss_clean|max_length[1000]');
+       $this->form_validation->set_rules('contactPerson', 'Contact Person', 'trim|regex_match[/^[a-z,A-Z_\-., ]{2,200}$/]|callback_xss_clean|max_length[1000]');
        $this->form_validation->set_rules('contactPCellNo', 'Contact Person Contact No.', 'trim|regex_match[/^[0-9\+-]{6,20}$/]|callback_xss_clean|max_length[50]');
        $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
 
