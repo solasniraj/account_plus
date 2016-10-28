@@ -120,7 +120,7 @@ public function ledgerReport()
       $this->load->view('dashboard/report/ledgerReport', $data);
       $this->load->view('dashboard/templates/footer');
       }else{
-          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date.</div>');
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-warning" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date.</div>');
          redirect('reports/lReport', 'refresh');
       }
   } else {
@@ -177,7 +177,7 @@ public function subLedgerReport()
       $this->load->view('dashboard/report/subLedgerReport', $data);
       $this->load->view('dashboard/templates/footer');
       }else{
-          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date.</div>');
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-warning" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date.</div>');
          redirect('reports/slReport', 'refresh');
       }
   } else {
@@ -242,11 +242,11 @@ public function donorReport()
       $this->load->view('dashboard/report/donorReport', $data);
       $this->load->view('dashboard/templates/footer');
           }else{
-              $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date and last report date between from and to dates.</div>');
+              $this->session->set_flashdata("flashMessage", '<div class="alert alert-warning" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date and last report date between from and to dates.</div>');
          redirect('reports/dReport', 'refresh');
           }
       }else{
-          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date.</div>');
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-warning" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date.</div>');
          redirect('reports/dReport', 'refresh');
       }
   } else {
