@@ -1,6 +1,6 @@
 <style>
-    table{border-collapse: collapse;}
-    </style>
+    table{border-collapse: unset;}
+</style>
     <div style="margin-bottom: 15px;float: left;width: 100%;">
         <?php if(!empty($committeeInfo)){ foreach ($committeeInfo as $cLists){ ?>
         <main class="flex-center" style="margin-top:22px;margin-bottom:10px;width: 100%;float: left;">
@@ -73,7 +73,7 @@ $sumExpnMore += abs($sumExpnNow);
                      $program = $this->ledger_model->get_account_ledger_info_by_account_code($dEntries->ledger_code);
                                                                 
                       ?>
-                <tr>                     
+                <tr style="page-break-after: always;">                     
                     <td><?php echo $dEntries->ledger_master_code; ?></td>
                     <td><?php echo $dEntries->ledger_master_name; ?></td>
                     <td><?php echo $program; ?></td>
