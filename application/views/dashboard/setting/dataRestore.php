@@ -1,7 +1,8 @@
 <div id="page-wrapper">
     <div class="graphs">
         <h3 class="blank1">Data restore</h3>
-        
+        <div class="alert alert-info" style="margin-bottom: 0;">Only sql file formats are supported. Please upload file with .sql extensions.</div>
+        <br/>
         <div class="tab-content">
             <div class="invalid">
 							 <?php

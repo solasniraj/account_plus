@@ -528,7 +528,7 @@ public function dayFunctE()
     return $today;
 } 
 
-public function convertToBs($day)
+public function convertToBs($day=Null)
 {
     $tday = new DateTime($day);
 $date = $tday->format('Y-m-d');

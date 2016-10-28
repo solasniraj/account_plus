@@ -67,7 +67,7 @@
                                     <?php echo form_error('contactPCellNo'); ?>
                                 </div>
                             </div>
-                             
+                          
                             
                             <div class="col-sm-4 col-sm-offset-2">
                                 <button class="btn btn-success btn-lg" style=" margin-left: 3px; margin-top: -4px; width:100px;">Submit</button>
@@ -77,8 +77,7 @@
                     </div>
                 </div>
 
-
-                <br><br><br>
+                  <br>  <br>  <br>
             
             <div class="table-responsive"  style="width:100%">
                 <div class="" style="width:100%">

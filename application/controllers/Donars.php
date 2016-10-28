@@ -57,11 +57,12 @@ class donars extends CI_Controller {
         $user_id=$this->session->userdata('user_id');
        
        
-       $this->form_validation->set_rules('donarName', 'Donar Name', 'trim|required|callback_xss_clean|max_length[1000]');
-       $this->form_validation->set_rules('donarAddress', 'Donar Address', 'trim|callback_xss_clean|max_length[1000]');
-       $this->form_validation->set_rules('emailId', 'Donar Email ID', 'trim|callback_xss_clean|max_length[100]');
-       $this->form_validation->set_rules('contactNumber', 'Contact Number of Bank', 'trim|callback_xss_clean|max_length[50]');
-       
+       $this->form_validation->set_rules('donarName', 'Donar Name', 'trim|regex_match[/^[a-z,0-9,A-Z_\-., ]{2,200}$/]|required|callback_xss_clean|max_length[1000]');
+       $this->form_validation->set_rules('donarAddress', 'Donar Address', 'trim|regex_match[/^[a-z,0-9,A-Z_\-., ]{2,200}$/]|callback_xss_clean|max_length[1000]');
+       $this->form_validation->set_rules('emailId', 'Donar Email ID', 'trim|regex_match[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/]|callback_xss_clean|max_length[100]');
+       $this->form_validation->set_rules('contactNumber', 'Contact Number', 'trim|regex_match[/^[0-9\+-]{6,20}$/]|callback_xss_clean|max_length[50]');
+       $this->form_validation->set_rules('contactPerson', 'Contact Person', 'trim|regex_match[/^[a-z,0-9,A-Z_\-., ]{2,200}$/]|callback_xss_clean|max_length[1000]');
+       $this->form_validation->set_rules('contactPCellNo', 'Contact Person Contact No.', 'trim|regex_match[/^[0-9\+-]{6,20}$/]|callback_xss_clean|max_length[50]');
        $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
 
        if ($this->form_validation->run() == FALSE)
@@ -126,77 +127,12 @@ Donor created successfully
    return   redirect('login/index/?url=' . $url, 'refresh');
  }
     }
-    
-    
-    public function assignDonars($progId=null)
-    {
-          $url = current_url();
-          if ($this->session->userdata('logged_in') == true)
-           {
-
-            $currentProgramId = $progId;
-            $data['programId'] = $currentProgramId;
-            $user_id=$this->session->userdata('user_id');           
-            $data['donars']=$this->donar_model->get_all_donars();
-            $data['assignedDonors'] = $this->donar_model->get_all_assigned_donors_to_program($progId);
-            $this->load->view('dashboard/templates/header');
-            $this->load->view('dashboard/templates/sideNavigation');
-            $this->load->view('dashboard/templates/topHead');
-            $this->load->view('dashboard/donars/assignDonars',$data);
-            $this->load->view('dashboard/templates/footer'); 
-    } else {
-            redirect('login/index/?url=' . $url, 'refresh');
-        }   
-    }
-    
-    public function assignToProgram()
-    {
-        $url = current_url();
-          if ($this->session->userdata('logged_in') == true)
-           {
-           $programId = $this->input->post('programId');             
-       $this->form_validation->set_rules('donorName', 'Donar Name', 'trim|required|callback_xss_clean|max_length[1000]');
-       $this->form_validation->set_rules('budget', 'Budget Amount', 'trim|callback_xss_clean|max_length[1000]');
-       $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
-
-       if ($this->form_validation->run() == FALSE)
-       {
-        $this->assignDonars($programId);
-      }
-      else 
-      {
-        
-          $donarName = $this->input->post('donorName');
-        $budget = $this->input->post('budget');
-       
-        $result=$this->donar_model->assign_donor_to_program($donarName,$budget, $programId);
-        if($result)
-        {
-         $this->session->set_flashdata('flashMessage', 'Donor assigned successfully');
-         return redirect('donars/assignDonars/'.$programId);
-       }
-       else 
-       {
-        $this->session->set_flashdata('flashMessage', 'Sorry ! something went wrong while assigning donor. Please assign again.');
-        return redirect('donars/assignDonars/'.$programId);
-      }
-          
-      }
-              
-        } else {
-            redirect('login/index/?url=' . $url, 'refresh');
-        } 
-    }
-
-    
 
 
 
 
 
-
-
-    public function xss_clean($str)
+    public function xss_clean($str=NULL)
 {
   if ($this->security->xss_clean($str, TRUE) === FALSE)
   {
