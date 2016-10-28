@@ -249,22 +249,6 @@ public function bankCashBook()
 }
 }
 
-public function tBalance()
-{
-   $url = current_url();
-    if ($this->session->userdata('logged_in') == true) {
-        $data['fiscalYear'] = $this->dbmanager_model->get_fiscal_year();
-      $this->load->view('dashboard/templates/header');
-      $this->load->view('dashboard/templates/sideNavigation');
-      $this->load->view('dashboard/templates/topHead');
-      $this->load->view('dashboard/report/tBalanceQuery', $data);
-      $this->load->view('dashboard/templates/footer');
-      
-} else {
-    redirect('login/index/?url=' . $url, 'refresh');
-} 
-}
-
 public function trialBalance()
 {
     $url = current_url();
@@ -281,10 +265,7 @@ public function trialBalance()
         $fromE = $this->input->post('englishDateF');
         $toN = $this->input->post('nepaliDateT');
         $toE = $this->input->post('englishDateT');
-         $data['fromN'] = $fromN;
-      $data['toN'] = $toN;
-      $data['fromE'] = $fromE;
-      $data['toE'] = $toE; 
+
       $data['todayN'] = $this->dayFunctN();
       $data['todayE'] = $this->dayFunctE();
 
@@ -301,22 +282,6 @@ public function trialBalance()
           $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
          redirect('reports/tBalance', 'refresh');
       }
-      
-  } else {
-    redirect('login/index/?url=' . $url, 'refresh');
-}
-}
-
-public function ieAccounts()
-{
-    $url = current_url();
-    if ($this->session->userdata('logged_in') == true) {
-        $data['fiscalYear'] = $this->dbmanager_model->get_fiscal_year();
-      $this->load->view('dashboard/templates/header');
-      $this->load->view('dashboard/templates/sideNavigation');
-      $this->load->view('dashboard/templates/topHead');
-      $this->load->view('dashboard/report/ieReportForm', $data);
-      $this->load->view('dashboard/templates/footer');
       
   } else {
     redirect('login/index/?url=' . $url, 'refresh');
@@ -358,22 +323,6 @@ public function incomeExpnReport()
           $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
          redirect('reports/ieAccounts', 'refresh');
       }
-      
-  } else {
-    redirect('login/index/?url=' . $url, 'refresh');
-}
-}
-
-public function bSheet()
-{
-    $url = current_url();
-    if ($this->session->userdata('logged_in') == true) {
-         $data['fiscalYear'] = $this->dbmanager_model->get_fiscal_year();
-      $this->load->view('dashboard/templates/header');
-      $this->load->view('dashboard/templates/sideNavigation');
-      $this->load->view('dashboard/templates/topHead');
-      $this->load->view('dashboard/report/bSheetQueryForm', $data);
-      $this->load->view('dashboard/templates/footer');
       
   } else {
     redirect('login/index/?url=' . $url, 'refresh');
@@ -423,16 +372,6 @@ public function balanceSheet()
 }
 }
 
-public function monthlyStatement()
-{
-    $url = current_url();
-    if ($this->session->userdata('logged_in') == true) {
-      
-      
-  } else {
-    redirect('login/index/?url=' . $url, 'refresh');
-}
-}
 
 public function dayFunctN()
 {
