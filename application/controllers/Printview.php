@@ -130,7 +130,7 @@
         }
     }
     
-    public function donorReport()
+     public function donorReport($donorCode=NULL, $fromEng=NULL, $reportDateEng=NULL, $toEng=NULL)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -139,13 +139,42 @@
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
-            
-             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
-       
-             $this->load->view('printPreview/printView/templates/header');
-      $this->load->view('printPreview/printView/report/trialBalance', $data);
-      $this->load->view('printPreview/printView/templates/footer');
+            $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
+        $donar = $donorCode;
+         $fromE = $fromEng;
+        $fromN = $this->convertToBs($fromE);
+        $reportDateE = $reportDateEng;
+        $reportDateN = $this->convertToBs($reportDateE);
+        $toE = $toEng;
+        $toN = $this->convertToBs($toE);
+        $data['donarDetails'] = $this->ledger_model->get_donor_info_by_code($donar);
+       
+        $data['donarLed'] = $this->ledger_model->get_ledger_master_associated_to_donar($donar);
+        
+      $data['fromN'] = $fromN;
+      $data['toN'] = $toN;
+      $data['fromE'] = $fromE;
+      $data['toE'] = $toE;
+      $data['reportN'] = $reportDateN;
+      $data['reportE'] = $reportDateE;
+      $data['donorCode'] = $donar;
+      $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
+
+      if($fromN < $toN){
+          if($fromN <= $reportDateN && $reportDateN <= $toN){
+             $this->load->view('printPreview/printView/templates/header');
+      $this->load->view('printPreview/printView/report/donorReport', $data);
+      $this->load->view('printPreview/printView/templates/footer');
+      }else{
+              $this->session->set_flashdata("flashMessage", '<div class="alert alert-warning" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date and last report date between from and to dates.</div>');
+         redirect('reports/dReport', 'refresh');
+          }
+      }else{
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-warning" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date.</div>');
+         redirect('reports/dReport', 'refresh');
+      } 
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
