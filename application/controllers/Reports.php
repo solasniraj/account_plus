@@ -113,12 +113,16 @@ public function ledgerReport()
       $data['toE'] = $toE;
       $data['todayN'] = $this->dayFunctN();
       $data['todayE'] = $this->dayFunctE();
+      if($fromN < $toN){
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/ledgerReport', $data);
       $this->load->view('dashboard/templates/footer');
-      
+      }else{
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date.</div>');
+         redirect('reports/lReport', 'refresh');
+      }
   } else {
     redirect('login/index/?url=' . $url, 'refresh');
 }
@@ -166,12 +170,16 @@ public function subLedgerReport()
       $data['toE'] = $toE;
        $data['todayN'] = $this->dayFunctN();
       $data['todayE'] = $this->dayFunctE();
+      if($fromN < $toN){
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/subLedgerReport', $data);
       $this->load->view('dashboard/templates/footer');
-      
+      }else{
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date.</div>');
+         redirect('reports/slReport', 'refresh');
+      }
   } else {
     redirect('login/index/?url=' . $url, 'refresh');
 }
@@ -208,6 +216,8 @@ public function donorReport()
         $donar = $this->input->post('ledgerCode');
         $fromN = $this->input->post('nepaliDateF');
         $fromE = $this->input->post('englishDateF');
+        $reportDateN = $this->input->post('nepaliDateLR');
+        $reportDateE = $this->input->post('englishDateLR');
         $toN = $this->input->post('nepaliDateT');
         $toE = $this->input->post('englishDateT');
         $data['donarDetails'] = $this->ledger_model->get_donor_info_by_code($donar);
@@ -218,15 +228,27 @@ public function donorReport()
       $data['toN'] = $toN;
       $data['fromE'] = $fromE;
       $data['toE'] = $toE;
+      $date['reportN'] = $reportDateN;
+      $date['reportE'] = $reportDateE;
       $data['donorCode'] = $donar;
       $data['todayN'] = $this->dayFunctN();
       $data['todayE'] = $this->dayFunctE();
+
+      if($fromN < $toN){
+          if($fromN <= $reportDateN && $reportDateN <= $toN){
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/donorReport', $data);
       $this->load->view('dashboard/templates/footer');
-      
+          }else{
+              $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date and last report date between from and to dates.</div>');
+         redirect('reports/dReport', 'refresh');
+          }
+      }else{
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date.</div>');
+         redirect('reports/dReport', 'refresh');
+      }
   } else {
     redirect('login/index/?url=' . $url, 'refresh');
 }
