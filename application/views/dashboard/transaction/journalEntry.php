@@ -117,12 +117,7 @@
                                 </tr>
                                  <!--  working on the object starts -->
 
-                                <tbody id="workingWithObjectData">
-
-                            <tr id="addArrayData">
-
-                            </tr>
-                            </tbody>
+                                
                             
                                 <!--   working on object is closed      -->
                             
@@ -173,30 +168,35 @@
                                     </td>
                                     <td> <input  class="form-control" type="text" name="chequeNo" id="chequeNo"></td>
 
-                                    <td rowspan="2"  class="b" id="toggleButton">
+                                    <td rowspan="1"  class="b" id="toggleButton">
                                         <span class="btn btn-success" id="submitCurrentData" onClick="addData()" style="padding:5px;margin:5px;width:70px;font-size:18px;">Add</span></td>
 
                                 </tr>
 
-                                </tbody>
-                                </table>
-                                <br/>
-                                <br/>
 
-                                <div class="table-responsive">
-                        <table class="tablee" width="100%">
-                        
-                             <tr>
-                                <td colspan="7"><b>Total Amount</b></td>
+                              <tbody id="workingWithObjectData">
+
+                            <tr id="addArrayData">
+
+                            </tr>
+                            </tbody>
+
+
+
+
+                                <tr>
+                                <td colspan="6"><b>Total Amount</b></td>
                                 <td id="totalDebit" class="b">0</td>
                                 <td id="totalCredit" class="b">0</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
 
                                 
 
                             </tr>
 
                             <tr>
-                                <td colspan="7"><b>Difference in Debit
+                                <td colspan="6"><b>Difference in Debit
                                         and Credit Amount</b></td>
                                 <td><input  id="debitGreater"
                                             class="form-control text-center" type="text" value="0.0"  readonly
@@ -205,16 +205,32 @@
                                             class="form-control text-center"  type="text" value="0.0"  readonly
                                             /></td>
                                
+                               <td>&nbsp;</td>
+                                <td>&nbsp;</td>
 
                             </tr>
+
+                                </tbody>
+
+                                
+                                
+                                </table>
+
+
+                                <br/>
+                                <br/>
+
+                                <div class="table-responsive">
+                        <table class="tablee" width="100%">
+                        
+                             
                             <tr id="addArrayData">
 
                             </tr>
 
                         </table>
                     
-                            </tbody>
-                        </table>
+                       
                     </div>
 
 
