@@ -26,11 +26,14 @@ if (!empty($committeeInfo)) {
   </div>
 </main>    
                     <?php }    }   ?>
-     
+     <?php if(!empty($donarDetails)){   
+ foreach($donarDetails as $dDets){ 
+       $donorCode = $dDets->donar_code; ?> 
         <div class="text-right pull-right">
-        <a href="<?php echo base_url().'preview/donorReport/'.$fy.'/'.$fromE.'/'.$toE; ?>"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
-        <a href="<?php echo base_url().'printview/donorReport/'.$fy.'/'.$fromE.'/'.$toE; ?>"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
+            <a href="<?php echo base_url().'preview/donorReport/'.$donorCode.'/'.$fromE.'/'.$reportE.'/'.$toE; ?>" target="_blank"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
+        <a href="<?php echo base_url().'printview/donorReport/'.$donorCode.'/'.$fromE.'/'.$reportE.'/'.$toE; ?>" target="_blank"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
     </div>
+     <?php } } ?>
         
             <div class="text-center" style="padding: 5px 0px 5px 0px;margin-bottom: 15px;">
 
@@ -107,7 +110,7 @@ $sumExpnLast += abs($sumExpn);
 $sumExpnMore += abs($sumExpnNow);
  $totalExpn = abs($sumExpn) + abs($sumExpnNow);
                      $amtRemain = $sumFund - $totalExpn;
-                     $otherExpn = $this->report_model->get_sum_of_expenditure_of_internal_and_labour_from_last_report_to_now($chartId, $donorCode);
+                    // $otherExpn = $this->report_model->get_sum_of_expenditure_of_internal_and_labour_from_last_report_to_now();
                      $program = $this->ledger_model->get_account_ledger_info_by_account_code($dEntries->ledger_code);
                       
                       
