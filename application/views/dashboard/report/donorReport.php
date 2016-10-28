@@ -100,11 +100,11 @@ if (!empty($committeeInfo)) {
                     foreach($donarLed as $dEntries){
                       $chartId = $dEntries->account_code;
                       $sumFund = $this->report_model->get_sum_of_amount_for_donar_by_code($donorCode, $dEntries->ledger_master_code);
-                     $sumExpn = $this->report_model->get_sum_of_expenditure_to_last_date($donorCode, $dEntries->ledger_master_code, $fromN, $fromE);
+                     $sumExpn = $this->report_model->get_sum_of_expenditure_to_last_date($donorCode, $dEntries->ledger_master_code, $fromN, $fromE, $reportN, $reportE);
 $sumFunds += abs($sumFund);
 $sumExpnLast += abs($sumExpn);
-  $sumExpnNow = $this->report_model->get_sum_of_expenditure_from_last_report_to_now($donorCode, $dEntries->ledger_master_code,$fromN, $fromE, $toN, $toE);
-
+  $sumExpnNow = $this->report_model->get_sum_of_expenditure_from_last_report_to_now($donorCode, $dEntries->ledger_master_code,$reportN, $reportE, $toN, $toE);
+$sumExpnMore += abs($sumExpnNow);
  $totalExpn = abs($sumExpn) + abs($sumExpnNow);
                      $amtRemain = $sumFund - $totalExpn;
                      $otherExpn = $this->report_model->get_sum_of_expenditure_of_internal_and_labour_from_last_report_to_now($chartId, $donorCode);
@@ -122,7 +122,7 @@ $sumExpnLast += abs($sumExpn);
                     <td style="width: 10%;"><?php if(!empty($sumExpn)) { echo "Rs. ".$sumExpn;}else{} ?></td>
                     <td style="width: 10%;"><?php if(!empty($sumExpnNow)) { echo "Rs. ".$sumExpnNow;}else{} ?></td>
                     <td style="width: 10%;"><?php echo "Rs. ".abs($totalExpn); ?></td>
-                    <td style="width: 10%;"><?php echo "Rs. ".abs($amtRemain); ?></td>
+                    <td style="width: 10%;"><?php echo "Rs. ".$amtRemain; ?></td>
                     <td style="width: 10%;"></td>
                     <td style="width: 10%;"></td>
                     
@@ -133,9 +133,9 @@ $sumExpnLast += abs($sumExpn);
                     <td colspan="3"><strong>Total</strong></td>
                     <td><?php echo "Rs.".$sumFunds; ?></td>
                     <td><?php echo "Rs.".$sumExpnLast; ?></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?php echo "Rs.".$sumExpnMore; ?></td>
+                    <td><?php echo "Rs. ".(abs($sumExpnLast) + abs($sumExpnMore)); ?></td>
+                    <td><?php echo "Rs. ".(abs($sumFunds) - abs($sumExpnMore) - abs($sumExpnLast)); ?></td>
                 </tr>
                 <?php } else{ echo "<tr><td colspan='6'><strong>No entries are found</td></tr>";} ?>
             </tbody>

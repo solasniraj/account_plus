@@ -228,8 +228,8 @@ public function donorReport()
       $data['toN'] = $toN;
       $data['fromE'] = $fromE;
       $data['toE'] = $toE;
-      $date['reportN'] = $reportDateN;
-      $date['reportE'] = $reportDateE;
+      $data['reportN'] = $reportDateN;
+      $data['reportE'] = $reportDateE;
       $data['donorCode'] = $donar;
       $data['todayN'] = $this->dayFunctN();
       $data['todayE'] = $this->dayFunctE();
