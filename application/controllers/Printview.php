@@ -364,7 +364,31 @@ return $dateOfToday;
 }
     
   
-  
+ public function convertToAd($day=Null)
+{
+    
+    $tday = new DateTime($day);
+$date = $tday->format('Y-m-d');
+$dates = date_parse_from_format("Y.m.d", $date);
+
+$year =  str_pad($dates['year'], 4, "0", STR_PAD_LEFT);
+$month = str_pad($dates['month'], 2, "0", STR_PAD_LEFT);
+$days = str_pad($dates['day'], 2, "0", STR_PAD_LEFT);
+
+$this->load->library("nepali_calendar");
+$currentNepaliDay = $this->nepali_calendar->BS_to_AD($year,$month,$days);
+$nepaliDay = $currentNepaliDay['date'];
+$nepaliMth = $currentNepaliDay['month'];
+$nepaliYr = $currentNepaliDay['year'];
+$todayNep = $nepaliYr.'/'.$nepaliMth.'/'.$nepaliDay;
+
+$tday = new DateTime($todayNep);
+
+$dateOfToday = $tday->format('Y-m-d');
+return $dateOfToday;
+
+
+} 
   
   
   
