@@ -634,7 +634,7 @@ function viewTheItemsInArray()
                     '<td>' + subLedger_id + '</td>' +
                     '<td>' + donar_id + '</td>' +
                     '<td>' + ledgerType + '</td>' +
-                    '<td colspan="2">' + description + '</td>' +
+                    '<td>' + description + '</td>' +
                     '<td>' + debitAmount + '</td>' +
                     '<td>' + creditAmount + '</td>' +
                     '<td>' + chequeNo + '</td>' +
