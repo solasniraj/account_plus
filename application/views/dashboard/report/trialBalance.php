@@ -29,8 +29,8 @@ $fy = urlencode($value);
 
 
     <div class="text-right pull-right">
-        <a href="<?php echo base_url().'preview/trialBalance/'.$fy.'/'.$fromE.'/'.$toE; ?>" target="_blank"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
-        <a href="<?php echo base_url().'printview/trialBalance/'.$fy.'/'.$fromE.'/'.$toE; ?>" target="_blank"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
+        <a href="<?php echo base_url().'preview/trialBalance/'.$fy.'/'.$fromE.'/'.$todayE; ?>" target="_blank"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
+        <a href="<?php echo base_url().'printview/trialBalance/'.$fy.'/'.$fromE.'/'.$todayE; ?>" target="_blank"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
     </div>
         
         
@@ -38,14 +38,12 @@ $fy = urlencode($value);
 
 <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
     <tr>
-        <td colspan="3"><h3>Trial Balance</h3> </td>
+        <td colspan="3"><h3>Trial Balance</h3> 
+            <h4>As on <?php echo $todayN. ' ('. $todayE .')'; ?></h4>
+        </td>
     </tr>
     <tr>
         <td>From : <?php echo $fromN. ' (' .$fromE. ') '; ?></td>  
-        <td><P>Balance : <strong>Rs. </strong></p></td>
-    </tr>
-    <tr>
-        <td>To : <?php echo $toN. ' ('. $toE .')'; ?></td>
         <td>Printed on : <?php echo $todayN. ' (' .$todayE. ') '; ?></td>
     </tr>
    
@@ -85,8 +83,8 @@ $fy = urlencode($value);
                     $sumCr = '0';
                     foreach($allLedger as $ledgers){
                       $code = $ledgers->ledger_master_code;
-                      $drAmount = $this->report_model->get_sum_of_amounts_for_dr_of_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
-                      $crAmount =  $this->report_model->get_sum_of_amounts_for_cr_of_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
+                      $drAmount = $this->report_model->get_sum_of_amounts_for_dr_of_ledger_master_from_journal_entry($code, $fromE, $fromN, $todayE, $todayN);
+                      $crAmount =  $this->report_model->get_sum_of_amounts_for_cr_of_ledger_master_from_journal_entry($code, $fromE, $fromN, $todayE, $todayN);
                      $sumDr += abs($drAmount);
                      $sumCr += abs($crAmount)
                       ?>

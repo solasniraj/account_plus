@@ -28,24 +28,23 @@ if (!empty($committeeInfo)) {
                     <?php }    }   ?>
         
         <div class="text-right pull-right">
-            <a href="<?php echo base_url().'preview/balanceSheet/'.$fy.'/'.$fromE.'/'.$toE; ?>" target="_blank"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
-        <a href="<?php echo base_url().'printview/balanceSheet/'.$fy.'/'.$fromE.'/'.$toE; ?>" target="_blank"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
+            <a href="<?php echo base_url().'preview/balanceSheet/'.$fy.'/'.$fromE.'/'.$todayE; ?>" target="_blank"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
+        <a href="<?php echo base_url().'printview/balanceSheet/'.$fy.'/'.$fromE.'/'.$todayE; ?>" target="_blank"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
     </div>
                 
            <div class="text-center" style="padding: 5px 0px 5px 0px;margin-bottom: 15px;">
 
 <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
     <tr>
-        <td colspan="3"><h3>Balance Sheet</h3> </td>
+        <td colspan="3"><h3>Balance Sheet</h3> 
+        <h4>As on <?php echo $todayN. ' ('. $todayE .')'; ?></h4>
+        </td>
     </tr>
     <tr>
         <td>From : <?php echo $fromN. ' (' .$fromE. ') '; ?></td>  
-        <td><P>Balance : <strong>Rs. </strong></p></td>
+       <td>Printed on : <?php echo $todayN. ' (' .$todayE. ') '; ?></td>
     </tr>
-    <tr>
-        <td>To : <?php echo $toN. ' ('. $toE .')'; ?></td>
-        <td>Printed on : <?php echo $todayN. ' (' .$todayE. ') '; ?></td>
-    </tr>
+    
    
 </table>
         </div>  
@@ -86,10 +85,10 @@ if (!empty($committeeInfo)) {
                       $code = $ledgers->ledger_master_code;
                       $gl = mb_substr($code, 0, 2);
                       if($gl == '02'){
-                      $amount1 = $this->report_model->get_sum_of_amounts_for_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
+                      $amount1 = $this->report_model->get_sum_of_amounts_for_ledger_master_from_journal_entry($code, $fromE, $fromN, $todayE, $todayN);
                     $sum1 += abs($amount1);
                       }elseif($gl == '01'){
-                      $amount2 = $this->report_model->get_sum_of_amounts_for_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
+                      $amount2 = $this->report_model->get_sum_of_amounts_for_ledger_master_from_journal_entry($code, $fromE, $fromN, $todayE, $todayN);
                     $sum2 += abs($amount2);
                       }
                      
@@ -141,10 +140,10 @@ if (!empty($committeeInfo)) {
                       $code = $ledgers->ledger_master_code;
                       $gl = mb_substr($code, 0, 2);
                       if($gl == '02'){
-                      $amount1 = $this->report_model->get_sum_of_amounts_for_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
+                      $amount1 = $this->report_model->get_sum_of_amounts_for_ledger_master_from_journal_entry($code, $fromE, $fromN, $todayE, $todayN);
                     $sum1 += abs($amount1);
                       }elseif($gl == '01'){
-                      $amount2 = $this->report_model->get_sum_of_amounts_for_ledger_master_from_journal_entry($code, $fromE, $fromN, $toE, $toN);
+                      $amount2 = $this->report_model->get_sum_of_amounts_for_ledger_master_from_journal_entry($code, $fromE, $fromN, $todayE, $todayN);
                     $sum2 += abs($amount2);
                       }
                      

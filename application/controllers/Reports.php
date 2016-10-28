@@ -259,29 +259,23 @@ public function trialBalance()
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
-        $fiscalData = $this->input->post('fiscalYear');
-        $fromN = $this->input->post('nepaliDateF');
-        $fromE = $this->input->post('englishDateF');
-        $toN = $this->input->post('nepaliDateT');
-        $toE = $this->input->post('englishDateT');
+      $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
+      $fscSt = new DateTime($fiscalStart);
+$fiscalYrStart = $fscSt->format('Y-m-d');
 
-      $data['todayN'] = $this->dayFunctN();
-      $data['todayE'] = $this->dayFunctE();
+$data['fromN'] = $fiscalYrStart;
+$data['fromE'] = $this->convertToAd($fiscalYrStart);        
+$data['todayN'] = $this->dayFunctN();
+$data['todayE'] = $this->dayFunctE();
 
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing();
       
-      
-      if($fiscalData == $fiscal_year)  {        
+        
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/trialBalance', $data);
       $this->load->view('dashboard/templates/footer');
-      }else{
-          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
-         redirect('reports/tBalance', 'refresh');
-      }
       
   } else {
     redirect('login/index/?url=' . $url, 'refresh');
@@ -299,30 +293,23 @@ public function incomeExpnReport()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
-        $fiscalData = $this->input->post('fiscalYear');
-        $fromN = $this->input->post('nepaliDateF');
-        $fromE = $this->input->post('englishDateF');
-        $toN = $this->input->post('nepaliDateT');
-        $toE = $this->input->post('englishDateT');
-         $data['fromN'] = $fromN;
-      $data['toN'] = $toN;
-      $data['fromE'] = $fromE;
-      $data['toE'] = $toE; 
-      $data['todayN'] = $this->dayFunctN();
-      $data['todayE'] = $this->dayFunctE();
+       $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
+      $fscSt = new DateTime($fiscalStart);
+$fiscalYrStart = $fscSt->format('Y-m-d');
+
+$data['fromN'] = $fiscalYrStart;
+$data['fromE'] = $this->convertToAd($fiscalYrStart);        
+$data['todayN'] = $this->dayFunctN();
+$data['todayE'] = $this->dayFunctE();
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing_of_income_and_expn();
       
       
-      if($fiscalData == $fiscal_year)  {        
+             
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/incomeExpnReport', $data);
       $this->load->view('dashboard/templates/footer');
-      }else{
-          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
-         redirect('reports/ieAccounts', 'refresh');
-      }
       
   } else {
     redirect('login/index/?url=' . $url, 'refresh');
@@ -341,30 +328,23 @@ public function balanceSheet()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
-        $fiscalData = $this->input->post('fiscalYear');
-        $fromN = $this->input->post('nepaliDateF');
-        $fromE = $this->input->post('englishDateF');
-        $toN = $this->input->post('nepaliDateT');
-        $toE = $this->input->post('englishDateT');
-         $data['fromN'] = $fromN;
-      $data['toN'] = $toN;
-      $data['fromE'] = $fromE;
-      $data['toE'] = $toE; 
-      $data['todayN'] = $this->dayFunctN();
-      $data['todayE'] = $this->dayFunctE();
+       $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
+      $fscSt = new DateTime($fiscalStart);
+$fiscalYrStart = $fscSt->format('Y-m-d');
+
+$data['fromN'] = $fiscalYrStart;
+$data['fromE'] = $this->convertToAd($fiscalYrStart);        
+$data['todayN'] = $this->dayFunctN();
+$data['todayE'] = $this->dayFunctE();
       $data['incExpnLed'] = $this->ledger_model->get_ledger_master_listing_of_income_and_expn();
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing_of_assets_and_liability();
       
-      if($fiscalData == $fiscal_year)  {        
+           
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/balanceSheet', $data);
       $this->load->view('dashboard/templates/footer');
-      }else{
-         $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
-         redirect('reports/bSheet', 'refresh');
-      }
       
   } else {
     redirect('login/index/?url=' . $url, 'refresh');
@@ -399,6 +379,31 @@ public function dayFunctE()
     return $today;
 }
 
+public function convertToAd($day=Null)
+{
+    
+    $tday = new DateTime($day);
+$date = $tday->format('Y-m-d');
+$dates = date_parse_from_format("Y.m.d", $date);
+
+$year =  str_pad($dates['year'], 4, "0", STR_PAD_LEFT);
+$month = str_pad($dates['month'], 2, "0", STR_PAD_LEFT);
+$days = str_pad($dates['day'], 2, "0", STR_PAD_LEFT);
+
+$this->load->library("nepali_calendar");
+$currentNepaliDay = $this->nepali_calendar->BS_to_AD($year,$month,$days);
+$nepaliDay = $currentNepaliDay['date'];
+$nepaliMth = $currentNepaliDay['month'];
+$nepaliYr = $currentNepaliDay['year'];
+$todayNep = $nepaliYr.'/'.$nepaliMth.'/'.$nepaliDay;
+
+$tday = new DateTime($todayNep);
+
+$dateOfToday = $tday->format('Y-m-d');
+return $dateOfToday;
+
+
+}
 
 
 }
