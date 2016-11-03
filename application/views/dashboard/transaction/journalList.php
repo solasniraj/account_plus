@@ -118,7 +118,7 @@ $(document).ready(function ()
                 <tr>
                     <th>S.No.</th>
                     <th>Bhoucher No</th>
-                    <th>Discription</th>
+                    <th>Description</th>
                     <th>Date</th>
                     <th>Amount(Rs)</th>
                     <th>Status</th>
