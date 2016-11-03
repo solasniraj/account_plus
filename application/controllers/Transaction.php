@@ -762,6 +762,8 @@ die;
 
 }   
      }else{
+         var_dump($_REQUEST);
+die;
          $this->session->set_flashdata("flashMessage", '<div class="alert alert-error" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please check date and submit journal again.</div>');
         
      redirect('transaction/journalEntry', 'refresh'); 
