@@ -34,7 +34,6 @@
                     <li><a href="<?php echo base_url() . 'transaction/journalList'; ?>">View Journals</a> </li>
                     <li><a href="<?php echo base_url() . 'transaction/journalEntry'; ?>">Journal Entry</a></li>
                     <li><a href="<?php echo base_url() . 'miscelleneous/bankReconcillation'; ?>">Bank Reconcillation</a></li>
-                    <li><a href="<?php echo base_url() . 'miscelleneous/monthClose'; ?>">Month Close</a></li>
                 </ul>
             </li>
             
