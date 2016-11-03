@@ -186,7 +186,7 @@ $glNo = urldecode($id);
             // Convert to PDF
             $this->dompdf->load_html($html);
             $paper_orientation = 'landscape';
-            $customPaper = array(0,0,950,950);
+            $customPaper = array(0,0,950,1200);
             $this->dompdf->set_paper($customPaper,$paper_orientation);
 //            $this->dompdf->set_paper('a4', $orientation);
             //$this->dompdf->set_option('isHtml5ParserEnabled', true);
@@ -236,7 +236,7 @@ $glNo = urldecode($id);
             // Convert to PDF
             $this->dompdf->load_html($html);
             $paper_orientation = 'landscape';
-            $customPaper = array(0,0,950,950);
+            $customPaper = array(0,0,950,1200);
             $this->dompdf->set_paper($customPaper,$paper_orientation);
 //            $this->dompdf->set_paper('a4', $orientation);
             //$this->dompdf->set_option('isHtml5ParserEnabled', true);
@@ -351,7 +351,7 @@ $glNo = urldecode($id);
             // Convert to PDF
             $this->dompdf->load_html($html);
             $paper_orientation = 'landscape';
-            $customPaper = array(0,0,950,950);
+            $customPaper = array(0,0,950,1200);
             $this->dompdf->set_paper($customPaper,$paper_orientation);
 //            $this->dompdf->set_paper('a4', $orientation);
             //$this->dompdf->set_option('isHtml5ParserEnabled', true);
@@ -402,7 +402,7 @@ $glNo = urldecode($id);
             // Convert to PDF
             $this->dompdf->load_html($html);
             $paper_orientation = 'landscape';
-            $customPaper = array(0,0,950,950);
+            $customPaper = array(0,0,950,1200);
             $this->dompdf->set_paper($customPaper,$paper_orientation);
 //            $this->dompdf->set_paper('a4', $orientation);
             //$this->dompdf->set_option('isHtml5ParserEnabled', true);
@@ -460,7 +460,7 @@ $glNo = urldecode($id);
             // Convert to PDF
             $this->dompdf->load_html($html);
             $paper_orientation = 'landscape';
-            $customPaper = array(0,0,950,950);
+            $customPaper = array(0,0,950,1200);
             $this->dompdf->set_paper($customPaper,$paper_orientation);
 //            $this->dompdf->set_paper('a4', $orientation);
             //$this->dompdf->set_option('isHtml5ParserEnabled', true);
@@ -514,7 +514,7 @@ $glNo = urldecode($id);
             // Convert to PDF
             $this->dompdf->load_html($html);
             $paper_orientation = 'landscape';
-            $customPaper = array(0,0,950,950);
+            $customPaper = array(0,0,950,1200);
             $this->dompdf->set_paper($customPaper,$paper_orientation);
 //            $this->dompdf->set_paper('a4', $orientation);
             //$this->dompdf->set_option('isHtml5ParserEnabled', true);
