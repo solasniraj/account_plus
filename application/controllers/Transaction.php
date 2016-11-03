@@ -743,7 +743,8 @@ if(is_trans_pending())
        case 'Submit':
            $this->transaction_model->update_transaction_status_to_approved($journalNo);
           $this->session->set_flashdata("flashMessage", '<div class="alert alert-success" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Transaction added successfully with active status.</div>');
-       die;   
+     var_dump($_REQUEST);
+          die;   
        redirect('transaction/journalList');            
            break;
 
@@ -754,6 +755,7 @@ if(is_trans_pending())
       
 $value = str_replace('/', '&#47;', $journalNo);
 $NewNo = urlencode($value);
+var_dump($_REQUEST);
 die;
         redirect('transaction/journalPreview/'.$NewNo);           
         break;
@@ -778,6 +780,10 @@ die;
 
   }
 
+  
+  
+  
+  
 
 
   }

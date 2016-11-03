@@ -638,7 +638,7 @@ function viewTheItemsInArray()
                     '<td>' + debitAmount + '</td>' +
                     '<td>' + creditAmount + '</td>' +
                     '<td>' + chequeNo + '</td>' +
-                    '<td colspan="2" style="width:200px" ><span type="text" onClick="editItmInTheArray(' + i + ')' + '"' + 'class="btn btn-success btn-sm" style="">Edit</span> / <span type="text" onClick="delteItemFromArray(' + i + ')' + '"' + 'class="btn btn-danger btn-sm">Delete</span></td></tr>';
+                    '<td colspan="2" style="width:200px" ><span type="text" onClick="editItmInTheArray(' + i + ')' + '"' + 'style=""><i class="fa fa-edit"></i></span> / <span type="text" onClick="delteItemFromArray(' + i + ')' + '"' + '><i class="fa fa-trash"></i></span></td></tr>';
 
             viewToDisplayInTable = viewToDisplayInTable + myCustomViewToEnter;
             debitTotal = numberWithCommas(numberWithOutCommas(debitTotal) + numberWithOutCommas(debitAmount));

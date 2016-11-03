@@ -6,6 +6,7 @@ class Miscelleneous extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
                 $this->load->model('bank_model');
+                $this->load->model('dbmanager_model');
 		$this->load->helper('url');
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('pagination');

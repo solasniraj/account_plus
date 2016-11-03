@@ -239,7 +239,7 @@
 closed ************************************** -->
 
                 </div>
-                <br>
+                
                 <div class="container">
 
 
@@ -250,10 +250,10 @@ closed ************************************** -->
 
                     <div class="row">
 
-                        <div class="col-md-10 col-md-offset-1" >
+                        <div class="col-md-12" >
                             <div class="form-group">
                                 <label for="comment"><b>Detailed Comment (Narration)</b></label>
-                                <textarea class="form-control" rows="5" style="resize:none" id="comment" name="comment"></textarea>
+                                <textarea class="form-control" rows="2" style="resize:none" id="comment" name="comment"></textarea>
                                 <label class="has-error" for="comment" id="comment_error">This field is required.</label>
                             </div>
                         </div>
@@ -293,7 +293,7 @@ closed ************************************** -->
          </div>
      </div>
 
-<script>
+<!--<script>
     (function($) {
     $.postconfirm = {};
     $.postconfirm.locales = {};
@@ -364,9 +364,9 @@ closed ************************************** -->
         };
     };
 })(jQuery);
-    </script>
+    </script>-->
     
-    <script type="text/javascript">     
+<!--    <script type="text/javascript">     
         $(document).ready(function () {
             $("#previewForm").postconfirm({ locale: {
                         title: 'Critical Action',
@@ -376,4 +376,4 @@ closed ************************************** -->
                     }
                 });
         });
-    </script>
+    </script>-->
