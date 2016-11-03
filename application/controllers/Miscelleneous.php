@@ -35,6 +35,13 @@ class Miscelleneous extends CI_Controller {
         {
             $url = current_url();
 		if ($this->session->userdata('logged_in') == true) {
+        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+                    
          $this->load->library('form_validation');
        $this->form_validation->set_rules('nepaliDateF', 'Date (From)', 'trim|required|callback_xss_clean');
        $this->form_validation->set_rules('nepaliDateT', 'Date (To)', 'trim|required|callback_xss_clean');
@@ -48,27 +55,27 @@ class Miscelleneous extends CI_Controller {
       }
       else 
       {       
-        $fromDate = $this->input->post('formDate');  
-        $toDate = $this->input->post('toDate');  
+        $fromDateN = $this->input->post('nepaliDateF'); 
+        $fromDateE = $this->input->post('englishDateF'); 
+        $toDateN = $this->input->post('nepaliDateT');
+        $toDateE = $this->input->post('englishDateT');
         $bankName = $this->input->post('bankName');  
         $amount = $this->input->post('amount');  
-        
-       // $result=$this->program_model->insert_programm_listing($user_id, $programName);
-       // if($result)
-      //  {
-       //  $this->session->set_flashdata('flashMessage', 'Programm added successfully');
-         $this->load->view('dashboard/templates/header');
+       
+      $data['fromN'] = $fromDateN;
+      $data['toN'] = $toDateN;
+      $data['fromE'] = $fromDateE;
+      $data['toE'] = $toDateE;
+      $data['todayN'] = $this->dayFunctN();
+      $data['todayE'] = $this->dayFunctE();
+      $data['bank'] = $bankName;
+      $data['amount'] = $amount;
+      $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
-      $this->load->view('dashboard/miscelleneous/bankreconcillationForm');
+      $this->load->view('dashboard/miscelleneous/bankreconcillationForm', $data);
       $this->load->view('dashboard/templates/footer');
-      // }
-      // else 
-      // {
-      //  $this->session->set_flashdata('flashMessage', 'Sorry ! Someting went wrong. Please try again.');
-
-     //   return redirect('miscelleneous/bankReconcillation');
-     // }
+      
     }
                     
         } else {
@@ -92,7 +99,32 @@ class Miscelleneous extends CI_Controller {
 }
      
         
-        
+ 
+public function dayFunctN()
+{
+    date_default_timezone_set('Asia/Kathmandu');
+$currentYear = date('Y');
+$currentMonth = date('m');
+$currentDay = date('d');
+$this->load->library("nepali_calendar");
+$currentNepaliDay = $this->nepali_calendar->AD_to_BS($currentYear,$currentMonth,$currentDay);
+$nepaliDay = $currentNepaliDay['date'];
+$nepaliMth = $currentNepaliDay['month'];
+$nepaliYr = $currentNepaliDay['year'];
+$todayNep = $nepaliYr.'/'.$nepaliMth.'/'.$nepaliDay;
+
+$tday = new DateTime($todayNep);
+
+$dateOfToday = $tday->format('Y-m-d');
+return $dateOfToday;
+}
+
+public function dayFunctE()
+{
+    date_default_timezone_set('Asia/Kathmandu');
+    $today = date('Y-m-d');
+    return $today;
+}       
         
 
 

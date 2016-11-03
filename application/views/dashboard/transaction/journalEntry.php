@@ -244,10 +244,6 @@ closed ************************************** -->
 
 
                     <!--  working on the object starts -->
-
-
-                    
-                    <br>
                     
 
                     <!--   working on object is closed      -->
