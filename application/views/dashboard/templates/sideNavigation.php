@@ -3,7 +3,7 @@
 
     <!--logo and iconic logo start-->
     <div class="logo">
-        <h1><a href="<?php echo base_url(); ?>">Account <span>Plus</span></a></h1>
+        <h1><a href="<?php echo base_url(); ?>">Rhino <span>Plus</span></a></h1>
     </div>
     <div class=" active logo-icon text-center">
         <a href="<?php echo base_url() . 'dashboard'; ?>"><i class="lnr lnr-home"></i> </a>
@@ -72,7 +72,6 @@
             </li>-->
             <li class="menu-list"><a href="#"><i class="lnr lnr-pie-chart"></i> <span>Reports</span></a>
                 <ul class="sub-menu-list">
-                    <li><a href="<?php echo base_url() . 'reports/index' ?>">Summary</a> </li>
                     <li><a href="<?php echo base_url() . 'reports/bankCashBook' ?>">Bank Cash Book</a></li>
                     <li><a href="<?php echo base_url() . 'reports/trialBalance' ?>">Trial Balance</a></li>
                     <li><a href="<?php echo base_url() . 'reports/incomeExpnReport' ?>">Income and Expenditure Account</a></li>

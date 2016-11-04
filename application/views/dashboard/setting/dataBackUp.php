@@ -21,7 +21,7 @@
                     
                 
                     <div class="col-sm-4 col-sm-offset-2">
-                             <button class="btn btn-success btn-lg" style=" margin-left: 131px; margin-top: -72px; width:119px;">Backup Now</button>
+                             <button class="btn btn-success btn-lg" style="width:119px;">Backup Now</button>
                            
                         </div>          
             </div>

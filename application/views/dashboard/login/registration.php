@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Account :: Registration </title>
+        <title>Rhino Plus - An accounting package :: Registration </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Easy Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -96,7 +96,7 @@
                 <div class="graphs">
                     <div class="sign-in-form">
                         <div class="sign-in-form-top">
-                            <p><span>Registration</span> <a href="<?php echo base_url(); ?>">Account <span>Plus</span></a></p>
+                            <p><span>Registration</span> <a href="<?php echo base_url(); ?>">Rhino <span>Plus</span></a></p>
                         </div>
                         <div class="signin">
                             <div class="invalid">

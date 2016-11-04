@@ -29,7 +29,7 @@
                     
                 
                     <div class="col-sm-2  col-sm-offset-2">
-                             <button class="btn btn-success btn-lg" style=" margin-left: 0px; margin-top: -4px; width:100px;">Submit</button>
+                             <button class="btn btn-success btn-lg" style="width:100px;">Submit</button>
                            
                         </div>
    
