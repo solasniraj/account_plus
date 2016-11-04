@@ -576,7 +576,7 @@ footer  p a:hover{
     display: none;
 }
 div#page-wrapper {
-    padding:2em 2em;
+    padding:3em 3em;
 }
 .left-side-collapsed .logo-icon {
     height: 51px;
@@ -2824,7 +2824,7 @@ canvas#doughnut, canvas#line, canvas#polarArea, #bar, #pie, #radar{
 }
 .bs-example4 {
   background:	#ffffff;
-  padding: 2em;
+  padding: 4em;
 }
 button.note-color-btn {
   width: 20px !important;

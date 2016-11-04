@@ -68,7 +68,7 @@
                             
                             
                             
-                            <div class="col-sm-4 col-sm-offset-4">
+                            <div class="col-sm-4 col-sm-offset-2">
                                 <button class="btn btn-success btn-lg" style="width:100px;">Update</button>
                             </div>
 

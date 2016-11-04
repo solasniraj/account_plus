@@ -138,10 +138,10 @@ $('.selectOpt').bind("change", function(){
                                 </div>
                             </div>
 
-                            <br>
+                           
                             
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-success btn-lg" style=" margin-left:628px; margin-top: -39px; width:100px;">Submit</button>
+                                <button class="btn btn-success btn-lg" style="width:100px;">Submit</button>
                             </div>
 
                        </div>
