@@ -4,7 +4,7 @@ class dashboard extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->library('session');
-        
+         $this->load->model('dbmanager_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -24,10 +24,10 @@ class dashboard extends CI_Controller {
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year'); 
-                     
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);         
          $this->load->view('dashboard/templates/header');
           $this->load->view('dashboard/templates/sideNavigation');
-          $this->load->view('dashboard/templates/topHead');
+          $this->load->view('dashboard/templates/topHead', $data);
           $this->load->view('dashboard/dashboard/dashboardPanel');
            $this->load->view('dashboard/templates/footer');
            } else {
