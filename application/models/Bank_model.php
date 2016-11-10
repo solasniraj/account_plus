@@ -109,7 +109,13 @@
     return $query->row()->amount;
         }
 
-        
+        public function get_bank_details_by_id($bankId)
+        {
+            $this->db->where('id', $bankId);
+            $this->db->where('status', '1');
+            $query = $this->db->get('bank_info');
+             return $query->result();
+        }
    
 
 

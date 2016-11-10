@@ -6,6 +6,7 @@ class Miscelleneous extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
                 $this->load->model('bank_model');
+                 $this->load->model('report_model');
                 $this->load->model('dbmanager_model');
 		$this->load->helper('url');
 		$this->load->helper(array('form', 'url'));
@@ -60,9 +61,15 @@ class Miscelleneous extends CI_Controller {
         $fromDateE = $this->input->post('englishDateF'); 
         $toDateN = $this->input->post('nepaliDateT');
         $toDateE = $this->input->post('englishDateT');
-        $bankName = $this->input->post('bankName');  
+        $bankId = $this->input->post('bankName');  
         $amount = $this->input->post('amount');  
-       
+       $bankDetails = $this->bank_model->get_bank_details_by_id($bankId);
+       if(!empty($bankDetails)){
+           foreach ($bankDetails as $banks){
+           $bankName = $banks->bank_name;
+       }}else{
+           $bankName = Null;
+       }
       $data['fromN'] = $fromDateN;
       $data['toN'] = $toDateN;
       $data['fromE'] = $fromDateE;
@@ -71,6 +78,7 @@ class Miscelleneous extends CI_Controller {
       $data['todayE'] = $this->dayFunctE();
       $data['bank'] = $bankName;
       $data['amount'] = $amount;
+      $data['bankTrans'] = $this->report_model->get_bank_trans_details_by_bank_id_with_in_dates($bankId, $fromDateN, $fromDateE, $toDateN, $toDateE);
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');

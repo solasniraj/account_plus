@@ -19,6 +19,9 @@
 <style>
     .width25per{width: 25%;}
     .has-error{color: red;font-size: 0.85em;display: none;}
+    #submitCurrentData:hover, #submitCurrentData:focus{color: #008000;}
+    #submitCurrentData{cursor: pointer;}
+    .form-control{font-size: 12px; padding: 6px 5px;}
 </style>
 
 
@@ -58,20 +61,6 @@
 <?php echo form_error('datepicker'); ?>
                                     <label class="has-error" for="datepicker" id="date_error">This field is required.</label></td>
 
-                                <td class="text-right
-                                    width25per"><b>Journal Type</b>
-
-                                    <select class="form-control" id="journalType" onchange="getAccountLedger(this)" name="journalType">
-                                        <option value="0">Select Types</option>
-                                    <?php foreach ($journalTypes as $value) { ?>
-                                            <option value="<?php echo $value->chart_code; ?>"><?php echo $value->chart_class_name; ?></option>
-                                            <?php } ?>
-                                    </select>
-                                            <?php echo form_error('journalType'); ?>
-                                    <label class="has-error" for="journalType" id="journalType_error">This field is required.</label>
-                                </td>
-
-
                                 <td class="text-right width25per"><b>Bank Balance: </b><br/>
                                     <a href="<?php echo base_url() . 'bank/getBalance' ?>" onClick="return popup(this, 'stevie')"><strong style="color:red;"><?php
                                             if (!empty($bankBalance)) {
@@ -102,17 +91,18 @@
                     <div class="table-responsive">
                         <table class="tablee">
                             <tbody>
-                                <tr style="background:#ebebe0;">
-                                    <td class="col-md-1"><b>Account Code</b></td>
-                                    <td class="col-md-1"><b>A/C Head</b></td>
-                                    <td class="col-md-1"><b>Sub-Ledger</b></td>
-                                    <td class="col-md-1"><b>Donar-list</b></td>
-                                    <td class="col-md-1"><b>Ledger type</b></td>
-                                    <td class="col-md-1"><b>Description</b></td>
-                                    <td class="col-md-1"><b>Debit</b></td>
-                                    <td class="col-md-1"><b>Credit</b></td>
-                                    <td class="col-md-1"><b>Cheque number</b></td>
-                                    <td class="col-md-1"><b>Action</b></td>
+                                <tr style="background:#ebebe0;font-size: 12px;">
+                                    <td style="width:8%"><b>Account Code</b></td>
+                                    <td style="width:10%"><b>Journal Type</b></td>
+                                    <td style="width:11%"><b>A/C Head</b></td>
+                                    <td style="width:11%"><b>Sub-Ledger</b></td>
+                                    <td style="width:10%"><b>Donor</b></td>
+                                    <td style="width:10%"><b>Ledger type</b></td>
+                                    <td style="width:12%"><b>Description</b></td>
+                                    <td style="width:7%"><b>Debit</b></td>
+                                    <td style="width:7%"><b>Credit</b></td>
+                                    <td style="width:8%"><b>Cheque number</b></td>
+                                    <td style="width:6%"><b>Action</b></td>
                                     
                                 </tr>
                                  <!--  working on the object starts -->
@@ -121,13 +111,21 @@
                             
                                 <!--   working on object is closed      -->
                             
-                                <tr>
+                                <tr style="font-size: 12px;">
 
                                     <td id="ledgerMasterCode">
                                         <input type="text" id="lMCode" value="" class="form-control" >
-                                        <label class="has-error" for="journalType" id="accCode_error">This field is required.</label>
-                                        <label class="has-error" for="journalType" id="accCodeMis_error">Account Code doesn't exist.</label>
+                                        <label class="has-error" for="lMCode" id="accCode_error">This field is required.</label>
+                                        <label class="has-error" for="lMCode" id="accCodeMis_error">Account Code doesn't exist.</label>
                                     </td>
+                                    <td><select class="form-control" id="journalType" onchange="getAccountLedger(this)" name="journalType">
+                                        <option value="0">Select Types</option>
+                                    <?php foreach ($journalTypes as $value) { ?>
+                                            <option value="<?php echo $value->chart_code; ?>"><?php echo $value->chart_class_name; ?></option>
+                                            <?php } ?>
+                                    </select>
+                                            <?php echo form_error('journalType'); ?>
+                                    <label class="has-error" for="journalType" id="journalType_error">This field is required.</label></td>
 
                                     <td> <select class="form-control" id="accountList" onchange="getSubLedger(this)">
                                             <option value="">Select Account</option>
@@ -169,12 +167,12 @@
                                     <td> <input  class="form-control" type="text" name="chequeNo" id="chequeNo"></td>
 
                                     <td rowspan="1"  class="b" id="toggleButton">
-                                        <span class="btn btn-success" id="submitCurrentData" onClick="addData()" style="padding:5px;margin:5px;width:70px;font-size:18px;">Add</span></td>
+                                        <span id="submitCurrentData" onClick="addData()" ><i class="fa fa-plus-square" style="font-size:24px;color: #5cb85c;"></i></span></td>
 
                                 </tr>
 
 
-                              <tbody id="workingWithObjectData">
+                            <tbody id="workingWithObjectData" style="font-size:12px;">
 
                             <tr id="addArrayData">
 
@@ -184,8 +182,8 @@
 
 
 
-                                <tr>
-                                <td colspan="6"><b>Total Amount</b></td>
+                                <tr style="font-size:14px;">
+                                <td colspan="7"><b>Total Amount</b></td>
                                 <td id="totalDebit" class="b">0</td>
                                 <td id="totalCredit" class="b">0</td>
                                 <td>&nbsp;</td>
@@ -195,8 +193,8 @@
 
                             </tr>
 
-                            <tr>
-                                <td colspan="6"><b>Difference in Debit
+                            <tr style="font-size:14px;">
+                                <td colspan="7"><b>Difference in Debit
                                         and Credit Amount</b></td>
                                 <td><input  id="debitGreater"
                                             class="form-control text-center" type="text" value="0.0"  readonly

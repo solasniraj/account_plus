@@ -55,18 +55,18 @@
             <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
                 <tr>
                     <th style="width: 15%">Reconcile Date</th>
-                    <th style="width: 15%">Begining Balance</th>
-                    <th style="width: 15%">Ending Balance</th>
-                    <th style="width: 15%">Account Total</th>
-                    <th style="width: 15%">Reconciled Amount</th>
-                    <th style="width: 15%">Difference</th>
-                    
+                    <th style="width: 15%">Balance as per bank statement</th>
+                    <th style="width: 15%">uncashed cheque amount (reduce)</th>
+                    <th style="width: 15%">undeposited amount (add)</th>
+                    <th style="width: 15%">Total</th>
+                    <th style="width: 15%">Amount as per cash book</th>
+                    <th style="width: 10%">Difference</th>
                 </tr>
                 <tr>
                     <td style="width: 15%"> <?php echo $todayN; ?></td>  
                     <td style="width: 15%">0.00</td>
-                    <td style="width: 15%">0.00</td>
                     <td style="width: 15%"><?php echo $amount; ?></td>  
+                    <td style="width: 15%">0.00</td>
                     <td style="width: 15%">0.00</td>
                     <td style="width: 15%">0.00</td>
                     <td style="width: 10%">0.00</td>
@@ -94,48 +94,51 @@
             <div data-example-id="simple-responsive-table">
 
                 <div class="table-responsive">
-                    <?php if(!empty($bankTrans)){ ?>
                     <table class="table table-bordered">
 
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Voucher No.</th>
+                                <th colspan="4">Undeposited amount</th>
+                                <th colspan="5">uncashed cheque</th>
+                            </tr>
+                            <tr>
+                                <th>Date</th>	
                                 <th>Description</th>
-                                <th>Debit</th>
-                                <th>Credit</th>
-                                <th>Action<br/> (choose transction to reconcile)</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                                <th>Date</th>	
+                                <th>Name</th>
+                                <th>cheque no</th>
+                                <th>Amount</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($bankTrans as $bTrans){ ?> 
                             <tr>
-                                <td><?php echo $bTrans->trans_date; ?></td> 
-                                <td><?php echo $bTrans->trans_no; ?></td>
-                                <td><?php echo $bTrans->memo; ?></td>
-                                <td style="width: 15%;"><?php if($bTrans->type=='dr'){echo abs($bTrans->amount);} ?></td>
-                                <td style="width: 15%;"><?php if($bTrans->type=='cr'){echo abs($bTrans->amount);} ?></td>
-                                <td><input type="checkbox" name="reconcile" class="" value="1"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>                       	
+
                             </tr>
-                            <?php } ?>
-                            
+                            <tr>
+                                <td colspan="2">Total</td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="3">Total</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
 
 
 
                         </tbody>
                     </table>
-                    
-                    
-                   
-
-                        <div class="lastButton">
-                            <button id="submitTheForm" class="btn btn-success btn-lg" style=" margin-left: 3px;"
-                                    value="Submit">Rconcile Bank Transactions</button>
-                        </div>
-
-                   
-                    
-                    <?php } ?>
                 </div>
             </div>
         </div>

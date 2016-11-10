@@ -59,7 +59,25 @@ $query = $this->db->get();
  return $query->result();  
     }
     
-    public function get_sum_of_amount_for_donar_by_code($donorCode, $led_mas_code)
+    public function get_bank_trans_details_by_bank_id_with_in_dates($bankId, $fromDateN, $fromDateE, $toDateN, $toDateE)
+    {
+        $this->db->where('bank_id', $bankId);
+        $this->db->where('status', '1');
+        if(!empty($fromDateN) && (!empty($fromDateE))){ 
+        $this->db->where('trans_date >=', $fromDateN);
+        $this->db->where('tran_date_english >=', $fromDateE);
+        }
+         if(!empty($toDateN) && (!empty($toDateE))){
+        $this->db->where('trans_date <=', $toDateN);
+        $this->db->where('tran_date_english <=', $toDateE);
+         }
+        $this->db->select('*');
+        $this->db->from('bank_trans_info');
+$query = $this->db->get();
+ return $query->result();
+    }
+
+        public function get_sum_of_amount_for_donar_by_code($donorCode, $led_mas_code)
     {
 
      $query = $this->db->query("SELECT SUM(CASE WHEN gl_code = '01' OR gl_code = '04' AND trans_type='dr' THEN amount END) AS t_amount,

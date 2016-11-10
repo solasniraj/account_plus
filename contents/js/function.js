@@ -300,12 +300,12 @@ function activateCommentAndSummerField(type)
 {
     if (type == "activate")
     {
-        $("#comment,#summary").attr("disabled", false);
+        $("#comment").attr("disabled", false);
         $("#submitTheForm").prop('disabled', false);
         $("#previewForm").prop('disabled', false);
     } else
     {
-        $("#comment,#summary").attr("disabled", true);
+        $("#comment").attr("disabled", true);
         $("#submitTheForm").prop('disabled', true);
         $("#previewForm").prop('disabled', true);
     }
@@ -553,7 +553,7 @@ function  addData()
     }           
     }else
             {
-                alert('here in else');
+               
                 $("label#captcha_mistake").show();
                 $("input#captcha").focus();
             }       
@@ -570,6 +570,7 @@ function viewTheItemsInArray()
         {
 
             var objestToLoop = allInsertItemsinVouture[i];
+            var chartId = objestToLoop.chartCode;
             var lMCode = objestToLoop.lMCode;
             var program = objestToLoop.programName;
             var accCode = objestToLoop.accCode;
@@ -630,6 +631,7 @@ function viewTheItemsInArray()
 
             myCustomViewToEnter = '<tr>' +
                     '<td>' + lMCode + '</td>' +
+                    '<td>' + chartId + '</td>' +
                     '<td>' + accCode + '</td>' +
                     '<td>' + subLedger_id + '</td>' +
                     '<td>' + donar_id + '</td>' +
@@ -638,7 +640,7 @@ function viewTheItemsInArray()
                     '<td>' + debitAmount + '</td>' +
                     '<td>' + creditAmount + '</td>' +
                     '<td>' + chequeNo + '</td>' +
-                    '<td colspan="2" style="width:200px" ><span type="text" onClick="editItmInTheArray(' + i + ')' + '"' + 'style=""><i class="fa fa-edit"></i></span> / <span type="text" onClick="delteItemFromArray(' + i + ')' + '"' + '><i class="fa fa-trash"></i></span></td></tr>';
+                    '<td colspan="2" style="width:200px" ><span type="text" onClick="editItmInTheArray(' + i + ')' + '"' + 'style=""><i class="fa fa-edit" style="font-size:20px;color: #0000ff;"></i></span> / <span type="text" onClick="delteItemFromArray(' + i + ')' + '"' + '><i class="fa fa-trash" style="font-size:20px;color: #0000ff;"></i></span></td></tr>';
 
             viewToDisplayInTable = viewToDisplayInTable + myCustomViewToEnter;
             debitTotal = numberWithCommas(numberWithOutCommas(debitTotal) + numberWithOutCommas(debitAmount));
