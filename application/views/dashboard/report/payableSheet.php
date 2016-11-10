@@ -28,15 +28,15 @@ if (!empty($committeeInfo)) {
                     <?php }    }   ?>
         
         <div class="text-right pull-right">
-            <a href="<?php echo base_url().'preview/controlLedger/'.$fy.'/'.$fromE.'/'.$todayE; ?>" target="_blank"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
-        <a href="<?php echo base_url().'printview/controlLedger/'.$fy.'/'.$fromE.'/'.$todayE; ?>" target="_blank"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
+            <a href="<?php echo base_url().'preview/payableSheet/'.$fy.'/'.$fromE.'/'.$todayE; ?>" target="_blank"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
+        <a href="<?php echo base_url().'printview/payableSheet/'.$fy.'/'.$fromE.'/'.$todayE; ?>" target="_blank"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
     </div>
                 
            <div class="text-center" style="padding: 5px 0px 5px 0px;margin-bottom: 15px;">
 
 <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
     <tr>
-        <td colspan="3"><h3>Control Ledger</h3> 
+        <td colspan="3"><h3>Account Payable Statement</h3> 
         <h4>As on <?php echo $todayN. ' ('. $todayE .')'; ?></h4>
         </td>
     </tr>
@@ -75,25 +75,9 @@ if (!empty($committeeInfo)) {
                                 <th>Date</th>	
                                 <th>Description</th>
                                 <th>Voucher No.</th>
-                                <th>Cheque No.</th>
-                                <th>Total</th>	
-                                <th>Bank</th>
-                                <th>Cash</th>
-                                <th>Advance</th>
-                                        <th><table>
-                                                <tr>
-                                                    <th colspan="5">Expenses</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
-                                                    <td>4</td>
-                                                    <td>5</td>
-                                                </tr>
-                                    </table></th>
-                                <th>TAL</th>
-                                <th>Other</th>
+                                <th>Other account payable</th>
+                                <th>Income Tax</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,13 +86,7 @@ if (!empty($committeeInfo)) {
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>                       	
+                                                       	
 
                             </tr>
                             
