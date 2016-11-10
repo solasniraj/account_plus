@@ -374,6 +374,11 @@ $data['todayE'] = $this->dayFunctE();
 
 }
 
+public function brs()
+{
+    
+}
+
 public function controlLedger()
 {
     $url = current_url();
