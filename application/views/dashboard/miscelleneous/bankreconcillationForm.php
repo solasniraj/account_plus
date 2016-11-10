@@ -14,11 +14,11 @@
                 ?>
 
                 <main class="flex-center">
-        <?php if (!empty($cLists->logo)) { ?>
+                    <?php if (!empty($cLists->logo)) { ?>
                         <div>
                             <img src="<?php echo base_url() . 'contents/uploads/images/' . $cLists->logo; ?>" height="60"/>
                         </div>
-        <?php } ?>
+                    <?php } ?>
                     <div>
                         <h4><?php echo $cLists->committee_name; ?></h4>
                         <p><?php echo $cLists->address; ?></p>
@@ -26,8 +26,9 @@
 
                     </div>
                 </main>    
-    <?php }
-} ?>
+            <?php }
+        }
+        ?>
 
 
 
@@ -36,41 +37,44 @@
             <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
                 <tr>
                     <td colspan="2"><h3>Bank reconciliation</h3> 
-                        
+
                     </td>
                 </tr>
                 <tr>
-        <td> <?php echo "Name Of Bank : ".$bank; ?></td>  
-       <td><?php echo "Bank Account Number :"; ?></td>
-    </tr>
-                <tr>
-        <td>From : <?php echo $fromN. ' (' .$fromE. ') '; ?></td>  
-       <td>To : <?php echo $toN. ' (' .$toE. ') '; ?></td>
-    </tr>
-
-
-            </table>
-            
-            <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
-                <tr>
-                    <th>Reconcile Date</th>
-                     <th>Beginning Balance</th>
-                     <th>Ending Balance</th>
-                     <th>Account Total</th>
-                     <th>Reconciled Amount</th>
-                     <th>Difference</th>
+                    <td> <?php echo "Name Of Bank : " . $bank; ?></td>  
+                    <td><?php echo "Bank Account Number :"; ?></td>
                 </tr>
                 <tr>
-        <td> <?php echo $todayN; ?></td>  
-       <td>0.00</td>
-       <td><?php echo $amount; ?></td>  
-       <td>0.00</td>
-       <td>0.00</td>
-       <td>0.00</td>
-    </tr>
+                    <td>From : <?php echo $fromN . ' (' . $fromE . ') '; ?></td>  
+                    <td>To : <?php echo $toN . ' (' . $toE . ') '; ?></td>
+                </tr>
 
 
             </table>
+            <br/>
+            <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
+                <tr>
+                    <th style="width: 15%">Reconcile Date</th>
+                    <th style="width: 15%">Balance as per bank statement</th>
+                    <th style="width: 15%">uncashed cheque amount (reduce)</th>
+                    <th style="width: 15%">undeposited amount (add)</th>
+                    <th style="width: 15%">Total</th>
+                    <th style="width: 15%">Amount as per cash book</th>
+                    <th style="width: 10%">Difference</th>
+                </tr>
+                <tr>
+                    <td style="width: 15%"> <?php echo $todayN; ?></td>  
+                    <td style="width: 15%">0.00</td>
+                    <td style="width: 15%"><?php echo $amount; ?></td>  
+                    <td style="width: 15%">0.00</td>
+                    <td style="width: 15%">0.00</td>
+                    <td style="width: 15%">0.00</td>
+                    <td style="width: 10%">0.00</td>
+                </tr>
+
+
+            </table>
+            <br/>
         </div>
 
 
@@ -87,30 +91,51 @@
                 }
                 ?>
             </div>
-            <div data-example-id="simple-responsive-table" class="bs-example4">
+            <div data-example-id="simple-responsive-table">
 
                 <div class="table-responsive">
                     <table class="table table-bordered">
-                        
+
                         <thead>
                             <tr>
+                                <th colspan="4">Undeposited amount</th>
+                                <th colspan="5">uncashed cheque</th>
+                            </tr>
+                            <tr>
                                 <th>Date</th>	
-                                <th>Journal Number</th>
                                 <th>Description</th>
-                                <th>Debit</th>
-                                <th>Credit </th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                                <th>Date</th>	
+                                <th>Name</th>
+                                <th>cheque no</th>
+                                <th>Amount</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                	
-                                	
-                               
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>                       	
 
                             </tr>
+                            <tr>
+                                <td colspan="2">Total</td>
+                                <td></td>
+                                <td></td>
+                                <td colspan="3">Total</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
 
-                           
+
 
                         </tbody>
                     </table>
