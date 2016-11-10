@@ -21,6 +21,7 @@
     .has-error{color: red;font-size: 0.85em;display: none;}
     #submitCurrentData:hover, #submitCurrentData:focus{color: #008000;}
     #submitCurrentData{cursor: pointer;}
+    .form-control{font-size: 12px; padding: 6px 5px;}
 </style>
 
 
@@ -90,18 +91,18 @@
                     <div class="table-responsive">
                         <table class="tablee">
                             <tbody>
-                                <tr style="background:#ebebe0;">
-                                    <td class="col-md-1"><b>Account Code</b></td>
-                                    <td class="col-md-1"><b>Journal Type</b></td>
-                                    <td class="col-md-1"><b>A/C Head</b></td>
-                                    <td class="col-md-1"><b>Sub-Ledger</b></td>
-                                    <td class="col-md-1"><b>Donar-list</b></td>
-                                    <td class="col-md-1"><b>Ledger type</b></td>
-                                    <td class="col-md-1"><b>Description</b></td>
-                                    <td class="col-md-1"><b>Debit</b></td>
-                                    <td class="col-md-1"><b>Credit</b></td>
-                                    <td class="col-md-1"><b>Cheque number</b></td>
-                                    <td class="col-md-1"><b>Action</b></td>
+                                <tr style="background:#ebebe0;font-size: 12px;">
+                                    <td style="width:8%"><b>Account Code</b></td>
+                                    <td style="width:10%"><b>Journal Type</b></td>
+                                    <td style="width:11%"><b>A/C Head</b></td>
+                                    <td style="width:11%"><b>Sub-Ledger</b></td>
+                                    <td style="width:10%"><b>Donor</b></td>
+                                    <td style="width:10%"><b>Ledger type</b></td>
+                                    <td style="width:12%"><b>Description</b></td>
+                                    <td style="width:7%"><b>Debit</b></td>
+                                    <td style="width:7%"><b>Credit</b></td>
+                                    <td style="width:8%"><b>Cheque number</b></td>
+                                    <td style="width:6%"><b>Action</b></td>
                                     
                                 </tr>
                                  <!--  working on the object starts -->
@@ -110,7 +111,7 @@
                             
                                 <!--   working on object is closed      -->
                             
-                                <tr>
+                                <tr style="font-size: 12px;">
 
                                     <td id="ledgerMasterCode">
                                         <input type="text" id="lMCode" value="" class="form-control" >
@@ -171,7 +172,7 @@
                                 </tr>
 
 
-                              <tbody id="workingWithObjectData">
+                            <tbody id="workingWithObjectData" style="font-size:12px;">
 
                             <tr id="addArrayData">
 
@@ -181,7 +182,7 @@
 
 
 
-                                <tr>
+                                <tr style="font-size:14px;">
                                 <td colspan="7"><b>Total Amount</b></td>
                                 <td id="totalDebit" class="b">0</td>
                                 <td id="totalCredit" class="b">0</td>
@@ -192,7 +193,7 @@
 
                             </tr>
 
-                            <tr>
+                            <tr style="font-size:14px;">
                                 <td colspan="7"><b>Difference in Debit
                                         and Credit Amount</b></td>
                                 <td><input  id="debitGreater"
