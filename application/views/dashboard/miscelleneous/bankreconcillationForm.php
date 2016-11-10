@@ -126,14 +126,14 @@
                     </table>
                     
                     
-                    <div class="row">
+                   
 
                         <div class="lastButton">
                             <button id="submitTheForm" class="btn btn-success btn-lg" style=" margin-left: 3px;"
                                     value="Submit">Rconcile Bank Transactions</button>
                         </div>
 
-                    </div>
+                   
                     
                     <?php } ?>
                 </div>
