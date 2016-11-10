@@ -340,7 +340,7 @@ $data['todayE'] = $this->dayFunctE();
 
 public function balanceSheet()
 {
-    {
+    
     $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
     $user_id = $this->session->userdata('user_id');
@@ -371,9 +371,42 @@ $data['todayE'] = $this->dayFunctE();
   } else {
     redirect('login/index/?url=' . $url, 'refresh');
 }
-}
+
 }
 
+public function controlLedger()
+{
+    $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
+    $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+      
+       $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
+      $fscSt = new DateTime($fiscalStart);
+$fiscalYrStart = $fscSt->format('Y-m-d');
+
+$data['fromN'] = $fiscalYrStart;
+$data['fromE'] = $this->convertToAd($fiscalYrStart);        
+$data['todayN'] = $this->dayFunctN();
+$data['todayE'] = $this->dayFunctE();
+      $data['incExpnLed'] = $this->ledger_model->get_ledger_master_listing_of_income_and_expn();
+      $data['allLedger'] = $this->ledger_model->get_ledger_master_listing_of_assets_and_liability();
+      
+           
+      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/report/controlLedger', $data);
+      $this->load->view('dashboard/templates/footer');
+      
+  } else {
+    redirect('login/index/?url=' . $url, 'refresh');
+}
+}
 
 public function dayFunctN()
 {
