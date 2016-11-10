@@ -253,7 +253,7 @@ closed ************************************** -->
                         <div class="col-md-12" >
                             <div class="form-group">
                                 <label for="comment"><b>Detailed Comment (Narration)</b></label>
-                                <textarea class="form-control" rows="2" style="resize:none" id="comment" name="comment"></textarea>
+                                <textarea class="form-control" rows="2" style="resize:none" id="comment" name="comment"><?php echo set_value('comment'); ?></textarea>
                                 <label class="has-error" for="comment" id="comment_error">This field is required.</label>
                             </div>
                         </div>
