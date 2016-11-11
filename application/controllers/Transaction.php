@@ -152,7 +152,7 @@ $NewNo = urlencode($value);
        $outputLT = "";
        if(!empty($accountLedger))
        {
-         $outputL .='<option value="00" class="text-center">Select Program</option>';
+         $outputL .='<option value="00" class="text-center">Select Acc Head</option>';
          foreach ($accountLedger as $value)
          {
 
@@ -162,7 +162,7 @@ $NewNo = urlencode($value);
        else
        {
 
-         $outputL .= '<option value="00">Select None</option>';
+         $outputL .= '<option value="00"></option>';
        }
        
        if(!empty($accountSubLedger))
@@ -176,7 +176,7 @@ $NewNo = urlencode($value);
        else 
        {
 
-         $outputS ='<option value="00"> Select None</option>';
+         $outputS ='<option value="00"></option>';
        }
        
        if(!empty($donor))
@@ -189,12 +189,12 @@ $NewNo = urlencode($value);
        }
        else 
        {
-         $outputD = '<option value="00"> Select None</option>';
+         $outputD = '<option value="00"></option>';
        }
        
        if(!empty($ledgerType))
        {
-           $outputLT .='<option value="00" class="text-center">Select Ledger Type</option>';
+           $outputLT .='<option value="00" class="text-center"></option>';
          foreach ($ledgerType as $value)
          {
            $outputLT .= '<option value="'.$value->ledger_type_code.'">'.$value->ledger_type_code.'&nbsp;&nbsp;'.$value->ledger_type_name.'</option>';
@@ -202,7 +202,7 @@ $NewNo = urlencode($value);
        }
        else 
        {
-         $outputLT = '<option value="00"> Select None</option>';
+         $outputLT = '<option value="00"></option>';
        }
        
        $response['ledger'] = $outputL;
@@ -264,7 +264,7 @@ echo json_encode($response);
        else 
        {
 
-         $outputS ='<option value="00"> Select None</option>';
+         $outputS ='<option value="00"></option>';
        }
        
        if(!empty($donor))
@@ -277,12 +277,12 @@ echo json_encode($response);
        }
        else 
        {
-         $outputD = '<option value="00"> Select None</option>';
+         $outputD = '<option value="00"></option>';
        }
        
        if(!empty($ledgerType))
        {
-           $outputLT .='<option value="00" class="text-center">Select Ledger Type</option>';
+           $outputLT .='<option value="00" class="text-center"></option>';
          foreach ($ledgerType as $value)
          {
            $outputLT .= '<option value="'.$value->ledger_type_code.'">'.$value->ledger_type_code.'&nbsp;&nbsp;'.$value->ledger_type_name.'</option>';
@@ -290,7 +290,7 @@ echo json_encode($response);
        }
        else 
        {
-         $outputLT = '<option value="00"> Select None</option>';
+         $outputLT = '<option value="00"></option>';
        }
        
         $response['subLedger'] = $outputS;
@@ -347,12 +347,12 @@ echo json_encode($response);
        }
        else 
        {
-         $outputD = '<option value="00"> Select None</option>';
+         $outputD = '<option value="00"></option>';
        }
        
        if(!empty($ledgerType))
        {
-           $outputLT .='<option value="00" class="text-center">Select Ledger Type</option>';
+           $outputLT .='<option value="00" class="text-center"></option>';
          foreach ($ledgerType as $value)
          {
            $outputLT .= '<option value="'.$value->ledger_type_code.'">'.$value->ledger_type_code.'&nbsp;&nbsp;'.$value->ledger_type_name.'</option>';
@@ -360,7 +360,7 @@ echo json_encode($response);
        }
        else 
        {
-         $outputLT = '<option value="00"> Select None</option>';
+         $outputLT = '<option value="00"></option>';
        }
        
         $response['donor'] = $outputD;
@@ -408,7 +408,7 @@ echo json_encode($response);
        
        if(!empty($ledgerType))
        {
-           $outputLT .='<option value="00" class="text-center">Select Ledger Type</option>';
+           $outputLT .='<option value="00" class="text-center"></option>';
          foreach ($ledgerType as $value)
          {
            $outputLT .= '<option value="'.$value->ledger_type_code.'">'.$value->ledger_type_code.'&nbsp;&nbsp;'.$value->ledger_type_name.'</option>';
@@ -416,7 +416,7 @@ echo json_encode($response);
        }
        else 
        {
-         $outputLT = '<option value="00"> Select None</option>';
+         $outputLT = '<option value="00"></option>';
        }
        
         $response['ledgerType'] = $outputLT;
