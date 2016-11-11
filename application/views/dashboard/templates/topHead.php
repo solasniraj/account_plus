@@ -171,15 +171,15 @@
 /*css by Madhu*/
 						 .comInfo {
     margin: auto;
-    width: 30%;
+    width: 50%;
      height: 0px;
-   padding: 0px;
-    margin: 0px 0px 0 580px;
+   padding: 1 px;
+    margin: 0px 0px 0 450px;
 }
 
 .Cinfo{
 
-padding: 7px;
+padding: 3px;
 
 }
 					</style>
@@ -203,8 +203,8 @@ padding: 7px;
 
 <img style="float:left;margin: 5px;" src="<?php echo base_url().'contents/uploads/images/'.$cLists->logo; ?>" height="50">
 				<div class="Cinfo">
-						<h4 style="margin-top: 5px;"><?php echo $cLists->committee_name; ?></h4>
-						<h5 style="margin-top: -11px;"><?php echo $cLists->address; ?></h5>
+						<h4 style="margin-top: 2px; line-height: 19px;"><?php echo $cLists->committee_name; ?></h4>
+						<h5 style="margin-top: -9px;"><?php echo $cLists->address; ?></h5>
 				</div>
 						
 
