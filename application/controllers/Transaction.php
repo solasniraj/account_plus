@@ -554,10 +554,11 @@ $user_id = $this->session->userdata('user_id');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
            
     $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);
-    $this->load->view('printPreview/preview/templates/header');
-     $this->load->view('printPreview/preview/transaction/singleJournalEntry', $data);
-     $this->load->view('printPreview/preview/templates/footer');
-    
+   $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+    $this->load->view('dashboard/transaction/journalPreview', $data);
+      $this->load->view('dashboard/templates/footer');
     
     }} else {
       redirect('login/index/?url=' . $url, 'refresh');
