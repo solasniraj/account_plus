@@ -4,7 +4,9 @@ var creditTotal = 0;
 var dateToday = new Date();
 var output = "";
 var allInsertItemsinVouture = [];
+var displayObjects = [];
 var objectToStroCurrentData;
+var journalItems;
 var incrementCounterForItem = 0;
 var viewToDisplayInTable = '';
 var myCustomViewToEnter = '';
@@ -290,9 +292,9 @@ function checkDiffernceBetDebitAndCredit()
     } else
     {
         debitCreditDifference = numberWithCommas(b - d);
-        $("#debitGreater").val(0.0);
+        $("#debitGreater").val(0);
         $("#creditGreater").val(debitCreditDifference);
-        activateCommentAndSummerField("adctivate");
+        activateCommentAndSummerField("notActivate");
     }
 }
 
@@ -501,7 +503,11 @@ function  addData()
     var creditAmount = $('#creditAmount').val();
     var chequeNo = $('#chequeNo').val();
     //$("#glTrans")[0].reset();
-    
+    var chartClass = $("#journalType option:selected").text();
+    var accountName = $("#accountList option:selected").text();
+    var subLName = $("#subLedgerList option:selected").text();
+    var donorName = $("#donerList option:selected").text();
+    var ledgerTName = $("#ledgerType option:selected").text();
     if (journal() == false)
     {
         $("#journalType").focus();
@@ -531,7 +537,9 @@ function  addData()
     if (debitAmount && !creditAmount)
     {
         objectToStroCurrentData = {chartCode: chartId,lMCode: lMCode,accCode: accountId,type: 'dr',subLedger_id: subLedger,donar_id: donar,ledgerType: ledgerType,description: description,debitAmount: debitAmount,creditAmount: '0',chequeNo: chequeNo};               
+        journalItems =  {chart: chartClass,acc: accountName,types: 'dr',subLedger: subLName,donar: donorName,ledgerT: ledgerTName,description: description,debitAmount: debitAmount,creditAmount: '0',chequeNo: chequeNo};               
             allInsertItemsinVouture.push(objectToStroCurrentData);
+            displayObjects.push(journalItems);
             viewTheItemsInArray();                              
        
         $("#glTrans")[0].reset();
@@ -540,7 +548,9 @@ function  addData()
     } else if(creditAmount && !debitAmount )
     {
         objectToStroCurrentData ={chartCode: chartId,lMCode: lMCode,accCode: accountId,type: 'dr',subLedger_id: subLedger,donar_id: donar,ledgerType: ledgerType,description: description,debitAmount: '0',creditAmount: creditAmount,chequeNo: chequeNo};             
+        journalItems =  {chart: chartClass,acc: accountName,types: 'dr',subLedger: subLName,donar: donorName,ledgerT: ledgerTName,description: description,debitAmount: '0',creditAmount: creditAmount,chequeNo: chequeNo};               
             allInsertItemsinVouture.push(objectToStroCurrentData);
+            displayObjects.push(journalItems);
             viewTheItemsInArray();
                    
        $("#glTrans")[0].reset();
@@ -570,36 +580,41 @@ function viewTheItemsInArray()
         {
 
             var objestToLoop = allInsertItemsinVouture[i];
+            var disObjs = displayObjects[i];
+            var chartClass = disObjs.chart;
             var chartId = objestToLoop.chartCode;
             var lMCode = objestToLoop.lMCode;
-            var program = objestToLoop.programName;
             var accCode = objestToLoop.accCode;
+            var accName = disObjs.acc;
             var subLedger_id = objestToLoop.subLedger_id;
-            if (subLedger_id)
+            var subLName = disObjs.subLedger;
+            if (subLedger_id && subLName)
             {
             } else
             {
-
+                subLName = '';
                 subLedger_id = '';
             }
 
-            var donar = objestToLoop.donarName;
+            var donarName = disObjs.donar;
             var donar_id = objestToLoop.donar_id;
 
-            if (donar_id)
+            if (donar_id && donarName)
             {
             } else
             {
+                donarName = '';
                 donar_id = '';
             }
 
 
             var ledgerType = objestToLoop.ledgerType;
-
-            if (ledgerType)
+            var ledTName = disObjs.ledgerT;
+            if (ledgerType && ledTName)
             {
             } else
             {
+                ledTName = '';
                 ledgerType = '';
             }
             var description = objestToLoop.description;
@@ -631,16 +646,16 @@ function viewTheItemsInArray()
 
             myCustomViewToEnter = '<tr>' +
                     '<td>' + lMCode + '</td>' +
-                    '<td>' + chartId + '</td>' +
-                    '<td>' + accCode + '</td>' +
-                    '<td>' + subLedger_id + '</td>' +
-                    '<td>' + donar_id + '</td>' +
-                    '<td>' + ledgerType + '</td>' +
+                    '<td>' + chartClass + '</td>' +
+                    '<td>' + accName + '</td>' +
+                    '<td>' + subLName + '</td>' +
+                    '<td>' + donarName + '</td>' +
+                    '<td>' + ledTName + '</td>' +
                     '<td>' + description + '</td>' +
                     '<td>' + debitAmount + '</td>' +
                     '<td>' + creditAmount + '</td>' +
                     '<td>' + chequeNo + '</td>' +
-                    '<td colspan="2" style="width:200px" ><span type="text" onClick="editItmInTheArray(' + i + ')' + '"' + 'style=""><i class="fa fa-edit" style="font-size:20px;color: #0000ff;"></i></span> / <span type="text" onClick="delteItemFromArray(' + i + ')' + '"' + '><i class="fa fa-trash" style="font-size:20px;color: #0000ff;"></i></span></td></tr>';
+                    '<td colspan="2" style="width:200px" ><span type="text" onClick="editItmInTheArray(' + i + ')' + '"' + 'style=""><i class="fa fa-edit" style="font-size:16px;color: #0000ff;"></i></span> / <span type="text" onClick="delteItemFromArray(' + i + ')' + '"' + '><i class="fa fa-trash" style="font-size:16px;color: #0000ff;"></i></span></td></tr>';
 
             viewToDisplayInTable = viewToDisplayInTable + myCustomViewToEnter;
             debitTotal = numberWithCommas(numberWithOutCommas(debitTotal) + numberWithOutCommas(debitAmount));

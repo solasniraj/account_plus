@@ -20,7 +20,7 @@
     .width25per{width: 25%;}
     .has-error{color: red;font-size: 0.85em;display: none;}
     #submitCurrentData:hover, #submitCurrentData:focus{color: #008000;}
-    #submitCurrentData{cursor: pointer;}
+    #submitCurrentData, .fa{cursor: pointer;}
     .form-control{font-size: 12px; padding: 6px 5px;}
 </style>
 
