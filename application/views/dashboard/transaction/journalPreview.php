@@ -125,25 +125,26 @@ $NewNo = urlencode($value);
 <table style="width: 100%;">
 
         <tr>
-            <td style="width: 50%;">
-                <pre>
+            <td>
+                
 
-                           Prepared By:
+                <span> Prepared By:</span>
+                <br/><br/><br/>
 
-                           .................
-                     
-                     Date : <?php echo $gLDate; ?>
-                </pre>
+                          <span> .................</span>
+                 <br/><br/>   
+                           <span>    Date : <?php echo $gLDate; ?></span>
+                
             </td>
-            <td style="width: 50%;">
-                <pre>
+            <td>
+                
                           
-                           Approved By:
-
-                           .................
-         
-                      Date: _________________
-                </pre>
+                        <span>   Approved By:</span>
+ <br/><br/><br/>
+                       <span>    .................</span>
+          <br/><br/>
+                     <span> Date: _________________</span>
+                
             </td>
         </tr>
     </table>

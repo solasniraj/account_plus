@@ -41,10 +41,14 @@ class export extends CI_Controller {
         if ($this->session->userdata('logged_in') == true) {
 $glNo = urldecode($id);
         $glNos = str_replace('&#47;', '/', $glNo);
-            $orientation = 'landscape';
+       
+              $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
-        $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+      
         $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);     
 
         $file=$glNos.".xls";
@@ -54,7 +58,7 @@ header("Pragma: no-cache");
 header("Expires: 0"); 
 
         $this->load->view('printPreview/download/templates/header');
-      $this->load->view('printPreview/download/transaction/singleJournalEntryPrint', $data);
+      $this->load->view('printPreview/download/transaction/singleJournal', $data);
       $this->load->view('printPreview/download/templates/footer');
             
         } else {

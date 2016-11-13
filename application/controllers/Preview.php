@@ -47,7 +47,7 @@ $glNo = urldecode($id);
         $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
         $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);     
             $this->load->view('printPreview/download/templates/header');
-      $this->load->view('printPreview/download/transaction/singleJournalEntryPrint', $data);
+      $this->load->view('printPreview/download/transaction/singleJournal', $data);
       $this->load->view('printPreview/download/templates/footer');
             // Get output html
             $html = $this->output->get_output();

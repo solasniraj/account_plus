@@ -50,7 +50,7 @@
         $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);     
       
       $this->load->view('printPreview/printView/templates/header');
-      $this->load->view('printPreview/printView/transaction/singleJournalEntryPrint', $data);
+      $this->load->view('printPreview/printView/transaction/singleJournal', $data);
       $this->load->view('printPreview/printView/templates/footer');
        }
         else 
