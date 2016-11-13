@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class preview extends CI_Controller {
+class export extends CI_Controller {
 
     function __construct() {
         parent::__construct();
@@ -24,7 +24,7 @@ class preview extends CI_Controller {
         }
     }
     
-    public function index()
+       public function index()
     {
          $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
@@ -46,21 +46,17 @@ $glNo = urldecode($id);
              $committee_code = $this->session->userdata('committee_code');
         $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
         $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);     
-            $this->load->view('printPreview/download/templates/header');
+
+        $file=$glNos.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0"); 
+
+        $this->load->view('printPreview/download/templates/header');
       $this->load->view('printPreview/download/transaction/singleJournalEntryPrint', $data);
       $this->load->view('printPreview/download/templates/footer');
-            // Get output html
-            $html = $this->output->get_output();
-            // Load library
-            $this->load->library('dompdf_gen');
-
-            // Convert to PDF
-            $this->dompdf->load_html($html);
-            $this->dompdf->set_paper('a4', $orientation);
-//            $this->dompdf->set_option('isHtml5ParserEnabled', true);
-            $this->dompdf->render();
-            $this->dompdf->stream($glNos.".pdf");
-            die;
+            
         } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -91,24 +87,16 @@ $glNo = urldecode($id);
       $data['ledgerDetails'] = $this->ledger_model->get_ledger_details_by_ledger_code($ledger);
        
         $data['ledgerRep'] = $this->report_model->get_transaction_details_of_ledger_with_in_dates($ledger, $fromN, $fromE, $toN, $toE);
-         
+    
+                $file="Ledger_report_".$ledger.'_'.$fromN."_".$toN.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");
+        
              $this->load->view('printPreview/download/templates/header');
       $this->load->view('printPreview/download/report/ledgerReport', $data);
       $this->load->view('printPreview/download/templates/footer');
-      // var_dump($_SERVER["DOCUMENT_ROOT"]);
-                     $html = $this->output->get_output();
-            // Load library
-            $this->load->library('dompdf_gen');
-
-            // Convert to PDF
-            $this->dompdf->load_html($html);
-            $paper_orientation = 'landscape';
-            $customPaper = array(0,0,950,1200);
-            $this->dompdf->set_paper($customPaper,$paper_orientation);
-//            $this->dompdf->set_paper('a4', $orientation);
-            //$this->dompdf->set_option('isHtml5ParserEnabled', true);
-            $this->dompdf->render();
-            $this->dompdf->stream("Ledger_report_".$ledger.'_'.$fromN."_".$toN.".pdf");
       
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
@@ -141,24 +129,17 @@ $glNo = urldecode($id);
       $data['toE'] = $toE;
        $data['todayN'] = $this->dayFunctN();
       $data['todayE'] = $this->dayFunctE();
-       
+    
+                      $file="Sub_ledger_report_".$subledger.'_'.$fromN."_".$toN.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");
+      
       $this->load->view('printPreview/download/templates/header');
       $this->load->view('printPreview/download/report/subLedgerReport', $data);
       $this->load->view('printPreview/download/templates/footer');
-       // var_dump($_SERVER["DOCUMENT_ROOT"]);
-                     $html = $this->output->get_output();
-            // Load library
-            $this->load->library('dompdf_gen');
-
-            // Convert to PDF
-            $this->dompdf->load_html($html);
-            $paper_orientation = 'landscape';
-            $customPaper = array(0,0,950,1200);
-            $this->dompdf->set_paper($customPaper,$paper_orientation);
-//            $this->dompdf->set_paper('a4', $orientation);
-            //$this->dompdf->set_option('isHtml5ParserEnabled', true);
-            $this->dompdf->render();
-            $this->dompdf->stream("Sub_ledger_report_".$subledger.'_'.$fromN."_".$toN.".pdf");
+       
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
@@ -199,22 +180,15 @@ $glNo = urldecode($id);
       if($fromN < $toN){
           if($fromN <= $reportDateN && $reportDateN <= $toN){
       
+            $file="Donor_report_".$donar.'_'.$fromN."_".$toN.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");
+              
       $this->load->view('printPreview/download/templates/header');
       $this->load->view('printPreview/download/report/donorReport', $data);
       $this->load->view('printPreview/download/templates/footer');
-        // var_dump($_SERVER["DOCUMENT_ROOT"]);
-                     $html = $this->output->get_output();
-            // Load library
-            $this->load->library('dompdf_gen');
-
-            // Convert to PDF
-            $this->dompdf->load_html($html);
-            $paper_orientation = 'landscape';
-            $customPaper = array(0,0,950,1500);
-            $this->dompdf->set_paper($customPaper,$paper_orientation);
-            //$this->dompdf->set_option('isHtml5ParserEnabled', true);
-            $this->dompdf->render();
-            $this->dompdf->stream("Donor_report_".$donar.'_'.$fromN."_".$toN.".pdf");
           
            }else{
               $this->session->set_flashdata("flashMessage", '<div class="alert alert-warning" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date and last report date between from and to dates.</div>');
@@ -229,7 +203,7 @@ $glNo = urldecode($id);
         }
     }
     
-    public function dayBook($dayE)
+     public function dayBook($dayE)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -256,31 +230,23 @@ $glNo = urldecode($id);
       $data['nepaliDay'] = $nepaliDate;
       $data['todayN'] = $this->dayFunctN();
       $data['todayE'] = $this->dayFunctE();   
-      
+     
+$file="Day_Book_".$data['dayN']."(".$data['dayE'].").xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");      
       $this->load->view('printPreview/download/templates/header');
       $this->load->view('printPreview/download/report/dayBook', $data);
       $this->load->view('printPreview/download/templates/footer');
-     // var_dump($_SERVER["DOCUMENT_ROOT"]);
-                     $html = $this->output->get_output();
-            // Load library
-            $this->load->library('dompdf_gen');
-
-            // Convert to PDF
-            $this->dompdf->load_html($html);
-            $paper_orientation = 'landscape';
-            $customPaper = array(0,0,950,1200);
-            $this->dompdf->set_paper($customPaper,$paper_orientation);
-//            $this->dompdf->set_paper('a4', $orientation);
-            //$this->dompdf->set_option('isHtml5ParserEnabled', true);
-            $this->dompdf->render();
-            $this->dompdf->stream("Day_Book_".$data['dayN']."(".$data['dayE'].").pdf");
+         
             
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
     
-   public function iEReport($fiscal=NULL, $fromEng=NULL, $toEng=NULL)
+public function iEReport($fiscal=NULL, $fromEng=NULL, $toEng=NULL)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -308,25 +274,17 @@ $glNo = urldecode($id);
       
       
       if($fiscalData == $fiscal_year)  { 
+          
+          $file="Income_expenditure_".$fromN."_".$toN.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");
+          
              $this->load->view('printPreview/download/templates/header');
       $this->load->view('printPreview/download/report/iEReport', $data);
       $this->load->view('printPreview/download/templates/footer');
-    // var_dump($_SERVER["DOCUMENT_ROOT"]);
-                     $html = $this->output->get_output();
-            // Load library
-            $this->load->library('dompdf_gen');
-
-            // Convert to PDF
-            $this->dompdf->load_html($html);
-            $paper_orientation = 'landscape';
-            $customPaper = array(0,0,950,1200);
-            $this->dompdf->set_paper($customPaper,$paper_orientation);
-//            $this->dompdf->set_paper('a4', $orientation);
-            //$this->dompdf->set_option('isHtml5ParserEnabled', true);
-            $this->dompdf->render();
-            $this->dompdf->stream("Income_expenditure_".$fromN."_".$toN.".pdf");
-      
-      
+    
       }else{
           $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
          
@@ -364,27 +322,18 @@ $glNo = urldecode($id);
       $data['incExpnLed'] = $this->ledger_model->get_ledger_master_listing_of_income_and_expn();
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing_of_assets_and_liability();
       
-      if($fiscalData == $fiscal_year)  {  
+      if($fiscalData == $fiscal_year)  { 
+          
+          $file="Balance_sheet_".$fromN."_".$toN.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");
+          
              $this->load->view('printPreview/download/templates/header');
       $this->load->view('printPreview/download/report/balanceSheet', $data);
       $this->load->view('printPreview/download/templates/footer');
      
-       // var_dump($_SERVER["DOCUMENT_ROOT"]);
-                     $html = $this->output->get_output();
-            // Load library
-            $this->load->library('dompdf_gen');
-
-            // Convert to PDF
-            $this->dompdf->load_html($html);
-            $paper_orientation = 'landscape';
-            $customPaper = array(0,0,950,1200);
-            $this->dompdf->set_paper($customPaper,$paper_orientation);
-//            $this->dompdf->set_paper('a4', $orientation);
-            //$this->dompdf->set_option('isHtml5ParserEnabled', true);
-            $this->dompdf->render();
-            $this->dompdf->stream("Balance_sheet_".$fromN."_".$toN.".pdf");
-      
-      
       }else{
           $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
          redirect('reports/bSheet', 'refresh');
@@ -420,23 +369,17 @@ $glNo = urldecode($id);
 
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing();
      if($fiscalData == $fiscal_year)  {
+         
+         $file="Trial_balance_".$fromN."_".$toN.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");
+         
       $this->load->view('printPreview/download/templates/header');
       $this->load->view('printPreview/download/report/trialBalance', $data);
       $this->load->view('printPreview/download/templates/footer');
-    // var_dump($_SERVER["DOCUMENT_ROOT"]);
-                     $html = $this->output->get_output();
-            // Load library
-            $this->load->library('dompdf_gen');
-
-            // Convert to PDF
-            $this->dompdf->load_html($html);
-            $paper_orientation = 'landscape';
-            $customPaper = array(0,0,950,1200);
-            $this->dompdf->set_paper($customPaper,$paper_orientation);
-//            $this->dompdf->set_paper('a4', $orientation);
-            //$this->dompdf->set_option('isHtml5ParserEnabled', true);
-            $this->dompdf->render();
-            $this->dompdf->stream("Trial_balance_".$fromN."_".$toN.".pdf");
+    
          }else{
          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
          redirect('reports/tBalance', 'refresh');
@@ -445,7 +388,9 @@ $glNo = urldecode($id);
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
-    }
+    }    
+    
+    
     
     
  public function dayFunctN()
