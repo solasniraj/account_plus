@@ -1,25 +1,30 @@
-  <?php if (!defined('BASEPATH'))
-  exit('No direct script access allowed');
-  class printview extends CI_Controller {
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class export extends CI_Controller {
+
     function __construct() {
-      parent::__construct();
-      $this->load->library('session');
-       $this->load->model('report_model');
+        parent::__construct();
+        $this->load->library('session');
+         $this->load->model('report_model');
          $this->load->model('transaction_model');
          $this->load->model('dbmanager_model');
          $this->load->model('ledger_model');
-      $this->load->helper('url');
-      $this->load->helper(array('form', 'url'));
-      $this->load->library('pagination');
-       $this->load->library('Numbertowords');
-       if(is_trans_pending())
+        $this->load->helper('url');
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('pagination');
+        $this->load->helper('csv');
+        $this->load->library('Numbertowords');
+        if(is_trans_pending())
         {
         $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please take action on draft journals first to make journal entry.</div>');
         redirect('transaction/journalList', 'refresh');
         }
     }
-
-    public function index()
+    
+       public function index()
     {
          $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
@@ -28,38 +33,40 @@
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
-    
-    public function printJoural($id= NULL )
-    {
-     if ($this->session->userdata('logged_in') == true)
-      {
-         $url = current_url();
-         if( $id === NULL )
-         {
-          return redirect('dashboard', 'refresh');
-         }
-      $glNo = urldecode($id);
+
+    public function jounalView($id=null) {
+        
+        
+        $url = current_url();
+        if ($this->session->userdata('logged_in') == true) {
+$glNo = urldecode($id);
         $glNos = str_replace('&#47;', '/', $glNo);
-     $user_id = $this->session->userdata('user_id');
+       
+              $user_id = $this->session->userdata('user_id');
              $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
-             $fiscal_year = $this->session->userdata('fiscal_year'); 
-             
+             $fiscal_year = $this->session->userdata('fiscal_year');              
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-        $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);     
       
-      $this->load->view('printPreview/printView/templates/header');
-      $this->load->view('printPreview/printView/transaction/singleJournal', $data);
-      $this->load->view('printPreview/printView/templates/footer');
-       }
-        else 
-        {
-          redirect('login/index/?url=' . $url, 'refresh');
+        $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);     
+
+        $file=$glNos.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0"); 
+
+        $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/transaction/singleJournal', $data);
+      $this->load->view('printPreview/download/templates/footer');
+            
+        } else {
+            redirect('login/index/?url=' . $url, 'refresh');
+        }
     }
-  }
-  
-  public function ledgerReport($fromEng=NULL, $toEng=NULL, $ledCode=NULL)
+    
+   public function ledgerReport($fromEng=NULL, $toEng=NULL, $ledCode=NULL)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -84,17 +91,23 @@
       $data['ledgerDetails'] = $this->ledger_model->get_ledger_details_by_ledger_code($ledger);
        
         $data['ledgerRep'] = $this->report_model->get_transaction_details_of_ledger_with_in_dates($ledger, $fromN, $fromE, $toN, $toE);
-         
-             $this->load->view('printPreview/printView/templates/header');
-      $this->load->view('printPreview/printView/report/ledgerReport', $data);
-      $this->load->view('printPreview/printView/templates/footer');
+    
+                $file="Ledger_report_".$ledger.'_'.$fromN."_".$toN.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");
+        
+             $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/ledgerReport', $data);
+      $this->load->view('printPreview/download/templates/footer');
       
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
     
-    public function subLedgerReport($fromEng=NULL, $toEng=NULL, $sledCode=NULL)
+     public function subLedgerReport($fromEng=NULL, $toEng=NULL, $sledCode=NULL)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -120,17 +133,23 @@
       $data['toE'] = $toE;
        $data['todayN'] = $this->dayFunctN();
       $data['todayE'] = $this->dayFunctE();
-       
-      $this->load->view('printPreview/printView/templates/header');
-      $this->load->view('printPreview/printView/report/subLedgerReport', $data);
-      $this->load->view('printPreview/printView/templates/footer');
+    
+                      $file="Sub_ledger_report_".$subledger.'_'.$fromN."_".$toN.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");
       
+      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/subLedgerReport', $data);
+      $this->load->view('printPreview/download/templates/footer');
+       
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
     
-     public function donorReport($donorCode=NULL, $fromEng=NULL, $reportDateEng=NULL, $toEng=NULL)
+    public function donorReport($donorCode=NULL, $fromEng=NULL, $reportDateEng=NULL, $toEng=NULL)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -164,10 +183,18 @@
 
       if($fromN < $toN){
           if($fromN <= $reportDateN && $reportDateN <= $toN){
-             $this->load->view('printPreview/printView/templates/header');
-      $this->load->view('printPreview/printView/report/donorReport', $data);
-      $this->load->view('printPreview/printView/templates/footer');
-      }else{
+      
+            $file="Donor_report_".$donar.'_'.$fromN."_".$toN.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");
+              
+      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/donorReport', $data);
+      $this->load->view('printPreview/download/templates/footer');
+          
+           }else{
               $this->session->set_flashdata("flashMessage", '<div class="alert alert-warning" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose from date before to date and last report date between from and to dates.</div>');
          redirect('reports/dReport', 'refresh');
           }
@@ -180,7 +207,7 @@
         }
     }
     
-    public function dayBook($dayE)
+     public function dayBook($dayE)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -190,8 +217,6 @@
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
             
-             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
-       
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
     
         if (!$dayE) {
@@ -208,18 +233,24 @@
       $data['day']= $day;
       $data['nepaliDay'] = $nepaliDate;
       $data['todayN'] = $this->dayFunctN();
-      $data['todayE'] = $this->dayFunctE();
-             
-             $this->load->view('printPreview/printView/templates/header');
-      $this->load->view('printPreview/printView/report/dayBook', $data);
-      $this->load->view('printPreview/printView/templates/footer');
-      
+      $data['todayE'] = $this->dayFunctE();   
+     
+$file="Day_Book_".$data['dayN']."(".$data['dayE'].").xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");      
+      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/dayBook', $data);
+      $this->load->view('printPreview/download/templates/footer');
+         
+            
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
     }
     
-    public function iEReport($fiscal=NULL, $fromEng=NULL, $toEng=NULL)
+public function iEReport($fiscal=NULL, $fromEng=NULL, $toEng=NULL)
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
@@ -247,11 +278,20 @@
       
       
       if($fiscalData == $fiscal_year)  { 
-             $this->load->view('printPreview/printView/templates/header');
-      $this->load->view('printPreview/printView/report/iEReport', $data);
-      $this->load->view('printPreview/printView/templates/footer');
+          
+          $file="Income_expenditure_".$fromN."_".$toN.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");
+          
+             $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/iEReport', $data);
+      $this->load->view('printPreview/download/templates/footer');
+    
       }else{
           $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
+         
          redirect('reports/ieAccounts', 'refresh');
       } 
      } else {
@@ -286,12 +326,20 @@
       $data['incExpnLed'] = $this->ledger_model->get_ledger_master_listing_of_income_and_expn();
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing_of_assets_and_liability();
       
-      if($fiscalData == $fiscal_year)  {  
-             $this->load->view('printPreview/printView/templates/header');
-      $this->load->view('printPreview/printView/report/balanceSheet', $data);
-      $this->load->view('printPreview/printView/templates/footer');
+      if($fiscalData == $fiscal_year)  { 
+          
+          $file="Balance_sheet_".$fromN."_".$toN.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");
+          
+             $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/balanceSheet', $data);
+      $this->load->view('printPreview/download/templates/footer');
+     
       }else{
-         $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
+          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
          redirect('reports/bSheet', 'refresh');
       }
      } else {
@@ -303,7 +351,7 @@
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) { 
-      $user_id = $this->session->userdata('user_id');
+     $user_id = $this->session->userdata('user_id');
              $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
@@ -325,23 +373,31 @@
 
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing();
      if($fiscalData == $fiscal_year)  {
-             $this->load->view('printPreview/printView/templates/header');
-      $this->load->view('printPreview/printView/report/trialBalance', $data);
-      $this->load->view('printPreview/printView/templates/footer');
-       }else{
-          $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
+         
+         $file="Trial_balance_".$fromN."_".$toN.".xls";
+header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=$file");
+header("Pragma: no-cache");
+header("Expires: 0");
+         
+      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/report/trialBalance', $data);
+      $this->load->view('printPreview/download/templates/footer');
+    
+         }else{
+         $this->session->set_flashdata("flashMessage", '<div class="alert alert-info" style="margin-bottom: 0;"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Please choose proper fiscal year.</div>');
          redirect('reports/tBalance', 'refresh');
-      }      
-             
+      } 
+            
      } else {
             redirect('login/index/?url=' . $url, 'refresh');
         }
-    }
+    }    
     
-  
-  
-  
-  public function dayFunctN()
+    
+    
+    
+ public function dayFunctN()
 {
     date_default_timezone_set('Asia/Kathmandu');
 $currentYear = date('Y');
@@ -365,10 +421,9 @@ public function dayFunctE()
     date_default_timezone_set('Asia/Kathmandu');
     $today = date('Y-m-d');
     return $today;
-}
-  
-  
-  public function convertToBs($day=Null)
+} 
+
+public function convertToBs($day=Null)
 {
     $tday = new DateTime($day);
 $date = $tday->format('Y-m-d');
@@ -392,7 +447,6 @@ return $dateOfToday;
 
 }
     
-  
  public function convertToAd($day=Null)
 {
     
@@ -417,14 +471,6 @@ $dateOfToday = $tday->format('Y-m-d');
 return $dateOfToday;
 
 
-} 
-  
-  
-  
-  
-  
-  
-  
-  
-  
+}   
+
 }

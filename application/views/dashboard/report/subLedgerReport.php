@@ -33,7 +33,8 @@ if (!empty($committeeInfo)) {
       <div class="text-right pull-right">
         <a href="<?php echo base_url().'preview/subLedgerReport/'.$fromE.'/'.$toE.'/'.$ledCode; ?>" target="_blank"><button id="btnDownload" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px">Download</button></a>&nbsp;&nbsp;
         <a href="<?php echo base_url().'printview/subLedgerReport/'.$fromE.'/'.$toE.'/'.$ledCode; ?>" target="_blank"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:100px" >Print</button></a>
-    </div>  
+   <a href="<?php echo base_url().'export/subLedgerReport/'.$fromE.'/'.$toE.'/'.$ledCode; ?>" target="_blank"> <button id="print" class="btns-primary" style=" margin-left: 3px; margin-top: -73px; width:160px" >Export to Excel</button></a>
+      </div>  
         <?php } }?>
     
 
