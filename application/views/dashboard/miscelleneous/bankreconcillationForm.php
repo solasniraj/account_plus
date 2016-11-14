@@ -67,8 +67,8 @@
                     <td style="width: 15%">0.00</td>
                     <td style="width: 15%">0.00</td>
                     <td style="width: 15%"><?php echo $amount; ?></td>  
-                    <td style="width: 15%">0.00</td>
-                    <td style="width: 15%">0.00</td>
+                    <td id="reconcile_amount" style="width: 15%">0.00</td>
+                    <td id="difference_amount" style="width: 15%">0.00</td>
                     <td style="width: 10%">0.00</td>
                 </tr>
 
@@ -115,8 +115,57 @@
                                 <td><?php echo $bTrans->memo; ?></td>
                                 <td style="width: 15%;"><?php if($bTrans->type=='dr'){echo abs($bTrans->amount);} ?></td>
                                 <td style="width: 15%;"><?php if($bTrans->type=='cr'){echo abs($bTrans->amount);} ?></td>
-                                <td><input type="checkbox" name="reconcile" class="" value="1"></td>
+                                <td><input type="checkbox" name="reconcile" class="checkbox1" value="1"></td>
                             </tr>
+
+<script>
+$(document).ready(function(){
+    $(".checkbox1").change(function(){
+         if (this.checked) {
+
+        var debitAmount = parseInt($(this).parent().prev().prev().text());  
+        if(isNaN(debitAmount)){
+            debitAmount = 0;
+        }
+        var creditAmount = parseInt($(this).parent().prev().text()); 
+if(isNaN(creditAmount)){
+            creditAmount = 0;
+        }
+        var reconciled_amount;
+         var prevVal = parseInt($("#reconcile_amount").text());
+
+         reconciled_amount = prevVal + debitAmount + creditAmount ;
+//alert (prevVal + debitAmount + creditAmount);
+ $("#reconcile_amount").html(reconciled_amount);
+ $("#difference_amount").html(debitAmount-creditAmount);
+//$(this).each(function () {
+//        reconciled_amount = $("#reconcile_amount").val() + debitAmount + creditAmount;
+ //       //$("#reconcile_amount").html(reconciled_amount);
+    }
+      else {
+         var debitAmount = parseInt($(this).parent().prev().prev().text());  
+        if(isNaN(debitAmount)){
+            debitAmount = 0;
+        }
+        var creditAmount = parseInt($(this).parent().prev().text()); 
+if(isNaN(creditAmount)){
+            creditAmount = 0;
+        }
+        var reconciled_amount;
+         var prevVal = parseInt($("#reconcile_amount").text());
+
+         reconciled_amount =  prevVal - debitAmount - creditAmount;
+
+ $("#reconcile_amount").html(reconciled_amount);
+ $("#difference_amount").html(reconciled_amount-creditAmount);
+    }
+
+    
+    });
+
+    });
+</script>
+
                             <?php } ?>
                             
 
