@@ -692,7 +692,7 @@ function viewTheItemsInArray()
 
 function delteItemFromArray(index)
 {
-    var confirmUser = confirm("!!Are you sure to Delete this transaction");
+    var confirmUser = confirm("Are you sure to Delete this transaction");
     if (confirmUser)
     {
         allInsertItemsinVouture.splice(index, 1);

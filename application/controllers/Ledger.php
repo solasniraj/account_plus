@@ -198,6 +198,11 @@ class ledger extends CI_Controller {
     public function addnewLedger() {
         if ($this->session->userdata('logged_in') == true) {
             $user_id = $this->session->userdata('user_id');
+            $username = $this->session->userdata('username');
+            $committee_id = $this->session->userdata('committee_id');
+            $committee_code = $this->session->userdata('committee_code');
+            $fiscal_year = $this->session->userdata('fiscal_year');
+            $fiscalCode = $this->session->userdata('fiscal_code');
             $this->load->library('form_validation');
             $this->form_validation->set_rules('chartAccType', 'Account', 'trim|required|callback_xss_clean|max_length[500]');
             $this->form_validation->set_rules('codeNo', 'Account Code', 'trim|required|callback_xss_clean|max_length[500]');
@@ -222,10 +227,10 @@ class ledger extends CI_Controller {
                      $this->createLedger();
                } else{
                 
-                $result = $this->ledger_model->add_new_ledger_master($chartNo, $accLedger, $accSubLedger, $donorType, $ledgerType, $codeNo, $accDescription);
+                $result = $this->ledger_model->add_new_ledger_master($chartNo, $accLedger, $accSubLedger, $donorType, $ledgerType, $codeNo, $accDescription, $fiscalCode);
                 if((($accLedger <= '09') && ($accLedger >= '00')) && $chartNo =='01')
                 {
-               $result1 = $this->bank_model->add_new_bank_account_from_ledger($accDescription, $accLedger);
+               $result1 = $this->bank_model->add_new_bank_account_from_ledger($accDescription, $accLedger, $fiscalCode);
                 }
        
                 if ($result) {

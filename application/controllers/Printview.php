@@ -45,7 +45,7 @@
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year'); 
-             
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
         $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);     
       
@@ -68,6 +68,7 @@
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
         $fromE = $fromEng;
@@ -103,6 +104,7 @@
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
        $fromE = $fromEng;
@@ -139,7 +141,8 @@
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
-            $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+            $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
         $donar = $donorCode;
          $fromE = $fromEng;
@@ -189,7 +192,7 @@
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
-            
+            $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
        
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
@@ -228,6 +231,7 @@
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
         $FisYr = urldecode($fiscal);
@@ -268,6 +272,7 @@
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
         $FisYr = urldecode($fiscal);
@@ -308,7 +313,8 @@
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');      
-    $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
     $FisYr = urldecode($fiscal);
         $fiscalData = str_replace('&#47;', '/', $FisYr);
         

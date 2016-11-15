@@ -22,7 +22,7 @@ class Transaction_model extends CI_Model {
                }
     }
     
-    public function add_transaction_to_bank_transaction($journalNo, $datepicker, $englishDate, $lmcode, $description, $debitAmount, $bankId, $type)
+    public function add_transaction_to_bank_transaction($journalNo, $datepicker, $englishDate, $lmcode, $description, $debitAmount, $bankId, $type, $fiscalCode)
     {
         $data = Array(
             'trans_no' => $journalNo,  
@@ -33,13 +33,15 @@ class Transaction_model extends CI_Model {
             'memo' => $description,
                 'amount' => $debitAmount,
                 'bank_id' => $bankId,
+            'fiscal_code' => $fiscalCode,
                 'status' => '1');
        return  $this->db->insert('bank_trans_info', $data);
     }
 
     
-    private function _get_datatables_query()
+    private function _get_datatables_query($fiscalCode)
     {        
+         $this->db->where('fiscal_code', $fiscalCode);
        $this->db->distinct();
         $this->db->group_by('journal_voucher_no');
         $this->db->select('*');
@@ -80,25 +82,26 @@ class Transaction_model extends CI_Model {
         }
     }
  
-    function get_datatables()
+    function get_datatables($fiscalCode)
     {
-        $this->_get_datatables_query();
+        $this->_get_datatables_query($fiscalCode);
         if($_POST['length'] != -1)
         $this->db->limit($_POST['length'], $_POST['start']);
         $query = $this->db->get();
         return $query->result();
     }
  
-    function count_filtered()
+    function count_filtered($fiscalCode)
     {
-        $this->_get_datatables_query();
+        $this->_get_datatables_query($fiscalCode);
         $query = $this->db->get();
         return $query->num_rows();
     }
  
-    public function count_all()
+    public function count_all($fiscalCode)
     {
         $this->db->distinct();
+        $this->db->where('fiscal_code', $fiscalCode);
         $this->db->group_by('journal_voucher_no');
         $this->db->from('gl_trans_info');
         return $this->db->count_all_results();
@@ -110,8 +113,9 @@ class Transaction_model extends CI_Model {
     
     
 
-    public function get_transactions_details()
+    public function get_transactions_details($fiscalCode)
     {
+        $this->db->where('fiscal_code', $fiscalCode);
         $this->db->distinct();
         $this->db->group_by('journal_voucher_no');
         $this->db->select('*');
@@ -141,7 +145,7 @@ $query = $this->db->get();
  return $query->result();   
     }
 
-    public function add_gl_transaction($journalNo, $datepicker, $englishDate, $chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $Amount, $chequeNo, $type)
+    public function add_gl_transaction($journalNo, $datepicker, $englishDate, $chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $Amount, $chequeNo, $type, $fiscalCode)
     {
         $data = Array(
             'journal_voucher_no' => $journalNo,            
@@ -158,6 +162,7 @@ $query = $this->db->get();
                 'amount' => $Amount,
                 'cheque_no' => $chequeNo,
                 'trans_type' => $type,
+                'fiscal_code' => $fiscalCode,
                 'gl_trans_status' => Null,
                 );
        return  $this->db->insert('gl_trans_info', $data);

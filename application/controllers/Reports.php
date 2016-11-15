@@ -42,6 +42,7 @@ public function dayBook()
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
         
@@ -96,6 +97,7 @@ public function ledgerReport()
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
         $ledger = $this->input->post('ledgerCode');
@@ -153,6 +155,7 @@ public function subLedgerReport()
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
         $subledger = $this->input->post('ledgerCode');
@@ -211,6 +214,7 @@ public function donorReport()
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
         $donar = $this->input->post('ledgerCode');
@@ -280,6 +284,7 @@ public function trialBalance()
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
       $fscSt = new DateTime($fiscalStart);
@@ -313,6 +318,7 @@ public function incomeExpnReport()
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
        $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
@@ -348,6 +354,7 @@ public function balanceSheet()
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
        $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
@@ -388,6 +395,7 @@ public function controlLedger()
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
        $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
@@ -420,6 +428,7 @@ public function fundStatus()
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
        $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
@@ -452,6 +461,7 @@ public function payableSheet()
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
       
        $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();

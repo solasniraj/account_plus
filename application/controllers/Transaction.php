@@ -31,7 +31,7 @@
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');
-             
+             $fiscalCode = $this->session->userdata('fiscal_code');
        $this->load->view('dashboard/templates/header');
        $this->load->view('dashboard/templates/sideNavigation');
        $this->load->view('dashboard/templates/topHead');
@@ -47,8 +47,13 @@
        $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
 
-      $userId = $this->session->userdata("user_id");
-      $data['transactionDetails'] = $this->transaction_model->get_transactions_details();  
+     $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+      $data['transactionDetails'] = $this->transaction_model->get_transactions_details($fiscalCode);  
       $this->load->view('dashboard/templates/header');
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
@@ -61,8 +66,8 @@
   
   public function getJournalPagination()
   {
-
-$list = $this->transaction_model->get_datatables();
+ $fiscalCode = $this->session->userdata('fiscal_code');
+$list = $this->transaction_model->get_datatables($fiscalCode);
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $customers) {
@@ -102,8 +107,8 @@ $NewNo = urlencode($value);
  
         $output = array(
                         "draw" => $_POST['draw'],
-                        "recordsTotal" => $this->transaction_model->count_all(),
-                        "recordsFiltered" => $this->transaction_model->count_filtered(),
+                        "recordsTotal" => $this->transaction_model->count_all($fiscalCode),
+                        "recordsFiltered" => $this->transaction_model->count_filtered($fiscalCode),
                         "data" => $data,
                 );
         //output to json format
@@ -489,7 +494,7 @@ $user_id = $this->session->userdata('user_id');
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');
-     
+             $fiscalCode = $this->session->userdata('fiscal_code');
      $journalNumber = $this->transaction_model->count_all() + 1;
      
   $jnNumber = str_pad($journalNumber, 5, "0", STR_PAD_LEFT);
@@ -551,6 +556,7 @@ $user_id = $this->session->userdata('user_id');
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
            
     $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);
@@ -628,7 +634,7 @@ if(is_trans_pending())
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');
-     
+             $fiscalCode = $this->session->userdata('fiscal_code');
      $journalNumber = $this->program_model->getCurrentJournalNumer();
      
   $jnNumber = str_pad($journalNumber, 5, "0", STR_PAD_LEFT);
@@ -708,31 +714,31 @@ if(is_trans_pending())
            if((!empty($debitAmount)) && is_numeric( $debitAmount )){
                $type='dr';
               if($chartCode == '01' || $chartCode == '04'){
-                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type);
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type, $fiscalCode);
               }elseif($chartCode == '02' || $chartCode == '03'){
                   $debitAmount = ('-1') * $debitAmount;
-                          $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate,$chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type);
+                          $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate,$chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $debitAmount, $chequeNo, $type, $fiscalCode);
               }else{
                   echo "something went wrong";
               }
               if((($accCode <= '09') && ($accCode >= '00')) && $chartCode =='01'){
                $bankId = $this->transaction_model->get_bank_details_by_ledger_id($accCode);
-                $this->transaction_model->add_transaction_to_bank_transaction($journalNo, $datepicker, $englishDate, $lmcode, $description, $debitAmount, $bankId, $type);  
+                $this->transaction_model->add_transaction_to_bank_transaction($journalNo, $datepicker, $englishDate, $lmcode, $description, $debitAmount, $bankId, $type, $fiscalCode);  
               }else{}
                
            }elseif((!empty ($creditAmount)) && is_numeric( $creditAmount )){
                $type='cr';
                if($chartCode == '01' || $chartCode == '04'){
                   $creditAmount = ('-1') * $creditAmount;
-                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type);
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type, $fiscalCode);
               }elseif($chartCode == '02' || $chartCode == '03'){
-                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type);
+                  $this->transaction_model->add_gl_transaction($journalNo, $datepicker, $englishDate, $chartCode, $lmcode, $accountHd, $accCode, $subLedger_id, $donar_id, $ledgerType, $description, $creditAmount, $chequeNo, $type, $fiscalCode);
               }else{
                   echo "something went wrong";
               }
               if((($accCode <= '09') && ($accCode >= '00')) && $chartCode =='01'){
                  $bankId = $this->transaction_model->get_bank_details_by_ledger_id($accCode);
-                $this->transaction_model->add_transaction_to_bank_transaction($journalNo, $datepicker, $englishDate, $lmcode, $description, $creditAmount, $bankId, $type);    
+                $this->transaction_model->add_transaction_to_bank_transaction($journalNo, $datepicker, $englishDate, $lmcode, $description, $creditAmount, $bankId, $type, $fiscalCode);    
               }else{}
            }else{
                echo 'neither debit nor credit';

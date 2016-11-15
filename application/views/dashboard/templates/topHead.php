@@ -200,8 +200,8 @@ padding: 3px;
 					<div class="comInfo">
 
 					
-
-<img style="float:left;margin: 5px;" src="<?php echo base_url().'contents/uploads/images/'.$cLists->logo; ?>" height="50">
+<?php if(!empty($cLists->logo)){ ?>
+<img style="float:left;margin: 5px;" src="<?php echo base_url().'contents/uploads/images/'.$cLists->logo; ?>" height="38"> <?php } ?>
 				<div class="Cinfo">
 						<h4 style="margin-top: 2px; line-height: 19px;"><?php echo $cLists->committee_name; ?></h4>
 						<h5 style="margin-top: -9px;"><?php echo $cLists->address; ?></h5>

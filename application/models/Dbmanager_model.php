@@ -6,7 +6,7 @@
             $this->load->database();
         }
         
-        public function add_committee_default_user_fiscal_year($dataCommittee, $dataFiscalYear, $dataUser)
+        public function add_committee_default_user_fiscal_year($dataCommittee, $dataFiscalYear, $dataUser, $dataSuper)
         {
             $this->db->trans_start();
             
@@ -21,10 +21,11 @@ $committeeCode = $q->row()->code;
             $dataFiscalYear['committee_id'] = $committeeId;
         $dataUser['committee_id'] = $committeeId;
         $dataUser['committee_code'] = $committeeCode;
- 
+ $dataSuper['committee_id'] = $committeeId;
+         $dataSuper['committee_code'] = $committeeCode;
   $this->db->insert('fiscal_year_info', $dataFiscalYear);
  $this->db->insert('user_info', $dataUser);
- 
+ $this->db->insert('user_info', $dataSuper);
  $this->db->trans_complete();
  
  if ($this->db->trans_status() === FALSE) {
@@ -50,8 +51,19 @@ else {
              return $query->result(); 
         }
 
-        
-
+        public function get_fiscal_year_code_by_year($fiscalYear)
+        {
+            $this->db->where('status', '1');
+            $this->db->where('fiscal_year', $fiscalYear);
+            $this->db->select('fiscal_code');
+               $query= $this->db->get("fiscal_year_info")->result();
+               if(!empty($query)){
+           return $query[0]->fiscal_code;
+               }else{
+                   return '0';
+               }
+        }
+                
 
 
         public function check_database_for_first_time()
@@ -68,6 +80,8 @@ else {
         
         public function get_latest_unlocked_fiscal_year_start_date()
         {
+            $this->db->where('status', '1');
+            //$this->db->where('is_closed', '1');
             $this->db->select_max('begin_date');
                $query= $this->db->get("fiscal_year_info")->result();
                if(!empty($query)){

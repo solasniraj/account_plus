@@ -51,7 +51,7 @@
      return  $insert_id;
         }
         
-        public function add_new_bank_account_from_ledger($accDescription, $accLedger)
+        public function add_new_bank_account_from_ledger($accDescription, $accLedger, $fiscalCode)
         {
             $data = Array(
                 'bank_account_code' => NULL,
@@ -62,7 +62,8 @@
             'bank_address' => NULL,
                 'bank_account_number' => NULL,
                 'bank_phone_no' => NULL,
-                'status' => '1');
+                'status' => '1',
+                'fiscal_code' => $fiscalCode);
         $this->db->insert('bank_info', $data);
         $insert_id = $this->db->insert_id();
      return  $insert_id;

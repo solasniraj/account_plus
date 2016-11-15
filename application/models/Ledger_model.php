@@ -311,7 +311,7 @@ $query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledge
   return $query->num_rows();   
    }
 
-   public function add_new_ledger_master($chartNo, $accLedger, $accSubLedger, $donorType, $ledgerType, $codeNo, $accDescription)
+   public function add_new_ledger_master($chartNo, $accLedger, $accSubLedger, $donorType, $ledgerType, $codeNo, $accDescription, $fiscalCode)
    {
        
        $data = Array(
@@ -322,6 +322,7 @@ $query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledge
            'subledger_code' => $accSubLedger,
            'donor_code' => $donorType,
            'ledger_type_code' => $ledgerType,
+           'fiscal_code' => $fiscalCode,
       'status' => '1'
       );
 

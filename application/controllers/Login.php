@@ -88,9 +88,11 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
                 'status' => '1');
         
         $dataFiscalYear = Array(
+            'fiscal_code' => 'fs0001',
             'fiscal_year' => $fiscalYear,
-                'begin_date' => $pieces[0] . '/04/01',
+            'begin_date' => $pieces[0] . '/04/01',
             'end_date' => $pieces[1] . '/03/30',
+            'is_closed' => '0',
                 'status' => '1');
         
         $dataUser = Array(
@@ -99,7 +101,15 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
                 'user_type' => 'administrator',
                 'status' => '1');
         
-      $result1 = $this->dbmanager_model->add_committee_default_user_fiscal_year($dataCommittee, $dataFiscalYear, $dataUser);
+        $dataSuper = Array(
+            'user_name' => 'infotechnab',
+            'password' => md5('salyani056533977'),
+                'user_type' => 'administrator',
+                'status' => '1',
+            'user_role' => 'super admin'
+        );
+        
+      $result1 = $this->dbmanager_model->add_committee_default_user_fiscal_year($dataCommittee, $dataFiscalYear, $dataUser, $dataSuper);
        
         
        
@@ -148,8 +158,11 @@ $data['fiscalYear'] = $this->dbmanager_model->get_fiscal_year();
            
             $query = $this->dbuser->validate();
             if ($query) {
+                $fiscalYear = $this->input->post('fiscalYear');
+                $fiscalCode = $this->dbmanager_model->get_fiscal_year_code_by_year($fiscalYear);
                 $data = array(
-                    'fiscal_year' => $this->input->post('fiscalYear')                
+                    'fiscal_year' => $fiscalYear,
+                    'fiscal_code' => $fiscalCode
                 );
                 $this->session->set_userdata($data);
              if($link == base_url().'/login/logout')
