@@ -41,8 +41,9 @@ if (!empty($committeeInfo)) {
         </td>
     </tr>
     <tr>
-        <td>From : <?php echo $fromN. ' (' .$fromE. ') '; ?></td>  
-       <td>Printed on : <?php echo $todayN. ' (' .$todayE. ') '; ?></td>
+        <td>From : <?php echo $fromN. ' (' .$fromE. ') '; ?></td>      
+        <td>To : <?php echo $toN. ' ('. $toE .')'; ?></td>
+        <td>Printed on : <?php echo $todayN. ' (' .$todayE. ') '; ?></td>
     </tr>
     
    
