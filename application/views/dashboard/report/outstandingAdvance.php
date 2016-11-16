@@ -89,10 +89,7 @@ if (!empty($committeeInfo)) {
                 </tr>
             </thead>
             <tbody>
-                <?php
-                 
-                      
-                      
+                <?php if(!empty($advanse)){         
                       ?>
                 <tr>
                     <td style="width: 10%;"></td>
@@ -104,10 +101,11 @@ if (!empty($committeeInfo)) {
                     <td style="width: 10%;"></td>
                     <td style="width: 10%;"></td>
                     <td style="width: 10%;"></td>
-                    
-                    
+                                        
                 </tr> 
-                
+                <?php } else {
+    echo "<tr><td colspan='9'><strong>Journal etries are not found for provided date range.</td></tr>";
+} ?>
                    
                 
             </tbody>

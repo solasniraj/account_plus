@@ -141,7 +141,7 @@ $sumExpnMore += abs($sumExpnNow);
                     <td><?php echo "Rs. ".(abs($sumExpnLast) + abs($sumExpnMore)); ?></td>
                     <td><?php echo "Rs. ".(abs($sumFunds) - abs($sumExpnMore) - abs($sumExpnLast)); ?></td>
                 </tr>
-                <?php } else{ echo "<tr><td colspan='6'><strong>No entries are found</td></tr>";} ?>
+                <?php } else{ echo "<tr><td colspan='6'><strong>Journal etries are not found for provided date range.</td></tr>";} ?>
             </tbody>
  
             

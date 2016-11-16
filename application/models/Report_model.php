@@ -39,6 +39,48 @@ $query = $this->db->get();
  return $query->result();  
     }
     
+    public function get_accounts_payable_from_liability_from_journal($fromN, $fromE, $toN, $toE)
+    {
+       $this->db->where('account_ledger_head_code', '02');
+        $this->db->where('gl_trans_status', '1');
+        if(!empty($fromN) && (!empty($fromE))){ 
+        $this->db->where('tran_date >=', $fromN);
+        $this->db->where('tran_date_english >=', $fromE);
+        }
+         if(!empty($toN) && (!empty($toE))){
+        $this->db->where('tran_date <=', $toN);
+        $this->db->where('tran_date_english <=', $toE);
+         }
+        $this->db->select('*');
+        $this->db->from('gl_trans_info');
+$this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.journal_voucher_no');
+//$this->db->join('ledger_master', 'ledger_master.ledger_master_code = gl_trans_info.ledger_master_code');
+$query = $this->db->get();
+ return $query->result(); 
+    }
+    
+    public function get_outstanding_advance_from_assets_from_journal($fromN, $fromE, $toN, $toE)
+    {
+        $this->db->where('account_ledger_head_code', '01');
+        $this->db->where('gl_code >=', '10');
+        $this->db->where('gl_code <=', '29');
+        $this->db->where('gl_trans_status', '1');
+        if(!empty($fromN) && (!empty($fromE))){ 
+        $this->db->where('tran_date >=', $fromN);
+        $this->db->where('tran_date_english >=', $fromE);
+        }
+         if(!empty($toN) && (!empty($toE))){
+        $this->db->where('tran_date <=', $toN);
+        $this->db->where('tran_date_english <=', $toE);
+         }
+        $this->db->select('*');
+        $this->db->from('gl_trans_info');
+$this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no = gl_trans_info.journal_voucher_no');
+//$this->db->join('ledger_master', 'ledger_master.ledger_master_code = gl_trans_info.ledger_master_code');
+$query = $this->db->get();
+ return $query->result(); 
+    }
+
     public function get_transaction_details_of_sub_ledger_with_in_dates($subledger, $fromN, $fromE, $toN, $toE)
     {
         $this->db->where('sub_ledger_code', $subledger);
