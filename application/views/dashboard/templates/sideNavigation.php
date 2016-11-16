@@ -76,13 +76,16 @@
                     <li><a href="<?php echo base_url() . 'reports/trialBalance' ?>">Trial Balance</a></li>
                     <li><a href="<?php echo base_url() . 'reports/incomeExpnReport' ?>">Income and Expenditure Account</a></li>
                     <li><a href="<?php echo base_url() . 'reports/balanceSheet' ?>">Balance Sheet</a></li>
-                    
+                    <li><a href="<?php echo base_url() . 'reports/brs' ?>">Bank Reconciliation Statement</a></li>
                     <li><a href="<?php echo base_url() . 'reports/dayBook' ?>">Day Book</a></li>
                     <li><a href="<?php echo base_url() . 'reports/dReport' ?>">Donor Report</a></li>
                     <li><a href="<?php echo base_url() . 'reports/trialBalance' ?>">Activity Report</a></li>
                     <li><a href="<?php echo base_url() . 'reports/slReport' ?>">Sub Ledger Report</a></li>
                     <li><a href="<?php echo base_url() . 'reports/lReport' ?>">Ledger Report</a></li>
-
+                    <li><a href="<?php echo base_url() . 'reports/pSheet' ?>">Accounts Payable</a></li>
+                    <li><a href="<?php echo base_url() . 'reports/oAdvance' ?>">Outstanding Advance</a></li>
+                    <li><a href="<?php echo base_url() . 'reports/fStatus' ?>">Fund Status</a></li>
+                    <li><a href="<?php echo base_url() . 'reports/cLedger' ?>">Control Ledger</a></li>
                 </ul>
             </li>
             <li class="menu-list"><a href="#"><i class="lnr lnr-pencil"></i> <span>Info</span></a>

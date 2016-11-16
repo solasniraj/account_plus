@@ -422,6 +422,30 @@ public function brs()
     
 }
 
+public function cLedger()
+{
+    $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
+        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        $data['donorDetails'] = $this->ledger_model->get_all_donar();
+      $this->load->view('dashboard/templates/header', $data);
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/report/cLedgerQueryForm', $data);
+      $this->load->view('dashboard/templates/footer');
+      
+  } else {
+    redirect('login/index/?url=' . $url, 'refresh');
+}
+}
+
 public function controlLedger()
 {
     $url = current_url();
@@ -488,6 +512,32 @@ $data['todayE'] = $this->dayFunctE();
 }
 }
 
+public function pSheet()
+{
+    {
+    $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
+        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        $data['donorDetails'] = $this->ledger_model->get_all_donar();
+      $this->load->view('dashboard/templates/header', $data);
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/report/pSheetQueryForm', $data);
+      $this->load->view('dashboard/templates/footer');
+      
+  } else {
+    redirect('login/index/?url=' . $url, 'refresh');
+}
+}
+}
+
 public function payableSheet()
    {
     $url = current_url();
@@ -519,7 +569,61 @@ $data['todayE'] = $this->dayFunctE();
   } else {
     redirect('login/index/?url=' . $url, 'refresh');
 }
-}     
+}  
+
+public function oAdvance()
+{
+    
+    $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
+        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        $data['donorDetails'] = $this->ledger_model->get_all_donar();
+      $this->load->view('dashboard/templates/header', $data);
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/report/oAdvanceQueryForm', $data);
+      $this->load->view('dashboard/templates/footer');
+      
+  } else {
+    redirect('login/index/?url=' . $url, 'refresh');
+}
+
+}
+
+public function fStatus()
+        {
+    
+    $url = current_url();
+    if ($this->session->userdata('logged_in') == true) {
+        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        $data['donorDetails'] = $this->ledger_model->get_all_donar();
+      $this->load->view('dashboard/templates/header', $data);
+      $this->load->view('dashboard/templates/sideNavigation');
+      $this->load->view('dashboard/templates/topHead');
+      $this->load->view('dashboard/report/fStatusQueryForm', $data);
+      $this->load->view('dashboard/templates/footer');
+      
+  } else {
+    redirect('login/index/?url=' . $url, 'refresh');
+}
+
+}
+
+
 
 public function dayFunctN()
 {
