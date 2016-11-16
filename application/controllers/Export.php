@@ -11,6 +11,7 @@ class export extends CI_Controller {
          $this->load->model('report_model');
          $this->load->model('transaction_model');
          $this->load->model('dbmanager_model');
+         $this->load->model('dbuser');
          $this->load->model('ledger_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
@@ -49,7 +50,7 @@ $glNo = urldecode($id);
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);     
 
         $file=$glNos.".xls";
@@ -58,7 +59,7 @@ header("Content-Disposition: attachment; filename=$file");
 header("Pragma: no-cache");
 header("Expires: 0"); 
 
-        $this->load->view('printPreview/download/templates/header');
+        $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/transaction/singleJournal', $data);
       $this->load->view('printPreview/download/templates/footer');
             
@@ -78,7 +79,7 @@ header("Expires: 0");
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         $fromE = $fromEng;
         $fromN = $this->convertToBs($fromE);
         $toE = $toEng;
@@ -100,7 +101,7 @@ header("Content-Disposition: attachment; filename=$file");
 header("Pragma: no-cache");
 header("Expires: 0");
         
-             $this->load->view('printPreview/download/templates/header');
+             $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/ledgerReport', $data);
       $this->load->view('printPreview/download/templates/footer');
       
@@ -120,7 +121,7 @@ header("Expires: 0");
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
        $fromE = $fromEng;
         $fromN = $this->convertToBs($fromE);
         $toE = $toEng;
@@ -143,7 +144,7 @@ header("Content-Disposition: attachment; filename=$file");
 header("Pragma: no-cache");
 header("Expires: 0");
       
-      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/subLedgerReport', $data);
       $this->load->view('printPreview/download/templates/footer');
        
@@ -163,7 +164,7 @@ header("Expires: 0");
              $fiscal_year = $this->session->userdata('fiscal_year');      
             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         $donar = $donorCode;
          $fromE = $fromEng;
         $fromN = $this->convertToBs($fromE);
@@ -194,7 +195,7 @@ header("Content-Disposition: attachment; filename=$file");
 header("Pragma: no-cache");
 header("Expires: 0");
               
-      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/donorReport', $data);
       $this->load->view('printPreview/download/templates/footer');
           
@@ -222,7 +223,7 @@ header("Expires: 0");
              $fiscal_year = $this->session->userdata('fiscal_year');      
             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-    
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         if (!$dayE) {
                 $day = date('Y-m-d');
                 $data['dayN'] = $this->dayFunctN();
@@ -244,7 +245,7 @@ header("Content-type: application/vnd.ms-excel");
 header("Content-Disposition: attachment; filename=$file");
 header("Pragma: no-cache");
 header("Expires: 0");      
-      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/dayBook', $data);
       $this->load->view('printPreview/download/templates/footer');
          
@@ -265,7 +266,7 @@ public function iEReport($fiscal=NULL, $fromEng=NULL, $toEng=NULL)
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         $FisYr = urldecode($fiscal);
         $fiscalData = str_replace('&#47;', '/', $FisYr);
         
@@ -290,7 +291,7 @@ header("Content-Disposition: attachment; filename=$file");
 header("Pragma: no-cache");
 header("Expires: 0");
           
-             $this->load->view('printPreview/download/templates/header');
+             $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/iEReport', $data);
       $this->load->view('printPreview/download/templates/footer');
     
@@ -315,7 +316,7 @@ header("Expires: 0");
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         $FisYr = urldecode($fiscal);
         $fiscalData = str_replace('&#47;', '/', $FisYr);
         
@@ -340,7 +341,7 @@ header("Content-Disposition: attachment; filename=$file");
 header("Pragma: no-cache");
 header("Expires: 0");
           
-             $this->load->view('printPreview/download/templates/header');
+             $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/balanceSheet', $data);
       $this->load->view('printPreview/download/templates/footer');
      
@@ -364,7 +365,8 @@ header("Expires: 0");
              $fiscal_year = $this->session->userdata('fiscal_year');      
     $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
-    $FisYr = urldecode($fiscal);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+             $FisYr = urldecode($fiscal);
         $fiscalData = str_replace('&#47;', '/', $FisYr);
         
         $fromE = $fromEng;
@@ -387,7 +389,7 @@ header("Content-Disposition: attachment; filename=$file");
 header("Pragma: no-cache");
 header("Expires: 0");
          
-      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/trialBalance', $data);
       $this->load->view('printPreview/download/templates/footer');
     

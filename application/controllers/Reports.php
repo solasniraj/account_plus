@@ -7,6 +7,7 @@ class reports extends CI_Controller {
          $this->load->model('report_model');
          $this->load->model('transaction_model');
          $this->load->model('dbmanager_model');
+         $this->load->model('dbuser');
          $this->load->model('ledger_model');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -22,7 +23,16 @@ class reports extends CI_Controller {
     {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
-          $this->load->view('dashboard/templates/header');
+            $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        
+          $this->load->view('dashboard/templates/header', $data);
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
           $this->load->view('dashboard/report/summery');
@@ -44,7 +54,7 @@ public function dayBook()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         
         $day = $this->input->post('englishDate');
         $nepaliDate = $this->input->post('datepicker');
@@ -61,7 +71,7 @@ public function dayBook()
       $data['nepaliDay'] = $nepaliDate;
       $data['todayN'] = $this->dayFunctN();
       $data['todayE'] = $this->dayFunctE();
-        $this->load->view('dashboard/templates/header');
+        $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/dayBook', $data);
@@ -76,8 +86,17 @@ public function lReport()
 {
      $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
+        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        
         $data['ledgerDetails'] = $this->ledger_model->get_ledger_master_listing();
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/ledgerQueryForm', $data);
@@ -99,7 +118,7 @@ public function ledgerReport()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         $ledger = $this->input->post('ledgerCode');
         $fromN = $this->input->post('nepaliDateF');
         $fromE = $this->input->post('englishDateF');
@@ -116,7 +135,7 @@ public function ledgerReport()
       $data['todayN'] = $this->dayFunctN();
       $data['todayE'] = $this->dayFunctE();
       if($fromN < $toN){
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/ledgerReport', $data);
@@ -134,8 +153,16 @@ public function slReport()
 {
      $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
+        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         $data['subLedgerDetails'] = $this->ledger_model->get_sub_ledger_info();
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/subLedgerQueryForm', $data);
@@ -157,7 +184,7 @@ public function subLedgerReport()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         $subledger = $this->input->post('ledgerCode');
         $fromN = $this->input->post('nepaliDateF');
         $fromE = $this->input->post('englishDateF');
@@ -174,7 +201,7 @@ public function subLedgerReport()
        $data['todayN'] = $this->dayFunctN();
       $data['todayE'] = $this->dayFunctE();
       if($fromN < $toN){
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/subLedgerReport', $data);
@@ -192,8 +219,16 @@ public function dReport()
 {
     $url = current_url();
     if ($this->session->userdata('logged_in') == true) {
+        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         $data['donorDetails'] = $this->ledger_model->get_all_donar();
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/donorQueryForm', $data);
@@ -216,7 +251,7 @@ public function donorReport()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         $donar = $this->input->post('ledgerCode');
         $fromN = $this->input->post('nepaliDateF');
         $fromE = $this->input->post('englishDateF');
@@ -240,7 +275,7 @@ public function donorReport()
 
       if($fromN < $toN){
           if($fromN <= $reportDateN && $reportDateN <= $toN){
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/donorReport', $data);
@@ -286,7 +321,8 @@ public function trialBalance()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+             $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
       $fscSt = new DateTime($fiscalStart);
 $fiscalYrStart = $fscSt->format('Y-m-d');
 
@@ -298,7 +334,7 @@ $data['todayE'] = $this->dayFunctE();
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing();
       
         
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/trialBalance', $data);
@@ -320,7 +356,7 @@ public function incomeExpnReport()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
        $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
       $fscSt = new DateTime($fiscalStart);
 $fiscalYrStart = $fscSt->format('Y-m-d');
@@ -333,7 +369,7 @@ $data['todayE'] = $this->dayFunctE();
       
       
              
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/incomeExpnReport', $data);
@@ -356,7 +392,7 @@ public function balanceSheet()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
        $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
       $fscSt = new DateTime($fiscalStart);
 $fiscalYrStart = $fscSt->format('Y-m-d');
@@ -369,7 +405,7 @@ $data['todayE'] = $this->dayFunctE();
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing_of_assets_and_liability();
       
            
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/balanceSheet', $data);
@@ -397,7 +433,7 @@ public function controlLedger()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
        $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
       $fscSt = new DateTime($fiscalStart);
 $fiscalYrStart = $fscSt->format('Y-m-d');
@@ -408,7 +444,7 @@ $data['todayN'] = $this->dayFunctN();
 $data['todayE'] = $this->dayFunctE();
       
            
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/controlLedger', $data);
@@ -430,7 +466,7 @@ public function fundStatus()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
        $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
       $fscSt = new DateTime($fiscalStart);
 $fiscalYrStart = $fscSt->format('Y-m-d');
@@ -441,7 +477,7 @@ $data['todayN'] = $this->dayFunctN();
 $data['todayE'] = $this->dayFunctE();
       
            
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/fundStatus', $data);
@@ -463,7 +499,7 @@ public function payableSheet()
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
        $fiscalStart = $this->dbmanager_model->get_latest_unlocked_fiscal_year_start_date();
       $fscSt = new DateTime($fiscalStart);
 $fiscalYrStart = $fscSt->format('Y-m-d');
@@ -474,7 +510,7 @@ $data['todayN'] = $this->dayFunctN();
 $data['todayE'] = $this->dayFunctE();
       
            
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/report/payableSheet', $data);

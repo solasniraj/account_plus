@@ -11,6 +11,7 @@ class preview extends CI_Controller {
          $this->load->model('report_model');
          $this->load->model('transaction_model');
          $this->load->model('dbmanager_model');
+         $this->load->model('dbuser');
          $this->load->model('ledger_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
@@ -39,14 +40,21 @@ class preview extends CI_Controller {
         
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
+            $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+            $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+            
 $glNo = urldecode($id);
         $glNos = str_replace('&#47;', '/', $glNo);
             $orientation = 'landscape';
-             $committee_id = $this->session->userdata('committee_id');
-             $committee_code = $this->session->userdata('committee_code');
-        $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             
         $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);     
-            $this->load->view('printPreview/download/templates/header');
+            $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/transaction/singleJournal', $data);
       $this->load->view('printPreview/download/templates/footer');
             // Get output html
@@ -77,7 +85,8 @@ $glNo = urldecode($id);
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+            $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+            
         $fromE = $fromEng;
         $fromN = $this->convertToBs($fromE);
         $toE = $toEng;
@@ -93,7 +102,7 @@ $glNo = urldecode($id);
        
         $data['ledgerRep'] = $this->report_model->get_transaction_details_of_ledger_with_in_dates($ledger, $fromN, $fromE, $toN, $toE);
          
-             $this->load->view('printPreview/download/templates/header');
+             $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/ledgerReport', $data);
       $this->load->view('printPreview/download/templates/footer');
       // var_dump($_SERVER["DOCUMENT_ROOT"]);
@@ -125,9 +134,10 @@ $glNo = urldecode($id);
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
-            $fiscalCode = $this->session->userdata('fiscal_code');
+             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+            $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+            
        $fromE = $fromEng;
         $fromN = $this->convertToBs($fromE);
         $toE = $toEng;
@@ -144,7 +154,7 @@ $glNo = urldecode($id);
        $data['todayN'] = $this->dayFunctN();
       $data['todayE'] = $this->dayFunctE();
        
-      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/subLedgerReport', $data);
       $this->load->view('printPreview/download/templates/footer');
        // var_dump($_SERVER["DOCUMENT_ROOT"]);
@@ -177,7 +187,7 @@ $glNo = urldecode($id);
              $fiscal_year = $this->session->userdata('fiscal_year');      
             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         $donar = $donorCode;
          $fromE = $fromEng;
         $fromN = $this->convertToBs($fromE);
@@ -202,7 +212,7 @@ $glNo = urldecode($id);
       if($fromN < $toN){
           if($fromN <= $reportDateN && $reportDateN <= $toN){
       
-      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/donorReport', $data);
       $this->load->view('printPreview/download/templates/footer');
         // var_dump($_SERVER["DOCUMENT_ROOT"]);
@@ -243,7 +253,7 @@ $glNo = urldecode($id);
              $fiscal_year = $this->session->userdata('fiscal_year');      
             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-    
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         if (!$dayE) {
                 $day = date('Y-m-d');
                 $data['dayN'] = $this->dayFunctN();
@@ -260,7 +270,7 @@ $glNo = urldecode($id);
       $data['todayN'] = $this->dayFunctN();
       $data['todayE'] = $this->dayFunctE();   
       
-      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/dayBook', $data);
       $this->load->view('printPreview/download/templates/footer');
      // var_dump($_SERVER["DOCUMENT_ROOT"]);
@@ -294,7 +304,7 @@ $glNo = urldecode($id);
              $fiscal_year = $this->session->userdata('fiscal_year');              
             $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         $FisYr = urldecode($fiscal);
         $fiscalData = str_replace('&#47;', '/', $FisYr);
         
@@ -312,7 +322,7 @@ $glNo = urldecode($id);
       
       
       if($fiscalData == $fiscal_year)  { 
-             $this->load->view('printPreview/download/templates/header');
+             $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/iEReport', $data);
       $this->load->view('printPreview/download/templates/footer');
     // var_dump($_SERVER["DOCUMENT_ROOT"]);
@@ -352,7 +362,7 @@ $glNo = urldecode($id);
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-      
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
         $FisYr = urldecode($fiscal);
         $fiscalData = str_replace('&#47;', '/', $FisYr);
         
@@ -370,7 +380,7 @@ $glNo = urldecode($id);
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing_of_assets_and_liability();
       
       if($fiscalData == $fiscal_year)  {  
-             $this->load->view('printPreview/download/templates/header');
+             $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/balanceSheet', $data);
       $this->load->view('printPreview/download/templates/footer');
      
@@ -410,7 +420,8 @@ $glNo = urldecode($id);
              $fiscal_year = $this->session->userdata('fiscal_year');      
     $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);        
-    $FisYr = urldecode($fiscal);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+             $FisYr = urldecode($fiscal);
         $fiscalData = str_replace('&#47;', '/', $FisYr);
         
         $fromE = $fromEng;
@@ -426,7 +437,7 @@ $glNo = urldecode($id);
 
       $data['allLedger'] = $this->ledger_model->get_ledger_master_listing();
      if($fiscalData == $fiscal_year)  {
-      $this->load->view('printPreview/download/templates/header');
+      $this->load->view('printPreview/download/templates/header', $data);
       $this->load->view('printPreview/download/report/trialBalance', $data);
       $this->load->view('printPreview/download/templates/footer');
     // var_dump($_SERVER["DOCUMENT_ROOT"]);

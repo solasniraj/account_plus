@@ -8,6 +8,7 @@ class Miscelleneous extends CI_Controller {
                 $this->load->model('bank_model');
                  $this->load->model('report_model');
                 $this->load->model('dbmanager_model');
+                $this->load->model('dbuser');
 		$this->load->helper('url');
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('pagination');
@@ -22,8 +23,16 @@ class Miscelleneous extends CI_Controller {
 	{
 		$url = current_url();
 		if ($this->session->userdata('logged_in') == true) {
+                    $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+            $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
                     $data['bankAccount']=$this->bank_model->view_bank_account_listing();
-			$this->load->view('dashboard/templates/header');
+			$this->load->view('dashboard/templates/header', $data);
 			$this->load->view('dashboard/templates/sideNavigation');
 			$this->load->view('dashboard/templates/topHead');
 			$this->load->view('dashboard/miscelleneous/bankReconcillation', $data);
@@ -44,7 +53,7 @@ class Miscelleneous extends CI_Controller {
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-                    
+            $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);      
          $this->load->library('form_validation');
        $this->form_validation->set_rules('nepaliDateF', 'Date (From)', 'trim|required|callback_xss_clean');
        $this->form_validation->set_rules('nepaliDateT', 'Date (To)', 'trim|required|callback_xss_clean');
@@ -80,7 +89,7 @@ class Miscelleneous extends CI_Controller {
       $data['bank'] = $bankName;
       $data['amount'] = $amount;
       $data['bankTrans'] = $this->report_model->get_bank_trans_details_by_bank_id_with_in_dates($bankId, $fromDateN, $fromDateE, $toDateN, $toDateE);
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/miscelleneous/bankreconcillationForm', $data);

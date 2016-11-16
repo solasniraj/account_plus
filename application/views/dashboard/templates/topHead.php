@@ -222,7 +222,7 @@ padding: 3px;
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<div class="profile_img">	
 										 <div class="user-name">
-											<p><?php echo $this->session->userdata('username'); ?><span>Administrator</span></p>
+                                                                                     <p><?php echo $this->session->userdata('username'); ?><span><?php if(!empty($userRole)){ echo $userRole;} ?></span></p>
 										 </div>
 										 <i class="lnr lnr-chevron-down"></i>
 										 <i class="lnr lnr-chevron-up"></i>

@@ -63,10 +63,18 @@ else {
                    return '0';
                }
         }
-                
+        
+        public function get_latest_unlocked_fiscal_year_info($fiscal_year, $fiscalCode)
+        {
+            $this->db->where('status', '1');
+            $this->db->where('fiscal_year', $fiscal_year);
+            $this->db->where('fiscal_code', $fiscalCode);
+            $this->db->where('is_closed', '0');
+            $query= $this->db->get("fiscal_year_info");
+               return $query->result(); 
+        }
 
-
-        public function check_database_for_first_time()
+                public function check_database_for_first_time()
         {
             $this->db->where('status', '1');
             $query = $this->db->get('committee_info');

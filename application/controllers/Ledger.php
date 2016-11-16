@@ -11,6 +11,8 @@ class ledger extends CI_Controller {
         $this->load->model('ledger_model');
         $this->load->model('donar_model');
          $this->load->model('bank_model');
+         $this->load->model('dbmanager_model');
+         $this->load->model('dbuser');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -46,6 +48,14 @@ class ledger extends CI_Controller {
     public function accountGroupSearch() {
         if ($this->session->userdata('logged_in') == true) {
             $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        
             $this->load->library('form_validation');
             $this->form_validation->set_rules('search', 'Search Key', 'trim|required|callback_xss_clean|max_length[500]');
             $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>');
@@ -60,7 +70,7 @@ class ledger extends CI_Controller {
                 $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
                 $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
                 $data['donorInfo'] = $this->donar_model->get_all_donar();
-                $this->load->view('dashboard/templates/header');
+                $this->load->view('dashboard/templates/header', $data);
                 $this->load->view('dashboard/templates/sideNavigation');
                 $this->load->view('dashboard/templates/topHead');
                 $this->load->view('dashboard/ledger/listLedgerMaster', $data);
@@ -74,6 +84,14 @@ class ledger extends CI_Controller {
     public function accountGrSearch() {
         if ($this->session->userdata('logged_in') == true) {
             $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        
 
             $chartAccType = $this->input->post('chartAccType');
             $accLedger = $this->input->post('accLedger');
@@ -103,7 +121,7 @@ class ledger extends CI_Controller {
             $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
             $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
             $data['donorInfo'] = $this->donar_model->get_all_donar();
-            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/header', $data);
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
             $this->load->view('dashboard/ledger/listLedgerMaster', $data);
@@ -119,12 +137,21 @@ class ledger extends CI_Controller {
         
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
+            $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        
             $data['ledgerDetails'] = $this->ledger_model->get_ledger_master_listing();
             $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
             $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
             $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
             $data['donorInfo'] = $this->donar_model->get_all_donar();
-            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/header', $data);
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
             $this->load->view('dashboard/ledger/listLedgerMaster', $data);
@@ -137,12 +164,21 @@ class ledger extends CI_Controller {
     public function accountGroup() {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
+            $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        
             $data['ledgerDetails'] = $this->ledger_model->get_ledger_master_listing();
             $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
             $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
             $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
             $data['donorInfo'] = $this->donar_model->get_all_donar();
-            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/header', $data);
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
             $this->load->view('dashboard/ledger/listLedgerMaster', $data);
@@ -181,11 +217,20 @@ class ledger extends CI_Controller {
     public function createLedger() {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
+            $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        
             $data['accountCharts'] = $this->ledger_model->get_account_chart_class();
             $data['accountLedgers'] = $this->ledger_model->get_account_ledger_info();
             $data['subLedgers'] = $this->ledger_model->get_sub_ledger_info();
             $data['donorInfo'] = $this->donar_model->get_all_donar();
-            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/header', $data);
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
             $this->load->view('dashboard/ledger/createLedger', $data);
@@ -197,12 +242,7 @@ class ledger extends CI_Controller {
 
     public function addnewLedger() {
         if ($this->session->userdata('logged_in') == true) {
-            $user_id = $this->session->userdata('user_id');
-            $username = $this->session->userdata('username');
-            $committee_id = $this->session->userdata('committee_id');
-            $committee_code = $this->session->userdata('committee_code');
-            $fiscal_year = $this->session->userdata('fiscal_year');
-            $fiscalCode = $this->session->userdata('fiscal_code');
+            
             $this->load->library('form_validation');
             $this->form_validation->set_rules('chartAccType', 'Account', 'trim|required|callback_xss_clean|max_length[500]');
             $this->form_validation->set_rules('codeNo', 'Account Code', 'trim|required|callback_xss_clean|max_length[500]');

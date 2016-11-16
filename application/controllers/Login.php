@@ -14,6 +14,16 @@ class login extends CI_Controller {
     
     public function index()
     {
+        if ($this->session->userdata('logged_in') == TRUE) {
+                $username = $this->session->userdata('username');
+            $data = array(
+                    'username' => $username,
+                    'logged_in' =>true
+                );
+            $this->session->unset_userdata($data);
+            $this->session->sess_destroy();
+            redirect('login');
+        }
 date_default_timezone_set('Asia/Kathmandu');
 $currentYear = date('Y');
 $currentMonth = date('m');
@@ -98,15 +108,15 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
         $dataUser = Array(
             'user_name' => 'admin',
             'password' => md5('admin'),
-                'user_type' => 'administrator',
+                'user_type' => 'Administrator',
                 'status' => '1');
         
         $dataSuper = Array(
             'user_name' => 'infotechnab',
             'password' => md5('salyani056533977'),
-                'user_type' => 'administrator',
+                'user_type' => 'System Administrator',
                 'status' => '1',
-            'user_role' => 'super admin'
+            
         );
         
       $result1 = $this->dbmanager_model->add_committee_default_user_fiscal_year($dataCommittee, $dataFiscalYear, $dataUser, $dataSuper);
@@ -127,6 +137,16 @@ if((!empty($fiscalStart)) && (!empty($fiscalEnd))){
 
         public function login()
     {    
+            if ($this->session->userdata('logged_in') == TRUE) {
+                $username = $this->session->userdata('username');
+            $data = array(
+                    'username' => $username,
+                    'logged_in' =>true
+                );
+            $this->session->unset_userdata($data);
+            $this->session->sess_destroy();
+            redirect('login');
+        }
 $data['fiscalYear'] = $this->dbmanager_model->get_fiscal_year();
  if(!empty($data['fiscalYear'])) {          
             

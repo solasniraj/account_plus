@@ -9,6 +9,8 @@ class setting extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('setting_model');
+        $this->load->model('dbmanager_model');
+        $this->load->model('dbuser');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -21,7 +23,15 @@ class setting extends CI_Controller {
     public function index() {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
-            $this->load->view('dashboard/templates/header');
+            $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+            $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+            $this->load->view('dashboard/templates/header', $data);
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
             $this->load->view('dashboard/setting/dataBackUp');
@@ -69,7 +79,15 @@ class setting extends CI_Controller {
     public function dataRestore() {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
-            $this->load->view('dashboard/templates/header');
+            $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+            $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+            $this->load->view('dashboard/templates/header', $data);
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
             $this->load->view('dashboard/setting/dataRestore');
@@ -82,6 +100,14 @@ class setting extends CI_Controller {
     public function restore() {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
+            $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+            $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
             $autoload['libraries'] = array('database');
             $CI = &get_instance();
             $CI->load->database();
@@ -96,7 +122,7 @@ class setting extends CI_Controller {
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('file')) {
                 $data['error'] = $this->upload->display_errors();
-                $this->load->view('dashboard/templates/header');
+                $this->load->view('dashboard/templates/header', $data);
                 $this->load->view('dashboard/templates/sideNavigation');
                 $this->load->view('dashboard/templates/topHead');
                 $this->load->view('dashboard/setting/dataRestore');
@@ -125,13 +151,15 @@ class setting extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
             $user_id = $this->session->userdata('user_id');
-            $username = $this->session->userdata('username');
-            $committee_id = $this->session->userdata('committee_id');
-            $committee_code = $this->session->userdata('committee_code');
-            $fiscal_year = $this->session->userdata('fiscal_year');
-            $fiscalCode = $this->session->userdata('fiscal_code');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+            $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
             $data['committee'] = $this->setting_model->get_committee_detils($committee_id, $committee_code);
-            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/header', $data);
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
             $this->load->view('dashboard/setting/committeeUpdate', $data);
@@ -145,11 +173,13 @@ class setting extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
             $user_id = $this->session->userdata('user_id');
-            $username = $this->session->userdata('username');
-            $committee_id = $this->session->userdata('committee_id');
-            $committee_code = $this->session->userdata('committee_code');
-            $fiscal_year = $this->session->userdata('fiscal_year');
-            $fiscalCode = $this->session->userdata('fiscal_code');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+            $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
             $data['committee'] = $this->setting_model->get_committee_detils($committee_id, $committee_code);
             $config['upload_path'] = './contents/uploads/images/';
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -157,7 +187,7 @@ class setting extends CI_Controller {
             $config['max_width'] = '10000';
             $config['max_height'] = '10000';
             $this->load->library('upload', $config);
-            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/header', $data);
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
             $this->load->helper('form');
@@ -209,13 +239,15 @@ class setting extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
             $user_id = $this->session->userdata('user_id');
-            $username = $this->session->userdata('username');
-            $committee_id = $this->session->userdata('committee_id');
-            $committee_code = $this->session->userdata('committee_code');
-            $fiscal_year = $this->session->userdata('fiscal_year');
-            $fiscalCode = $this->session->userdata('fiscal_code');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+            $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
             $data['userDeatils'] = $this->setting_model->get_user_details($user_id, $username, $committee_code);
-            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/header', $data);
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
             $this->load->view('dashboard/setting/profile', $data);
@@ -229,14 +261,16 @@ class setting extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
 
-            $user_id = $this->session->userdata('user_id');
-            $username = $this->session->userdata('username');
-            $committee_id = $this->session->userdata('committee_id');
-            $committee_code = $this->session->userdata('committee_code');
-            $fiscal_year = $this->session->userdata('fiscal_year');
-            $fiscalCode = $this->session->userdata('fiscal_code');
+                        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+            $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
             $data['userDeatils'] = $this->setting_model->get_user_details($user_id, $username, $committee_code);
-            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/header', $data);
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
             $this->load->helper('form');
@@ -267,10 +301,27 @@ class setting extends CI_Controller {
     public function yearConfiguration() {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) {
-            $this->load->view('dashboard/templates/header');
+                        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+            $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+            $userRole = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+            $data['fiscalYearInfo'] = $this->dbmanager_model->get_latest_unlocked_fiscal_year_info($fiscal_year, $fiscalCode);
+            
+            $this->load->view('dashboard/templates/header', $data);
             $this->load->view('dashboard/templates/sideNavigation');
             $this->load->view('dashboard/templates/topHead');
+            if($userRole == 'System Administrator'){
+                $this->load->view('dashboard/setting/sAYearConfigure', $data);
+            }elseif($userRole == 'Administrator'){
             $this->load->view('dashboard/setting/yearConfigure');
+            }else{
+                 $this->load->view('dashboard/setting/yearConfigure');
+            }
             $this->load->view('dashboard/templates/footer');
         } else {
             redirect('login/index/?url=' . $url, 'refresh');

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 07, 2016 at 11:32 पूर्वाह्न
+-- Generation Time: Nov 16, 2016 at 05:37 पूर्वाह्न
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `account_ledger_info` (
   `ledger_code` varchar(25) DEFAULT NULL,
   `ledger_name` varchar(255) NOT NULL,
   `account_ledger_status` varchar(25) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `account_ledger_info`
@@ -47,8 +47,26 @@ INSERT INTO `account_ledger_info` (`id`, `ledger_code`, `ledger_name`, `account_
 (7, '07', 'Bank Account', '1'),
 (8, '08', 'Bank Account', '1'),
 (9, '09', 'Bank Account', '1'),
-(27, '10', 'Plantation', '1'),
-(28, '11', 'Plantation expenses', '1');
+(10, '10', 'Advance Account', '1'),
+(11, '11', 'Advance Account', '1'),
+(12, '12', 'Advance Account', '1'),
+(13, '13', 'Advance Account', '1'),
+(14, '14', 'Advance Account', '1'),
+(15, '15', 'Advance Account', '1'),
+(16, '16', 'Advance Account', '1'),
+(17, '17', 'Advance Account', '1'),
+(18, '18', 'Advance Account', '1'),
+(19, '19', 'Advance Account', '1'),
+(20, '20', 'Prepaid Expenses', '1'),
+(21, '21', 'Prepaid Expenses', '1'),
+(22, '22', 'Prepaid Expenses', '1'),
+(23, '23', 'Prepaid Expenses', '1'),
+(24, '24', 'Prepaid Expenses', '1'),
+(25, '25', 'Prepaid Expenses', '1'),
+(26, '26', 'Prepaid Expenses', '1'),
+(27, '27', 'Prepaid Expenses', '1'),
+(28, '28', 'Prepaid Expenses', '1'),
+(29, '29', 'Prepaid Expenses', '1');
 
 -- --------------------------------------------------------
 
@@ -68,16 +86,16 @@ CREATE TABLE IF NOT EXISTS `bank_info` (
   `bank_phone_no` varchar(20) DEFAULT NULL,
   `last_reconciled_date` timestamp NULL DEFAULT NULL,
   `ending_reconcile_balance` double DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `status` varchar(255) DEFAULT NULL,
+  `fiscal_code` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `bank_info`
 --
 
-INSERT INTO `bank_info` (`id`, `bank_account_code`, `ledger_code`, `account_type`, `bank_account_name`, `bank_name`, `bank_address`, `bank_account_number`, `bank_phone_no`, `last_reconciled_date`, `ending_reconcile_balance`, `status`) VALUES
-(2, NULL, '01', NULL, 'Global IME Bank Limited', NULL, NULL, NULL, NULL, NULL, NULL, '1'),
-(4, NULL, '01', NULL, 'Rastriya Banijya Bank Account', NULL, NULL, NULL, NULL, NULL, NULL, '1');
+INSERT INTO `bank_info` (`id`, `bank_account_code`, `ledger_code`, `account_type`, `bank_account_name`, `bank_name`, `bank_address`, `bank_account_number`, `bank_phone_no`, `last_reconciled_date`, `ending_reconcile_balance`, `status`, `fiscal_code`) VALUES
+(7, NULL, '01', NULL, 'Global Bank a/c', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'fs0001');
 
 -- --------------------------------------------------------
 
@@ -96,21 +114,9 @@ CREATE TABLE IF NOT EXISTS `bank_trans_info` (
   `amount` varchar(50) DEFAULT NULL,
   `reconciled` varchar(255) DEFAULT NULL,
   `bank_id` varchar(50) DEFAULT NULL,
+  `fiscal_code` varchar(50) NOT NULL,
   `status` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `bank_trans_info`
---
-
-INSERT INTO `bank_trans_info` (`id`, `type`, `trans_no`, `trans_date`, `tran_date_english`, `ledger_master_code`, `memo`, `amount`, `reconciled`, `bank_id`, `status`) VALUES
-(14, 'dr', '12345-FY2073/2074-00001', '2073-06-19', '2016-10-05', '0101010000', 'Bank Deposited Amount', '500000', NULL, '2', '1'),
-(15, 'cr', '12345-FY2073/2074-00002', '2073-06-19', '2016-10-05', '0101010000', 'By Bank', '-60000', NULL, '2', '1'),
-(16, 'dr', '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'hjghjg', '5000', NULL, '2', '1'),
-(17, 'dr', '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'hjghjg', '5000', NULL, '2', '1'),
-(18, 'cr', '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'fhgfhjghj', '-5000', NULL, '2', '1'),
-(19, 'dr', '12345-FY2073/2074-00004', '2073-06-21', '2016-10-07', '0101010000', 'jkhxkjchadkj5', '5000', NULL, '2', '1'),
-(20, 'dr', '12345-FY2073/2074-00005', '2073-06-21', '2016-10-07', '0101010000', 'gkuj bkj bk', '50000', NULL, '2', '1');
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -150,14 +156,14 @@ CREATE TABLE IF NOT EXISTS `committee_info` (
   `email_address` varchar(255) DEFAULT NULL,
   `logo` varchar(1000) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `committee_info`
 --
 
 INSERT INTO `committee_info` (`id`, `committee_name`, `address`, `phone`, `code`, `email_address`, `logo`, `status`) VALUES
-(10, 'Bardiya Natural', 'Narayangarh', '9845214140', '12345', 'niraj@gmail.com', 'chitwan_national_park_logo.gif', '1');
+(13, 'Mirga Kunja Bufferzone User Committee', 'Kesharbagh, Gitanagar, Chitwan', '056-533977', 'UC-BH-00001', '', 'images.png', '1');
 
 -- --------------------------------------------------------
 
@@ -174,15 +180,9 @@ CREATE TABLE IF NOT EXISTS `donar_info` (
   `donar_email` varchar(100) DEFAULT NULL,
   `contact_person` varchar(100) DEFAULT NULL,
   `contact_person_cell_no` varchar(50) DEFAULT NULL,
+  `fiscal_code` varchar(50) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `donar_info`
---
-
-INSERT INTO `donar_info` (`id`, `donar_name`, `donar_address`, `donar_contact_no`, `donar_code`, `donar_email`, `contact_person`, `contact_person_cell_no`, `status`) VALUES
-(7, 'WWF Nepel', 'sdbask', '', '01', 'asdsand@gmail.com', '', '', '1');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -192,20 +192,22 @@ INSERT INTO `donar_info` (`id`, `donar_name`, `donar_address`, `donar_contact_no
 
 CREATE TABLE IF NOT EXISTS `fiscal_year_info` (
   `id` int(11) NOT NULL,
+  `fiscal_code` varchar(15) NOT NULL,
   `fiscal_year` varchar(255) DEFAULT NULL,
   `begin_date` varchar(255) DEFAULT NULL,
   `end_date` varchar(255) DEFAULT NULL,
   `committee_code` varchar(255) DEFAULT NULL,
   `committee_id` varchar(25) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  `status` varchar(255) DEFAULT NULL,
+  `is_closed` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `fiscal_year_info`
 --
 
-INSERT INTO `fiscal_year_info` (`id`, `fiscal_year`, `begin_date`, `end_date`, `committee_code`, `committee_id`, `status`) VALUES
-(10, '2073/2074', '2073/04/01', '2074/03/30', '12345', '10', '1');
+INSERT INTO `fiscal_year_info` (`id`, `fiscal_code`, `fiscal_year`, `begin_date`, `end_date`, `committee_code`, `committee_id`, `status`, `is_closed`) VALUES
+(15, 'fs0001', '2073/2074', '2073/04/01', '2074/03/30', 'UC-BH-00001', '13', '1', '0');
 
 -- --------------------------------------------------------
 
@@ -217,18 +219,7 @@ CREATE TABLE IF NOT EXISTS `gl_trans_comment_details` (
   `id` int(11) NOT NULL,
   `trans_no` varchar(255) DEFAULT NULL,
   `detailed_comment` text
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `gl_trans_comment_details`
---
-
-INSERT INTO `gl_trans_comment_details` (`id`, `trans_no`, `detailed_comment`) VALUES
-(25, '12345-FY2073/2074-00001', 'Being Cash Deposit Into Bank By WWF Nepal'),
-(26, '12345-FY2073/2074-00002', 'sd,sncmsa,c z,mxc skad'),
-(27, '12345-FY2073/2074-00003', 'jkdsf sndbjfs djfbsd fsd'),
-(28, '12345-FY2073/2074-00004', 'GFSDU FSDBJFSD NBJSDFjdkshf fsnmdbkjfsd'),
-(29, '12345-FY2073/2074-00005', 'hk jbkj n jkb jkbkj jkkj');
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -252,29 +243,9 @@ CREATE TABLE IF NOT EXISTS `gl_trans_info` (
   `amount` double NOT NULL DEFAULT '0',
   `cheque_no` varchar(255) DEFAULT NULL,
   `trans_type` varchar(25) DEFAULT NULL,
+  `fiscal_code` varchar(50) NOT NULL,
   `gl_trans_status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `gl_trans_info`
---
-
-INSERT INTO `gl_trans_info` (`id`, `journal_voucher_no`, `tran_date`, `tran_date_english`, `ledger_master_code`, `ledger_master_description`, `account_ledger_head_code`, `gl_code`, `sub_ledger_code`, `donor_code`, `ledger_type_code`, `memo`, `amount`, `cheque_no`, `trans_type`, `gl_trans_status`) VALUES
-(46, '12345-FY2073/2074-00001', '2073-06-19', '2016-10-05', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'Bank Deposited Amount', 500000, '1231561', 'dr', '1'),
-(47, '12345-FY2073/2074-00001', '2073-06-19', '2016-10-05', '0310000101', 'Plantation Area 1 WWF Cash Account', '10', '03', '00', '01', '01', 'Bank Deposited Amount', 500000, '', 'cr', '1'),
-(48, '12345-FY2073/2074-00002', '2073-06-19', '2016-10-05', '0411000000', 'Plantation Area 1 WWF Expenses Account', '11', '04', '00', '01', '01', 'Wirig', 50000, '', 'dr', '1'),
-(49, '12345-FY2073/2074-00002', '2073-06-19', '2016-10-05', '0411000000', 'Plantation Area 1 WWF Expenses Account', '11', '04', '00', '01', '01', 'wiring', 5000, '', 'dr', '1'),
-(50, '12345-FY2073/2074-00002', '2073-06-19', '2016-10-05', '0411000000', 'Plantation Area 1 WWF Expenses Account', '11', '04', '00', '01', '01', 'tiffin', 5000, '', 'dr', '1'),
-(51, '12345-FY2073/2074-00002', '2073-06-19', '2016-10-05', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'By Bank', -60000, '', 'cr', '1'),
-(52, '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'hjghjg', 5000, '', 'dr', '2'),
-(53, '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'hjghjg', 5000, '', 'dr', '2'),
-(54, '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'fhgfhjghj', -5000, '', 'cr', '2'),
-(55, '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'hjghjg', 5000, '', 'dr', '2'),
-(56, '12345-FY2073/2074-00003', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'fhgfhjghj', -5000, '', 'cr', '2'),
-(57, '12345-FY2073/2074-00004', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'jkhxkjchadkj5', 5000, '', 'dr', '2'),
-(58, '12345-FY2073/2074-00004', '2073-06-21', '2016-10-07', '0310000101', 'Plantation Area 1 WWF Cash Account', '10', '03', '00', '01', '01', 'BDSJBFKJ', 5000, '', 'cr', '2'),
-(59, '12345-FY2073/2074-00005', '2073-06-21', '2016-10-07', '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', 'gkuj bkj bk', 50000, '', 'dr', '1'),
-(60, '12345-FY2073/2074-00005', '2073-06-21', '2016-10-07', '0310000101', 'Plantation Area 1 WWF Cash Account', '10', '03', '00', '01', '01', 'jlk nknkl ', 50000, '', 'cr', '1');
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -291,20 +262,17 @@ CREATE TABLE IF NOT EXISTS `ledger_master` (
   `subledger_code` varchar(25) NOT NULL,
   `donor_code` varchar(25) NOT NULL,
   `ledger_type_code` varchar(25) NOT NULL,
+  `fiscal_code` varchar(50) DEFAULT NULL,
   `status` varchar(25) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `ledger_master`
 --
 
-INSERT INTO `ledger_master` (`id`, `ledger_master_code`, `ledger_master_name`, `account_code`, `ledger_code`, `subledger_code`, `donor_code`, `ledger_type_code`, `status`) VALUES
-(26, '0101010000', 'Global Bank a/c', '01', '01', '01', '00', '00', '1'),
-(27, '0310000101', 'Plantation Area 1 WWF Cash Account', '03', '10', '00', '01', '01', '1'),
-(28, '0310000103', 'Plantation Area 1 WWF Labour Account', '03', '10', '00', '01', '03', '1'),
-(29, '0411000000', 'Plantation Area 1 WWF Expenses Account', '04', '11', '00', '00', '00', '1'),
-(31, '0101000000', 'Rastriya Banijya Bank Account', '01', '01', '00', '00', '00', '1'),
-(32, '01000000', 'Plantation Area 1 WWF Expenses Account', '01', '', '00', '00', '00', '1');
+INSERT INTO `ledger_master` (`id`, `ledger_master_code`, `ledger_master_name`, `account_code`, `ledger_code`, `subledger_code`, `donor_code`, `ledger_type_code`, `fiscal_code`, `status`) VALUES
+(53, '0101000000', 'Global Bank a/c', '01', '01', '00', '00', '00', 'fs0001', '1'),
+(54, '0310000000', 'Plantation Account', '03', '10', '00', '00', '00', 'fs0001', '1');
 
 -- --------------------------------------------------------
 
@@ -340,14 +308,7 @@ CREATE TABLE IF NOT EXISTS `subledger_info` (
   `subledger_name` varchar(255) DEFAULT NULL,
   `subledger_code` varchar(255) DEFAULT NULL,
   `subledger_status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `subledger_info`
---
-
-INSERT INTO `subledger_info` (`id`, `subledger_name`, `subledger_code`, `subledger_status`) VALUES
-(15, 'Global IME Bank Limited', '01', '1');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -366,14 +327,15 @@ CREATE TABLE IF NOT EXISTS `user_info` (
   `user_type` varchar(255) DEFAULT NULL,
   `committee_id` varchar(255) DEFAULT NULL,
   `committee_code` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_info`
 --
 
 INSERT INTO `user_info` (`id`, `user_name`, `full_name`, `email_address`, `contact_no`, `password`, `status`, `user_type`, `committee_id`, `committee_code`) VALUES
-(10, 'admin', NULL, NULL, NULL, '21232f297a57a5a743894a0e4a801fc3', '1', 'administrator', '10', '12345');
+(12, 'admin', NULL, NULL, NULL, '21232f297a57a5a743894a0e4a801fc3', '1', 'Administrator', '13', 'UC-BH-00001'),
+(13, 'infotechnab', NULL, NULL, NULL, '39c000ae85f6cdfc5bcdf0bbd73af4ea', '1', 'System Administrator', '13', 'UC-BH-00001');
 
 --
 -- Indexes for dumped tables
@@ -465,17 +427,17 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `account_ledger_info`
 --
 ALTER TABLE `account_ledger_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `bank_info`
 --
 ALTER TABLE `bank_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `bank_trans_info`
 --
 ALTER TABLE `bank_trans_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `chart_class`
 --
@@ -485,32 +447,32 @@ ALTER TABLE `chart_class`
 -- AUTO_INCREMENT for table `committee_info`
 --
 ALTER TABLE `committee_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `donar_info`
 --
 ALTER TABLE `donar_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `fiscal_year_info`
 --
 ALTER TABLE `fiscal_year_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `gl_trans_comment_details`
 --
 ALTER TABLE `gl_trans_comment_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `gl_trans_info`
 --
 ALTER TABLE `gl_trans_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=113;
 --
 -- AUTO_INCREMENT for table `ledger_master`
 --
 ALTER TABLE `ledger_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `ledger_type_info`
 --
@@ -520,12 +482,12 @@ ALTER TABLE `ledger_type_info`
 -- AUTO_INCREMENT for table `subledger_info`
 --
 ALTER TABLE `subledger_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

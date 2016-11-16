@@ -6,6 +6,8 @@ class bank extends CI_Controller {
         $this->load->library('session');
         $this->load->model('bank_model');
         $this->load->model('ledger_model');
+        $this->load->model('dbmanager_model');
+        $this->load->model('dbuser');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -20,11 +22,17 @@ class bank extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
-            
-   $user_id=$this->session->userdata('user_id');
+    $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
    $data['bankAccount']=$this->bank_model->view_bank_account_listing();
    
-         $this->load->view('dashboard/templates/header');
+         $this->load->view('dashboard/templates/header', $data);
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
           $this->load->view('dashboard/bank/listAccounts', $data);
@@ -38,9 +46,16 @@ class bank extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
-            
+           $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id); 
             $data['accountTypes'] = $this->bank_model->get_bank_account_type_details();
-            $this->load->view('dashboard/templates/header');
+            $this->load->view('dashboard/templates/header', $data);
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
           $this->load->view('dashboard/bank/addAccount', $data);
@@ -56,10 +71,17 @@ class bank extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
-             
+        $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
+             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);     
              $data['bankAccount']=$this->bank_model->view_bank_account_listing();
              
-              $this->load->view('dashboard/templates/header');
+              $this->load->view('dashboard/templates/header', $data);
           $this->load->view('dashboard/bank/showBalance', $data);
            $this->load->view('dashboard/templates/footer');
              
@@ -76,7 +98,7 @@ class bank extends CI_Controller {
         $url = current_url();
         if ($this->session->userdata('logged_in') == true) 
       {
-        $user_id=$this->session->userdata('user_id');
+        
        $this->load->library('form_validation');
        $this->form_validation->set_rules('bankAccountName', 'Bank Account Name', 'trim|required|callback_xss_clean|max_length[200]');
        $this->form_validation->set_rules('accountType', 'Select Account Type', 'trim|required|callback_xss_clean|max_length[200]');

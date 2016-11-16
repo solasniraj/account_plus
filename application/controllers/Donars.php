@@ -5,6 +5,8 @@ class donars extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('donar_model');
+        $this->load->model('dbuser');
+        $this->load->model('dbmanager_model');
         $this->load->helper('url');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pagination');
@@ -21,10 +23,16 @@ class donars extends CI_Controller {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) {
             
-   $user_id=$this->session->userdata('user_id');
-   $data['donars']=$this->donar_model->get_all_donars();
+   $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year'); 
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);         
+         $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+   $data['donars']=$this->donar_model->get_all_donar();
    
-         $this->load->view('dashboard/templates/header');
+         $this->load->view('dashboard/templates/header', $data);
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
           $this->load->view('dashboard/donars/listDonars', $data);
@@ -38,8 +46,15 @@ class donars extends CI_Controller {
     {
         $url = current_url();
          if ($this->session->userdata('logged_in') == true) { 
+             $user_id = $this->session->userdata('user_id');
+             $username = $this->session->userdata('username');
+             $committee_id = $this->session->userdata('committee_id');
+             $committee_code = $this->session->userdata('committee_code');
+             $fiscal_year = $this->session->userdata('fiscal_year'); 
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);         
+         $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
             $data['donarInfo'] = $this->donar_model->get_all_donar();
-              $this->load->view('dashboard/templates/header');
+              $this->load->view('dashboard/templates/header', $data);
               $this->load->view('dashboard/templates/sideNavigation');
               $this->load->view('dashboard/templates/topHead');
               $this->load->view('dashboard/donars/addDonar', $data);
@@ -54,9 +69,7 @@ class donars extends CI_Controller {
     {
         if ($this->session->userdata('logged_in') == true) 
       {
-        $user_id=$this->session->userdata('user_id');
-       
-       
+        
        $this->form_validation->set_rules('donarName', 'Donar Name', 'trim|regex_match[/^[a-z,0-9,A-Z_\-., ]{2,200}$/]|required|callback_xss_clean|max_length[1000]');
        $this->form_validation->set_rules('donarAddress', 'Donar Address', 'trim|regex_match[/^[a-z,0-9,A-Z_\-., ]{2,200}$/]|callback_xss_clean|max_length[1000]');
        $this->form_validation->set_rules('emailId', 'Donar Email ID', 'trim|regex_match[/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/]|callback_xss_clean|max_length[100]');

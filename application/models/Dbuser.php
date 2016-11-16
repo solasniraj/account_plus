@@ -37,6 +37,19 @@
     $query = $this->db->get("user_info");
     return $query->result();
     }
+    
+    public function get_user_role_by_user_name_and_id($username, $user_id)
+    {
+        $this->db->where('status', '1');
+        $this->db->where('user_name', $username);
+        $this->db->where('id', $user_id);
+      $query= $this->db->get("user_info")->result();
+               if(!empty($query)){
+           return $query[0]->user_type;
+               }else{
+                   return NULL;
+               }        
+    }
 
 
     }

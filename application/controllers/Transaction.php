@@ -7,6 +7,7 @@
       $this->load->model('program_model');
       $this->load->model('ledger_model');
        $this->load->model('bank_model');
+       $this->load->model('dbuser');
         $this->load->model('transaction_model');
        $this->load->model('dbmanager_model');
       $this->load->helper('url');
@@ -30,9 +31,12 @@
              $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
-             $fiscal_year = $this->session->userdata('fiscal_year');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
-       $this->load->view('dashboard/templates/header');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        
+       $this->load->view('dashboard/templates/header', $data);
        $this->load->view('dashboard/templates/sideNavigation');
        $this->load->view('dashboard/templates/topHead');
        $this->load->view('dashboard/dashboard/dashboardPanel');
@@ -53,8 +57,11 @@
              $committee_code = $this->session->userdata('committee_code');
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        
       $data['transactionDetails'] = $this->transaction_model->get_transactions_details($fiscalCode);  
-      $this->load->view('dashboard/templates/header');
+      $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
       $this->load->view('dashboard/transaction/journalList', $data);
@@ -493,9 +500,11 @@ $user_id = $this->session->userdata('user_id');
              $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
-             $fiscal_year = $this->session->userdata('fiscal_year');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
-             $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        
      $journalNumber = $this->transaction_model->count_all($fiscalCode) + 1;
      
   $jnNumber = str_pad($journalNumber, 5, "0", STR_PAD_LEFT);
@@ -523,7 +532,7 @@ $user_id = $this->session->userdata('user_id');
      
      $data['bankBalance'] = $finalBalance;
      
-     $this->load->view('dashboard/templates/header');
+     $this->load->view('dashboard/templates/header', $data);
      $this->load->view('dashboard/templates/sideNavigation');
      $this->load->view('dashboard/templates/topHead');
      $this->load->view('dashboard/transaction/journalEntry', $data);
@@ -559,9 +568,10 @@ $user_id = $this->session->userdata('user_id');
              $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
-           
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        
     $data['singleGLDetails'] = $this->transaction_model->get_single_transaction_details($glNos);
-   $this->load->view('dashboard/templates/header');
+   $this->load->view('dashboard/templates/header', $data);
       $this->load->view('dashboard/templates/sideNavigation');
       $this->load->view('dashboard/templates/topHead');
     $this->load->view('dashboard/transaction/journalPreview', $data);
@@ -634,8 +644,11 @@ if(is_trans_pending())
              $username = $this->session->userdata('username');
              $committee_id = $this->session->userdata('committee_id');
              $committee_code = $this->session->userdata('committee_code');
-             $fiscal_year = $this->session->userdata('fiscal_year');
+             $fiscal_year = $this->session->userdata('fiscal_year');              
              $fiscalCode = $this->session->userdata('fiscal_code');
+             $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
+             $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
+        
      $journalNumber = $this->program_model->getCurrentJournalNumer();
      
   $jnNumber = str_pad($journalNumber, 5, "0", STR_PAD_LEFT);
@@ -673,7 +686,7 @@ if(is_trans_pending())
 
      if ($this->form_validation->run() == FALSE)
      {       
-       $this->load->view('dashboard/templates/header');
+       $this->load->view('dashboard/templates/header', $data);
        $this->load->view('dashboard/templates/sideNavigation');
        $this->load->view('dashboard/templates/topHead');
        $this->load->view('dashboard/transaction/journalEntry', $data);
