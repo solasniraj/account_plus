@@ -41,6 +41,7 @@ class chartAccount extends CI_Controller {
              $data['committeeInfo'] = $this->dbmanager_model->get_committee_info($committee_id, $committee_code);
              $data['userRole'] = $this->dbuser->get_user_role_by_user_name_and_id($username, $user_id);
           $data['ledgerInfo'] = $this->ledger_model->get_all_ledger();
+          $data['chartClass'] = $this->ledger_model->getJournalTypes();
               $this->load->view('dashboard/templates/header', $data);
           $this->load->view('dashboard/templates/sideNavigation');
           $this->load->view('dashboard/templates/topHead');
@@ -60,6 +61,7 @@ class chartAccount extends CI_Controller {
         
        $this->load->library('form_validation');
        $this->form_validation->set_rules('ledgerName', 'Ledger name', 'trim|required|callback_xss_clean|max_length[200]');
+       $this->form_validation->set_rules('chartClass', 'Account Type', 'trim|required|callback_xss_clean|max_length[200]');
        $this->form_validation->set_error_delimiters('<div class="form-errors">', '</div>'); 
 
        if ($this->form_validation->run() == FALSE)
@@ -68,16 +70,16 @@ class chartAccount extends CI_Controller {
       }
       else 
       {
-       
+          $chartClass= $this->input->post('chartClass'); 
          $ledgerName = $this->input->post('ledgerName'); 
-        $accLastId = $this->ledger_model->get_last_code_of_ledger();
+        $accLastId = $this->ledger_model->get_last_code_of_ledger($chartClass);
         $countLedger = $this->ledger_model->count_ledger();
         $newACode = $accLastId + '1';
         
         $newAccountCode = str_pad($newACode, 2, "0", STR_PAD_LEFT);
         if($countLedger <  100){
         
-        $result = $this->ledger_model->add_new_ledger($newAccountCode, $ledgerName);
+        $result = $this->ledger_model->add_new_ledger($newAccountCode, $ledgerName, $chartClass);
        
         if($result)
             {

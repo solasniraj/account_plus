@@ -244,11 +244,12 @@ $query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledge
              return $query->result();
         }
 
-   public function add_new_ledger($newAccountCode, $ledgerName)
+   public function add_new_ledger($newAccountCode, $ledgerName, $chartClass)
    {
        $data = Array(
       'ledger_code' => $newAccountCode,
       'ledger_name' => $ledgerName,
+       'chart_class_code' => $chartClass,    
       'account_ledger_status' => '1'
       );
 
@@ -263,8 +264,10 @@ $query = $this->db->query("SELECT DISTINCT account_ledger_info.id, account_ledge
   return $query->num_rows();  
    }
 
-   public function get_last_code_of_ledger()
+   public function get_last_code_of_ledger($chartClass)
    {
+       $this->db->where('chart_class_code', $chartClass);
+       $this->db->where('account_ledger_status', '1');
               $this->db->select_max('ledger_code');
                $query= $this->db->get("account_ledger_info")->result();
                if(!empty($query)){

@@ -89,21 +89,21 @@ if (!empty($committeeInfo)) {
                 </tr>
             </thead>
             <tbody>
-                <?php if(!empty($advanse)){         
+                <?php if(!empty($advanse)){  foreach($advanse as $aaccounts){       
                       ?>
                 <tr>
+                    <td style="width: 10%;"><?php echo $aaccounts->tran_date; ?></td>
+                    <td style="width: 20%;"><?php echo $aaccounts->ledger_master_description; ?></td>
+                    <td style="width: 10%;"><?php echo $aaccounts->journal_voucher_no; ?></td>
+                    <td style="width: 10%;"><?php echo $aaccounts->cheque_no; ?></td>
+                    <td style="width: 10%;"><?php echo abs($aaccounts->amount); ?></td>
                     <td style="width: 10%;"></td>
-                    <td style="width: 20%;"></td>
                     <td style="width: 10%;"></td>
-                    <td style="width: 10%;"></td>
-                    <td style="width: 10%;"></td>
-                    <td style="width: 10%;"></td>
-                    <td style="width: 10%;"></td>
-                    <td style="width: 10%;"></td>
+                    <td style="width: 10%;"><?php echo $aaccounts->memo; ?></td>
                     <td style="width: 10%;"></td>
                                         
                 </tr> 
-                <?php } else {
+                <?php } } else {
     echo "<tr><td colspan='9'><strong>Journal etries are not found for provided date range.</td></tr>";
 } ?>
                    

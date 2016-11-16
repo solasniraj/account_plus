@@ -80,6 +80,18 @@ $this->db->join('gl_trans_comment_details', 'gl_trans_comment_details.trans_no =
 $query = $this->db->get();
  return $query->result(); 
     }
+    
+    public function get_tax_payable_amount_from_journal($journal_voucher_no, $fromN, $fromE, $toN, $toE)
+    {
+        $query = $this->db->query("SELECT SUM(CASE WHEN gl_code = '02' THEN amount END) AS t_amount,
+       FROM gl_trans_info where (journal_voucher_no=$journal_voucher_no AND ledger_master_code='0201000000' AND gl_trans_status ='1')")->result();
+        
+      if(!empty($query)){
+           return $query[0]->t_amount;
+               }else{
+                   return '0';
+               } 
+    }
 
     public function get_transaction_details_of_sub_ledger_with_in_dates($subledger, $fromN, $fromE, $toN, $toE)
     {

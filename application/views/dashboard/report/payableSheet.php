@@ -84,17 +84,19 @@
                             </tr>
                         </thead>
                         <tbody>
-<?php if (!empty($payable)) { ?>
+<?php if (!empty($payable)) {  foreach ($payable as $paccounts){
+    $incomeTax = $this->report_model->get_tax_payable_amount_from_journal($paccounts->journal_voucher_no, $fromN, $fromE, $toN, $toE);
+    ?>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>                                         
+                                    <td><?php echo $paccounts->tran_date; ?></td>
+                                    <td><?php echo $paccounts->detailed_comment; ?></td>
+                                    <td><?php echo $paccounts->journal_voucher_no; ?></td>
+                                    <td><?php echo abs($paccounts->amount); ?></td>
+                                    <td><?php echo abs($incomeTax); ?></td>
+                                    <td><?php echo abs(abs($paccounts->amount) + abs($incomeTax)); ?></td>                                         
 
                                 </tr>
-<?php } else {
+<?php } } else {
     echo "<tr><td colspan='6'><strong>Journal etries are not found for provided date range.</td></tr>";
 } ?>
 

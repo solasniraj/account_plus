@@ -617,7 +617,8 @@ class reports extends CI_Controller {
                 if ($fromN < $toN) {
                 if($data['todayN'] >= $data['toN']){
                     $data['payable'] = $this->report_model->get_accounts_payable_from_liability_from_journal($fromN, $fromE, $toN, $toE);
-                $this->load->view('dashboard/templates/header', $data);
+                
+                    $this->load->view('dashboard/templates/header', $data);
                 $this->load->view('dashboard/templates/sideNavigation');
                 $this->load->view('dashboard/templates/topHead');
                 $this->load->view('dashboard/report/payableSheet', $data);
