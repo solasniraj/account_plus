@@ -63,7 +63,7 @@ $query = $this->db->get();
     {
         $this->db->where('account_ledger_head_code', '01');
         $this->db->where('gl_code >=', '10');
-        $this->db->where('gl_code <=', '29');
+        $this->db->where('gl_code <=', '19');
         $this->db->where('gl_trans_status', '1');
         if(!empty($fromN) && (!empty($fromE))){ 
         $this->db->where('tran_date >=', $fromN);
