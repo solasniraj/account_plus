@@ -67,29 +67,230 @@ if (!empty($committeeInfo)) {
             <div data-example-id="simple-responsive-table">
 
                 <div class="table-responsive">
-                  <table class="table table-bordered">
+                  <table class="table-striped table-bordered" width="100%" cellspacing="0">
 
                         <thead>
                             
                             <tr>
-                                <th>S.N.</th>	
-                                <th>Description</th>
-                                <th>Amount Rs.</th>
-                                <th>Amount Rs.</th>
+                                <th style="width: 10%;">S.N.</th>	
+                                <th style="width: 50%;">Description</th>
+                                <th style="width: 20%;">Amount Rs.</th>
+                                <th style="width: 20%;">Amount Rs.</th>
                                 
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                                       	
+                                <td colspan="4">
+                        <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
+                            
+                                <tr>
+                                    <th style="width: 10%;">1.</th>
+                                    <th style="width: 50%;">Carry fwd</th>
+                                    <th style="width: 20%;"> </th>
+                                    <th style="width: 20%;"> </th>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Bank</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Cash</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Prepaid Expenses</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Advance</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Accounts Payable</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                
+                        </table>
+                                </td>
 
                             </tr>
                             
+                            <tr>
+                                <td colspan="4">
+                        <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
+                            
+                                <tr>
+                                    <th style="width: 10%;">2.</th>
+                                    <th style="width: 50%;">Income</th>
+                                    <th style="width: 20%;"> </th>
+                                    <th style="width: 20%;"> </th>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Carry fwd Income</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">First Installment</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Interest</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Second Installment</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Third Installment</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                
+                        </table>
+                                </td>
 
+                            </tr>
+                            
+                            <tr>
+                                <td colspan="4">
+                        <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
+                            
+                                <tr>
+                                    <th style="width: 10%;">3.</th>
+                                    <th style="width: 50%;">Total Income</th>
+                                    <th style="width: 20%;"> </th>
+                                    <th style="width: 20%;"> </th>
+                                </tr>
+                                
+                                
+                        </table>
+                                </td>
+
+                            </tr>
+                            
+                            <tr>
+                                <td colspan="4">
+                        <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
+                            
+                                <tr>
+                                    <th style="width: 10%;">4.</th>
+                                    <th style="width: 50%;">Deduct Expanses</th>
+                                    <th style="width: 20%;"> </th>
+                                    <th style="width: 20%;"> </th>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">First Quarterly Expanses Report</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Second Quarterly Expanses Report</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Third Quarterly Expanses Report</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Fourth Quarterly Expanses Report</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                
+                        </table>
+                                </td>
+
+                            </tr>
+                            
+                            <tr>
+                                <td colspan="4">
+                        <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
+                            
+                                <tr>
+                                    <th style="width: 10%;"></th>
+                                    <th style="width: 50%;">Saving (3-4)</th>
+                                    <th style="width: 20%;"> </th>
+                                    <th style="width: 20%;"> </th>
+                                </tr>
+                                
+                                
+                        </table>
+                                </td>
+
+                            </tr>
+                            
+                            <tr>
+                                <td colspan="4">
+                        <table class="table-striped table-bordered table-condensed" width="100%" cellspacing="0">
+                            
+                                <tr>
+                                    <th style="width: 10%;"></th>
+                                    <th style="width: 50%;">Saving Types</th>
+                                    <th style="width: 20%;"> </th>
+                                    <th style="width: 20%;"> </th>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Bank</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Cash</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Prepaid Expenses</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Advance</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 10%;"></td>
+                                    <td style="width: 50%;">Accounts Payable</td>
+                                    <td style="width: 20%;"></td>
+                                    <td style="width: 20%;"></td>
+                                </tr>
+                                
+                        </table>
+                                </td>
+
+                            </tr>
 
 
                         </tbody>
